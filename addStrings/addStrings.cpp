@@ -14,19 +14,19 @@ public:
       i--;
       j--;
       carry = sum / 10;
-      ans = ans + to_string(sum%10);
+      ans += (sum%10 + '0');
     }
     while (i >= 0) {
       sum = num1[i] - '0' + carry;
       i--;
       carry = sum / 10;
-      ans += to_string(sum%10);
+      ans += (sum%10 + '0');
     }
     while (j >= 0) {
       sum = num2[j] - '0' + carry;
       j--;
       carry = sum / 10;
-      ans += to_string(sum%10);
+      ans += (sum%10 + '0');
     }
     if (carry == 1)
       ans += "1";
