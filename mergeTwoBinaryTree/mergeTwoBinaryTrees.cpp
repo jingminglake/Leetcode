@@ -41,6 +41,8 @@ int main()
     }
   }
   for (int i = 0; i < size/2; i++) {
+    if(!vec[i])
+      continue;
     if (i*2 + 1 < size)
       vec[i]->left = vec[i*2 + 1];
     if (i*2 + 2 < size)
@@ -56,6 +58,8 @@ int main()
     }
   }
   for (int i = 0; i < size2/2; i++) {
+    if(!vec2[i])
+      continue;
     if (i*2 + 1 < size2)
       vec2[i]->left = vec2[i*2 + 1];
     if (i*2 + 2 < size2)
