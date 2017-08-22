@@ -1,0 +1,2 @@
+Select w2.Id from Weather w1, Weather w2
+where to_days(w2.DATE) - to_days(w1.DATE) = 1 and w1.Temperature < w2.Temperature;
