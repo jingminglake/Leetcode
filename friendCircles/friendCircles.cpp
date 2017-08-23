@@ -1,4 +1,4 @@
-// clang++ matchsticksToSquare.cpp -std=c++11
+// clang++ friendCircles.cpp -std=c++11
 
 #include <iostream>
 #include <vector>
