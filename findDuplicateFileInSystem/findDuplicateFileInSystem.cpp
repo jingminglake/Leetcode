@@ -1,4 +1,4 @@
-// clang++ repeatedDNASequences.cpp -std=c++11
+// clang++ findDuplicateFileInSystem.cpp -std=c++11
 
 #include <iostream>
 #include <vector>
