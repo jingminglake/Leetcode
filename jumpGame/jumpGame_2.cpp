@@ -1,4 +1,4 @@
-// clang++ jumpGame.cpp -std=c++11
+// clang++ jumpGame_2.cpp -std=c++11
 
 #include <iostream>
 #include <vector>
