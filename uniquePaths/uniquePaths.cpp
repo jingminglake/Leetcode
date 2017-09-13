@@ -14,7 +14,7 @@ public:
     vector<int> cur(m, 1);
     for (int i = 1; i < n; i++) {
       for (int j = 1; j < m; j++) {
-	cur[i] += cur[i - 1];
+	cur[j] += cur[j - 1];
       }
     }//for
     return cur[m - 1];
