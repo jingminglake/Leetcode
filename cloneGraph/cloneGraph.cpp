@@ -14,24 +14,30 @@ class Solution{
 public:
   UndirectedGraphNode *cloneGraph(struct UndirectedGraphNode *node) {
     if (!node)
-      return NULL;
-    UndirectedGraphNode *newNode = new UndirectedGraphNode(node->label);
-    unordered_map<int, struct UndirectedGraphNode *> m;
-    m.insert(make_pair(newNode->label, newNode));
+      return nullptr;
+    unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> m;
+    // clone nodes
     queue<UndirectedGraphNode*> q;
     q.push(node);
     while (!q.empty()) {
-      UndirectedGraphNode *n = q.front();
+      UndirectedGraphNode *temp = q.front();
+      UndirectedGraphNode *cloneNode = new UndirectedGraphNode(temp->label);
+      m.insert(make_pair(temp, cloneNode));
       q.pop();
-      for (UndirectedGraphNode *neighbor : n->neighbors) {
-	if (m.find(neighbor->label) == m.end()) {
-	  m.insert(make_pair(neighbor->label, new UndirectedGraphNode(neighbor->label)));
-	  q.push(neighbor);
-	}
-	m[n->label]->neighbors.push_back(m[neighbor->label]);
+      for (UndirectedGraphNode* neighborNode : temp->neighbors) {
+	if (m.find(neighborNode) == m.end())
+	  q.push(neighborNode);
       }
-    }//while
-    return newNode;
+    }
+    // clone edges
+    unordered_map<UndirectedGraphNode*, UndirectedGraphNode*>::iterator it = m.begin();
+    while (it != m.end()) {
+      for (UndirectedGraphNode* n: it->first->neighbors) {
+	it->second->neighbors.push_back(m[n]);
+      }
+      ++it;
+    }
+    return m[node];
   }
 };
 
