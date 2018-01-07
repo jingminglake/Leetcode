@@ -6,52 +6,48 @@ using namespace std;
 class Solution{
 public:
   vector<vector<char> > updateBoard(vector<vector<char> >& board, vector<int>& click) {
-    int m = board.size();
-    int n = board[0].size();
+    if (board.size() == 0)
+      return board;
+    if (board[click[0]][click[1]] == 'M') {
+      board[click[0]][click[1]] = 'X';
+      return board;
+    } else if (board[click[0]][click[1]] == 'B' || (board[click[0]][click[1]]  > '0' && board[click[0]][click[1]] < '9'))
+      return board;
     queue<vector<int> > q;
     q.push(click);
+    vector<pair<int, int> > dirs = { make_pair(-1, 0), make_pair(1, 0), make_pair(0, -1), make_pair(0, 1), make_pair(-1, -1), make_pair(-1, 1), make_pair(1, -1), make_pair(1, 1) };
     while (!q.empty()) {
-      vector<int> cell = q.front();
+      vector<int> v = q.front();
       q.pop();
-      int row = cell[0], col = cell[1];
-      if (board[row][col] == 'M') {
-	board[row][col] = 'X';
-      } else { //empty
-	int numberOfMine = 0;
-	for (int i = -1; i < 2; i++) {
-	  for (int j = -1; j < 2; j++) {
-	    if (i == 0 && j == 0)
-	      continue;
-	    int r = row + i, c = col + j;
-	    if (r < 0 || r >= m || c < 0 || c >= n)
-	      continue;
-	    if (board[r][c] == 'M' || board[r][c] == 'X')
-	      numberOfMine++;
-	  }
+      if (board[v[0]][v[1]] == 'B' || (board[v[0]][v[1]]  > '0' && board[v[0]][v[1]] < '9'))
+	continue;
+            
+      int mineNum = 0;
+      for (auto& dir : dirs) {
+	int m = v[0] + dir.first;
+	int n = v[1] + dir.second;
+	if (m < 0 || m >= board.size() || n < 0 || n >= board[0].size())
+	  continue;
+	if (board[m][n] == 'M') {
+	  mineNum++;
 	}
-	if (numberOfMine > 0) {
-	  board[row][col] = numberOfMine + '0';
-	} else {
-	  board[row][col] = 'B';
-	  for (int i = -1; i < 2; i++) {
-	    for (int j = -1; j < 2; j++) {
-	      if (i == 0 && j == 0)
-		continue;
-	      int r = row + i, c = col + j;
-	      if (r < 0 || r >= m || c < 0 || c >= n)
-		continue;
-	      if (board[r][c] == 'E') {
-		vector<int> clickNext;
-                clickNext.push_back(r);
-		clickNext.push_back(c);
-		q.push(clickNext);
-		board[r][c] = 'B';
-	      }
-	    }
-	  }
-	}//else
       }
-    }//while
+      if (mineNum == 0) {
+	board[v[0]][v[1]] = 'B';
+	for (auto& dir : dirs) {
+	  int m = v[0] + dir.first;
+	  int n = v[1] + dir.second;
+	  if (m < 0 || m >= board.size() || n < 0 || n >= board[0].size() || board[m][n] != 'E')
+	    continue;
+	  vector<int> next;
+	  next.push_back(m);
+	  next.push_back(n);
+	  q.push(next);
+	}
+      } else {
+	board[v[0]][v[1]] = '0' + mineNum;
+      }
+    }
     return board;
   }
 };
