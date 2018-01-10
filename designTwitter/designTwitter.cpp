@@ -27,6 +27,13 @@ public:
   User(int id) : userId(id) {
     tweetList = nullptr;
   }
+  ~User() {
+    while (tweetList) {
+      Tweet* t = tweetList->getNext();
+      delete tweetList;
+      tweetList = t;
+    }
+  }
   void follow(int id) {
     followed.insert(id);
   }
