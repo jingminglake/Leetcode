@@ -6,22 +6,19 @@ using namespace std;
 class Solution{
 public:
   vector<vector<int> > permute(vector<int>& nums) {
-    vector<vector<int> > res;
-    vector<int> path;
-    dfs(res, path, nums);
-    return res;
+    vector<vector<int> > ans;
+    backtrack(nums, 0, ans);
+    return ans;
   }
-  void dfs(vector<vector<int> >& res, vector<int>& path, vector<int>& nums) {
-    if (path.size() == nums.size()) {
-      res.push_back(path);
+  void backtrack(vector<int>& nums, int start, vector<vector<int> >& ans) {
+    if (nums.size() == start) {
+      ans.push_back(nums);
+      return;
     }
-    for (int i = 0; i < nums.size(); i++) {
-      if (find(path.begin(), path.end(), nums[i]) != path.end()) {
-	continue;
-      }
-      path.push_back(nums[i]);
-      dfs(res, path, nums);
-      path.pop_back();
+    for (int i = start; i < nums.size(); i++) {
+      swap(nums[start], nums[i]);
+      backtrack(nums, start+1, ans);
+      swap(nums[start], nums[i]);
     }
   }
 };
