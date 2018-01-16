@@ -11,15 +11,20 @@ struct TreeNode {
 
 class Solution{
 public:
-  bool isValidBST(TreeNode *root) {
-    return isValid(root, LONG_MAX, LONG_MIN);
+  bool isValidBST(TreeNode* root) {
+    long max = LONG_MIN;
+    return isValidHelper(root, max);
   }
-  bool isValid(TreeNode *root, long minV, long maxV) {
+  bool isValidHelper(TreeNode* root, long& max) {
     if (!root)
       return true;
-    if (root->val >= maxV || root->val <= minV)
+    bool leftRes = isValidHelper(root->left, max);
+    if (root->val <= max)
       return false;
-    return isValid(root->left, minV, root->val) && isValid(root->right, root->val, maxV);
+    else
+      max = root->val;
+    bool rightRes = isValidHelper(root->right, max);
+    return leftRes && rightRes;
   }
 };
 
