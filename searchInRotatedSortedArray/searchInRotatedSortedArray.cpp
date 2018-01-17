@@ -6,32 +6,29 @@ using namespace std;
 class Solution{
 public:
   int search(vector<int>& nums, int target) {
-    int diff = 0;
-    int size = nums.size();
-    int left = 0, right = size - 1;
-    int mid = 0;
-    while (left < right) {
-      if (nums[left] < nums[right])
-	break;
-      mid = left + (right-left)/2;
-      if (nums[mid] >= nums[left])
-	left = mid + 1;
-      else
-	right = mid;
+    if (nums.size() == 0)
+      return -1;
+    int left = 0, right = nums.size() - 1;
+    while (left + 1 < right) {
+      int mid = left + (right - left) / 2;
+      if (nums[mid] == target)
+	return mid;
+      if (nums[mid] > nums[left] && nums[mid] > nums[right]) {
+	if (target < nums[mid] && target >= nums[left])
+	  right = mid;
+	else
+	  left = mid;
+      } else {
+	if (target > nums[mid] && target <= nums[right])
+	  left = mid;
+	else
+	  right = mid;
+      }
     }
-    diff = left;
-    left = 0;
-    right = size - 1;
-    while (left <= right) {
-      mid = left + (right-left)/2;
-      int realMid = (mid + diff)%size;
-      if (nums[realMid] < target)
-	left = mid + 1;
-      else if (nums[realMid] > target)
-	right = mid - 1;
-      else
-	return realMid;
-    }
+    if (nums[left] == target)
+      return left;
+    if (nums[right] == target)
+      return right;
     return -1;
   }
 };
