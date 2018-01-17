@@ -6,24 +6,19 @@ using namespace std;
 class Solution{
 public:
   int find(vector<int>& nums) {
-    int left = 0, right = nums.size()-1;
-    int mid = 0;
-    while (left < right) {
-      mid = left + (right-left)/2;
-      if (nums[mid] > nums[right])
-	left = mid+1;
-      else if (nums[mid] < nums[right])
-	right = mid;
-      else {
-	if (nums[right-1] > nums[right]) {
-	  left = right;
-	  break;
-	}
+    int left = 0, right = nums.size() - 1;
+    while (left + 1 < right) {
+      int mid = left + (right - left) / 2;
+      if (nums[mid] == nums[right]) {
 	right--;
       }
+      else if (nums[mid] >= nums[left] && nums[mid] > nums[right]) {
+	left = mid;
+      } else {
+	right = mid;
+      }
     }
-    cout << left << " " << right << endl;
-    return nums[left];
+    return nums[left] < nums[right] ? nums[left] : nums[right];
   }
 };
 
