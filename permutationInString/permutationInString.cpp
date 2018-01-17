@@ -5,27 +5,22 @@ using namespace std;
 class Solution{
 public:
   bool checkInclusion(string s1, string s2) {
-    int hash[26] = {0};
-    int size1 = s1.length();
-    int size2 = s2.length();
-    for (int i = 0; i < size1; i++) {
-      hash[s1[i] - 'a']++;
-    }
-    for (int i = 0; i < size2; i++) {
-      hash[s2[i] - 'a']--;
-      if (i >= size1)
-	hash[s2[i - size1] - 'a']++;
-      if (checkAllZero(hash))
+    if (s1.length() > s2.length())
+      return false;
+    vector<int> hash1(26, 0);
+    for (char c : s1)
+      hash1[c - 'a']++;
+    int left = 0, right = 0;
+    vector<int> hash2(26, 0);
+    while (right < s2.length()) {
+      while (right - left < s1.length()) {
+	hash2[s2[right++] - 'a']++;
+      }
+      if (hash1 == hash2)
 	return true;
+      hash2[s2[left++] - 'a']--;
     }
     return false;
-  }
-  bool checkAllZero(int hash[]) {
-    for (int i = 0; i < 26; i++) {
-      if (hash[i] != 0)
-	return false;
-    }
-    return true;
   }
 };
 
