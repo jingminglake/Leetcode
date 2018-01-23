@@ -6,26 +6,18 @@ using namespace std;
 class Solution{
 public:
   int rob(vector<int>& nums) {
-    int size = nums.size();
-    if (size == 0)
-      return 0;
-    if (size == 1)
-      return nums[0];
-    vector<int> m(size, 0);
-    m[0] = nums[0];
-    m[1] = nums[1];
-    int maxA = max(m[0], m[1]);
-    for (int i = 2; i < size; i++) {
-      int maxM = m[0];
-      for (int j = 1; j < i - 1; j++) {
-	if (m[j] > maxM) {
-	  maxM = m[j];
-        }
+    int res = 0;
+    if (nums.size() == 0)
+      return res;
+    vector<int> dp(nums.size(), 0);
+    for (int i = 0; i < nums.size(); i++) {
+      dp[i] = nums[i];
+      for (int j = 0; j <= i - 2; j++) {
+	dp[i] = max (dp[i], dp[j] + nums[i]);
       }
-      m[i] =  maxM + nums[i];
-      maxA = max(maxA, m[i]);
+      res = max (res, dp[i]);
     }
-    return maxA;
+    return res;
   }
 };
 
