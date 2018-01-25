@@ -2,9 +2,6 @@
 
 #include <iostream>
 #include <vector>
-#include <queue>
-#include <unordered_map>
-#include <unordered_set>
 using namespace std;
 
 class TrieNode {
@@ -14,6 +11,12 @@ public:
   TrieNode() : isWord(false){
     memset(next, 0, sizeof(next));
   }
+  ~TrieNode(){
+    for (int i = 0; i < 26; i++) {
+      if (next[i])
+	delete next[i];
+    }
+  }
 };
 
 class Trie {
@@ -21,6 +24,9 @@ public:
   /** Initialize your data structure here. */
   Trie() {
     root = new TrieNode();
+  }
+  ~Trie() {
+    delete root;
   }
     
   /** Inserts a word into the trie. */
