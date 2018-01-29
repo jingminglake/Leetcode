@@ -5,29 +5,20 @@ using namespace std;
 class Solution{
 public:
   bool canPlaceFlowers(vector<int>& flowerbed, int n) {
-    int size = flowerbed.size();
-    if (size < 1)
+    if (flowerbed.size() == 0 && n != 0)
       return false;
-    for (int i = 0; i < size; i++) {
-      if (i == 0) {
-	if (flowerbed[i] == 0 && flowerbed[i+1] == 0) {
-          n--;
-	  flowerbed[i] = 1;
-	}
-      }
-      if (i == size-1) {
-	if (flowerbed[i] == 0 && flowerbed[i-1] == 0) {
-	  n--;
-          break;
-	}  
-      }
-      // cout << "---" << i << "---" << flowerbed[i] << endl;
-      if (flowerbed[i] == 0 && flowerbed[i-1] == 0 && flowerbed[i+1] == 0) {
-	n--;
-	flowerbed[i] = 1;
-      }
+    int num = 0;
+    for (int i = 0; i < flowerbed.size(); i++) {
+      if (flowerbed[i] == 1)
+	continue;
+      if (i - 1 >= 0 && (flowerbed[i - 1] == 1))
+	continue;
+      if (i + 1 < flowerbed.size() && (flowerbed[i + 1] == 1))
+	continue;
+      flowerbed[i] = 1;
+      num++;
     }
-    return n <= 0 ? true : false;
+    return num >= n;
   }
 };
 
