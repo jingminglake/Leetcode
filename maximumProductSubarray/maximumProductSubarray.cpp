@@ -6,19 +6,19 @@ using namespace std;
 class Solution{
 public:
   int maxProduct(vector<int>& nums) {
-    int size = nums.size();
-    int maxP = nums[0];
-    int maxHere;
-    int minHere;
-    int minPrev = nums[0], maxPrev = nums[0];
-    for (int i = 1; i < size; i++) {
-      maxHere = max(max(maxPrev*nums[i], minPrev*nums[i]), nums[i]);
-      minHere = min(min(maxPrev*nums[i], minPrev*nums[i]), nums[i]);
-      maxP = max(maxP, maxHere);
-      maxPrev = maxHere;
-      minPrev = minHere;
+    int res = 0;
+    if (nums.size() == 0)
+      return res;
+    int maxHere = nums[0];
+    int minHere = nums[0];
+    res = nums[0];
+    for (int i = 1; i < nums.size(); i++) {
+      int prevMax = maxHere;
+      maxHere = max (nums[i], max (nums[i] * maxHere, nums[i] * minHere) );
+      minHere = min (nums[i], min (nums[i] * prevMax, nums[i] * minHere) );
+      res = max (res, maxHere);
     }
-    return maxP;
+    return res;
   }
 };
 
