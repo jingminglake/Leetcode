@@ -12,22 +12,19 @@ struct TreeNode {
 
 class Solution{
 public:
-  bool findTarget(TreeNode *root, int k) {
-    unordered_set<int> s;
-    bool find = false;
-    taversal(root, s, k, find);
-    return find;
-  }
-  void taversal(TreeNode *root, unordered_set<int>& s, int k, bool& find) {
+  bool findTarget(TreeNode* root, int k) {
     if (!root)
-      return;
-    if (s.count(k - root->val)) {
-      find = true;
-      return ;
-    }
+      return false;
+    unordered_set<int> s;
+    return findTargetHelper(root, k, s);
+  }
+  bool findTargetHelper(TreeNode* root, int k, unordered_set<int>& s) {
+    if (!root)
+      return false;
+    if (s.count(k - root->val))
+      return true;
     s.insert(root->val);
-    taversal(root->left, s, k, find);
-    taversal(root->right, s, k, find);
+    return findTargetHelper(root->left, k, s) || findTargetHelper(root->right, k, s);
   }
 };
 
