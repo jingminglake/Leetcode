@@ -12,36 +12,22 @@ struct TreeNode {
 
 class Solution{
 public:
-  bool isSubtree(TreeNode *s, TreeNode* t) {
-    /*queue<TreeNode*> q;
-    q.push(s);
-    while (!q.empty()) {
-      TreeNode *temp = q.front();
-      q.pop();
-      if (temp && temp->val == t->val) {
-	if (compare(temp, t))
-	    return true;
-      }
-      if (temp->left)
-	q.push(temp->left);
-      if (temp->right)
-	q.push(temp->right);
-    }
-    return false;*/
-    if (!s)
+  bool isSubtree(TreeNode* s, TreeNode* t) {
+    if (!t || !s)
       return false;
-    if (compare(s, t))
+    if (check(s, t))
       return true;
     else
       return isSubtree(s->left, t) || isSubtree(s->right, t);
   }
-  bool compare(TreeNode *s, TreeNode* t) {
-    if (!s && !t)
+  bool check(TreeNode* t1, TreeNode* t2) {
+    if (!t1 && !t2)
       return true;
-    else if (s && t)
-      return (s->val == t->val) && compare(s->left, t->left) && compare(s->right, t->right);
-    else
+    if (!t1 || !t2)
       return false;
+    if (t1->val != t2->val)
+      return false;
+    return check(t1->left, t2->left) && check(t1->right, t2->right);
   }
 };
 
