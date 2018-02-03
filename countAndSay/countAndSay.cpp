@@ -4,31 +4,25 @@ using namespace std;
 class Solution{
 public:
   string countAndSay(int n) {
-    string ans;
-    if (n < 0)
-      return ans;
-    ans = "1";
-    while (--n) {
-      int size = ans.size();
-      char c = ans[0];
-      int i = 1;
-      int count = 1;
-      string temp = "";
-      while (i < size) {
-	if (ans[i] == c) {
-	  count++;
-	  i++;
-	} else {
-	  temp += to_string(count) + c;
-	  c = ans[i];
-	  count = 1;
-	  i++;
-	}
-      }
-      temp += to_string(count) + c;
-      ans = temp;
+    string res;
+    if (n == 1) {
+      res = "1";
+      return res;
     }
-    return ans;
+    string tempRes = countAndSay(n - 1);
+    char curBit = tempRes[0];
+    int count = 1;
+    for (int i = 1; i < tempRes.size(); i++) {
+      if (tempRes[i] == curBit) {
+	count++;
+      } else {
+	res += to_string(count) + curBit;
+	curBit = tempRes[i];
+	count = 1;
+      }
+    }
+    res += to_string(count) + curBit;
+    return res;
   }
 };
 
