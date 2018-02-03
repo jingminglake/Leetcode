@@ -6,22 +6,24 @@ class Solution
 {
 public:
   bool validPalindrome(string s) {
-    int i = 0, j = s.length() - 1;
-    while (i < j && s[i] == s[j]) {
-      i++;
-      j--;
+    int left = 0, right = s.length() - 1;
+    while (left <= right) {
+      if (s[left] == s[right]) {
+	left++;
+	right--;
+      } else {
+	return validPalindromeHelper(s, left + 1, right) || validPalindromeHelper(s, left, right - 1);
+      }
     }
-    if (i >= j)
-      return true;
-    if (isPalindrome(s, i + 1, j) || isPalindrome(s, i, j - 1))
-      return true;
-    return false;
+    return true;
   }
-  bool isPalindrome(string s, int i, int j) {
-    while (i < j) {
+  bool validPalindromeHelper(string s, int i, int j) {
+    if (i > j)
+      return false;
+    while (i <= j) {
       if (s[i] == s[j]) {
 	i++;
-        j--;
+	j--;
       } else
 	return false;
     }
