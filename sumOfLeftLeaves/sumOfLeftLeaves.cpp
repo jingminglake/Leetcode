@@ -13,16 +13,21 @@ struct TreeNode {
 class Solution{
 public:
   int sumOfLeftLeaves(TreeNode *root) {
+    int res = 0;
     if (!root)
-      return 0;
-    return traverse(root, false);
+      return res;
+    sumOfLeftLeavesHelper(root, res, false);
+    return res;
   }
-  int traverse(TreeNode *root, bool l) {
+  void sumOfLeftLeavesHelper(TreeNode* root, int& res, bool isLeft) {
     if (!root)
-      return 0;
-    if (!root->left && !root->right && l)
-      return root->val;
-    return traverse(root->left, true) + traverse(root->right, false);
+      return;
+    if (isLeft && !root->left && !root->right) {
+      res += root->val;
+      return;
+    }
+    sumOfLeftLeavesHelper(root->left, res, true);
+    sumOfLeftLeavesHelper(root->right, res, false);
   }
 };
 
