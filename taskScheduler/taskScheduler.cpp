@@ -1,24 +1,22 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <unordered_map>
 using namespace std;
 
 class Solution{
 public:
   int leastInterval(vector<char>& tasks, int n) {
-    int size = tasks.size();
-    int hash[26] = {0};
-    int maxTaskCount = 0;
-    for (char c : tasks) {
-      hash[c-'A']++;
-      maxTaskCount = max(maxTaskCount, hash[c-'A']);
+    int res = 0;
+    unordered_map<char, int> m;
+    int maxN = 1;
+    for (char c : tasks)
+      maxN = max (maxN, ++m[c]);
+    int num = 0;
+    for (auto& p : m) {
+      if (p.second == maxN)
+	num++;
     }
-    int ans = (maxTaskCount - 1) * (n + 1);
-    for (int i = 0; i < 26; i++)
-      if (hash[i] == maxTaskCount)
-	ans++;
-    ans = max(size, ans);
-    return ans;
+    return max ( (int)tasks.size(), (maxN - 1) * (n + 1) + num );
   }
 };
 
