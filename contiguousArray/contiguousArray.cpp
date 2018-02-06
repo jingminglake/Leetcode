@@ -1,29 +1,25 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include <algorithm>
 using namespace std;
 
 class Solution{
 public:
   int findMaxLength(vector<int>& nums) {
-    int maxL = INT_MIN;
-    int size = nums.size();
-    if (size < 1)
-      return 0;
+    int res = 0;
     unordered_map<int, int> m;
-    m.insert(make_pair(0, -1));
+    m[0] = -1;
     int preSum = 0;
-    for (int i = 0; i < size; i++) {
-      preSum += nums[i] == 1 ? 1 : -1;
-      unordered_map<int, int>::iterator it = m.find(preSum);
-      if (it != m.end()) {
-	maxL = max(maxL, i - it->second);
+    for (int i = 0; i < nums.size(); i++) {
+      int num = (nums[i] == 0 ? -1 : 1);
+      preSum += num;
+      if (m.count(preSum)) {
+	res = max (res, i - m[preSum]);
       } else {
-	m.insert(make_pair(preSum, i));
+	m[preSum] = i; 
       }
     }
-    return maxL == INT_MIN ? 0 : maxL;
+    return res;
   }
 };
 
