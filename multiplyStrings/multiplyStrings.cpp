@@ -1,28 +1,27 @@
 #include <iostream>
 #include <vector>
-#include <unordered_map>
-#include <algorithm>
 using namespace std;
 
 class Solution{
 public:
   string multiply(string num1, string num2) {
-    int size1 = num1.length(), size2 = num2.length();
-    vector<int> pos(size1 + size2, 0);
-    for (int i = size1 - 1; i >= 0; i--) {
-      for (int j = size2 - 1; j >= 0; j--) {
-	int mul = (num1[i] - '0') * (num2[j] - '0');
-	int sum = pos[i + j + 1] + mul;
-	pos[i + j] += sum / 10;
-	pos[i + j + 1] = sum % 10;
+    string res;
+    vector<int> vec(num1.size() + num2.size(), 0);
+    for (int i = num1.size() - 1; i >= 0; i--) {
+      for (int j = num2.size() - 1; j >= 0; j--) {
+	int p1 = i + j, p2 = i + j + 1;
+	int multiRes = (num1[i] - '0') * (num2[j] - '0') + vec[p2];
+	vec[p1] += multiRes / 10;
+	vec[p2] = multiRes % 10;
       }
     }
-    string ans = "";
-    for (int i : pos) {
-      if (!(ans == "" && i == 0))
-	ans += to_string(i);
-    }
-    return ans == "" ? "0" : ans;
+    for (int digit : vec)
+      res += to_string(digit);
+    size_t index = res.find_first_not_of('0');
+    if (index == string::npos)
+      return "0";
+    else
+      return res.substr(index);
   }
 };
 
