@@ -7,23 +7,18 @@ using namespace std;
 class Solution{
 public:
   int leastBricks(vector<vector<int> >& wall) {
-    int size = wall.size();
-    if (size == 0)
+    if (wall.size() == 0)
       return 0;
-    long width = 0;
-    for (int i : wall[0])
-      width += i;
-    unordered_map<long, int> m;
-    int cutPoint = 0;
-    for (vector<int>& level : wall) {
-      long preSum = 0;
-      for (int brick : level) {
-	preSum += brick;
-	if (preSum != width)
-	  cutPoint = max(cutPoint, ++m[preSum]);
+    int maxPreSumNum = 0;
+    unordered_map<int, int> m;
+    for (vector<int>& bricks : wall) {
+      int preSum = 0;
+      for (int i = 0; i < bricks.size() - 1; i++) {
+	preSum += bricks[i];
+	maxPreSumNum = max (maxPreSumNum, ++m[preSum]);
       }
     }
-    return size - cutPoint;
+    return wall.size() - maxPreSumNum;
   }
 };
 
