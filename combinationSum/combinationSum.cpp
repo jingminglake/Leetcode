@@ -1,13 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 class Solution{
 public:
   vector<vector<int> > combinationSum(vector<int>& candidates, int target) {
     int size = candidates.size();
-    sort(candidates.begin(), candidates.end());
     vector<vector<int> > ans;
     vector<int> path;
     combinationSumHelper(ans, candidates, target, path, 0);
@@ -37,6 +35,5 @@ int main()
       cout << i << " ";
     cout << endl;
   }
-  cout << endl;
   return 0;
 }
