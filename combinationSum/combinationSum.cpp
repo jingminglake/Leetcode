@@ -12,6 +12,8 @@ public:
     return ans;
   }
   void combinationSumHelper(vector<vector<int> >& ans, vector<int>& candidates, int target, vector<int>& path, int start) {
+    if (target < 0)
+      return;
     if (!target) {
       ans.push_back(path);
       return;
