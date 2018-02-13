@@ -1,23 +1,26 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 class Solution{
 public:
   int minSubArrayLen(int s, vector<int>& nums) {
-    int ans = INT_MAX;
-    int size = nums.size();
-    int sum = 0;
-    int start = 0;
-    for (int i = 0; i < size; i++) {
-      sum += nums[i];
-      while (sum > s) {
-        ans = min(ans, i - start + 1);
-	sum -= nums[start++];
+    int res = INT_MAX;
+    if (nums.size() == 0)
+      return 0;
+    if (nums.size() == 1)
+      return nums[0] >= s;
+    int left = 0, right = 0;
+    int sum = nums[0];
+    while (left < nums.size() && right < nums.size()) {
+      if (sum < s) {
+	sum += nums[++right];
+      } else {
+	res = min (res, right - left + 1);
+	sum -= nums[left++];
       }
     }
-    return ans == INT_MAX ? 0 : ans;
+    return res == INT_MAX ? 0 : res;
   }
 };
 
