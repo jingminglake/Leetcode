@@ -11,18 +11,18 @@ public:
     int size = prices.size();
     if (size <= 1)
       return 0;
-    vector<int> s0(size, 0);
-    vector<int> s1(size, 0);
-    vector<int> s2(size, 0);
-    s0[0] = 0;
-    s1[0] = -prices[0];
-    s2[0] = INT_MIN;
+    vector<int> rest(size, 0);
+    vector<int> hold(size, 0);
+    vector<int> sold(size, 0);
+    rest[0] = 0;
+    hold[0] = -prices[0];
+    sold[0] = INT_MIN;
     for (int i = 1; i < size; i++) {
-      s0[i] = max(s0[i - 1], s2[i - 1]);
-      s1[i] = max(s1[i - 1], s0[i - 1] - prices[i]);
-      s2[i] = s1[i - 1] + prices[i];
+      rest[i] = max(rest[i - 1], sold[i - 1]);
+      hold[i] = max(hold[i - 1], rest[i - 1] - prices[i]);
+      sold[i] = hold[i - 1] + prices[i];
     }
-    return max(s0[size - 1], s2[size - 1]);
+    return max(rest[size - 1], sold[size - 1]);
   }
 };
 
