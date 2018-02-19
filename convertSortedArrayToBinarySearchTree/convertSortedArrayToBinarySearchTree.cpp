@@ -10,20 +10,21 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution{
+class Solution {
 public:
   TreeNode* sortedArrayToBST(vector<int>& nums) {
-    return convert(nums, 0, nums.size()-1);    
+    if (nums.size() == 0)
+      return nullptr;
+    return sortedArrayToBSTHelper(nums, 0, nums.size() - 1);
   }
-  TreeNode* convert(vector<int>& nums, int low, int high) {
-    TreeNode *t = NULL;
-    if (low <= high) {
-      int mid = low + (high-low)/2;
-      t = new TreeNode(nums[mid]);
-      t->left = convert(nums, low, mid - 1);
-      t->right = convert(nums, mid + 1, high);
-    }
-    return t;
+  TreeNode* sortedArrayToBSTHelper(vector<int>& nums, int start, int end) {
+    if (start > end)
+      return nullptr;
+    int mid = start + (end - start) / 2;
+    TreeNode* root = new TreeNode(nums[mid]);
+    root->left = sortedArrayToBSTHelper(nums, start, mid - 1);
+    root->right = sortedArrayToBSTHelper(nums, mid + 1, end);
+    return root;
   }
 };
 
