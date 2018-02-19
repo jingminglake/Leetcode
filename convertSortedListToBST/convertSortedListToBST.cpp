@@ -20,27 +20,21 @@ class Solution {
 public:
   TreeNode* sortedListToBST(ListNode* head) {
     if (!head)
-      return NULL;
-    return sortedListToBSTHelper(head, NULL);
+      return nullptr;
+    return sortedListToBSTHelper(head, nullptr);
   }
-  TreeNode* sortedListToBSTHelper(ListNode* head, ListNode* tail) {
-     if (head == tail)
-      return NULL;
-     if (head->next == tail)
-      return new TreeNode(head->val);
-    ListNode dummy(0);
-    dummy.next = head;
-    ListNode *slow = &dummy;
-    ListNode *fast = &dummy;
-    while (fast != tail && fast->next != tail) {
+  TreeNode *sortedListToBSTHelper(ListNode* head, ListNode* last) {
+    if (!head || head == last)
+      return nullptr;
+    ListNode *fast = head;
+    ListNode *slow = head;
+    while (fast != last && fast->next != last) {
       slow = slow->next;
       fast = fast->next->next;
     }
     TreeNode *root = new TreeNode(slow->val);
-    TreeNode *leftChild = sortedListToBSTHelper(dummy.next, slow);
-    TreeNode *rightChild = sortedListToBSTHelper(slow->next, tail);
-    root->left = leftChild;
-    root->right = rightChild;
+    root->left = sortedListToBSTHelper(head, slow);
+    root->right = sortedListToBSTHelper(slow->next, last);
     return root;
   }
   void preorder(TreeNode *root) {
