@@ -13,24 +13,22 @@ struct TreeNode {
 class Solution{
 public:
   TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-    int iSize = inorder.size();
-    int pSize = postorder.size();
-    if (!iSize || !pSize || iSize != pSize)
-      return NULL;
-    unordered_map<int, int> m;
+    if (inorder.size() == 0 || inorder.size() != postorder.size())
+      return nullptr;
+    unordered_map<int, int> m; // inorder element -> index
     for (int i = 0; i < inorder.size(); i++)
       m[inorder[i]] = i;
-    return generate(inorder, 0 ,iSize - 1, postorder, 0, pSize - 1,  m);
+    return buildTreeHelper(inorder, postorder, 0, inorder.size() - 1, 0, postorder.size() - 1, m);
   }
-  TreeNode* generate(vector<int>& inorder, int iStart, int iEnd, vector<int>& postorder, int pStart, int pEnd, unordered_map<int, int>& m) {
-    if (iStart > iEnd || pStart > pEnd)
-      return NULL;
-    TreeNode *root = new TreeNode(postorder[pEnd]);
-    int index = m[postorder[pEnd]];
-    TreeNode *leftChild = generate(inorder, iStart ,index - 1, postorder, pStart, pStart + index - 1 - iStart,  m);
-    TreeNode *rightChild = generate(inorder, index + 1, iEnd, postorder, pStart + index - iStart, pEnd - 1,  m);
-    root->left = leftChild;
-    root->right = rightChild;
+  TreeNode *buildTreeHelper(vector<int>& inorder, vector<int>& postorder, int istart, int iend, int pstart, int pend, unordered_map<int, int>& m) {
+    if (pstart > pend)
+      return nullptr;
+    TreeNode *root = new TreeNode(postorder[pend]);
+    int index = m[postorder[pend]];
+    TreeNode *leftT = buildTreeHelper(inorder, postorder, istart, index - 1, pstart, pend - (iend - index) - 1, m);
+    TreeNode *rightT = buildTreeHelper(inorder, postorder, index + 1, iend, pend - (iend - index), pend - 1, m);
+    root->left = leftT;
+    root->right = rightT;
     return root;
   }
   void preorder(TreeNode *root) {
