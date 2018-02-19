@@ -2,31 +2,39 @@
 #include <vector>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  void nextPermutation(vector<int>& nums) {
-    int size = nums.size();
-    int firstLessThan = size - 1;
-    while (firstLessThan > 0 && nums[firstLessThan-1] >= nums[firstLessThan])
-      firstLessThan--;
-    if (firstLessThan == 0) {
-      reverse(nums.begin(), nums.end());
-      return;
+    void nextPermutation(vector<int>& nums) {
+        if (nums.size() < 1)
+            return;
+        int first = nums.size() - 2;
+        while (first >= 0) {
+            if (nums[first] >= nums[first + 1])
+                first--;
+            else
+                break;
+        }
+        if (first == -1) {
+            reverse(nums.begin(), nums.end());
+            return ;
+        }
+        int swapPoint = nums.size() - 1;
+        while (swapPoint > first) {
+            if (nums[swapPoint] <= nums[first])
+                swapPoint--;
+            else
+                break;
+        }
+        swap (nums[first], nums[swapPoint]);
+        reverse(nums.begin() + first + 1, nums.end());
     }
-    firstLessThan--;
-    int swapPoint = firstLessThan + 1;
-    while (swapPoint < size-1 && nums[swapPoint+1] > nums[firstLessThan])
-      swapPoint++;
-    swap(nums[firstLessThan], nums[swapPoint]);
-    reverse(nums.begin() + firstLessThan + 1 , nums.end());
-  }
 };
 
 int main()
 {
   Solution s;
   int a[6] = {1,5,1,4,3,1};
-  vector<int> vec(a, a+3);
+  vector<int> vec(a, a+6);
   s.nextPermutation(vec);
   vector<int>::iterator it = vec.begin();
   while (it != vec.end()) {
