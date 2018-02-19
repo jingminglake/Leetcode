@@ -11,15 +11,22 @@ struct ListNode {
 class Solution {
 public:
   ListNode* reverseList(ListNode* head) {
-    ListNode *newHead = nullptr;
-    ListNode* nex = nullptr;
+    /*ListNode *newHead = NULL; 
     while (head) {
-      nex = head->next;
+      ListNode* p = head->next;
       head->next = newHead;
       newHead = head;
-      head = nex;
+      head = p;
     }
-    return newHead;
+    return newHead;*/
+    return reverse(head, NULL);
+  }
+  ListNode * reverse(ListNode *head, ListNode *newHead) {
+    if (!head)
+      return newHead;
+    ListNode* p = head->next;
+    head->next = newHead;
+    return reverse(p, head);
   }
 };
 
