@@ -5,16 +5,15 @@ using namespace std;
 class Solution{
 public:
   int maxProfit(vector<int>& prices) {
-    int ans = 0;
-    int size = prices.size();
-    int minPrice = INT_MAX;
-    for (int i = 0; i < size; i++) {
-      if (prices[i] < minPrice)
-	minPrice = prices[i];
-      else if (prices[i] - minPrice > ans)
-	ans = prices[i] - minPrice;
+    int res = 0;
+    if (prices.size() < 2)
+      return 0;
+    int minP = INT_MAX;
+    for (int price : prices) {
+      minP = min (minP, price);
+      res = max (res, price - minP);
     }
-    return ans;
+    return res;
   }
 };
 
