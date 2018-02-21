@@ -11,15 +11,14 @@ struct ListNode {
 class Solution {
 public:
   ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
-    if(!headA || !headB)
-      return NULL;
-    ListNode *p1 = headA;
-    ListNode *p2 = headB;
-    while (p1 != p2) {
-      p1 = p1 ? p1->next : headB;
-      p2 = p2 ? p2->next : headA;
+    ListNode *pA = headA, *pB = headB;
+    while (pA || pB) {
+      if (pA == pB)
+	return pA;
+      pA = pA ? pA->next : headB;
+      pB = pB ? pB->next : headA;
     }
-    return p1;
+    return nullptr;
   }
 };
 
@@ -56,7 +55,7 @@ int main()
     h = h->next;
     cout << "delete " << p->val << " ";
     delete p;
-    }
+  }
   cout << endl;
   ListNode *h2 = l2;
   while (h2) {
