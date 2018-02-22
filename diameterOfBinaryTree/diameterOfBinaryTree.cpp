@@ -13,20 +13,27 @@ struct TreeNode {
 class Solution{
 public:
   int diameterOfBinaryTree(TreeNode *root) {
+    int diameter = 0;
     if (!root)
-      return 0;
-    int dia = 0;
-    height(root, dia);
-    return dia;
+      return diameter;
+    diameterOfBinaryTreeHelper(root, diameter);
+    return diameter - 1;
   }
-  int height(TreeNode *root, int& dia) {
+  int diameterOfBinaryTreeHelper(TreeNode* root, int& diameter) {
     if (!root)
       return 0;
-    int leftH = height(root->left, dia);
-    int rightH = height(root->right, dia);
-    if (leftH + rightH > dia)
-      dia = leftH + rightH;
-    return max(leftH, rightH) + 1;
+    int res = 1;
+    int leftRes = diameterOfBinaryTreeHelper(root->left, diameter);
+    int rightRes = diameterOfBinaryTreeHelper(root->right, diameter);
+    if (root->left) {
+      res = max (res, leftRes + 1);
+    }
+    if (root->right) {
+      res = max (res, rightRes + 1);
+    }
+    diameter = max (diameter, leftRes + rightRes + 1);
+    diameter = max (diameter, res);
+    return res;
   }
 };
 
