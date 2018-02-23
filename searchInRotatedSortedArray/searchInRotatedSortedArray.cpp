@@ -13,7 +13,7 @@ public:
       int mid = left + (right - left) / 2;
       if (nums[mid] == target)
 	return mid;
-      if (nums[mid] > nums[left] && nums[mid] > nums[right]) {
+      if (nums[mid] > nums[right]) {
 	if (target < nums[mid] && target >= nums[left])
 	  right = mid;
 	else
