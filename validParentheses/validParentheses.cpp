@@ -1,36 +1,29 @@
 #include <iostream>
 #include <stack>
+#include <unordered_map>
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-  bool isValid(string s) {
-    if (s.empty())
-      return true;
-    stack<char> ss;
-    for (int i = 0; i < s.length(); i++) {
-      if (s[i] == '(' || s[i] == '{' || s[i] == '[') {
-	ss.push(s[i]);
-      } else if (s[i] == ')') {
-	if (!ss.empty() && ss.top() == '(') 
-	  ss.pop();
-	else
-	  return false;
-      } else if (s[i] == '}') {
-	if (!ss.empty() && ss.top() == '{')
-	  ss.pop();
-	else
-	  return false;
-      } else if (s[i] == ']') {
-	if (!ss.empty() && ss.top() == '[')
-	  ss.pop();
-	else
-	  return false;
-      }
+    bool isValid(string s) {
+        stack<char> stk;
+        unordered_map<char, char> m;
+        m.insert(make_pair(')', '('));
+        m.insert(make_pair('}', '{'));
+        m.insert(make_pair(']', '['));
+        for (char c : s) {
+            if (c == ')' || c == '}' || c == ']') {
+                if (stk.empty() || stk.top() != m[c]) {
+                    return false;
+                } else {
+                    stk.pop();
+                }
+            } else {
+                stk.push(c);
+            }
+        }
+        return stk.empty();
     }
-    return ss.empty();
-  }
 };
 
 int main()
