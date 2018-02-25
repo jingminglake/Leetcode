@@ -5,28 +5,30 @@
 #include <unordered_map>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  bool checkSubarraySum(vector<int>& nums, int k) {
-    int size = nums.size();
-    unordered_map<int, int> m;
-    m.insert(make_pair(0,-1));
-    int preSum = 0;
-    for (int i = 0; i < size; i++) {
-      preSum += nums[i];
-      int remain = preSum;
-      if (k != 0)
-	remain = preSum % k;
-      unordered_map<int, int>::iterator it = m.find(remain);
-      if (it != m.end()) {
-	if(i - it->second > 1)
-	  return true;
-      }
-      else
-	m.insert(make_pair(remain, i));
+    bool checkSubarraySum(vector<int>& nums, int k) {
+        if (nums.size() == 0)
+            return false;
+        vector<int> preSum(nums.size(), 0); 
+        preSum[0] = nums[0];
+        for (int i = 1; i < nums.size(); i++)
+            preSum[i] = preSum[i - 1] + nums[i];
+        unordered_map<int, int> m;
+        m[0] = -1;
+        for (int i = 0; i < preSum.size(); i++) {
+            int key = preSum[i];
+            if (k)
+                key = preSum[i] % k;
+            if (m.count(key)) {
+                if (i - m[key] > 1)
+                    return true;
+            } else {
+                m[key] = i;
+            }
+        }
+        return false;
     }
-    return false;
-  }
 };
 
 int main()
