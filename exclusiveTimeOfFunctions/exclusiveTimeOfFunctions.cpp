@@ -14,16 +14,19 @@ public:
     int prevTime = 0;
     for (int i = 0; i < logs.size(); i++) {
       vector<string> logsi = split(logs[i]);
-      if (!s.empty()) {
-	res[stoi(s.top())] += stoi(logsi[2]) - prevTime;
+      if (s.empty()) {
+	      s.push(logsi[0]);
+          prevTime = stoi(logsi[2]);
+          continue;
       }
-      prevTime = stoi(logsi[2]);
       if (logsi[1] == "start") {
-	s.push(logsi[0]);
+          res[stoi(s.top())] += stoi(logsi[2]) - prevTime;
+	      s.push(logsi[0]);
+          prevTime = stoi(logsi[2]);
       } else {
-	res[stoi(s.top())]++;
-	s.pop();
-	prevTime++;
+	      res[stoi(s.top())] += stoi(logsi[2]) - prevTime + 1;
+	      s.pop();
+          prevTime = stoi(logsi[2]) + 1;
       }
     }
     return res;
