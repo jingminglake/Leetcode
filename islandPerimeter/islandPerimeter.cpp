@@ -2,38 +2,28 @@
 #include <vector>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  int singleNumber(vector<vector<int> >& grid) {
-    int ans = 0;
-    int rowSize = grid.size();
-    if (rowSize == 0)
-      return ans;
-    int columnSize = grid[0].size();
-    for (int i = 0; i < rowSize; i++) {
-      for(int j = 0; j < columnSize; j++) {
-	if (grid[i][j] == 0)
-	  continue;
-	if (i == 0)
-	  ans++;
-	else if (grid[i-1][j] == 0)
-	  ans++;
-	if (j == 0)
-	  ans++;
-	else if (grid[i][j-1] == 0)
-	  ans++;
-	if (i == rowSize - 1)
-	  ans++;
-	else if (grid[i+1][j] == 0)
-	  ans++;
-	if (j == columnSize - 1)
-	  ans++;
-	else if (grid[i][j+1] == 0)
-	  ans++;
-      }
+    int islandPerimeter(vector<vector<int> >& grid) {
+        int res = 0;
+        if (grid.size() == 0)
+            return res;
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid[0].size(); j++) {
+                if (grid[i][j] == 0)
+                    continue;
+                if (i - 1 < 0 || grid[i - 1][j] == 0)
+                    res++;
+                if (j - 1 < 0 || grid[i][j - 1] == 0)
+                    res++;
+                if (j + 1 >= grid[0].size() || grid[i][j + 1] == 0)
+                    res++;
+                if (i + 1 >= grid.size() || grid[i + 1][j] == 0)
+                    res++;
+            }
+        }
+        return res;
     }
-    return ans;
-  }
 };
 
 int main()
@@ -52,7 +42,7 @@ int main()
   grid.push_back(vec2);
   grid.push_back(vec3);
   grid.push_back(vec4);
-  cout << s.singleNumber(grid);
+  cout << s.islandPerimeter(grid);
   cout << endl;
   return 0;
 }
