@@ -10,31 +10,26 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution{
+class Solution {
 public:
-  int diameterOfBinaryTree(TreeNode *root) {
-    int diameter = 0;
-    if (!root)
-      return diameter;
-    diameterOfBinaryTreeHelper(root, diameter);
-    return diameter - 1;
-  }
-  int diameterOfBinaryTreeHelper(TreeNode* root, int& diameter) {
-    if (!root)
-      return 0;
-    int res = 1;
-    int leftRes = diameterOfBinaryTreeHelper(root->left, diameter);
-    int rightRes = diameterOfBinaryTreeHelper(root->right, diameter);
-    if (root->left) {
-      res = max (res, leftRes + 1);
+    int diameterOfBinaryTree(TreeNode* root) {
+        int res = 0;
+        if (!root)
+            return res;
+        res = 1;
+        diameterOfBinaryTreeHelper(root, res);
+        return res - 1;
     }
-    if (root->right) {
-      res = max (res, rightRes + 1);
+    int diameterOfBinaryTreeHelper(TreeNode* root, int& res) {
+        if (!root)
+            return 0;
+        if (!root->left && !root->right)
+            return 1;
+        int leftR = diameterOfBinaryTreeHelper(root->left, res);
+        int rightR = diameterOfBinaryTreeHelper(root->right, res);
+        res = max(res, leftR + rightR + 1);
+        return max(leftR, rightR) + 1;
     }
-    diameter = max (diameter, leftRes + rightRes + 1);
-    diameter = max (diameter, res);
-    return res;
-  }
 };
 
 int main()
