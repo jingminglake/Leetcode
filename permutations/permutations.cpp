@@ -1,29 +1,31 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  vector<vector<int> > permute(vector<int>& nums) {
-    vector<vector<int> > res;
-    vector<int> path;
-    dfs(res, path, nums);
-    return res;
-  }
-  void dfs(vector<vector<int> >& res, vector<int>& path, vector<int>& nums) {
-    if (path.size() == nums.size()) {
-      res.push_back(path);
+    vector<vector<int> > permute(vector<int>& nums) {
+        vector<vector<int> > res;
+        vector<bool> visited(nums.size(), false);
+        vector<int> path;
+        dfs(nums, visited, path, res);
+        return res;
     }
-    for (int i = 0; i < nums.size(); i++) {
-      if (find(path.begin(), path.end(), nums[i]) != path.end()) {
-	continue;
-      }
-      path.push_back(nums[i]);
-      dfs(res, path, nums);
-      path.pop_back();
+    void dfs(vector<int>& nums, vector<bool>& visited, vector<int>& path, vector<vector<int> >& res) {
+        if (path.size() == nums.size()) {
+            res.push_back(path);
+            return;
+        }
+        for (int i = 0; i < nums.size(); i++) {
+            if (visited[i])
+                continue;
+            visited[i] = true;
+            path.push_back(nums[i]);
+            dfs(nums, visited, path, res);
+            path.pop_back();
+            visited[i] = false;
+        }
     }
-  }
 };
 
 int main()
