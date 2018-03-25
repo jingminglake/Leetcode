@@ -18,13 +18,13 @@ public:
     return ans;
   }
   int bitCount(int n) {
-    size_t numOf1 = 0;
-    for (size_t i = 0; i < CHAR_BIT * sizeof(n); i++) {
+    int res = 0;
+    for (int i = 0; i < 8 * sizeof(int); i++) {
       if ((n & 1) == 1)
-	numOf1++;
+	res++;
       n >>= 1;
     }
-    return numOf1;
+    return res;
   }
 };
 
