@@ -10,26 +10,25 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution{
+class Solution {
 public:
-  int getMinimumDifference(TreeNode* root) {
-    int ans;
-    if (!root)
-      return ans;
-    ans = INT_MAX;
-    int prev = INT_MAX;
-    traverse(root, ans, prev);
-    return ans;
-  }
-  void traverse(TreeNode *root, int& ans, int &prev) {
-    if (!root)
-      return;
-    traverse(root->left, ans, prev);
-    if (prev != INT_MAX)
-      ans = min(abs(root->val - prev), ans);
-    prev = root->val;
-    traverse(root->right, ans, prev);
-  }
+    int getMinimumDifference(TreeNode* root) {
+        if (!root)
+            return -1;
+        int res = INT_MAX;
+        int prev = -1;
+        inorderHelper(root, res, prev);
+        return res;
+    }
+    void inorderHelper(TreeNode* root, int& res, int& prev) {
+        if (!root)
+            return;
+        inorderHelper(root->left, res, prev);
+        if (prev >= 0)
+            res = min (res, root->val - prev);
+        prev = root->val;
+        inorderHelper(root->right, res, prev);
+    }
 };
 
 int main()
