@@ -1,7 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <unordered_map>
-#include <algorithm>
 using namespace std;
 
 struct TreeNode {
@@ -11,36 +9,39 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution{
+class Solution {
 public:
-  vector<int> findMode(TreeNode* root) {
-    vector<int> ans;
-    if (!root)
-      return ans;
-    traverse(root, ans);
-    return ans;
-  }
-  void traverse(TreeNode *root, vector<int>& ans) {
-    if (!root)
-      return;
-    traverse(root->left, ans);
-    if (root->val == prev)
-      count++;
-    else
-      count = 1;
-    if (count > max) {
-      max = count;
-      ans.clear();
-      ans.push_back(root->val);
-    } else if (count == max) {
-      ans.push_back(root->val);
+    vector<int> findMode(TreeNode* root) {
+        vector<int> res;
+        if (!root)
+            return res;
+        long prev = LONG_MIN;
+        int count = 1;
+        int maxCount = 1;
+        findModeHelper(root, res, prev, count, maxCount);
+        return res;
     }
-    prev = root->val;
-    traverse(root->right, ans);
-  }
-  int prev = INT_MAX;
-  int count = 1;
-  int max = 0;
+    void findModeHelper(TreeNode* root, vector<int>& res, long& prev, int& count, int& maxCount) {
+        if (!root)
+            return;
+        findModeHelper(root->left, res, prev, count, maxCount);
+        if (prev != LONG_MIN) {
+            if (root->val == prev) {
+                count++;
+            } else {
+                count = 1;
+            }
+        }
+        if (count == maxCount) {
+            res.push_back(root->val);
+        } else if (count > maxCount) {
+            res.clear();
+            res.push_back(root->val);
+            maxCount = count;
+        }
+        prev = root->val;
+        findModeHelper(root->right, res, prev, count, maxCount);
+    }
 };
 
 int main()
