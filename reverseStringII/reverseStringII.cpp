@@ -3,33 +3,27 @@
 #include <algorithm>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  string reverseStr(string s, int k) {
-    int size = s.length();
-    int count = size / k * 0.5;
-    bool flag = false;
-    if (size % (2*k) >= k)
-      count++;
-    else
-      flag = true;
-    for (int i = 0; i < count; i++) {
-      swap(s, i * k * 2, i * k * 2 + k - 1);
+    string reverseStr(string s, int k) {
+        if (s.length() == 0 || k == 0)
+            return s;
+        int cnt = s.length() / k;
+        for (int i = 0; i <= cnt; i++) {
+            if (i % 2 == 0) {
+                if (i * k + k < s.length())
+                    reverseHelper(s, i*k, i*k + k - 1);
+                else
+                    reverseHelper(s, i*k, s.length() - 1);
+            }
+        }
+        return s;
     }
-    if (flag){
-      swap(s,  count * 2 * k, size - 1);
+    void reverseHelper(string& s, int i, int j) {
+        while (i < j) {
+            swap(s[i++], s[j--]);
+        }
     }
-    return s;
-  }
-  void swap(string &s, int l, int r) {
-    while (l < r) {
-      char temp = s[l];
-      s[l] = s[r];
-      s[r] = temp;
-      l++;
-      r--;
-    }
-  }
 };
 
 int main()
