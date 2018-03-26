@@ -2,21 +2,24 @@
 #include <vector>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  vector<int> plusOne(vector<int>& digits) {
-    int size = digits.size();
-    vector<int> ans(size, 0);
-    int carry = 1;
-    for (int i = size-1; i >= 0; i--) {
-      int sum = digits[i] + carry;
-      ans[i] = (sum % 10);
-      carry = sum / 10;
+    vector<int> plusOne(vector<int>& digits) {
+        vector<int> res;
+        int i = digits.size() - 1;
+        int carry = 1;
+        while (i >= 0 || carry == 1) {
+            int sum = carry;
+            if (i >= 0) {
+                sum += digits[i];
+                i--;
+            }
+            carry = sum / 10;
+            res.push_back(sum % 10);
+        }
+        reverse(res.begin(), res.end());
+        return res;
     }
-    if (carry == 1)
-      ans.insert(ans.begin(), 1);
-    return ans;
-  }
 };
 
 int main()
