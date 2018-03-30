@@ -1,40 +1,35 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  int findRadius(vector<int>& houses, vector<int>& heaters) {
-    sort(heaters.begin(), heaters.end());
-    int size1 = houses.size();
-    int size2 = heaters.size();
-    int radius = 0;
-    for (int i = 0; i < size1; i++) {
-      int left = 0, right = size2-1;
-      int flag = true;
-      while (left <= right) {
-	int mid = left + (right-left)/2;
-	if (heaters[mid] > houses[i])
-	  right = mid - 1;
-	else if (heaters[mid] < houses[i])
-	  left = mid + 1;
-	else {
-	  flag = false;
-	  break;
-	}
-      }//while
-      if (flag) {
-	if (left > size2 - 1 && right >= 0)
-	  radius = max(radius, abs(houses[i] - heaters[right]));	  
-	else if (left <= size2 - 1 && right < 0)
-	  radius = max(radius, abs(heaters[left] - houses[i]));
-	else if (left <= size2 - 1 && right >= 0)
-	  radius = max(radius, min(abs(heaters[left] - houses[i]), abs(houses[i] - heaters[right])));
-      }
-    }//for
-    return radius;
-  }
+    int findRadius(vector<int>& houses, vector<int>& heaters) {
+        if (houses.size() == 0 || heaters.size() == 0)
+            return 0;
+        int res = 0;
+        sort(heaters.begin(), heaters.end());
+        for (int i = 0; i < houses.size(); i++) {
+            res = max(res, binarySearch(heaters, houses[i]) );
+        }
+        return res;
+    }
+    int binarySearch(vector<int>& heaters, int target) {
+        int left = 0, right = heaters.size() - 1;
+        while (left + 1 < right) {
+            int mid = left + (right - left) / 2;
+            if (heaters[mid] > target)
+                right = mid;
+            else if (heaters[mid] < target)
+                left = mid;
+            else
+                return 0;
+        }
+        if (abs(heaters[left] - target) < abs(heaters[right] - target))
+            return abs(heaters[left] - target);
+        else
+            return abs(heaters[right] - target);
+    }
 };
 
 int main()
