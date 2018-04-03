@@ -2,27 +2,29 @@
 #include <vector>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  int countArrangement(int N) {
-    int ans = 0;
-    vector<int> used(N+1, 0);
-    backtrack(N, 1, used, ans);
-    return ans;
-  }
-  void backtrack(int n, int pos, vector<int>& used, int& ans) {
-    if (pos > n) {
-      ans++;
-      return;
+    int countArrangement(int N) {
+        int res = 0;
+        vector<bool> visited(N + 1, false);
+        dfs(N, visited, res, 1);
+        return res;
     }
-    for (int i = 1; i <= n; i++) {
-      if (used[i] == 0 && (pos % i == 0 || i % pos == 0)) {
-	used[i] = 1;
-	backtrack(n, pos+1, used, ans);
-	used[i] = 0;
-      }
+    void dfs(int N, vector<bool>& visited, int& res, int index) {
+        if (index > N) {
+            res++;
+            return;
+        }
+        for (int i = 1; i <= N; i++) {
+            if (!visited[i]) {
+                if (i % index == 0 || index % i == 0) {
+                    visited[i] = true;
+                    dfs(N, visited, res, index + 1);
+                    visited[i] = false;
+                }
+            }
+        }
     }
-  }
 };
 
 int main()
