@@ -3,23 +3,23 @@
 #include <vector>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  vector<int> nextGreaterElements(vector<int>& nums) {
-    int size = nums.size();
-    vector<int> ans(size, -1);
-    stack<int> s;
-    for (int i = 0; i < size * 2; i++) {
-      int num = nums[i % size];
-      while (!s.empty() && nums[s.top()] < num) {
-	ans[s.top()] = num;
-	s.pop();
-      }
-      if (i < size)
-	s.push(i);
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res(n, -1);
+        stack<int> s;
+        for (int i = 0; i < 2 * n; i++) {
+            int num = nums[i % n];
+            while (!s.empty() && num > nums[s.top()]) {
+                res[s.top()] = num;
+                s.pop();
+            }
+            if (i < n)
+                s.push(i);
+        }
+        return res;
     }
-    return ans;
-  }
 };
 
 int main()
