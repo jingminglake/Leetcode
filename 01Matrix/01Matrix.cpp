@@ -3,49 +3,41 @@
 #include <queue>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  vector<vector<int> > updateMatrix(vector<vector<int> >& matrix) {
-    int m = matrix.size();
-    if (m == 0)
-      return matrix;
-    int n = matrix[0].size();
-    queue<vector<int> > q;
-    for (int i = 0; i < m; i++) {
-      for (int j = 0; j < n; j++) {
-	if (matrix[i][j] == 0) {
-	  vector<int> pos;
-	  pos.push_back(i);
-	  pos.push_back(j);
-	  q.push(pos);
-	} else {
-	  matrix[i][j] = INT_MAX;
-	}
-      }
-    }//for
-    vector<pair<int, int> > dirs;
-    dirs.push_back(make_pair(-1,0));
-    dirs.push_back(make_pair(1,0));
-    dirs.push_back(make_pair(0,-1));
-    dirs.push_back(make_pair(0,1));
-    while (!q.empty()) {
-      vector<int> pos = q.front();
-      q.pop();
-      for (pair<int, int>& d : dirs) {
-	int r = pos[0] + d.first;
-	int c = pos[1] + d.second;
-	if (r < 0 || r >= m || c < 0 || c >= n ||
-	    matrix[r][c] <= matrix[pos[0]][pos[1]] + 1)
-	  continue;
-	vector<int> nextPos;
-	nextPos.push_back(r);
-	nextPos.push_back(c);
-        q.push(nextPos);
-	matrix[r][c] = matrix[pos[0]][pos[1]] + 1;  
-      }
-    }//while
-    return matrix;
-  }
+    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        if (matrix.size() == 0)
+            return matrix;
+        queue<pair<int, int> > q;
+        for (int i = 0; i < matrix.size(); i++) {
+            for (int j = 0; j < matrix[0].size(); j++) {
+                if (matrix[i][j] == 0) {
+                    q.push(make_pair(i, j));
+                } else {
+                    matrix[i][j] = INT_MAX;
+                }
+            }
+        }
+        vector<vector<int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+        int dis = 0;
+        while (!q.empty()) {
+            int size = q.size();
+            dis++;
+            for (int i = 0; i < size; i++) {
+                pair<int, int> cur = q.front();
+                q.pop();
+                for (auto& dir : dirs) {
+                    int nextI = cur.first + dir[0];
+                    int nextJ = cur.second + dir[1];
+                    if (nextI < 0 || nextI >= matrix.size() || nextJ < 0 || nextJ >= matrix[0].size() || matrix[nextI][nextJ] < dis)
+                        continue;
+                    matrix[nextI][nextJ] = dis;
+                    q.push(make_pair(nextI, nextJ));
+                }
+            }
+        }
+        return matrix;
+    }
 };
 
 int main()
