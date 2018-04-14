@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 using namespace std;
 
 struct TreeNode {
@@ -9,32 +10,28 @@ struct TreeNode {
   TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution{
+class Solution {
 public:
-  int kthSmallest(TreeNode *root, int k) {
-    return find(root, k);
-  }
-  int find(TreeNode *root, int k) {
-    if (!root)
-      return 0;
-    int rk = rank(root);
-    if (rk == k)
-      return root->val;
-    else if (rk < k)
-      return find (root->right, k - rk);
-    else if (rk > k)
-      return find (root->left, k);
-  }
-  int rank(TreeNode *root) {
-    if (!root)
-      return 0;
-    return count(root->left) + 1;
-  }
-  int count(TreeNode *root) {
-    if (!root)
-      return 0;
-    return count(root->left) + count(root->right) + 1;
-  }
+    int kthSmallest(TreeNode* root, int k) {
+        if (!root)
+            return 0;
+        unordered_map<TreeNode*, int> m;
+        int cnt = count(root->left, m);
+        if (k <= cnt) {
+            return kthSmallest(root->left, k);
+        } else if (k > cnt + 1) {
+            return kthSmallest(root->right, k - 1 - cnt);
+        }
+        return root->val;
+    }
+    int count(TreeNode* root, unordered_map<TreeNode*, int>& m) {
+        if (!root)
+            return 0;
+        if (m.count(root))
+            return m[root];
+        int res = count(root->left, m) + count(root->right, m) + 1;
+        return m[root] = res;
+    }
 };
 
 int main()
