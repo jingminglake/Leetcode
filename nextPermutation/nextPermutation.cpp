@@ -5,28 +5,26 @@ using namespace std;
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
-        if (nums.size() < 1)
+        if (nums.size() <= 1)
             return;
-        int first = nums.size() - 2;
-        while (first >= 0) {
-            if (nums[first] >= nums[first + 1])
-                first--;
-            else
+        int i = nums.size() - 1;
+        while (i > 0) {
+            if (nums[i - 1] < nums[i])
                 break;
+            i--;
         }
-        if (first == -1) {
+        if (i == 0) {
             reverse(nums.begin(), nums.end());
-            return ;
+            return;
         }
-        int swapPoint = nums.size() - 1;
-        while (swapPoint > first) {
-            if (nums[swapPoint] <= nums[first])
-                swapPoint--;
-            else
+        int firstBigger = nums.size() - 1;
+        while (firstBigger >= i) {
+            if (nums[firstBigger] > nums[i - 1])
                 break;
+            firstBigger--;
         }
-        swap (nums[first], nums[swapPoint]);
-        reverse(nums.begin() + first + 1, nums.end());
+        swap(nums[firstBigger], nums[i - 1]);
+        reverse(nums.begin() + i, nums.end());
     }
 };
 
