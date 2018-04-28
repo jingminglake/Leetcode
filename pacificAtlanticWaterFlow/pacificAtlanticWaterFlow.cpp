@@ -3,58 +3,54 @@
 #include <queue>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  vector<pair<int, int> > pacificAtlantic(vector<vector<int> >& matrix) {
-    vector<pair<int, int> > waterCanFlow;
-    int m = matrix.size();
-    if (m == 0)
-      return waterCanFlow;
-    int n = matrix[0].size();
-    vector<vector<bool> > pacificCanFlow(m, vector<bool>(n, false));
-    vector<vector<bool> > atlanticCanFlow(m, vector<bool>(n, false));
-    vector<pair<int, int> > dirs;
-    dirs.push_back(make_pair(1, 0));
-    dirs.push_back(make_pair(-1, 0));
-    dirs.push_back(make_pair(0, 1));
-    dirs.push_back(make_pair(0, -1));
-    queue<pair<int, int> > q1, q2;
-    for (int i = 0; i < m; i++) {
-      q1.push(make_pair(i, 0));
-      q2.push(make_pair(i, n - 1));
-      pacificCanFlow[i][0] = true;
-      atlanticCanFlow[i][n-1] = true;
-    }//for
-    for (int j = 0; j < n; j++) {
-      q1.push(make_pair(0, j));
-      q2.push(make_pair(m - 1, j));
-      pacificCanFlow[0][j] = true;
-      atlanticCanFlow[m-1][j] = true;
+    vector<pair<int, int>> pacificAtlantic(vector<vector<int>>& matrix) {
+        vector<pair<int, int> > res;
+        int m = matrix.size();
+        if (m == 0)
+            return res;
+        int n = matrix[0].size();
+        vector<vector<bool> > pacificCanFlow(m, vector<bool>(n, false));
+        vector<vector<bool> > atlanticCanFlow(m, vector<bool>(n, false));
+        queue<pair<int, int> > q1, q2;
+        for (int i = 0; i < m; i++) {
+            q1.push({i, 0});
+            q2.push({i, n - 1});
+            pacificCanFlow[i][0] = true;
+            atlanticCanFlow[i][n - 1] = true;
+        }
+        for (int j = 0; j < n; j++) {
+            q1.push({0, j});
+            q2.push({m - 1, j});
+            pacificCanFlow[0][j] = true;
+            atlanticCanFlow[m - 1][j] = true;
+        }
+        bfs (matrix, q1, pacificCanFlow);
+        bfs (matrix, q2, atlanticCanFlow);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (pacificCanFlow[i][j] && atlanticCanFlow[i][j])
+                    res.push_back({i, j});
+            }
+        }
+        return res;
     }
-    bfs(matrix, q1, pacificCanFlow, m, n, dirs);
-    bfs(matrix, q2, atlanticCanFlow, m, n, dirs);
-    for (int i = 0; i < m; i++) {
-      for (int j = 0; j < n; j++) {
-	if (pacificCanFlow[i][j] && atlanticCanFlow[i][j])
-	  waterCanFlow.push_back(make_pair(i,j));
-      }
+    void bfs(vector<vector<int>>& matrix, queue<pair<int, int> >& q, vector<vector<bool> >& canFlow) {
+        vector<pair<int, int> > dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        while (!q.empty()) {
+            pair<int, int> p = q.front();
+            q.pop();
+            for (auto& dir : dirs) {
+                int r = p.first + dir.first;
+                int c = p.second + dir.second;
+                if (r < 0 || r >= matrix.size() || c < 0 || c >= matrix[0].size() || canFlow[r][c] || matrix[r][c] < matrix[p.first][p.second])
+                    continue;
+                canFlow[r][c] = true;
+                q.push({r, c});
+            }
+        }
     }
-    return waterCanFlow;
-  }
-  void bfs(vector<vector<int> >& matrix, queue<pair<int, int> >& q, vector<vector<bool> >& onceanCanFlow ,int m, int n, vector<pair<int, int> >& dirs) {
-    while (!q.empty()) {
-      pair<int, int> pos = q.front();
-      q.pop();
-      for (pair<int, int>& d : dirs) {
-	int r = pos.first + d.first;
-	int c = pos.second + d.second;
-	if (r < 0 || r >= m || c < 0 || c >= n || onceanCanFlow[r][c] || matrix[r][c] < matrix[pos.first][pos.second])
-	  continue;
-	onceanCanFlow[r][c] = true;
-	q.push(make_pair(r,c));
-      }
-    }//while
-  }
 };
 
 int main()
