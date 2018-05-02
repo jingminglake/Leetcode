@@ -6,24 +6,18 @@ using namespace std;
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
+        int res = 0;
         unordered_map<int, int> m;
         for (int num : nums) {
-            if (m.count(num))
-                continue;
-            unordered_map<int, int>::iterator it1 = m.find(num - 1), it2 = m.find(num + 1); 
-            if (it1 == m.end() && it2 != m.end()) {
-                m[num] = m[num + it2->second] = it2->second + 1;
-            } else if (it1 != m.end() && it2 == m.end()) {
-                m[num] = m[num - it1->second] = it1->second + 1;
-            } else if (it1 != m.end() && it2 != m.end()) {
-                m[num] = m[num + it2->second] =  m[num - it1->second] = it1->second + it2->second + 1;
-            } else {
-                m[num] = 1;
+            if (!m.count(num)) {
+                int left = m.count(num - 1) ? m[num - 1] : 0;
+                int right = m.count(num + 1) ? m[num + 1] : 0;
+                int sum = left + right + 1;
+                m[num] = sum;
+                res = max (res, sum);
+                m[num - left] = sum;
+                m[num + right] = sum;
             }
-        }
-        int res = 0;
-        for (auto& p : m) {
-            res = max (res, p.second);
         }
         return res;
     }
