@@ -4,18 +4,16 @@ using namespace std;
 
 class Solution {
 public:
-    int lengthOfLongestSubstringTwoDistinct(string s) {
+    int lengthOfLongestSubstringKDistinct(string s, int k) {
         int res = 0;
-        if (s.length() < 1)
+        if (k == 0 || s.length() == 0)
             return res;
         unordered_map<char, int> m;
         int left = 0, right = 0;
         while (right < s.length()) {
-            if (m.size() <= 2) {
-                m[s[right]] = right; // may increase m.size()
-                right++;
-            }
-            if (m.size() > 2) {
+            m[s[right]] = right;
+            right++;
+            if (m.size() > k) {
                 int leftMost = s.length();
                 for (auto& p : m) {
                     leftMost = min (leftMost, p.second);
@@ -33,7 +31,7 @@ int main() {
     Solution s;
     string str1 = "eceba";
     string str2 = "ccaabbb";
-    cout << s.lengthOfLongestSubstringTwoDistinct(str1) << endl;
-    cout << s.lengthOfLongestSubstringTwoDistinct(str2) << endl;
-    return 0;
-}
+    int k = 2;
+    cout << s.lengthOfLongestSubstringKDistinct(str1, k) << endl;
+    cout << s.lengthOfLongestSubstringKDistinct(str2, k) << endl;
+    return 0;}
