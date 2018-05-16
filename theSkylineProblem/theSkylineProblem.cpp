@@ -9,7 +9,7 @@ public:
         if (v1.first != v2.first)
             return v1.first < v2.first;
         else
-            return v1.second < v2.second;
+            return v1.second > v2.second;
     }
 };
 class Solution {
@@ -18,19 +18,18 @@ public:
         vector<pair<int, int> > res;
         vector<pair<int, int> > height;
         for (auto& b : buildings) {
-            height.push_back({b[0], -b[2]});
-            height.push_back({b[1], b[2]});
+            height.push_back({b[0], b[2]});
+            height.push_back({b[1], -b[2]});
         }
         sort(height.begin(), height.end(), Compare());
-        //sort(height.begin(), height.end());
         multiset<int> m;
         m.insert(0);
         int prev = 0;
         for (auto& h : height) {
-            if (h.second < 0) {
-                m.insert(-h.second);
+            if (h.second >= 0) {
+                m.insert(h.second);
             } else {
-                m.erase(m.find(h.second));
+                m.erase(m.find(-h.second));
             }
             int cur = *m.rbegin();
             if (cur != prev) {
