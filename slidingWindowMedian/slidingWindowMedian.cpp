@@ -5,49 +5,48 @@
 #include <set>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  vector<double> medianSlidingWindow(vector<int>& nums, int k) {
-    vector<double> res;
-    multiset<double> leftS, rightS;
-    for (int i = 0; i < nums.size(); i++) {
-      if (i >= k) { // if i >= k remove before get
-	if (leftS.count(nums[i - k])) {
-	  leftS.erase(leftS.find(nums[i - k]));
-	} else if (rightS.count(nums[i - k])){
-	  rightS.erase(rightS.find(nums[i - k]));
-	}
-      }
-      if (!leftS.empty() && (leftS.size() - 2 == rightS.size())) {
-	rightS.insert(*leftS.rbegin());
-	leftS.erase(--leftS.end());
-      }
-      if (leftS.size() <= rightS.size()) {
-	if (leftS.empty() || nums[i] <= *leftS.rbegin())
-	  leftS.insert(nums[i]);
-	else {
-	  rightS.insert(nums[i]);
-	  leftS.insert(*rightS.begin());
-	  rightS.erase(rightS.begin());
-	}
-      } else {
-	if (rightS.empty() || nums[i] >= *rightS.begin())
-	  rightS.insert(nums[i]);
-	else {
-	  leftS.insert(nums[i]);
-	  rightS.insert(*leftS.rbegin());
-	  leftS.erase(--leftS.end());
-	}
-      }
-      if (i >= k - 1) {
-	if (k % 2)
-	  res.push_back(*leftS.rbegin());
-	else
-	  res.push_back((*leftS.rbegin() + *rightS.begin()) / 2.0);
-      }
+    vector<double> medianSlidingWindow(vector<int>& nums, int k) {
+        vector<double> res;
+        multiset<double> leftS, rightS;
+        for (int i = 0; i < nums.size(); i++) {
+            if (i >= k) { // if i >= k then remove element at first
+                if (leftS.count(nums[i - k])) {
+                  leftS.erase(leftS.find(nums[i - k]));
+                } else if (rightS.count(nums[i - k])){
+                  rightS.erase(rightS.find(nums[i - k]));
+                }
+            }
+            // adjust
+            if (!leftS.empty() && (leftS.size() - 2 == rightS.size())) { // ex. 6,4 => 5,5
+                rightS.insert(*leftS.rbegin());
+                leftS.erase(--leftS.end());
+            }
+            // add element
+            if (leftS.size() <= rightS.size()) {
+                if (leftS.empty() || nums[i] <= *leftS.rbegin())
+                  leftS.insert(nums[i]);
+                else {
+                  rightS.insert(nums[i]);
+                  leftS.insert(*rightS.begin());
+                  rightS.erase(rightS.begin());
+                }
+            } else {
+                leftS.insert(nums[i]);
+                rightS.insert(*leftS.rbegin());
+                leftS.erase(--leftS.end());
+            }
+            // get median
+            if (i >= k - 1) {
+                if (k % 2)
+                  res.push_back(*leftS.rbegin());
+                else
+                  res.push_back((*leftS.rbegin() + *rightS.begin()) / 2.0);
+            }
+        }
+        return res;
     }
-    return res;
-  }
 };
 
 int main()
