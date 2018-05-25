@@ -5,27 +5,30 @@
 #include <queue>
 using namespace std;
 
+
 class Solution {
 public:
     double minmaxGasDist(vector<int>& stations, int K) {
-        int n = stations.size();
-        if (n < 2)
+        if (stations.size() < 2)
             return 0;
-        auto comp = [&](const pair<int, int>& p1, const pair<int, int>& p2) {
-            return p1.first * 1.0 / p1.second < p2.first * 1.0 / p2.second;
-        };
-        typedef priority_queue<pair<int, int>, vector<pair<int, int> >, decltype(comp)> my_pq;
-        my_pq pq(comp);
-        for (int i = 0; i < n - 1; i++) {
-            pq.push({stations[i + 1] - stations[i], 1});
+        double left = 0, right = 1e8;
+        while (right - left > 1e-6) {
+            double mid = left + (right - left) / 2.0;
+            if (canSplit(mid, stations, K))
+                right = mid;
+            else
+                left = mid;
         }
-        for (int i = 0; i < K; i++) {
-            pair<int, int> p = pq.top();
-            pq.pop();
-            p.second++;
-            pq.push(p);
+        return left;
+    }
+    bool canSplit(double maxLen, vector<int>& stations, int K) {
+        int num = 0;
+        for (int i = 0; i < stations.size() - 1; i++) {
+            int gap = stations[i + 1] - stations[i];
+            if (gap > maxLen)
+                num += gap / maxLen;
         }
-        return pq.top().first * 1.0 / pq.top().second;
+        return num <= K;
     }
 };
 
