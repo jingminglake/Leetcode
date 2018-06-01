@@ -7,28 +7,28 @@ using namespace std;
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        return findKthLargestHelper(nums, 0, nums.size() - 1, nums.size() - k);
+        if (nums.size() == 0)
+            return -1;
+        return findKthLargestHelper(nums, nums.size() - k, 0, nums.size() - 1);
     }
-    int findKthLargestHelper(vector<int>& nums, int start, int end, int index) {
-        //cout << start << "  " << end << endl;
-        if (start >= end)
-            return nums[start];
-        int pivot = nums[start];
-        int last = start;
-        for (int i = start + 1; i <= end; i++) {
-            if (nums[i] <= pivot) {
-                swap(nums[i], nums[++last]);
-            }
+    int findKthLargestHelper(vector<int>& nums, int k, int left, int right) {
+        if (left >= right)
+            return nums[left];
+        int pos = rand() % (right - left) + left;
+		swap(nums[pos], nums[left]);
+        int pivot = nums[left];
+        int last = left;
+        for (int i = left + 1; i <= right; i++) {
+            if (nums[i] < pivot)
+                swap (nums[i], nums[++last]);
         }
-        swap (nums[start], nums[last]);
-        if (index == last) {
+        swap (nums[left], nums[last]);
+        if (last == k)
             return nums[last];
-        }
-        else if (index < last) {
-            return findKthLargestHelper(nums, start, last - 1, index);
-        } else {
-            return findKthLargestHelper(nums, last + 1, end, index);
-        }
+        else if (last > k)
+            return findKthLargestHelper(nums, k, left, last - 1);
+        else
+            return findKthLargestHelper(nums, k, last + 1, right);
     }
 };
 
