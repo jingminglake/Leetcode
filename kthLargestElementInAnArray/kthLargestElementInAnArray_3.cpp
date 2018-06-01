@@ -15,7 +15,7 @@ public:
         if (left >= right)
             return nums[left];
         int pos = rand() % (right - left) + left;
-		swap(nums[pos], nums[left]);
+        swap(nums[pos], nums[left]);
         int pivot = nums[left];
         int last = left;
         for (int i = left + 1; i <= right; i++) {
