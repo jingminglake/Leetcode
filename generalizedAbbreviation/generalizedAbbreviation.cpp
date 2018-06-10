@@ -6,18 +6,17 @@ class Solution {
 public:
     vector<string> generateAbbreviations(string word) {
         vector<string> res;
-        dfs(word, 0, 0, "", res);
+        dfs (word, 0, "", 0, res);
         return res;
     }
-    void dfs (string& word, int pos, int cnt, string pre, vector<string>& res) {
-        if (pos == word.size()) {
-            if (cnt > 0)
-                pre += to_string(cnt);
-            res.push_back(pre);
+    void dfs (string& word, int index, string path, int cnt, vector<string>& res) {
+        if (index == word.length()) {
+            path += (cnt > 0 ? to_string(cnt) : "");
+            res.push_back(path);
             return;
         }
-        dfs (word, pos + 1, cnt + 1, pre, res);
-        dfs (word, pos + 1, 0, pre + (cnt > 0 ? to_string(cnt) : "") + word[pos], res);
+        dfs (word, index + 1, path, cnt + 1, res);
+        dfs (word, index + 1, path + (cnt > 0 ? to_string(cnt) : "") + word[index], 0, res);
     }
 };
 
