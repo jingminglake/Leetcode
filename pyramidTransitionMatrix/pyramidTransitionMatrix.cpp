@@ -7,41 +7,41 @@ using namespace std;
 class Solution {
 public:
     bool pyramidTransition(string bottom, vector<string>& allowed) {
-        unordered_set<string> invalid;
-        unordered_map<string, vector<char> > neighbors;
+        unordered_map<string, vector<char> > allowed_map;
         for (string s : allowed) {
-            neighbors[s.substr(0, 2)].push_back(s[2]);
+            allowed_map[s.substr(0, 2)].push_back(s[2]);
         }
-        return helper(bottom, invalid, neighbors);
+        return dfs(bottom, allowed_map);
     }
-    bool helper(string bottom, unordered_set<string>& invalid, unordered_map<string, vector<char> >& neighbors) {
-        if (bottom.length() <= 1)
+    bool dfs(string bottom, unordered_map<string, vector<char> >& allowed_map) {
+        if (bottom.size() == 1) {
             return true;
-        if (invalid.count(bottom))
-            return false;
-        for (int i = 0; i < bottom.size() - 2; i++) {
-            string key = bottom.substr(i, 2);
-            if (!neighbors.count(key)) {
-                invalid.insert(key);
+        }
+        // check if it could generateNextLevel
+        for (int i = 0; i < bottom.length() - 1; i++) {
+            if (!allowed_map.count(bottom.substr(i, 2)))
                 return false;
-            }
         }
-        string next(bottom.length() - 1, ' '); // decrease by one in next level
-        if (dfs(bottom, invalid, neighbors, next, 0))
-            return true;
-        invalid.insert(bottom);
-        return false;
-    }
-    bool dfs(string bottom, unordered_set<string>& invalid, unordered_map<string, vector<char> >& neighbors, string& next, int start) {
-        if (start == bottom.size() - 1)
-            return helper(next, invalid, neighbors);
-        string key = bottom.substr(start, 2);
-        for (char c : neighbors[key]) {
-            next[start] = c;
-            if (dfs(bottom, invalid, neighbors, next, start + 1))
+        vector<string> allNext;
+        string path;
+        generateNextLevel(bottom, allNext, 0, path, allowed_map);
+        for (string& next : allNext) {
+            if (dfs (next, allowed_map))
                 return true;
         }
         return false;
+    }
+    void generateNextLevel(string cur, vector<string>& res, int index, string& path, unordered_map<string, vector<char> >& allowed_map) {
+        if (index == cur.length() - 1) {
+            res.push_back(path);
+            return;
+        }
+        string key = cur.substr(index, 2);
+        for (char c : allowed_map[key]) {
+            path += c;
+            generateNextLevel (cur, res, index + 1, path, allowed_map);
+            path.pop_back();
+        }
     }
 };
 
