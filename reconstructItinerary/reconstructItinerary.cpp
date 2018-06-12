@@ -6,35 +6,37 @@
 #include <set>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  vector<string> findItinerary(vector<pair<string, string> >& tickets) {
-    for (pair<string, string>& ticket : tickets)
-      targets[ticket.first].insert(ticket.second);
-    dfs("JFK");
-    reverse(route.begin(), route.end());
-    return route;
-  }
-  void dfs(string airport) {
-    while (targets[airport].size()) {
-      string next = *targets[airport].begin();
-      targets[airport].erase(targets[airport].begin());
-      dfs(next);
+    vector<string> findItinerary(vector<pair<string, string> > tickets) {
+        vector<string> res;
+        if (tickets.size() == 0)
+            return res;
+        unordered_map<string, multiset<string> > neighbors;
+        for (pair<string, string>& ticket : tickets) {
+            neighbors[ticket.first].insert(ticket.second);
+        }
+        dfs(res, "JFK", neighbors);
+        reverse(res.begin(), res.end());
+        return res;
     }
-    route.push_back(airport);
-  }
-private:
-  unordered_map<string, multiset<string> > targets;
-  vector<string> route;
+    void dfs(vector<string>& res, string start, unordered_map<string, multiset<string> >& neighbors) {
+        while (!neighbors[start].empty()) {
+            string next = *neighbors[start].begin();
+            neighbors[start].erase(neighbors[start].begin()); // remove just one
+            dfs(res, next, neighbors);
+        }
+        res.push_back(start);
+    }
 };
 
 int main()
 {
-  Solution s;
-  vector<pair<string, string> > tickets = {{"JFK", "SFO"}, {"JFK", "ATL"}, {"SFO", "ATL"}, {"ATL", "JFK"}, {"ATL", "SFO"}};
-  vector<string> res = s.findItinerary(tickets);
-  for (string& ss : res)
-    cout << ss << " ";
-  cout << endl;
-  return 0;
+    Solution s;
+    vector<pair<string, string> > tickets = {{"JFK", "SFO"}, {"JFK", "ATL"}, {"SFO", "ATL"}, {"ATL", "JFK"}, {"ATL", "SFO"}};
+    vector<string> res = s.findItinerary(tickets);
+    for (string& ss : res)
+        cout << ss << " ";
+    cout << endl;
+    return 0;
 }
