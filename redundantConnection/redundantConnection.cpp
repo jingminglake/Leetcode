@@ -1,32 +1,36 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 using namespace std;
 
 class Solution {
 public:
     vector<int> findRedundantConnection(vector<vector<int>>& edges) {
-        vector<int> parent(2001);
-        for (int i = 0; i < parent.size(); i++)
-            parent[i] = i;
         for (auto& edge : edges) {
-            if (find_op(parent, edge[0]) == find_op(parent, edge[1]))
+            int parent_1 = find_op (edge[0]);
+            int parent_2 = find_op (edge[1]);
+            if (parent_1 == parent_2)
                 return edge;
             else
-                union_op(parent, edge);
+                union_op(parent_1, parent_2);
         }
         return vector<int>(2,0);
     }
-    int find_op(vector<int>& parent, int n) {
-        if (parent[n] == n)
+    int find_op(int n) {
+        if (!parent.count(n))
+            return parent[n] = n;
+        else if (parent[n] == n)
             return n;
-        return parent[n] = find_op(parent, parent[n]);
+        else
+            return parent[n] = find_op(parent[n]);
     }
-    void union_op(vector<int>& parent, vector<int>& edge) {
-        int p1 = find_op(parent, edge[0]);
-        int p2 = find_op(parent, edge[1]);
-        if (p1 != p2)
-            parent[p2] = p1;
+    void union_op(int node_1, int node_2) {
+        int parent_1 = find_op(node_1);
+        int parent_2 = find_op(node_2);
+        if (parent_1 != parent_2)
+            parent[parent_2] = parent_1;
     }
+    unordered_map<int, int> parent;
 };
 
 int main() {
