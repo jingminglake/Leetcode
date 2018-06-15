@@ -6,70 +6,72 @@ using namespace std;
 class Solution {
 public:
     int shortestDistance(vector<vector<int>>& grid) {
-        int m = grid.size();
-        if (m == 0)
+        int res = INT_MAX;
+        if (grid.size() == 0 || grid[0].size() == 0)
             return -1;
-        int n = grid[0].size();
-        int numOfBuildings = 0;
+        int m = grid.size(), n = grid[0].size();
+        int total_building_num = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == 1)
-                    numOfBuildings++;
+                    total_building_num++;
             }
         }
-        vector<vector<int> > hits(m, vector<int>(n, 0));
-        vector<vector<int> > distSum(m, vector<int>(n, 0));
+        if (!total_building_num)
+            return res;
+        vector<vector<int> > dist_sum(m, vector<int>(n, 0));
+        vector<vector<int> > building_num(m, vector<int>(n, 0));
+        // bfs
+        vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+        vector<vector<bool> > visited(m, vector<bool>(n, false));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 1) {
-                    if (!bfs(i, j, grid, hits, distSum, numOfBuildings))
+                if (grid[i][j] == 1)
+                    if (!bfs (i, j, grid, dist_sum, building_num, dirs, visited, total_building_num) )
                         return -1;
-                }
             }
         }
-        int res = INT_MAX;
+        
+        // get shorest distance
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 0 && hits[i][j] == numOfBuildings) {
-                    res = min (res, distSum[i][j]);
+                if (building_num[i][j] == total_building_num && dist_sum[i][j] != 0) {
+                    res = min (res, dist_sum[i][j]);
                 }
             }
         }
         return res == INT_MAX ? -1 : res;
     }
-    bool bfs (int startI, int startJ, vector<vector<int> >& grid, vector<vector<int> >& hits, vector<vector<int> >& distSum, int numOfBuildings) {
-        int m = grid.size();
-        int n = grid[0].size();
-        vector<vector<bool> > visited(m, vector<bool>(n, false));
-        visited[startI][startJ] = true;
+    bool bfs (int i, int j, vector<vector<int>>& grid, vector<vector<int> >& dist_sum, vector<vector<int> >& building_num, vector<pair<int, int> >& dirs, vector<vector<bool> > visited, int& total_building_num) {
+        int m = grid.size(), n = grid[0].size();
         int count = 1;
-        int dist = 0;
         queue<pair<int, int> > q;
-        q.emplace(startI, startJ);
-        vector<pair<int, int> > dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        q.emplace(i, j);
+        visited[i][j] = true;
+        int dist = 0;
         while (!q.empty()) {
-            ++dist;
-            int levelCount = q.size();
-            for (int k = 0; k < levelCount; k++) {
+            int size = q.size();
+            dist++;
+            for (int i = 0; i < size; i++) {
                 pair<int, int> p = q.front();
                 q.pop();
                 for (auto& dir : dirs) {
-                    int i = p.first + dir.first;
-                    int j = p.second + dir.second;
-                    if (i < 0 || i >= m || j < 0 || j >= n || visited[i][j])
+                    int next_i = p.first + dir.first;
+                    int next_j = p.second + dir.second;
+                    if (next_i < 0 || next_i >= m || next_j < 0 || next_j >= n || visited[next_i][next_j])
                         continue;
-                    visited[i][j] = true;
-                    if (grid[i][j] == 0) {
-                        q.emplace(i, j);
-                        hits[i][j]++;
-                        distSum[i][j] += dist;
-                    } else if (grid[i][j] == 1) {
+                    visited[next_i][next_j] = true;
+                    if (grid[next_i][next_j] == 0) {
+                        dist_sum[next_i][next_j] += dist;
+                        building_num[next_i][next_j]++;
+                        q.emplace(next_i, next_j);
+                    } else if (grid[next_i][next_j] == 1) {
                         count++;
                     }
                 }
             }
-        }// while
-        return count == numOfBuildings;
+        }//while
+        return count == total_building_num;
     }
 };
 
