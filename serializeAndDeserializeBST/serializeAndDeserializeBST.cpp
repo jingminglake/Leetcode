@@ -14,8 +14,8 @@ class Codec{
 public:
   string serialize(TreeNode* root) {
     if (!root)
-      return " #";
-    string ans = " " + to_string(root->val) + serialize(root->left) + serialize(root->right);
+      return "# ";
+    string ans = to_string(root->val) + " " + serialize(root->left) + serialize(root->right);
     return ans;
   }
   TreeNode* deserialize(string data) {
