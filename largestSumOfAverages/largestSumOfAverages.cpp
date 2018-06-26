@@ -8,28 +8,30 @@ public:
         vector<vector<double> > dp(A.size() , vector<double>(K + 1, -1));
         return helper(A, K, dp, A.size() - 1);
     }
-    double helper(vector<int>& A, int K, vector<vector<double> >& dp, int i) {
-        if (dp[i][K] > 0)
-            return dp[i][K];
+    double helper(vector<int>& A, int K, vector<vector<double> >& dp, int end) {
+        if (dp[end][K] > 0)
+            return dp[end][K];
         if (K == 1) {
             double temp = 0;
-            for (int m = 0; m <= i; m++)
-                temp += A[m];
-            return dp[i][K] = temp / (i + 1);
+            for (int i = 0; i <= end; i++)
+                temp += A[i];
+            return dp[end][K] = temp / (end + 1);
         }
-        double res = 0, lastPart = A[i];
-        for (int m = i - 1; m >= 0; m--) {
-            res = max (res, (lastPart / (i - m) + helper(A, K - 1, dp, m) ));
-            lastPart += A[m];
+        if (K > end + 1)
+            return dp[end][K] = 0;
+        double res = 0, lastPart = A[end];
+        for (int i = end - 1; i >= 0; i--) {
+            res = max (res, (lastPart / (end - i) + helper(A, K - 1, dp, i) ));
+            lastPart += A[i];
         }
-        return dp[i][K] = res;
+        return dp[end][K] = res;
     }
 };
 
 int main() {
-  Solution s;
-  vector<int> A = {9,1,2,3,9};
-  int K = 3;
-  cout << s.largestSumOfAverages(A, K) << endl;
-  return 0;
+    Solution s;
+    vector<int> A = {9,1,2,3,9};
+    int K = 3;
+    cout << s.largestSumOfAverages(A, K) << endl;
+    return 0;
 }
