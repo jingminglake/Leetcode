@@ -2,32 +2,35 @@
 
 #include <iostream>
 #include <vector>
-#include <numeric>
 using namespace std;
 
 class Solution {
 public:
     bool PredictTheWinner(vector<int>& nums) {
         vector<vector<int> > dp(nums.size(), vector<int>(nums.size(), -1));
-        long mostVal = getMost(nums, dp, 0, nums.size() - 1);
-        return 2 * mostVal >= accumulate(nums.begin(), nums.end(), 0);
+        helper(nums, 0, nums.size() - 1, dp);
+        int sum = 0;
+        for (int n : nums)
+            sum += n;
+        return dp[0][nums.size() - 1] * 2 >= sum;
     }
-    int getMost(vector<int>& nums, vector<vector<int> >& dp, int i, int j) {
-        if (i > j)
+    int helper(vector<int>& nums, int start, int end, vector<vector<int> >& dp) {
+        if (start > end)
             return 0;
-        if (dp[i][j] != -1)
-            return dp[i][j];
-        int a = nums[i] + min (getMost(nums, dp, i + 1, j - 1), getMost(nums, dp, i + 2, j));
-        int b = nums[j] + min (getMost(nums, dp, i + 1, j - 1), getMost(nums, dp, i, j - 2));
-        dp[i][j] = max (a, b);
-        return dp[i][j];
+        if (dp[start][end] != -1)
+            return dp[start][end];
+        if (start == end)
+            return dp[start][end] = nums[start];
+        int left_max = nums[start] + min (helper(nums, start + 2, end, dp), helper(nums, start + 1, end - 1, dp));
+        int right_max = nums[end] + min (helper(nums, start + 1, end - 1, dp), helper(nums, start, end - 2, dp));
+        return dp[start][end] = max (left_max, right_max);
     }
 };
 
 int main()
 {
-  Solution s;
-  vector<int> nums = {1,5,233,7};
-  cout << s.PredictTheWinner(nums) << endl;
-  return 0;
+    Solution s;
+    vector<int> nums = {1,5,233,7};
+    cout << s.PredictTheWinner(nums) << endl;
+    return 0;
 }
