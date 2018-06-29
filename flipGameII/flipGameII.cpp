@@ -5,20 +5,20 @@ using namespace std;
 class Solution {
 public:
     bool canWin(string s) {
-        if (s.length() == 0)
+        if (s.length() < 2)
             return false;
         unordered_map<string, bool> m;
-        return helper(s, m);
+        return dfs(s, m);
     }
-    bool helper(string s, unordered_map<string, bool>& m) {
+    bool dfs(string s, unordered_map<string, bool>& m) {
         if (m.count(s))
             return m[s];
         for (int i = 0; i < s.length() - 1; i++) {
             if (s[i] == '+' && s[i + 1] == '+') {
-                string opponent = s.substr(0, i) + "--" + s.substr(i + 2);
-                if (!helper(opponent, m)) {
+                string next_s = s;
+                next_s[i] = next_s[i + 1] = '-';
+                if (!dfs(next_s, m))
                     return m[s] = true;
-                }
             }
         }
         return m[s] = false;
