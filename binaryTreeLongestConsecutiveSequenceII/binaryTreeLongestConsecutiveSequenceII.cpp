@@ -3,10 +3,10 @@
 using namespace std;
 
 struct TreeNode {
-  int val;
-  TreeNode *left;
-  TreeNode *right;
-  TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
 class Solution {
@@ -15,59 +15,64 @@ public:
         if (!root)
             return 0;
         int res = 1;
-        // pair.first --> increase res; pair.second --> decrease res
-        longestConsecutiveHelper(root, res);
+        helper(root, res);
         return res;
     }
-    pair<int, int> longestConsecutiveHelper(TreeNode* root, int& res) {
+    pair<int, int> helper (TreeNode* root, int& res) {
         if (!root)
-            return make_pair(0, 0);
-        pair<int, int> curRes = make_pair(1, 1);
+            return {0, 0};
+        pair<int, int> left_res = helper(root->left, res);
+        pair<int, int> right_res = helper(root->right, res);
+        int left_res_increase = 0, left_res_decrease = 0;
+        int right_res_increase = 0, right_res_decrease = 0;
         if (root->left) {
-            pair<int, int> leftR = longestConsecutiveHelper(root->left, res);
-            if (root->val - root->left->val == 1)
-                curRes.second = leftR.second + 1;
-            else if (root->val - root->left->val == -1)
-                curRes.first = leftR.first + 1;
+            int diff = root->val - root->left->val;
+            if (diff == 1) {
+                left_res_increase = left_res.first;
+            } else if (diff == -1) {
+                left_res_decrease = left_res.second;
+            }
         }
         if (root->right) {
-            pair<int, int> rightR = longestConsecutiveHelper(root->right, res);
-            if (root->val - root->right->val == 1)
-                curRes.second = max (curRes.second, rightR.second + 1);
-            else if (root->val - root->right->val == -1)
-                curRes.first = max (curRes.first, rightR.first + 1);
+            int diff = root->val - root->right->val;
+            if (diff == 1) {
+                right_res_increase = right_res.first;
+            } else if (diff == -1) {
+                right_res_decrease = right_res.second;
+            }
         }
-        res = max (res, curRes.first + curRes.second - 1);
-        return curRes;
+        res = max (res, left_res_increase + right_res_decrease + 1);
+        res = max (res, left_res_decrease + right_res_increase + 1);
+        return { max (left_res_increase, right_res_increase)  + 1, max (left_res_decrease, right_res_decrease) + 1 };
     }
 };
 
 int main()
 {
-  Solution s;
-  int tree[7] = {1,2,2,9999,9999,3,7};
-  int size = sizeof(tree)/sizeof(tree[0]);
-  vector<TreeNode *> vec;
-  for (int i = 0; i < size; i++) {
-    if (tree[i] != 9999) {
-      vec.push_back(new TreeNode(tree[i]));
-    } else {
-      vec.push_back(NULL);
+    Solution s;
+    int tree[7] = {1,2,2,9999,9999,3,7};
+    int size = sizeof(tree)/sizeof(tree[0]);
+    vector<TreeNode *> vec;
+    for (int i = 0; i < size; i++) {
+        if (tree[i] != 9999) {
+            vec.push_back(new TreeNode(tree[i]));
+        } else {
+            vec.push_back(NULL);
+        }
     }
-  }
-  for (int i = 0; i < size/2; i++) {
-    if(!vec[i])
-      continue;
-    if (i*2 + 1 < size)
-      vec[i]->left = vec[i*2 + 1];
-    if (i*2 + 2 < size)
-      vec[i]->right = vec[i*2 + 2];
-  }
-  cout << s.longestConsecutive(vec[0]);
-  cout << endl;
-  for (TreeNode *t : vec) {
-    delete t;
-  }
-  vec.clear();
-  return 0;
+    for (int i = 0; i < size/2; i++) {
+        if(!vec[i])
+            continue;
+        if (i*2 + 1 < size)
+            vec[i]->left = vec[i*2 + 1];
+        if (i*2 + 2 < size)
+            vec[i]->right = vec[i*2 + 2];
+    }
+    cout << s.longestConsecutive(vec[0]);
+    cout << endl;
+    for (TreeNode *t : vec) {
+        delete t;
+    }
+    vec.clear();
+    return 0;
 }
