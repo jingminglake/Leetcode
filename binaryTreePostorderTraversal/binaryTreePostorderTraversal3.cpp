@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -12,26 +13,29 @@ struct TreeNode {
 
 class Solution {
 public:
+    class Node {
+    public:
+        Node (TreeNode* _t, int _op) : t(_t), op(_op) {}
+        TreeNode *t;
+        int op; // 0 -> print, 1 -> visit
+    };
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> res;
         if (!root)
             return res;
-        stack<TreeNode*> s;
-        TreeNode *cur = root;
-        TreeNode *last_printed = nullptr;
-        while (cur || !s.empty()) {
-            while (cur) {
-                s.push(cur);
-                cur = cur->left;
-            }
-            cur = s.top();
-            if (!cur->right || cur->right == last_printed) {
-                res.push_back(cur->val);
-                last_printed = cur;
-                s.pop();
-                cur = nullptr;
+        stack<Node> s;
+        s.push(Node(root, 1));
+        while (!s.empty()) {
+            Node n = s.top();
+            s.pop();
+            if (n.op == 1) {
+                s.push(Node(n.t, 0));
+                if (n.t->right)
+                    s.push(Node(n.t->right, 1));
+                if (n.t->left)
+                    s.push(Node(n.t->left, 1));
             } else {
-                cur = cur->right;
+                res.push_back(n.t->val);
             }
         }
         return res;
