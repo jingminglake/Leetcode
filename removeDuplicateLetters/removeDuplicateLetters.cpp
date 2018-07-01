@@ -1,28 +1,29 @@
 #include <iostream>
 #include <vector>
-#include <unordered_map>
 using namespace std;
 
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
-        string res = "0";
-        unordered_map<char, int> m;
-        unordered_map<char, bool> visited;
+        string res;
+        if (s.length() < 2)
+            return s;
+        int remain[26] = {0};
         for (char c : s)
-            m[c]++;
-        for (char c : s) {
-            m[c]--;
-            if (visited[c])
+            remain[c - 'a']++;
+        bool visited[26] = {false};
+        for (int i = 0; i < s.length(); i++) {
+            remain[s[i] - 'a']--;
+            if (visited[s[i] - 'a'])
                 continue;
-            while (c < res.back() && m[res.back()]) {
-                visited[res.back()] = false;
+            while (!res.empty() && s[i] < res.back() && remain[res.back() - 'a']) {
+                visited[res.back() - 'a'] = false;
                 res.pop_back();
             }
-            res += c;
-            visited[c] = true;
+            res.push_back(s[i]);
+            visited[s[i] - 'a'] = true;
         }
-        return res.substr(1);
+        return res;
     }
 };
 
