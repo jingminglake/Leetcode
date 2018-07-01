@@ -15,7 +15,6 @@ public:
             rightM = max (rightM, p.first);
             s.insert(to_string(p.first) + "," + to_string(p.second));
         }
-        int mid = leftM + (rightM - leftM) / 2;
         for (auto& p : points) {
             string temp = to_string(leftM + rightM - p.first) + "," + to_string(p.second); 
             if (!s.count(temp))

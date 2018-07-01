@@ -3,29 +3,26 @@
 #include <vector>
 using namespace std;
 
-class PairHash {
-public:
-     size_t operator()(const pair<int, int>& p) const {
-        return p.first * 31 + p.second;
-     }
-};
-
 class Solution {
 public:
+    class PairHash {
+    public:
+        size_t operator()(const pair<int, int>& p) const {
+            return p.first * 31 + p.second; 
+        }
+    };
     bool isReflected(vector<pair<int, int>>& points) {
         if (points.size() == 0)
             return true;
-        int leftM = INT_MAX, rightM = INT_MIN;
         unordered_set<pair<int, int>, PairHash> s;
+        int left_bound = INT_MAX, right_bound = INT_MIN;
         for (auto& p : points) {
-            leftM = min (leftM, p.first);
-            rightM = max (rightM, p.first);
+            left_bound = min (left_bound, p.first);
+            right_bound = max (right_bound, p.first);
             s.insert(p);
         }
-        int mid = leftM + (rightM - leftM) / 2;
         for (auto& p : points) {
-            pair<int, int> temp = make_pair(leftM + rightM - p.first, p.second);
-            if (!s.count(temp))
+            if (!s.count({left_bound + right_bound - p.first, p.second}))
                 return false;
         }
         return true;
