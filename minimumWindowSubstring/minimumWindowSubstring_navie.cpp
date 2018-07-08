@@ -1,6 +1,7 @@
 // time complexity O(mn)
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 using namespace std;
 
 class Solution {
@@ -15,23 +16,17 @@ public:
             hash_t[c]++;
         int left = 0, right = 0;
         unordered_map<char, int> hash_s;
-        while (left < s.length()) {
-            while (right < s.length() && !isCover(hash_t, hash_s) ) {
-                if (!hash_t.count(s[right])) {
-                    right++;
-                    continue;
-                }
-                hash_s[s[right]]++;
-                right++;
-            }
-            if (isCover(hash_t, hash_s)) {
+        while (right < s.length()) {
+            hash_s[s[right]]++;
+            right++;
+            while (isCover(hash_t, hash_s) ) {
                 if (right - left < min_len) {
                     res = s.substr(left, right - left);
                     min_len = right - left;
                 }
+                hash_s[s[left]]--;
+                left++;
             }
-            hash_s[s[left]]--;
-            left++;
         }
         return res;
     }
