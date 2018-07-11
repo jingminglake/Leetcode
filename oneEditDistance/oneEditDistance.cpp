@@ -1,31 +1,32 @@
 #include <iostream>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  bool isOneEditDistance(string s, string t) {
-        for (int i = 0; i < min (s.length(), t.length()); i++) {
+    bool isOneEditDistance(string s, string t) {
+        int len_s = s.length(), len_t = t.length();
+        if (abs(len_s - len_t) > 1)
+            return false;
+        for (int i = 0; i < min (len_s, len_t); i++) {
             if (s[i] != t[i]) {
-                int diff = ((int)s.length() - (int)t.length());
-                if (diff == 0)
-                    return s.substr(i + 1) == t.substr(i + 1);
-                else if (diff == 1)
+                if (len_s > len_t) {
                     return s.substr(i + 1) == t.substr(i);
-                else if (diff == -1)
+                } else if (len_s < len_t) {
                     return s.substr(i) == t.substr(i + 1);
-                else
-                    return false;
+                } else {
+                    return s.substr(i + 1) == t.substr(i + 1);
+                }
             }
         }
-        return abs((int)s.length() - (int)t.length()) == 1;
+        return len_s != len_t;
     }
 };
 
 int main()
 {
-  Solution s;
-  string ss = "ab";
-  string tt = "abc";
-  cout << s.isOneEditDistance(ss, tt) << endl;
-  return 0;
+    Solution s;
+    string ss = "ab";
+    string tt = "abc";
+    cout << s.isOneEditDistance(ss, tt) << endl;
+    return 0;
 }
