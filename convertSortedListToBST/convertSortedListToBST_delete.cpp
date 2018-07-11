@@ -20,20 +20,24 @@ public:
     TreeNode* sortedListToBST(ListNode* head) {
         if (!head)
             return nullptr;
-        return sortedListToBSTHelper(head, nullptr);
-    }
-    TreeNode *sortedListToBSTHelper(ListNode* head, ListNode* last) {
-        if (!head || head == last)
-            return nullptr;
-        ListNode *fast = head;
-        ListNode *slow = head;
-        while (fast != last && fast->next != last) {
+        if (!head->next) {
+            TreeNode *res = new TreeNode(head->val);
+            //delete head;
+            return res;
+        }
+        ListNode* slow = head, *fast = head, *prev = head;
+        while (fast && fast->next) {
+            prev = slow;
             slow = slow->next;
             fast = fast->next->next;
         }
-        TreeNode *root = new TreeNode(slow->val);
-        root->left = sortedListToBSTHelper(head, slow);
-        root->right = sortedListToBSTHelper(slow->next, last);
+        prev->next = nullptr;
+        ListNode *new_head = slow->next;
+        TreeNode* root = new TreeNode(slow->val);
+        slow->next = nullptr;
+        //delete slow;
+        root->left = sortedListToBST(head);
+        root->right = sortedListToBST(new_head);
         return root;
     }
     void preorder(TreeNode *root) {
