@@ -20,9 +20,9 @@ public:
 };
 
 int main () {
-  Solution s;
-  string word1 = "sea";
-  string word2 = "eat";
-  cout << s.minDistance(word1, word2) << endl;
-  return 0;
+    Solution s;
+    string word1 = "sea";
+    string word2 = "eat";
+    cout << s.minDistance(word1, word2) << endl;
+    return 0;
 }
