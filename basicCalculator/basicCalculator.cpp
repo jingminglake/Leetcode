@@ -5,16 +5,18 @@ using namespace std;
 class Solution {
 public:
     int calculate(string s) {
-        stack<int> stk;
         int res = 0;
+        stack<int> stk;
+        int i = 0;
         int sign = 1;
-        for (int i = 0; i < s.length(); i++) {
+        while (i < s.length()) {
             if (isdigit(s[i])) {
-                int num = s[i] - '0';
-                while (i + 1 < s.length() && isdigit(s[i + 1])) {
-                    num = num * 10 + s[i + 1] - '0';
+                int num = 0;
+                while (i < s.length() && isdigit(s[i])) {
+                    num = (s[i] - '0') + num * 10;
                     i++;
                 }
+                i--;
                 res += sign * num;
             } else if (s[i] == '+') {
                 sign = 1;
@@ -31,6 +33,7 @@ public:
                 res += stk.top();
                 stk.pop();
             }
+            i++;
         }
         return res;
     }
