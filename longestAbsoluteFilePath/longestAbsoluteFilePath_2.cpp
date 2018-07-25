@@ -7,21 +7,18 @@ class Solution {
 public:
     int lengthLongestPath(string input) {
         int res = 0;
-        if (input.length() == 0)
-            return res;
         istringstream iss(input);
         string line;
         stack<int> s;
         s.push(0);
         while (getline(iss, line, '\n')) {
-            int level = line.find_last_of('\t')  + 1;
+            int level = line.find_last_of('\t') + 1; // get cur level
             string name = line.substr(level);
-            while (level + 1 < s.size())
+            while (level < s.size() - 1)  // first  compare cur level with cur stack height
                 s.pop();
-            s.push(s.top() + name.length() + 1);
-            if (name.find(".") != string::npos) {
-                res = max (res, s.top() - 1);
-            }
+            s.push(s.top() + name.length() + 1); // +1 for '/'
+            if (name.find(".") != string::npos)
+                res = max (res, s.top() - 1); // -1 for last '/'
         }
         return res;
     }
