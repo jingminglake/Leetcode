@@ -5,29 +5,25 @@ class Solution {
 public:
     string licenseKeyFormatting(string S, int K) {
         string res;
-        if (S.length() == 0)
-            return res;
         int count = 0;
         string temp;
-        int i = S.length() - 1;
-        for (i; i >= 0; i--) {
-            if (S[i] == '-')
+        for (int i = S.length() - 1; i >= 0; i--) {
+            if (isalpha(S[i]))
+                temp += toupper(S[i]);
+            else if (isdigit(S[i]))
+                temp += S[i];
+            else
                 continue;
-            if (++count <= K) {
-                if (isalpha(S[i]))
-                    temp += toupper(S[i]);
-                else
-                    temp += S[i];
-            }
-            if (count == K) {
-                res += temp + '-';
-                count = 0;
+            if (++count == K) {
+                res += temp + "-";
                 temp = "";
+                count = 0;
             }
         }
-        if (count != 0)
+        if (count != 0) {
             res += temp;
-        else if (!res.empty())
+        }
+        if (res.back() == '-')
             res.pop_back();
         reverse(res.begin(), res.end());
         return res;
@@ -35,8 +31,8 @@ public:
 };
 
 int main() {
-  Solution s;
-  string S = "2-5g-3-J";
-  cout << s.licenseKeyFormatting(S, 2) << endl;
-  return 0;
+    Solution s;
+    string S = "2-5g-3-J";
+    cout << s.licenseKeyFormatting(S, 2) << endl;
+    return 0;
 }
