@@ -3,24 +3,21 @@ public:
     /** Initialize your data structure here. */
     MovingAverage(int size) {
         len = size;
-        sum = 0.0;
-        lastIndex = 0;
-        vec.reserve(10);
+        sum = 0;
     }
     
     double next(int val) {
-        if (vec.size() >= len) {
-           sum -= vec[lastIndex++]; 
-        }
+        q.push(val);
         sum += val;
-        vec.push_back(val);
-        int l = vec.size() < len ? vec.size() : len;
-        return sum / l;
+        if (q.size() > len) {
+            sum -= q.front();
+            q.pop();
+        }
+        return sum * 1.0 / q.size();
     }
-    double sum;
+    queue<int> q;
+    int sum;
     int len;
-    int lastIndex;
-    vector<int> vec;
 };
 
 /**
