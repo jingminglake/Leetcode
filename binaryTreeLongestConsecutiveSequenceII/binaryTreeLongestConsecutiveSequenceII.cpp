@@ -18,32 +18,30 @@ public:
         helper(root, res);
         return res;
     }
-    pair<int, int> helper (TreeNode* root, int& res) {
+    pair<int, int> helper(TreeNode* root, int& res) {
         if (!root)
             return {0, 0};
-        pair<int, int> left_res = helper(root->left, res);
-        pair<int, int> right_res = helper(root->right, res);
-        int left_res_increase = 0, left_res_decrease = 0;
-        int right_res_increase = 0, right_res_decrease = 0;
+        pair<int, int> local_res_left = helper(root->left, res);
+        pair<int, int> local_res_right = helper(root->right, res);
+        pair<int, int> local_res = {1, 1}; // first : increase, second : decrease
         if (root->left) {
             int diff = root->val - root->left->val;
             if (diff == 1) {
-                left_res_increase = left_res.first;
+                local_res.first = local_res_left.first + 1;
             } else if (diff == -1) {
-                left_res_decrease = left_res.second;
+                local_res.second = local_res_left.second + 1;
             }
         }
         if (root->right) {
             int diff = root->val - root->right->val;
             if (diff == 1) {
-                right_res_increase = right_res.first;
-            } else if (diff == -1) {
-                right_res_decrease = right_res.second;
+                local_res.first = max (local_res.first, local_res_right.first + 1);
+            } else if (diff == -1){
+                local_res.second = max (local_res.second, local_res_right.second + 1);
             }
         }
-        res = max (res, left_res_increase + right_res_decrease + 1);
-        res = max (res, left_res_decrease + right_res_increase + 1);
-        return { max (left_res_increase, right_res_increase)  + 1, max (left_res_decrease, right_res_decrease) + 1 };
+        res = max (res, local_res.first + local_res.second - 1);
+        return local_res;
     }
 };
 
