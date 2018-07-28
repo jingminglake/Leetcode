@@ -14,14 +14,14 @@ public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if (!root || root == p || root == q)
             return root;
-        TreeNode *left_res  = lowestCommonAncestor(root->left, p, q);
-        TreeNode *right_res  = lowestCommonAncestor(root->right, p, q);
-        if (!left_res && right_res)
-            return right_res;
-        else if (left_res && !right_res)
-            return left_res;
-        else if (left_res && right_res)
+        TreeNode* leftRes = lowestCommonAncestor(root->left, p, q);
+        TreeNode* rightRes = lowestCommonAncestor(root->right, p, q);
+        if (leftRes && rightRes)
             return root;
+        else if (!leftRes)
+            return rightRes;
+        else if (!rightRes)
+            return leftRes;
         else
             return nullptr;
     }
