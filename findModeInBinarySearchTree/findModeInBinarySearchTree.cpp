@@ -16,29 +16,28 @@ public:
         if (!root)
             return res;
         int max_cnt = 1;
-        int cur_cnt = 0;
-        int64_t prev = INT64_MAX;
-        inorder(root, prev, res, max_cnt, cur_cnt);
+        int cur_cnt = 1;
+        int64_t prev = INT64_MIN;
+        helper(root, max_cnt, cur_cnt, prev, res);
         return res;
     }
-    void inorder(TreeNode* root, int64_t& prev, vector<int>& res, int& max_cnt, int& cur_cnt) {
+    void helper(TreeNode* root, int& max_cnt, int& cur_cnt, int64_t& prev, vector<int>& res) {
         if (!root)
             return;
-        inorder(root->left, prev, res, max_cnt, cur_cnt);
-        if (prev == INT64_MAX || root->val == prev) {
+        helper(root->left, max_cnt, cur_cnt, prev, res);
+        if (prev != INT64_MIN && prev == root->val)
             cur_cnt++;
-        } else {
+        else
             cur_cnt = 1;
-        }
         if (cur_cnt > max_cnt) {
+            max_cnt = cur_cnt;
             res.clear();
             res.push_back(root->val);
-            max_cnt = cur_cnt;
         } else if (cur_cnt == max_cnt) {
             res.push_back(root->val);
         }
         prev = root->val;
-        inorder(root->right, prev, res, max_cnt, cur_cnt);
+        helper(root->right, max_cnt, cur_cnt, prev, res);
     }
 };
 
