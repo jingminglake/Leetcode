@@ -1,36 +1,35 @@
 class StringIterator {
 public:
     StringIterator(string compressedString) {
-        index = 0;
         s = compressedString;
-        c = ' ';
-        cnt = 0;
+        index = 0;
+        cur = ' ';
+        count = 0;
     }
     
     char next() {
-        if (!hasNext())
-            return ' ';
-        cnt--;
-        return c;
+        char res = ' ';
+        if (hasNext()) {
+            res = cur;
+            count--;
+        }
+        return res;
     }
     
     bool hasNext() {
-        if (cnt == 0) {
-            if (index >= s.length())
-                return false;
-            c = s[index];
-            index++;
+        while (index != s.length() && count == 0) {
+            cur = s[index++];
             while (isdigit(s[index])) {
-                cnt = cnt * 10 + s[index] - '0';
+                count = s[index] - '0' + count * 10;
                 index++;
             }
         }
-        return true;
+        return count != 0;
     }
-    int index;
+    char cur;
+    int count;
     string s;
-    char c;
-    int cnt;
+    int index;
 };
 
 /**
