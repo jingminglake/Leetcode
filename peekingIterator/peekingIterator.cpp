@@ -20,29 +20,29 @@ public:
 	    // Initialize any member here.
 	    // **DO NOT** save a copy of nums and manipulate it directly.
 	    // You should only use the Iterator interface methods.
-	    preHasNext = Iterator::hasNext();
-        if (preHasNext)
-            prevNext = Iterator::next();
+	    curHasNext = Iterator::hasNext();
+        if (curHasNext)
+            cur = Iterator::next();
 	}
 
     // Returns the next element in the iteration without advancing the iterator.
 	int peek() {
-        return prevNext;
+        return cur;
 	}
 
 	// hasNext() and next() should behave the same as in the Iterator interface.
 	// Override them if needed.
 	int next() {
-	    int t = prevNext;
-        preHasNext = Iterator::hasNext();
-        if (preHasNext)
-            prevNext = Iterator::next();
-        return t;
+	    int res = cur;
+        curHasNext = Iterator::hasNext();
+        if (curHasNext)
+            cur = Iterator::next();
+        return res;
 	}
 
 	bool hasNext() const {
-	    return preHasNext;
+	    return curHasNext;
 	}
-    int prevNext;
-    bool preHasNext;
+    int cur;
+    bool curHasNext;
 };
