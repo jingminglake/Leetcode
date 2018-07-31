@@ -7,17 +7,21 @@ public:
     }
 
     int next() {
-        hasNext();
-        return (*cur)[i++];
+        int res = -1;
+        if (hasNext()) {
+            res = (*cur)[i];
+            i++;
+        }
+        return res;
     }
 
     bool hasNext() {
-        while (cur != end && i == (*cur).size()) {
+        while (cur != end && i == cur->size()) {
             cur++;
             i = 0;
         }
         return cur != end;
     }
-    int i;
     vector<vector<int> >::iterator cur, end;
+    int i;
 };
