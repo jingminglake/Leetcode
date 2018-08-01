@@ -5,28 +5,29 @@ using namespace std;
 class Solution {
 public:
     string crackSafe(int n, int k) {
-        int total_size = pow(k, n);
-        string res(n, '0');
+        int nodes = pow(k, n);
+        string res = string(n, '0');
         unordered_set<string> visited{res};
-        if (dfs(res, total_size, n, k, visited))
+        if (dfs(res, nodes, n, k, visited))
             return res;
         return "";
     }
-    bool dfs (string& res, int total_size, int n, int k, unordered_set<string>& visited) {
-        if (visited.size() == total_size)
+    bool dfs(string& res, int nodes, int n, int k, unordered_set<string>& visited) {
+        if (visited.size() == nodes) {
             return true;
-        string node = res.substr(res.length() - n + 1, n - 1);
-        for (char c = '0'; c < '0' + k; c++) {
-            node.push_back(c);
-            if (!visited.count(node)) {
-                res.push_back(c);
-                visited.insert(node);
-                if (dfs(res, total_size, n, k, visited))
+        }
+        string node_next = res.substr(res.length() - n + 1);
+        for (char i = 0; i < k; i++) {
+            node_next += (char)(i + '0');
+            if (!visited.count(node_next)) {
+                res += (char)(i + '0');
+                visited.insert(node_next);
+                if(dfs(res, nodes, n, k, visited))
                     return true;
-                visited.erase(node);
+                visited.erase(node_next);
                 res.pop_back();
             }
-            node.pop_back();
+            node_next.pop_back();
         }
         return false;
     }
