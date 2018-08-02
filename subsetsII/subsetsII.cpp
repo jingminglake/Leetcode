@@ -4,26 +4,25 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int> > subsetsWithDup(vector<int>& nums) {
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         sort(nums.begin(), nums.end());
-        vector<vector<int> > ans;
-        vector<int> subset;
-        genSubsets(nums, 0, subset, ans);
-        return ans;
+        vector<vector<int> > res;
+        vector<int> path;
+        dfs(nums, 0, path, res);
+        return res;
     }
-    void genSubsets(vector<int>& nums, int level, vector<int>& subset, vector<vector<int> >& ans) {
+    void dfs(vector<int>& nums, int level, vector<int>& path, vector<vector<int> >& res) {
         if (level == nums.size()) {
-            ans.push_back(subset);
+            res.push_back(path);
             return;
         }
-   
-        subset.push_back(nums[level]);
-        genSubsets(nums, level + 1, subset, ans);
-        subset.pop_back();
-
-        while (level + 1 < nums.size() && nums[level + 1] == nums[level])
-            level++;
-        genSubsets(nums, level + 1, subset, ans);
+        int next_level = level + 1;
+        while (next_level < nums.size() && nums[next_level] == nums[next_level - 1])
+            next_level++;
+        dfs(nums, next_level, path, res);
+        path.push_back(nums[level]);
+        dfs(nums, level + 1, path, res);
+        path.pop_back();
     }
 };
 
