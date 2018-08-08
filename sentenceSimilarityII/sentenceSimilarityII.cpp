@@ -5,32 +5,33 @@ using namespace std;
 
 class Solution {
 public:
-    bool areSentencesSimilarTwo(vector<string>& words1, vector<string>& words2, vector<pair<string, string>> pairs) {
-        if (words1.size() != words2.size())
-            return false;
-        unordered_map<string, string> parent;
-        for (auto& p : pairs) {
-            union_op(parent, p.first, p.second);
-        }
-        for (int i = 0; i < words1.size(); i++) {
-            if (words1[i] != words2[i] && find_op(parent, words1[i]) != find_op(parent, words2[i]))
-                return false;
-        }
-        return true;
+    unordered_map<string, string> parent;
+    string find_op(string& word) {
+        if (!parent.count(word))
+            return parent[word] = word;
+        else if (parent[word] == word)
+            return word;
+        else
+            return parent[word] = find_op(parent[word]);
     }
-    void union_op(unordered_map<string, string>& parent, string node1, string node2) {
-        string p1 = find_op(parent, node1);
-        string p2 = find_op(parent, node2);
+    void union_op(string& word1, string& word2) {
+        string p1 = find_op(word1);
+        string p2 = find_op(word2);
         if (p1 != p2) {
             parent[p1] = p2;
         }
     }
-    string find_op(unordered_map<string, string>& parent, string node) {
-        if (!parent.count(node))
-            parent[node] = node;
-        if (parent[node] == node)
-            return node;
-        return parent[node] = find_op(parent, parent[node]);
+    bool areSentencesSimilarTwo(vector<string>& words1, vector<string>& words2, vector<pair<string, string>> pairs) {
+        if (words1.size() != words2.size())
+            return false;
+        for (auto& p : pairs) {
+            union_op(p.first, p.second);
+        }
+        for (int i = 0; i < words1.size(); i++) {
+            if (find_op(words1[i]) != find_op(words2[i]))
+                return false;
+        }
+        return true;
     }
 };
 
