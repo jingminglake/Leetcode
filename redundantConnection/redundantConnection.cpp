@@ -12,7 +12,7 @@ public:
             if (parent_1 == parent_2)
                 return edge;
             else
-                union_op(parent_1, parent_2);
+                parent[parent_2] = parent_1;
         }
         return vector<int>(2,0);
     }
@@ -23,12 +23,6 @@ public:
             return n;
         else
             return parent[n] = find_op(parent[n]);
-    }
-    void union_op(int node_1, int node_2) {
-        int parent_1 = find_op(node_1);
-        int parent_2 = find_op(node_2);
-        if (parent_1 != parent_2)
-            parent[parent_2] = parent_1;
     }
     unordered_map<int, int> parent;
 };
