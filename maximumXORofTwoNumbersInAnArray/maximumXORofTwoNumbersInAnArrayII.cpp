@@ -2,54 +2,49 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+
 class TrieNode {
 public:
     TrieNode() {
         memset(next, 0, sizeof(next));
     }
     TrieNode* next[2];
-    ~TrieNode() {
-        delete next[0];
-        delete next[1];
-    }
 };
-
 class Solution {
 public:
-    TrieNode *root;
     int findMaximumXOR(vector<int>& nums) {
-        if (nums.empty())
-            return 0;
+        int res = INT_MIN;
         root = new TrieNode();
         for (int num : nums) {
-            insert(num);
+            add(num);
+            int max_compelement = getMaxComp(num);
+            res = max (res, max_compelement);
         }
-        int res = INT_MIN;
-        for (int num : nums) {
-            TrieNode *cur = root;
-            int compelentNum = 0;
-            for (int i = 31; i >= 0; i--) {
-                int curBit = (num >> i) & 1;
-                if (cur->next[curBit ^ 1]) {
-                    compelentNum += (1 << i);
-                    cur = cur->next[curBit ^ 1];
-                } else {
-                    cur = cur->next[curBit];
-                }
-            }
-            res = max (res, compelentNum);
-        }
-        delete root;
         return res;
     }
-    void insert(int num) {
+    TrieNode* root;
+    void add(int num) {
         TrieNode *cur = root;
         for (int i = 31; i >= 0; i--) {
-            int curBit = (num >> i) & 1;
-            if (cur->next[curBit] == nullptr)
-                cur->next[curBit] = new TrieNode();
-            cur = cur->next[curBit];
+            int cur_bit = (num >> i) & 1;
+            if (!cur->next[cur_bit])
+                cur->next[cur_bit] = new TrieNode();
+            cur = cur->next[cur_bit];
         }
+    }
+    int getMaxComp(int num) {
+        int res = 0;
+        TrieNode *cur = root;
+        for (int i = 31; i >= 0; i--) {
+            int cur_bit = (num >> i) & 1;
+            if (cur->next[cur_bit ^ 1]) {
+                res |= (1 << i);
+                cur = cur->next[cur_bit ^ 1];
+            } else {
+                cur = cur->next[cur_bit];
+            }
+        }
+        return res;
     }
 };
 
