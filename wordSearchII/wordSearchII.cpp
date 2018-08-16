@@ -5,75 +5,74 @@ using namespace std;
 
 class TrieNode {
 public:
-  TrieNode() : word(""){
-    memset(next, 0, sizeof(next));
-  }
-  ~TrieNode() {
-    for (int i = 0; i < 26; i++) {
-      if (next[i])
-	delete next[i];
+    TrieNode() : word("") {
+        memset(next, 0, sizeof(next));
     }
-  }
-  TrieNode *next[26];
-  string word;
+    ~TrieNode() {
+        for (TrieNode* t : next)
+            delete t;
+    }
+    TrieNode* next[26];
+    string word;
 };
+
 class Solution {
 public:
-  vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
-    vector<string> res;
-    if (board.size() == 0 || words.size() == 0)
-      return res;
-    TrieNode* node = bulidTrie(words);
-    for (int i = 0; i < board.size(); i++) {
-      for (int j = 0; j < board[0].size(); j++) {
-	dfs(board, node, res, i, j);
-      }
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        vector<string> res;
+        if (board.size() == 0 || board[0].size() == 0)
+            return res;
+        int m = board.size(), n = board[0].size();
+        root = new TrieNode();
+        for (string& word : words)
+            add(word);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dfs(board, root, i, j, res);
+            }
+        }
+        delete root;
+        return res;
     }
-    delete node;
-    return res;
-  }
-  TrieNode* bulidTrie(vector<string>& words) {
-    TrieNode *root = new TrieNode;
-    for (string w : words) {
-      TrieNode *p = root;
-      for (char c : w) {
-	if (!p->next[c - 'a'])
-	  p->next[c - 'a'] = new TrieNode;
-	p = p->next[c - 'a'];
-      }
-      p->word = w;
+    void dfs(vector<vector<char>>& board, TrieNode* cur_root, int i, int j, vector<string>& res) {
+        if (i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || board[i][j] == '#')
+            return;
+        char c = board[i][j];
+        TrieNode* next_root = cur_root->next[c - 'a'];
+        if (!next_root)
+            return;
+        if (next_root->word != "") {
+            res.push_back(next_root->word);
+            next_root->word = "";
+        }
+        board[i][j] = '#';
+        dfs(board, next_root, i + 1, j, res);
+        dfs(board, next_root, i - 1, j, res);
+        dfs(board, next_root, i, j + 1, res);
+        dfs(board, next_root, i, j - 1, res);
+        board[i][j] = c;
     }
-    return root;
-  }
-  void dfs(vector<vector<char>>& board, TrieNode* node, vector<string>& res, int i, int j) {
-    if (i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || !node)
-      return;
-    char c = board[i][j];
-    if (c == '#'  || !node->next[c - 'a'])
-      return;
-    node = node->next[c - 'a'];
-    if (node->word != "") {
-      res.push_back(node->word);
-      node->word = "";
+    TrieNode *root;
+    void add(string& word) {
+        TrieNode *cur = root;
+        for (char c : word) {
+            if (!cur->next[c - 'a'])
+                cur->next[c - 'a'] = new TrieNode();
+            cur = cur->next[c - 'a'];
+        }
+        cur->word = word;
     }
-    board[i][j] = '#';
-    dfs(board, node, res, i - 1, j);
-    dfs(board, node, res, i + 1, j);
-    dfs(board, node, res, i, j - 1);
-    dfs(board, node, res, i, j + 1);
-    board[i][j] = c;
-  }
 };
 
 int main()
 {
-  Solution s;
-  vector<vector<char> > board = { {'o','a','a','n'},
-				  {'e','t','a','e'},
-				  {'i','h','k','r'},
-				  {'i','f','l','v'},};
-  vector<string> words = {"oath","pea","eat","rain"};
-  for (string ss : s.findWords(board, words))
-    cout << ss << endl;
-  return 0;
+    Solution s;
+    vector<vector<char> > board = { {'o','a','a','n'},
+                                    {'e','t','a','e'},
+                                    {'i','h','k','r'},
+                                    {'i','f','l','v'},};
+    vector<string> words = {"oath","pea","eat","rain"};
+    for (string ss : s.findWords(board, words))
+        cout << ss << endl;
+    return 0;
 }
