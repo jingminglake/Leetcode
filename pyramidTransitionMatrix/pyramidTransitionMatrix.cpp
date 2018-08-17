@@ -7,48 +7,44 @@ using namespace std;
 class Solution {
 public:
     bool pyramidTransition(string bottom, vector<string>& allowed) {
-        unordered_map<string, vector<char> > allowed_map;
-        for (string s : allowed) {
-            allowed_map[s.substr(0, 2)].push_back(s[2]);
-        }
-        return dfs(bottom, allowed_map);
+        unordered_map<string, unordered_set<char> > neighbors;
+        for (string& s : allowed)
+            neighbors[s.substr(0, 2)].insert(s.back());
+        unordered_set<string> visited;
+        return dfs(bottom, neighbors, visited);
     }
-    bool dfs(string bottom, unordered_map<string, vector<char> >& allowed_map) {
-        if (bottom.size() == 1) {
+    bool dfs(string& bottom, unordered_map<string, unordered_set<char> >& neighbors, unordered_set<string>& visited) {
+        if (bottom.length() == 1)
             return true;
-        }
-        // check if it could generateNextLevel
-        for (int i = 0; i < bottom.length() - 1; i++) {
-            if (!allowed_map.count(bottom.substr(i, 2)))
-                return false;
-        }
-        vector<string> allNext;
+        vector<string> nextLevel;
         string path;
-        generateNextLevel(bottom, allNext, 0, path, allowed_map);
-        for (string& next : allNext) {
-            if (dfs (next, allowed_map))
+        getNextLevel(0, path, bottom, neighbors, nextLevel);
+        for (string& next : nextLevel) {
+            if (visited.count(next))
+                continue;
+            visited.insert(next);
+            if (dfs(next, neighbors, visited))
                 return true;
         }
         return false;
     }
-    void generateNextLevel(string cur, vector<string>& res, int index, string& path, unordered_map<string, vector<char> >& allowed_map) {
-        if (index == cur.length() - 1) {
-            res.push_back(path);
+    void getNextLevel(int i, string& path, string& bottom, unordered_map<string, unordered_set<char> >& neighbors, vector<string>& nextLevel) {
+        if (i == bottom.length() - 1) {
+            nextLevel.push_back(path);
             return;
         }
-        string key = cur.substr(index, 2);
-        for (char c : allowed_map[key]) {
+        for (char c : neighbors[bottom.substr(i, 2)]) {
             path += c;
-            generateNextLevel (cur, res, index + 1, path, allowed_map);
+            getNextLevel(i + 1, path, bottom, neighbors, nextLevel);
             path.pop_back();
         }
     }
 };
 
 int main() {
-  Solution s;
-  string bottom = "XYZ";
-  vector<string> allowed = {"XYD", "YZE", "DEA", "FFF"}; 
-  cout << s.pyramidTransition(bottom, allowed) << endl;
-  return 0;
+    Solution s;
+    string bottom = "XYZ";
+    vector<string> allowed = {"XYD", "YZE", "DEA", "FFF"}; 
+    cout << s.pyramidTransition(bottom, allowed) << endl;
+    return 0;
 }
