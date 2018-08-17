@@ -8,23 +8,22 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> findItinerary(vector<pair<string, string> > tickets) {
+    vector<string> findItinerary(vector<pair<string, string>> tickets) {
         vector<string> res;
-        if (tickets.size() == 0)
-            return res;
         unordered_map<string, multiset<string> > neighbors;
-        for (pair<string, string>& ticket : tickets) {
+        for (auto& ticket : tickets) {
             neighbors[ticket.first].insert(ticket.second);
         }
-        dfs(res, "JFK", neighbors);
+        dfs("JFK", neighbors, res);
         reverse(res.begin(), res.end());
         return res;
     }
-    void dfs(vector<string>& res, string start, unordered_map<string, multiset<string> >& neighbors) {
+    void dfs(string start, unordered_map<string, multiset<string> >& neighbors, vector<string>& res) {
         while (!neighbors[start].empty()) {
-            string next = *neighbors[start].begin();
-            neighbors[start].erase(neighbors[start].begin()); // remove just one
-            dfs(res, next, neighbors);
+            multiset<string>::iterator it = neighbors[start].begin();
+            string next = *it;
+            neighbors[start].erase(it);
+            dfs(next, neighbors, res);
         }
         res.push_back(start);
     }
