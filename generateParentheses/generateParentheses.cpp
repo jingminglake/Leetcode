@@ -6,20 +6,22 @@ class Solution {
 public:
     vector<string> generateParentheses(int n) {
         vector<string> res;
-        if (n < 1)
-            return res;
-        dfs(n, n, "", res);
+        string path;
+        dfs(n, n, path, res);
         return res;
     }
-    void dfs (int left, int right, string path, vector<string>& res) {
+    void dfs(int left, int right, string path, vector<string>& res) {
         if (left == 0 && right == 0) {
             res.push_back(path);
             return;
         }
         if (left > right || left < 0 || right < 0)
             return;
-        dfs (left - 1, right, path + "(", res);
-        dfs (left, right - 1, path + ")", res);
+        path += "(";
+        dfs(left - 1, right, path, res);
+        path.pop_back();
+        path += ")";
+        dfs(left, right - 1, path, res);
     }
 };
 
