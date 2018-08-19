@@ -5,47 +5,41 @@ using namespace std;
 
 class Solution {
 public:
-    class Point {
-    public:
-        int x, y, d;
-        Point(int _x, int _y, int _d) : x(_x), y(_y), d(_d) {}
-    };
     class Compare {
     public:
-        bool operator()(const Point& p1, const Point& p2) const {
-            return p1.d > p2.d;
+        bool operator()(const tuple<int, int, int>& t1, const tuple<int, int, int>& t2) const {
+            return get<2>(t1) > get<2>(t2);
         }
     };
     int shortestDistance(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {
-        int m = maze.size();
-        if (m == 0)
-            return -1;
-        int n = maze[0].size();
-        if (n == 0)
-            return -1;
-        priority_queue<Point, vector<Point>, Compare> pq;
-        pq.emplace(start[0], start[1], 0);
+        if (maze.size() == 0 || maze[0].size() == 0 || start == destination)
+            return 0;
+        int m = maze.size(), n = maze[0].size();
         vector<vector<int> > dist(m, vector<int>(n, INT_MAX));
+        dist[start[0]][start[1]] = 0;
+        priority_queue<tuple<int, int, int>, vector<tuple<int, int, int> >, Compare> pq;
+        pq.emplace(start[0], start[1], 0);
         vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
         while (!pq.empty()) {
-            Point p = pq.top();
+            tuple<int, int, int> t = pq.top();
             pq.pop();
-            if (dist[p.x][p.y] <= p.d)
-                continue;
-            dist[p.x][p.y] = p.d;
+            int i = get<0>(t), j = get<1>(t);
             for (auto& dir : dirs) {
-                int next_i = p.x;
-                int next_j = p.y;
-                int next_dist = p.d;
-                while (next_i >= 0 && next_i < m && next_j >= 0 && next_j < n && maze[next_i][next_j] == 0) {
+                int next_i = i;
+                int next_j = j;
+                int d = 0;
+                while (next_i >= 0 && next_i < maze.size() && next_j >= 0 && next_j < maze[0].size() && maze[next_i][next_j] == 0) {
                     next_i += dir.first;
                     next_j += dir.second;
-                    next_dist++;
+                    d++;
                 }
                 next_i -= dir.first;
                 next_j -= dir.second;
-                next_dist--;
-                pq.emplace(next_i, next_j, next_dist);
+                d--;
+                if (dist[next_i][next_j] > dist[i][j] + d) {
+                    dist[next_i][next_j] = dist[i][j] + d;
+                    pq.emplace(next_i, next_j, dist[next_i][next_j]);
+                }
             }
         }
         return dist[destination[0]][destination[1]] == INT_MAX ? -1 : dist[destination[0]][destination[1]];
