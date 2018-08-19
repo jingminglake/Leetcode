@@ -7,38 +7,35 @@ using namespace std;
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-        int res = 0;
         unordered_set<string> wordSet(wordList.begin(), wordList.end());
-        if (!wordSet.count(endWord) || beginWord == endWord)
-            return res;
+        if (beginWord == endWord || !wordSet.count(endWord))
+            return 0;
         queue<string> q;
         q.push(beginWord);
-        unordered_set<string> visited;
+        int res = 0;
         while (!q.empty()) {
-            res++;
             int size = q.size();
-            for (int i = 0; i < size; i++) {
-                string cur = q.front();
+            res++;
+            for (int k = 0; k < size; k++) {
+                string word = q.front();
                 q.pop();
-                string next = cur;
-                for (int m = 0; m < cur.length(); m++) {
-                    for (int n = 0; n < 26; n++) {
-                        char c = next[m];
-                        if (c == n + 'a')
+                for (int i = 0; i < word.length(); i++) {
+                    char t = word[i];
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        if (c == t)
                             continue;
-                        next[m] = n + 'a';
-                        if (next == endWord) {
+                        word[i] = c;
+                        if (word == endWord)
                             return res + 1;
+                        if (wordSet.count(word)) {
+                            q.push(word);
+                            wordSet.erase(word);
                         }
-                        if (wordSet.count(next) && !visited.count(next)) {
-                            visited.insert(next);
-                            q.push(next);
-                        }
-                        next[m] = c;
                     }
+                    word[i] = t;
                 }
-            }         
-        }// while
+            }
+        }
         return 0;
     }
 };

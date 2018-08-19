@@ -1,45 +1,42 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <unordered_set>
 using namespace std;
 
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-        int res = 0;
         unordered_set<string> wordSet(wordList.begin(), wordList.end());
-        if (!wordSet.count(endWord) || beginWord == endWord)
-            return res;
+        if (beginWord == endWord || !wordSet.count(endWord))
+            return 0;
         unordered_set<string> start, end;
         start.insert(beginWord);
         end.insert(endWord);
+        int res = 0;
         while (!start.empty() && !end.empty()) {
             if (start.size() > end.size())
                 start.swap(end);
             res++;
-            unordered_set<string> next;
+            unordered_set<string> next_s;
             for (string word : start) {
                 for (int i = 0; i < word.length(); i++) {
-                    for (int j = 0; j < 26; j++) {
-                        char c = word[i];
-                        if (c == 'a' + j)
+                    char t = word[i];
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        if (c == t)
                             continue;
-                        word[i] = 'a' + j;
-                        if (!wordSet.count(word)) {
-                            word[i] = c;
-                            continue;
-                        }
+                        word[i] = c;
                         if (end.count(word))
                             return res + 1;
-                        next.insert(word);
-                        word[i] = c;
+                        if (wordSet.count(word)) {
+                            next_s.insert(word);
+                            wordSet.erase(word);
+                        }
                     }
-                } // for
-                wordSet.erase(word);
-            }// for
-            start = next;
-        }//while
+                    word[i] = t;
+                }
+            }
+            start = next_s;
+        }
         return 0;
     }
 };
