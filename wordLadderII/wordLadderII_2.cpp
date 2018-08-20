@@ -12,57 +12,55 @@ public:
         unordered_set<string> wordSet(wordList.begin(), wordList.end());
         if (!wordSet.count(endWord))
             return res;
-        unordered_map<string, vector<string> > path;
-        if (!bfs(beginWord, endWord, wordSet, path)) {
-            return res;
+        unordered_map<string, vector<string> > bfsTree;
+        vector<string> path;
+        if (bfs(beginWord, endWord, bfsTree, wordSet)) {
+            path.push_back(beginWord);
+            dfs(beginWord, endWord, bfsTree, path, res);
         }
-        vector<string> laddar_path;
-        laddar_path.push_back(beginWord);
-        dfs(beginWord, endWord, res, laddar_path, path);
         return res;
     }
-    bool bfs (string& beginWord, string& endWord, unordered_set<string>& wordSet, unordered_map<string, vector<string> >& path) {
-        bool found = false;
+    bool bfs(string& beginWord, string& endWord, unordered_map<string, vector<string> >& bfsTree, unordered_set<string>& wordSet) {
         unordered_set<string> q;
         q.insert(beginWord);
+        bool found = false;
         while (!q.empty() && !found) {
-            unordered_set<string> next_q;
+            unordered_set<string> next;
             for (string word : q) {
-                string next_word = word;
-                for (int i = 0; i < next_word.length(); i++) {
+                string word_copy = word;
+                for (int k = 0; k < word.length(); k++) {
+                    char t = word[k];
                     for (char c = 'a'; c <= 'z'; c++) {
-                        if (c == next_word[i])
+                        if (c == t)
                             continue;
-                        char t = next_word[i];
-                        next_word[i] = c;
-                        if (!wordSet.count(next_word) || q.count(next_word)) {
-                            next_word[i] = t;
+                        word[k] = c;
+                        if (q.count(word))
                             continue;
+                        if (wordSet.count(word)) {
+                            if (word == endWord) {
+                                found = true;
+                            }
+                            next.insert(word);
+                            bfsTree[word_copy].push_back(word);
                         }
-                        if (next_word == endWord) {
-                            found = true;
-                        }
-                        path[word].push_back(next_word);
-                        next_q.insert(next_word);
-                        next_word[i] = t;
                     }
-                }
+                    word[k] = t;
+                }// for
                 wordSet.erase(word);
-            } // for
-            q.swap(next_q);
-            next_q.clear();
-        }// while
+            }// for
+            q.swap(next);
+        }
         return found;
     }
-    void dfs (string beginWord, string& endWord, vector<vector<string> >& res, vector<string>& laddar_path, unordered_map<string, vector<string> >& path) {
+    void dfs(string& beginWord, string& endWord, unordered_map<string, vector<string> >& bfsTree, vector<string>& path, vector<vector<string> >& res) {
         if (beginWord == endWord) {
-            res.push_back(laddar_path);
+            res.push_back(path);
             return;
         }
-        for (string next : path[beginWord]) {
-            laddar_path.push_back(next);
-            dfs (next, endWord, res, laddar_path, path);
-            laddar_path.pop_back();
+        for (string& next : bfsTree[beginWord]) {
+            path.push_back(next);
+            dfs(next, endWord, bfsTree, path, res);
+            path.pop_back();
         }
     }
 };
