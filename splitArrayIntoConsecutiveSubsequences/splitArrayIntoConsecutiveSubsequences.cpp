@@ -9,18 +9,20 @@ using namespace std;
 class Solution {
 public:
     bool isPossible(vector<int>& nums) {
-        unordered_map<int, priority_queue<int, vector<int>, std::greater<int> > > tailMap;
+        unordered_map<int, priority_queue<int, vector<int>, greater<int> > > m;
         for (int num : nums) {
-            if (!tailMap[num - 1].empty()) {
-                tailMap[num].push(tailMap[num - 1].top() + 1);
-                tailMap[num - 1].pop();
+            if (m.count(num - 1) && !m[num - 1].empty()) {
+                int prev_len = m[num - 1].top();
+                m[num - 1].pop();
+                m[num].push(prev_len + 1);
             } else {
-                tailMap[num].push(1);
+                m[num].push(1);
             }
         }
-        for (auto& p : tailMap) {
-            if (!p.second.empty() && p.second.top() < 3)
+        for (auto& p : m) {
+            if (!p.second.empty() && p.second.top() < 3) {
                 return false;
+            }
         }
         return true;
     }
