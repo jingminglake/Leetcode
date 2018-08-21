@@ -15,10 +15,12 @@ public:
             return m[s];
         for (int i = 0; i < s.length() - 1; i++) {
             if (s[i] == '+' && s[i + 1] == '+') {
-                string next_s = s;
-                next_s[i] = next_s[i + 1] = '-';
-                if (!dfs(next_s, m))
+                s[i] = s[i + 1] = '-';
+                if (!dfs(s, m)) {
+                    s[i] = s[i + 1] = '+';
                     return m[s] = true;
+                }
+                s[i] = s[i + 1] = '+';
             }
         }
         return m[s] = false;
