@@ -7,23 +7,25 @@ using namespace std;
 class Solution {
 public:
     bool PredictTheWinner(vector<int>& nums) {
-        vector<vector<int> > dp(nums.size(), vector<int>(nums.size(), -1));
-        helper(nums, 0, nums.size() - 1, dp);
-        int sum = 0;
-        for (int n : nums)
-            sum += n;
-        return dp[0][nums.size() - 1] * 2 >= sum;
+        int n = nums.size();
+        if (n % 2 == 0)
+            return true;
+        int64_t sum = 0;
+        for (int num : nums)
+            sum += num;
+        vector<vector<int64_t> > dp(n, vector<int64_t>(n, -1));
+        return dfs(0, n - 1, nums, dp) * 2 >= sum;
     }
-    int helper(vector<int>& nums, int start, int end, vector<vector<int> >& dp) {
+    int64_t dfs(int start, int end, vector<int>& nums, vector<vector<int64_t> >& dp) {
         if (start > end)
             return 0;
         if (dp[start][end] != -1)
             return dp[start][end];
-        if (start == end)
-            return dp[start][end] = nums[start];
-        int left_max = nums[start] + min (helper(nums, start + 2, end, dp), helper(nums, start + 1, end - 1, dp));
-        int right_max = nums[end] + min (helper(nums, start + 1, end - 1, dp), helper(nums, start, end - 2, dp));
-        return dp[start][end] = max (left_max, right_max);
+        int64_t res = 0;
+        int64_t res_left = nums[start] + min ( dfs(start + 2, end, nums, dp),  dfs(start + 1, end - 1, nums, dp) );
+        int64_t res_right = nums[end] + min ( dfs(start + 1, end - 1, nums, dp), dfs(start, end - 2, nums, dp) );
+        res = max (res_left, res_right);
+        return dp[start][end] = res;
     }
 };
 
