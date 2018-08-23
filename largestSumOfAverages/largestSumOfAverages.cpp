@@ -5,26 +5,27 @@ using namespace std;
 class Solution {
 public:
     double largestSumOfAverages(vector<int>& A, int K) {
-        vector<vector<double> > dp(A.size() , vector<double>(K + 1, -1));
-        return helper(A, K, dp, A.size() - 1);
+        vector<vector<double> > dp(A.size(), vector<double>(K + 1, -1));
+        return dfs(A, K, A.size() - 1, dp);
     }
-    double helper(vector<int>& A, int K, vector<vector<double> >& dp, int end) {
-        if (dp[end][K] > 0)
-            return dp[end][K];
+    // 0 ~ index is a sub-problem
+    double dfs(vector<int>& A, int K, int index, vector<vector<double> >& dp) {
+        if (dp[index][K] != -1)
+            return dp[index][K];
         if (K == 1) {
-            double temp = 0;
-            for (int i = 0; i <= end; i++)
-                temp += A[i];
-            return dp[end][K] = temp / (end + 1);
+            double sum = 0.0;
+            for (int i = 0; i <= index; i++)
+                sum += A[i];
+            return dp[index][K] = sum / (index + 1);
         }
-        if (K > end + 1)
-            return dp[end][K] = 0;
-        double res = 0, lastPart = A[end];
-        for (int i = end - 1; i >= 0; i--) {
-            res = max (res, (lastPart / (end - i) + helper(A, K - 1, dp, i) ));
+        if (index + 1 < K)
+            return dp[index][K] = 0.0;
+        double res = 0.0, lastPart = A[index];
+        for (int i = index - 1; i >= 0; i--) {
+            res = max (res, (lastPart / (index - i) + dfs(A, K - 1, i, dp)));
             lastPart += A[i];
         }
-        return dp[end][K] = res;
+        return dp[index][K] = res;
     }
 };
 
