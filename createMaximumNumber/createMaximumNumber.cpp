@@ -5,51 +5,50 @@ using namespace std;
 class Solution {
 public:
     vector<int> maxNumber(vector<int>& nums1, vector<int>& nums2, int k) {
+        int n1 = nums1.size(), n2 = nums2.size();
         vector<int> res;
-        int m = nums1.size();
-        int n = nums2.size();
-        for (int i = max (0, k - n); i <= min (k, m); i++) {
-            vector<int> v1 = maxNumberHelper(nums1, i);
-            vector<int> v2 = maxNumberHelper(nums2, k - i);
-            res = max (res, mergeVector(v1, v2) );
-        }
-        return res;
-    }
-    vector<int> maxNumberHelper(vector<int>& nums, int i) {
-        vector<int> res;
-        if (i <= 0)
+        if (k <= 0)
             return res;
-        int drop = nums.size() - i;
+        for (int i = max(k - n2, 0); i <= min(k, n1); i++) {
+            vector<int> vec1 = getNDigitsMax(nums1, i);
+            vector<int> vec2 = getNDigitsMax(nums2, k - i);
+            res = max (res, mergeVector(vec1, vec2));
+        }
+        return res;
+    }
+    vector<int> getNDigitsMax(vector<int>& nums, int n) {
+        int drop = nums.size() - n;
+        vector<int> s;
         for (int num : nums) {
-            while (drop && res.size() && res.back() < num) {
-                res.pop_back();
+            while (!s.empty() && drop && num > s.back()) {
                 drop--;
+                s.pop_back();
             }
-            res.push_back(num);
+            s.push_back(num);
         }
-        res.resize(i);
+        s.resize(n);
+        return s;
+    }
+    vector<int> mergeVector(vector<int>& vec1, vector<int>& vec2) {
+        int n1 = vec1.size(), n2 = vec2.size();
+        vector<int> res(n1 + n2);
+        int index = 0, p1 = 0, p2 = 0;
+        while (p1 < n1 && p2 < n2) {
+            res[index++] = greater(vec1, p1, vec2, p2) ? vec1[p1++] : vec2[p2++];
+        }
+        while (p1 < n1) {
+            res[index++] = vec1[p1++];
+        }
+        while (p2 < n2) {
+            res[index++] = vec2[p2++];
+        }
         return res;
     }
-    vector<int> mergeVector(vector<int>& nums1, vector<int>& nums2) {
-        int m = nums1.size();
-        int n = nums2.size();
-        if (m == 0)
-            return nums2;
-        if (n == 0)
-            return nums1;
-        vector<int> res(m + n);
-        int i = 0, p1 = 0, p2 = 0;
-        while (i < res.size()) {
-            res[i++] = greater(nums1, p1, nums2, p2) ? nums1[p1++] : nums2[p2++];
+    bool greater(vector<int>& vec1, int p1, vector<int>& vec2, int p2) {
+        while (p1 < vec1.size() && p2 < vec2.size() && vec1[p1] == vec2[p2]) {
+            p1++; p2++;
         }
-        return res;
-    }
-    bool greater(vector<int>& nums1, int i, vector<int>& nums2, int j) {
-        while (i < nums1.size() && j < nums2.size() && nums1[i] == nums2[j]) {
-            i++;
-            j++;
-        }
-        return j == nums2.size() || (i < nums1.size() && nums1[i] > nums2[j]);
+        return p2 == vec2.size() || (p1 < vec1.size() && vec1[p1] > vec2[p2]);
     }
 };
 
