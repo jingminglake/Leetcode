@@ -10,9 +10,8 @@ public:
         vector<int> res(n, -1);
         stack<int> s;
         for (int i = 0; i < 2 * n; i++) {
-            int num = nums[i % n];
-            while (!s.empty() && num > nums[s.top()]) {
-                res[s.top()] = num;
+            while (!s.empty() && nums[i % n] > nums[s.top()]) {
+                res[s.top()] = nums[i % n];
                 s.pop();
             }
             if (i < n)
@@ -24,12 +23,12 @@ public:
 
 int main()
 {
-  Solution s;
-  int a[3] = {1,2,1};
-  vector<int> vec(a, a+3);
-  vector<int> res = s.nextGreaterElements(vec);
-  for (int i : res)
-    cout << i << " ";
-  cout << endl;
-  return 0;
+    Solution s;
+    int a[3] = {1,2,1};
+    vector<int> vec(a, a+3);
+    vector<int> res = s.nextGreaterElements(vec);
+    for (int i : res)
+        cout << i << " ";
+    cout << endl;
+    return 0;
 }
