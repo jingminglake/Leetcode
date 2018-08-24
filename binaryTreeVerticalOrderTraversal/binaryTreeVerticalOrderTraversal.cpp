@@ -17,24 +17,20 @@ public:
         vector<vector<int> > res;
         if (!root)
             return res;
-        map<int, vector<int> > m;
         queue<pair<TreeNode*, int> > q;
         q.emplace(root, 0);
+        map<int, vector<int> > m;
         while (!q.empty()) {
-            int size = q.size();
-            for (int i = 0; i < size; i++) {
-                pair<TreeNode*, int> p = q.front();
-                q.pop();
-                m[p.second].push_back(p.first->val);
-                if (p.first->left)
-                    q.emplace(p.first->left, p.second - 1);
-                if (p.first->right)
-                    q.emplace(p.first->right, p.second + 1);
-            }
+            pair<TreeNode*, int> p = q.front();
+            q.pop();
+            m[p.second].push_back(p.first->val);
+            if (p.first->left)
+                q.emplace(p.first->left, p.second - 1);
+            if (p.first->right)
+                q.emplace(p.first->right, p.second + 1);
         }
-        for (auto& p : m) {
+        for (auto& p : m)
             res.push_back(p.second);
-        }
         return res;
     }
 };
