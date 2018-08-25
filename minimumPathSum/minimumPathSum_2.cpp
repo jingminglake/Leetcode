@@ -1,4 +1,4 @@
-// clang++ minimumPathSum.cpp -std=c++11
+// clang++ minimumPathSum_2.cpp -std=c++11
 
 #include <iostream>
 #include <vector>
@@ -11,16 +11,16 @@ public:
         if (m == 0)
             return 0;
         int n = grid[0].size();
-        vector<vector<int> > dp(m + 1, vector<int>(n + 1, INT_MAX));
+        vector<int> dp(n + 1, INT_MAX);
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (i == 1 && j == 1)
-                    dp[i][j] = grid[0][0];
+                    dp[j] = grid[0][0];
                 else
-                    dp[i][j] = min (dp[i - 1][j], dp[i][j - 1]) + grid[i - 1][j - 1];
+                    dp[j] = min (dp[j - 1], dp[j]) + grid[i - 1][j - 1];
             }
         }
-        return dp[m][n];
+        return dp[n];
     }
 };
 
