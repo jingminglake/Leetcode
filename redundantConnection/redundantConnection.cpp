@@ -6,23 +6,23 @@ using namespace std;
 class Solution {
 public:
     vector<int> findRedundantConnection(vector<vector<int>>& edges) {
+        vector<int> res;
         for (auto& edge : edges) {
-            int parent_1 = find_op (edge[0]);
-            int parent_2 = find_op (edge[1]);
-            if (parent_1 == parent_2)
-                return edge;
+            int p1 = find_op(edge[0]);
+            int p2 = find_op(edge[1]);
+            if (p1 != p2)
+                parent[p1] = p2;
             else
-                parent[parent_2] = parent_1;
+                return edge;
         }
-        return vector<int>(2,0);
+        return res;
     }
-    int find_op(int n) {
-        if (!parent.count(n))
-            return parent[n] = n;
-        else if (parent[n] == n)
-            return n;
-        else
-            return parent[n] = find_op(parent[n]);
+    int find_op(int node) {
+        if (!parent.count(node))
+            return parent[node] = node;
+        if (parent[node] == node)
+            return node;
+        return parent[node] = find_op(parent[node]);
     }
     unordered_map<int, int> parent;
 };
