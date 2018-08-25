@@ -3,40 +3,41 @@ public:
     /** Initialize your data structure here
         @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
     PhoneDirectory(int maxNumbers) {
-        phoneId = maxNumbers;
-        for (int i = 0; i < phoneId; i++)
+        for (int i = 0; i < maxNumbers; i++)
             q.push(i);
+        used = vector<bool>(maxNumbers, false);
+        maxNum = maxNumbers;
     }
     
     /** Provide a number which is not assigned to anyone.
         @return - Return an available number. Return -1 if none is available. */
     int get() {
-        int id = -1;
+        int res = -1;
         if (!q.empty()) {
-            id = q.front();
+            res = q.front();
             q.pop();
-            used.insert(id);
+            used[res] = true;
         }
-        return id;
+        return res;
     }
     
     /** Check if a number is available or not. */
     bool check(int number) {
-        if (number >= phoneId || number < 0)
-            return false;
-        return !used.count(number);
+        if (number >= 0 && number < maxNum)
+            return !used[number];
+        return false;
     }
     
     /** Recycle or release a number. */
     void release(int number) {
-        if (used.count(number)) {
-            used.erase(number);
-            q.push(number);
-        }
+        if (number < 0 || number >= maxNum || !used[number])
+            return;
+        used[number] = false;
+        q.push(number);
     }
-    unordered_set<int> used;
     queue<int> q;
-    int phoneId;
+    vector<bool> used;
+    int maxNum;
 };
 
 /**
