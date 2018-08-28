@@ -1,4 +1,3 @@
-// O(m^2 * n) TLE
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -6,36 +5,37 @@ using namespace std;
 class Solution {
 public:
     string minWindow(string S, string T) {
-        string res = "";
-        int min_len = S.length();
-        for (int left = 0; left <= (int)S.length() - (int)T.length(); left++) {
-            if (S[left] != T[0])
-                continue;
-            string W = S.substr(left, min_len);
-            int len = isSubsequence(W, T);
-            if (len != -1 && len < min_len) {
-                res = S.substr(left, len);
-                min_len = len;
+        int s_len = S.length(), t_len = T.length();
+        vector<vector<int> > dp(s_len + 1, vector<int>(t_len + 1, INT_MAX));
+        for (int i = 0; i <= s_len; i++)
+            dp[i][0] = i;
+        for (int i = 1; i <= s_len; i++) {
+            for (int j = 1; j <= t_len; j++) {
+                if (S[i - 1] == T[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = dp[i - 1][j];
+                }
             }
         }
-        return res;
-    }
-    int isSubsequence(string& w, string& t) {
-        int p_w = 0, p_t = 0;
-        while (p_w < w.length() && p_t < t.length()) {
-            if (w[p_w] == t[p_t])
-                p_t++;
-            p_w++;
+        int start_index = -1, min_len = s_len + 1;
+        for (int i = 1; i <= s_len; i++) {
+            if (dp[i][t_len] != INT_MAX) {
+                if (i - dp[i][t_len] < min_len) {
+                    start_index = dp[i][t_len];
+                    min_len = i - dp[i][t_len];
+                }
+            }
         }
-        return p_t == t.length() ? p_w : -1;
+        return start_index == -1 ? "" : S.substr(start_index, min_len);
     }
 };
 
 int main()
 {
-  Solution s;
-  string S = "abcdebdde";
-  string T = "bde";
-  cout << s.minWindow(S, T) << endl;
-  return 0;
+    Solution s;
+    string S = "abcdebdde";
+    string T = "bde";
+    cout << s.minWindow(S, T) << endl;
+    return 0;
 }
