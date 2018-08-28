@@ -6,31 +6,29 @@ using namespace std;
 class Solution {
 public:
     string minWindow(string s, string t) {
-        int min_len = INT_MAX;
         if (s.length() < t.length())
             return "";
-        unordered_map<char, int> m;
+        unordered_map<char, int> hash_t;
         for (char c : t)
-            m[c]++;
-        int left = 0, right = 0, start = 0;
+            hash_t[c]++;
         int count = t.length();
+        int left = 0, right = 0;
+        int min_len = s.length() + 1, start_index = -1;
         while (right < s.length()) {
-            if (m.count(s[right]) && m[s[right]]-- > 0)
+            if (hash_t.count(s[right]) && hash_t[s[right]]-- > 0)
                 count--;
             right++;
             while (count == 0) {
                 if (right - left < min_len) {
-                    start = left;
                     min_len = right - left;
+                    start_index = left;
                 }
-                if (m.count(s[left])) {
-                    if (++m[s[left]] > 0)
-                        count++;
-                }
+                if (hash_t.count(s[left]) && ++hash_t[s[left]] > 0)
+                    count++;
                 left++;
             }
-        }
-        return min_len == INT_MAX ? "" : s.substr(start, min_len);
+        } // while
+        return start_index != -1 ? s.substr(start_index, min_len) : "";
     }
 };
 
