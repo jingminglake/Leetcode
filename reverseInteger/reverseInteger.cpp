@@ -1,28 +1,32 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
-#include <algorithm>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  int reverse(int x) {
-    int ans = 0;
-    while (x != 0) {
-      if ( INT_MAX / 10 < ans || INT_MIN / 10 > ans)
-	return 0;
-      ans = ans * 10 + x % 10;
-      x = x / 10;
+    int reverse(int x) {
+        int64_t num = x;
+        int sign = 1;
+        if (x < 0) {
+            sign = -1;
+            num = -num;
+        }
+        int64_t res = 0;
+        while (num) {
+            res = 10 * res + num % 10;
+            num /= 10;
+            if (res > INT_MAX)
+                return 0;
+        }
+        return res * sign;
     }
-    return ans;
-  }
 };
 
 int main()
 {
-  Solution s;
-  int a = -2143857412;
-  cout << s.reverse(a) << endl;
-  cout << INT_MAX << endl;
-  return 0;
+    Solution s;
+    int a = -2143857412;
+    cout << s.reverse(a) << endl;
+    cout << INT_MAX << endl;
+    return 0;
 }
