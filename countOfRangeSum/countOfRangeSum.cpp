@@ -6,20 +6,16 @@ using namespace std;
 class Solution {
 public:
     int countRangeSum(vector<int>& nums, int lower, int upper) {
-        if (nums.size() == 0)
-            return 0;
-        vector<int64_t> pre_sum;
-        int64_t sum = 0;
-        for (int n : nums) {
-            sum += n;
-            pre_sum.push_back(sum);
+        int n = nums.size();
+        vector<int64_t> preSum(n + 1, 0);
+        for (int i = 1; i <= n; i++) {
+            preSum[i] = preSum[i - 1] + nums[i - 1];
         }
-        int res = 0;
         multiset<int64_t> s;
-        s.insert(0);
-        for (int64_t n : pre_sum) {
-            res += distance(s.lower_bound(n - upper), s.upper_bound(n - lower));
-            s.insert(n);
+        int res = 0;
+        for (int64_t num : preSum) {
+            res += distance(s.lower_bound(num - upper), s.upper_bound(num - lower));
+            s.insert(num);
         }
         return res;
     }
