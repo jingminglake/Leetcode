@@ -6,28 +6,29 @@ using namespace std;
 class Solution {
 public:
     int wordsTyping(vector<string>& sentence, int rows, int cols) {
-        int word_num = 0;
         int size = sentence.size();
-        unordered_map<int, int> m; // start from index of word -> can fit how many words in one row
+        int index = 0;
+        unordered_map<int, int> m;
         for (int i = 0; i < rows; i++) {
-            int start = word_num % size;
-            if (!m.count(start)) {
-                int len = 0;
-                int num = 0;
-                int index = start;
-                while (len < cols) {
-                    len += sentence[(index++) % size].length() + 1;
-                    num++;
-                    if (len - 1 > cols) {
-                        num--;
-                        break;
-                    }
-                }
-                m[start] = num;
+            int start_index = index % size;
+            if (!m.count(start_index)) {
+                m[start_index] = rowFitting(sentence, cols, start_index);
             }
-            word_num += m[start];
+            index += m[start_index];
         }
-        return word_num / size;
+        return index / size;
+    }
+    int rowFitting(vector<string>& sentence, int cols, int start) {
+        int res = 0, len = 0, size = sentence.size();
+        while (len < cols) {
+            len += sentence[start++ % size].length() + 1;
+            res++;
+            if (len - 1 > cols) {
+                res--;
+                break;
+            }
+        }
+        return res;
     }
 };
 
