@@ -9,34 +9,31 @@ using namespace std;
 class Solution {
 public:
     string rearrangeString(string s, int k) {
-        if (k == 0)
-            return s;
-        string res(s.length(), ' ');
-        unordered_map<char, int> m;
-        for (char c : s) {
-            m[c]++;
-        }
-        priority_queue<pair<int, char> > pq;
-        for (auto& p : m) {
-            pq.emplace(p.second, p.first);
-        }
-        int index = 0;
         int len = s.length();
-        while (!pq.empty()) {
-            if (pq.size() < min(k, len))
-                return "";
+        if (k <= 0)
+            return s;
+        unordered_map<char, int> m;
+        for (char c : s)
+            m[c]++;
+        priority_queue<pair<int, char> > pq;
+        for (auto& p : m)
+            pq.emplace(p.second, p.first);
+        int index = 0;
+        string res(len, ' ');
+        while (index < len) {
+            int round_size = min (k, len - index);
             vector<pair<int, char> > next;
-            for (int i = 0; i < min (k, len); i++) {
+            if (pq.empty() || pq.size() < round_size)
+                return "";
+            for (int i = 0; i < round_size; i++) {
                 pair<int, char> p = pq.top();
                 pq.pop();
                 res[index++] = p.second;
                 if (p.first - 1 > 0)
                     next.emplace_back(p.first - 1, p.second);
-                len--;
             }
-            for (auto& p : next) {
-                pq.emplace(p.first, p.second);
-            }
+            for (auto& p : next)
+                pq.push(p);
         }
         return res;
     }
