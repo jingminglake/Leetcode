@@ -2,23 +2,22 @@ class ValidWordAbbr {
 public:
     ValidWordAbbr(vector<string> dictionary) {
         for (string& word : dictionary) {
-            string key = getKey(word);
-            if (m.count(key)) {
-                if (m[key] != word) {
-                    m[key] = "";
-                }
+            string abbr = getAbbr(word);
+            if (m.count(abbr)) {
+                if (word != m[abbr])
+                    m[abbr] = "";                    
             } else {
-                m[key] = word;
+                m[abbr] = word;
             }
         }
     }
     
     bool isUnique(string word) {
-        string key = getKey(word);
-        return !m.count(key) || m[key] == word;
+        string abbr = getAbbr(word);
+        return !m.count(abbr) || m[abbr] == word;
     }
-    string getKey(string& word) {
-        if (word.length() < 2)
+    string getAbbr(string word) {
+        if (word.length() <= 2)
             return word;
         return word[0] + to_string(word.length() - 2) + word.back();
     }
