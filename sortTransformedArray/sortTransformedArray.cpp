@@ -10,17 +10,23 @@ public:
         int left = 0, right = n - 1;
         int index = a >= 0 ? n - 1 : 0;
         while (left <= right) {
+            int leftV = f(nums[left], a, b, c);
+            int rightV = f(nums[right], a, b, c);
             if (a >= 0) {
-                if (f(nums[left], a, b, c) >= f(nums[right], a, b, c)) {
-                    res[index--] = f(nums[left++], a, b, c);
+                if (leftV >= rightV) {
+                    res[index--] = leftV;
+                    left++;
                 } else {
-                    res[index--] = f(nums[right--], a, b, c);
+                    res[index--] = rightV;
+                    right--;
                 }
             } else {
-                if (f(nums[left], a, b, c) <= f(nums[right], a, b, c)) {
-                    res[index++] = f(nums[left++], a, b, c);
+                if (leftV <= rightV) {
+                    res[index++] = leftV;
+                    left++;
                 } else {
-                    res[index++] = f(nums[right--], a, b, c);
+                    res[index++] = rightV;
+                    right--;
                 }
             }
         }
