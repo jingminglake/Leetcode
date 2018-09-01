@@ -9,7 +9,7 @@ public:
     string encode(vector<string>& strs) {
         string res;
         for (string& str : strs) {
-            res += to_string(str.length()) + "/" + str;
+            res += to_string(str.length()) + "," + str;
         }
         return res;
     }
@@ -19,16 +19,18 @@ public:
         vector<string> res;
         int start = 0;
         while (start < s.length()) {
-            int p = s.find_first_of('/', start);
-            int len = stoi(s.substr(start, p - start));
-            start = p + 1;
-            res.push_back(s.substr(start, len));
-            start += len;
+            int pos = s.find_first_of(',', start);
+            int len = stoi(s.substr(start, pos - start));
+            res.push_back(s.substr(pos + 1, len));
+            start = pos + len + 1;
         }
         return res;
     }
 };
 
+// Your Codec object will be instantiated and called as such:
+// Codec codec;
+// codec.decode(codec.encode(strs));
 // Your Codec object will be instantiated and called as such:
 // Codec codec;
 // codec.decode(codec.encode(strs));
