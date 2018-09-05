@@ -9,24 +9,25 @@ public:
      * @return    The number of characters read
      */
     Solution() {
-        count = 0;
+        len_t = 0;
         p = 0;
     }
     int read(char *buf, int n) {
         int index = 0;
-        while (index < n) {
+        bool eof = false;
+        while (!eof && index < n) {
             if (p == 0)
-                count = read4(temp);
-            if (count == 0)
-                break;
-            while (index < n && p < count) 
+                len_t = read4(temp);
+            if (len_t < 4)
+                eof = true;
+            while (index < n && p < len_t) 
                 buf[index++] = temp[p++];
-            if (p == count)
+            if (p == len_t)
                 p = 0;
         }
         return index;
     }
-    int count;
+    int len_t;
     int p;
     char temp[4];
 };
