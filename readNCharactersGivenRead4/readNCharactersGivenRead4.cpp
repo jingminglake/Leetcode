@@ -9,16 +9,19 @@ public:
      * @return    The number of characters read
      */
     int read(char *buf, int n) {
+        char buf4[4];
         bool eof = false;
-        char read4Buf[4];
-        int res = 0;
-        while (!eof && res < n) {
-            int count = read4(read4Buf);
-            eof = count < 4;
-            count = min (count, n - res);
-            for (int i = 0; i < count; i++)
-                buf[res++] = read4Buf[i];
+        int index = 0;
+        while (!eof && index < n) {
+            int len = read4(buf4);
+            if (len < 4) {
+                eof = true;
+            }
+            int remain = n - index;
+            int round_len = min (len, remain);
+            for (int k = 0; k < round_len; k++)
+                buf[index++] = buf4[k];
         }
-        return res;
+        return index;
     }
 };
