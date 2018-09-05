@@ -1,45 +1,36 @@
 #include <iostream>
 #include <vector>
-#include <unordered_set>
 using namespace std;
 
 class Solution {
 public:
     string boldWords(vector<string>& words, string S) {
-        string res;
-        if (words.size() == 0)
-            return res;
-        vector<bool> bold(S.length(), false);
-        unordered_set<string> wordSet(words.begin(), words.end());
-        for (string word : wordSet) {
-            markBold(word, bold, S);
+        int len_s = S.length();
+        vector<bool> bold(len_s, false);
+        int end = -1;
+        for (int i = 0; i < len_s; i++) {
+            for (string& word : words) {
+                if (word == S.substr(i, word.length())) 
+                    end = max (end, i + (int)word.length());
+            }
+            bold[i] = end > i;
         }
-        for (int i = 0; i < bold.size(); i++) {
+        string res;
+        for (int i = 0; i < len_s; i++) {
             if (bold[i] && (i == 0 || !bold[i - 1]))
                 res += "<b>";
             res += S[i];
-            if (bold[i] && (i == S.length() - 1 || !bold[i + 1]))
+            if (bold[i] && (i == len_s - 1 || !bold[i + 1]))
                 res += "</b>";
         }
         return res;
     }
-    void markBold(string& word, vector<bool>& bold, string& S) {
-        int wordSize = word.length();
-        for (int i = 0; i <= (int)S.length() - wordSize; i++) {
-            string temp = S.substr(i, wordSize);
-            if (word == temp) {
-                for (int j = i; j < i + wordSize; j++) {
-                    bold[j] = true;
-                }
-            }
-        }
-    }
 };
 
 int main() {
-  vector<string> words = {"ab", "bc"};
-  string S = "aabcd";
-  Solution s;
-  cout << s.boldWords(words, S) << endl;
-  return 0;
+    vector<string> words = {"ab", "bc"};
+    string S = "aabcd";
+    Solution s;
+    cout << s.boldWords(words, S) << endl;
+    return 0;
 }
