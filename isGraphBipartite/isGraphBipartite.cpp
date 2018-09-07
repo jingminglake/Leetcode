@@ -5,23 +5,26 @@ using namespace std;
 class Solution {
 public:
     bool isBipartite(vector<vector<int>>& graph) {
-        if (graph.size() == 0)
-            return false;
-        vector<int> colors(graph.size(), 0);
-        for (int i = 0; i < graph.size(); i++) {
-            if (colors[i] == 0 && !dfs(graph, colors, 0, i))
+        int N = graph.size();
+        vector<int> visited(N, 0); // 0 -> unvisited, 1 -> group one, 2 -> group two
+        for (int i = 0; i < N; i++) {
+            if (visited[i] != 0)
+                continue;
+            if (!dfs(i, 1, graph, visited))
                 return false;
         }
         return true;
     }
-    bool dfs(vector<vector<int> >& graph, vector<int>& colors, int color, int node) {
-        if (colors[node] != 0)
-            return colors[node] == color;
-        colors[node] = color;
-        for (int next : graph[node]) {
-            int nextColor = (color == 1) ? 2 : 1;
-            if (!dfs(graph, colors, nextColor, next))
+    bool dfs(int node, int group, vector<vector<int> >& graph, vector<int>& visited) {
+        visited[node] = group;
+        for (int neighbor : graph[node]) {
+            int next_group = group == 1 ? 2 : 1;
+            if (visited[neighbor]) {
+                if (visited[neighbor] != next_group)
+                    return false;
+            } else if (!dfs(neighbor, next_group, graph, visited)) {
                 return false;
+            }
         }
         return true;
     }
@@ -29,8 +32,8 @@ public:
 
 int main()
 {
-  Solution s;
-  vector<vector<int> > matrix = {{1,3}, {0,2}, {1,3}, {0,2}};
-  cout << s.isBipartite(matrix) << endl;
-  return 0;
+    Solution s;
+    vector<vector<int> > matrix = {{1,3}, {0,2}, {1,3}, {0,2}};
+    cout << s.isBipartite(matrix) << endl;
+    return 0;
 }
