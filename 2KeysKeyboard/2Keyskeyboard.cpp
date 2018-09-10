@@ -2,32 +2,29 @@
 
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 class Solution {
 public:
-  int minSteps(int n) {
-    if (n <= 1)
-      return 0;
-    vector<int> dp(n + 1, 0);
-    dp[0] = 0;
-    dp[1] = 1;
-    for (int i = 2; i <= n; i++) {
-      dp[i] = i;
-      for (int j = 2; j < i; j++) {
-	if (i % j == 0) {
-	  dp[i] = min(dp[i], dp[j] + i/j);
-	}
-      }
+    int minSteps(int n) {
+        vector<int> dp(n + 1, INT_MAX);
+        dp[0] = 0;
+        dp[1] = 0;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            for (int j = 1; j <= i / 2; j++) {
+                if (i % j == 0)
+                    dp[i] = min(dp[i], dp[j] + i / j);
+                
+            }
+        }
+        return dp[n];
     }
-    return dp[n];
-  }
 };
 
 int main()
 {
-  Solution s;
-  cout << s.minSteps(100) << endl;
-  return 0;
+    Solution s;
+    cout << s.minSteps(100) << endl;
+    return 0;
 }
