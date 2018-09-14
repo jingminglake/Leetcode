@@ -5,28 +5,25 @@ using namespace std;
 class Solution {
 public:
     int longestLine(vector<vector<int>>& M) {
+        if (M.size() == 0 || M[0].size() == 0)
+            return 0;
+        int m = M.size(), n = M[0].size();
         int res = 0;
-        int m = M.size();
-        if (m == 0)
-            return res;
-        int n = M[0].size();
-        vector<vector<vector<int> > > dp(m, vector<vector<int> >(n, vector<int>(4, 0)));
+        vector<vector<int> > dp_h = M, dp_v = dp_h, dp_d = dp_h, dp_ad = dp_h;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (M[i][j] == 0)
                     continue;
-                for (int k = 0; k < 4; k++)
-                    dp[i][j][k] = 1;
                 if (j > 0)
-                    dp[i][j][0] += dp[i][j - 1][0];
+                    dp_h[i][j] += dp_h[i][j - 1];
                 if (i > 0)
-                    dp[i][j][1] += dp[i - 1][j][1];
+                    dp_v[i][j] += dp_v[i - 1][j];
                 if (i > 0 && j > 0)
-                    dp[i][j][2] += dp[i - 1][j - 1][2];
+                    dp_d[i][j] += dp_d[i - 1][j - 1];
                 if (j + 1 < n && i > 0)
-                    dp[i][j][3] += dp[i - 1][j + 1][3];
-                res = max (res, max (dp[i][j][0], dp[i][j][1]));
-                res = max (res, max (dp[i][j][2], dp[i][j][3]));
+                    dp_ad[i][j] += dp_ad[i - 1][j + 1];
+                res = max (res, max (dp_h[i][j], dp_v[i][j]));
+                res = max (res, max (dp_d[i][j], dp_ad[i][j]));
             }
         }
         return res;
