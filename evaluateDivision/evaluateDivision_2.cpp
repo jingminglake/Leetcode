@@ -18,7 +18,7 @@ public:
                 continue;
             double equation_res = 1.0;
             unordered_set<string> visited;
-            visited.insert(queries[i].first);
+            //visited.insert(queries[i].first);
             if (dfs(queries[i].first, queries[i].second, neighbors, equation_res, visited)) {
                 res[i] = equation_res;
             }
@@ -28,16 +28,18 @@ public:
     bool dfs(string start, string& end, unordered_map<string, vector<pair<string, double> > >& neighbors, double& res, unordered_set<string>& visited) {
         if (start == end)
             return true;
+        visited.insert(start);
         for (auto& n : neighbors[start]) {
             if (visited.count(n.first))
                 continue;
             res *= n.second;
-            visited.insert(n.first);
+            //visited.insert(n.first);
             if (dfs(n.first, end, neighbors, res, visited))
                 return true;
             res /= n.second;
-            visited.erase(n.first);
+            //visited.erase(n.first);
         }
+        visited.erase(start);
         return false;
     }
 };
