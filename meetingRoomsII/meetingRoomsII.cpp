@@ -10,6 +10,7 @@ struct Interval {
     Interval(int s, int e) : start(s), end(e) {}
 };
 
+
 class Solution {
 public:
     class Compare {
@@ -19,17 +20,17 @@ public:
         }
     };
     int minMeetingRooms(vector<Interval>& intervals) {
+        int res = 0;
         if (intervals.size() == 0)
-            return 0;
+            return res;
         sort(intervals.begin(), intervals.end(), Compare());
         priority_queue<int, vector<int>, greater<int> > pq;
-        pq.push(intervals[0].end);
-        for (int i = 1; i < intervals.size(); i++) {
-            if (intervals[i].start >= pq.top()) {
-                pq.pop();
-                pq.push(intervals[i].end);
+        for (Interval& i : intervals) {
+            if (pq.empty() || pq.top() > i.start) {
+                pq.push(i.end);
             } else {
-                pq.push(intervals[i].end);
+                pq.pop();
+                pq.push(i.end);
             }
         }
         return pq.size();
