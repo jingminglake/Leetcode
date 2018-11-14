@@ -18,6 +18,11 @@ public:
             res.push_back(path);
             return;
         }
+        if (vec[digits[index] - '0'].empty()) {
+            path.push_back(' ');
+            dfs(digits, res, path, vec, index + 1);
+            path.pop_back();
+        }
         for (char c : vec[digits[index] - '0']) {
             path.push_back(c);
             dfs(digits, res, path, vec, index + 1);
