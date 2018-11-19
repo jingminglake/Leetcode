@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <queue>
 using namespace std;
 
 struct TreeNode {
@@ -10,19 +10,33 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution{
+
+class Solution {
 public:
-    int minDepth(TreeNode *root) {
+    int minDepth(TreeNode* root) {
         if (!root)
             return 0;
-        if (root->left && !root->right)
-            return minDepth(root->left) + 1;
-        else if (!root->left && root->right)
-            return minDepth(root->right) + 1;
-        else if (root->left && root->right)
-            return min(minDepth(root->left), minDepth(root->right)) + 1;
-        else
-            return 1;
+        queue<TreeNode*> q;
+        q.push(root);
+        int depth = 0;
+        while (!q.empty()) {
+            int size = q.size();
+            depth++;
+            for (int i = 0; i < size; i++) {
+                TreeNode* t = q.front();
+                q.pop();
+                if (!t->left && !t->right) {
+                    return depth;
+                }
+                if (t->left) {
+                    q.push(t->left);
+                }
+                if (t->right) {
+                    q.push(t->right);
+                }
+            }
+        }
+        return depth;
     }
 };
 
