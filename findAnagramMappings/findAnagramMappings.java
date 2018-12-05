@@ -7,7 +7,10 @@ class FindAnagramMappings {
         int[] res = new int[A.length];
         Map<Integer, List<Integer> > m = new HashMap<>();
         for (int i = 0; i < B.length; i++) {
-            m.computeIfAbsent(B[i], k -> new ArrayList<>()).add(i);
+            if (!m.containsKey(B[i])) {
+                m.put(B[i], new LinkedList<>());
+            }
+            m.get(B[i]).add(i);
         }
         for (int i = 0; i < A.length; i++) {
             res[i] = m.get(A[i]).remove(m.get(A[i]).size() - 1);
