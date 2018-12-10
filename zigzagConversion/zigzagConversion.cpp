@@ -1,42 +1,25 @@
 #include <iostream>
 #include <vector>
-#include <string>
 using namespace std;
 
 class Solution {
 public:
-  string convert(string s,int numRows){
-    string ans;
-    int size = s.length();
-    vector<string> vec(numRows, "");
-    bool flag = true;
-    int i = 0;
-    while (i < size) {
-      if (flag) {
-	for(int j = 0; j < numRows; j++) {
-	  if(i < size)
-	    vec[j] += s[i];
-	  i++;
-	}
-	//cout << "i-->" << i << endl;
-      }
-      else {
-	for(int j = numRows - 2; j >= 1; j--) {
-	  if(i < size)
-	    vec[j] += s[i];
-	  i++;
-	}
-      }
-      flag = !flag;
-    }//for
-    vector<string>::iterator it = vec.begin();
-    while (it != vec.end()) {
-      ans += *it;
-      cout << "vec-->" << *it << endl;
-      ++it;
+    string convert(string s, int numRows) {
+        vector<string> rows(numRows);
+        int i = 0;
+        while (i < s.length()) {
+            for (int j = 0; j < numRows && i < s.length(); j++) { // up to down
+                rows[j] += s[i++];
+            }
+            for (int j = numRows - 2; j >= 1 && i < s.length(); j--) {
+                rows[j] += s[i++];
+            }
+        }
+        string res = "";
+        for (string& row : rows)
+            res += row;
+        return res;
     }
-    return ans;
-  }
 };
 
 int main()
