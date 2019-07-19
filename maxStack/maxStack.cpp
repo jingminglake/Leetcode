@@ -2,71 +2,70 @@ class MaxStack {
 public:
     /** initialize your data structure here. */
     MaxStack() {
-        maxV = INT_MIN;
-        s = new stack<int>;
+        maxVal = INT_MIN;
     }
     
     void push(int x) {
-        if (x >= maxV) {
-            s->push(maxV);
-            maxV = x;
+        if (x >= maxVal) {
+            stk.push(maxVal);
+            maxVal = x;
         }
-        s->push(x);
+        stk.push(x);
     }
     
     int pop() {
-        if (s->empty())
-            return -1;
-        int res = -1;
-        if (s->top() == maxV) {
-            res = s->top();
-            s->pop();
-            maxV = s->top();
-            s->pop();
-        } else {
-            res = s->top();
-            s->pop();
+        int res = INT_MIN;
+        if (!stk.empty()) {
+            res = stk.top();
+            stk.pop();
+            if (res == maxVal) {
+                maxVal = stk.top();
+                stk.pop();
+            }
         }
         return res;
     }
     
     int top() {
-        if (s->empty())
-            return -1;
-        return s->top(); 
-    }
-    
-    int peekMax() {
-        if (!s->empty())
-            return maxV;
-    }
-    
-    int popMax() {
-        int res = maxV;
-        stack<int> temp;
-        while (!s->empty()) {
-            if (s->top() == maxV) {
-                s->pop();
-                maxV = s->top();
-                s->pop();
-                break;
-            } else {
-                temp.push(s->top());
-                s->pop();
-            }
-        }
-        while (!temp.empty()) {
-            if (temp.top() >= maxV) {
-                s->push(maxV);
-                maxV = temp.top();
-            }
-            s->push(temp.top());
-            temp.pop();
+        int res = INT_MIN;
+        if (!stk.empty()) {
+            res = stk.top();
         }
         return res;
     }
-    stack<int>* s;
-    int maxV;
+    
+    int peekMax() {
+        return !stk.empty() ? maxVal : INT_MIN;
+    }
+    
+    int popMax() {
+        if (stk.empty()) return INT_MIN;
+        int prevMax = maxVal;
+        stack<int> tmpS;
+        while (!stk.empty()) {
+            int val = stk.top();
+            stk.pop();
+            if (val == maxVal) {
+                maxVal = stk.top();
+                stk.pop();
+                break;
+            } else {
+                tmpS.push(val);
+            }
+        }
+        while (!tmpS.empty()) {
+            int val2 = tmpS.top();
+            tmpS.pop();
+            if (val2 >= maxVal) {
+                stk.push(maxVal);
+                maxVal = val2;
+            }
+            stk.push(val2);
+        }
+        return prevMax;
+    }
+    stack<int> stk;
+    int maxVal;
 };
 
 /**
