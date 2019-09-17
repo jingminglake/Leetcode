@@ -10,25 +10,34 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution{
+
+class Node {
 public:
-    vector<int> inorderTraversal(TreeNode *root) {
-        vector<int> ans;
-        if (!root)
-            return ans;
-        stack<TreeNode*> s;
-        TreeNode *r = root;
-        while (r || !s.empty()) {
-            while (r) {
-                s.push(r);
-                r = r->left;
-            }
-            r = s.top();
+    Node(TreeNode* _n, int _op) :n(_n), op(_op) {}
+    TreeNode *n;
+    int op; // 0 -> print, 1 -> visit
+};
+
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        if (!root) return res;
+        stack<Node> s;
+        s.push(Node(root, 1));
+        while (!s.empty()) {
+            Node node = s.top();
             s.pop();
-            ans.push_back(r->val);
-            r = r->right;
+            TreeNode *cur = node.n;
+            if (node.op == 1) {
+                if (cur->right) s.push(Node(cur->right, 1));
+                s.push(Node(cur, 0));
+                if (cur->left) s.push(Node(cur->left, 1));
+            } else {
+                res.push_back(cur->val);
+            }
         }
-        return ans;
+        return res;
     }
 };
 
