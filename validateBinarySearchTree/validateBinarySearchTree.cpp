@@ -11,20 +11,13 @@ struct TreeNode {
 
 class Solution {
 public:
+    int64_t prev = INT64_MIN;
     bool isValidBST(TreeNode* root) {
-        if (!root)
-            return true;
-        int64_t prev = INT64_MIN;
-        return isValidBSTHelper(root, prev);
-    }
-    bool isValidBSTHelper(TreeNode* root, int64_t& prev) {
-        if (!root)
-            return true;
-        bool leftRes = isValidBSTHelper(root->left, prev);
-        if (root->val <= prev)
-            return false;
-        prev = root->val;
-        bool rightRes = isValidBSTHelper(root->right, prev);
+        if (!root) return true;
+        bool leftRes = isValidBST(root->left);
+        if (root->val <= prev) return false;
+        else prev = root->val;
+        bool rightRes = isValidBST(root->right);
         return leftRes && rightRes;
     }
 };
