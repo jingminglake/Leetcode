@@ -9,35 +9,34 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+
 class Solution {
 public:
     vector<int> findMode(TreeNode* root) {
         vector<int> res;
-        if (!root)
-            return res;
-        int max_cnt = 1;
-        int cur_cnt = 1;
         int64_t prev = INT64_MIN;
-        helper(root, max_cnt, cur_cnt, prev, res);
+        int modeMax = 0;
+        int curNumber = 0;
+        findModeHelper(root, res, prev, modeMax, curNumber);
         return res;
     }
-    void helper(TreeNode* root, int& max_cnt, int& cur_cnt, int64_t& prev, vector<int>& res) {
-        if (!root)
-            return;
-        helper(root->left, max_cnt, cur_cnt, prev, res);
-        if (prev != INT64_MIN && prev == root->val)
-            cur_cnt++;
-        else
-            cur_cnt = 1;
-        if (cur_cnt > max_cnt) {
-            max_cnt = cur_cnt;
+    void findModeHelper(TreeNode* root, vector<int>& res, int64_t& prev, int& modeMax, int& curNumber) {
+        if (!root) return;
+        findModeHelper(root->left, res, prev, modeMax, curNumber);
+        if (prev == root->val) {
+            curNumber++;
+        } else {
+            curNumber = 1;
+            prev = root->val;
+        }
+        if (curNumber > modeMax) {
             res.clear();
+            modeMax = curNumber;
             res.push_back(root->val);
-        } else if (cur_cnt == max_cnt) {
+        } else if (curNumber == modeMax){
             res.push_back(root->val);
         }
-        prev = root->val;
-        helper(root->right, max_cnt, cur_cnt, prev, res);
+        findModeHelper(root->right, res, prev, modeMax, curNumber);
     }
 };
 
