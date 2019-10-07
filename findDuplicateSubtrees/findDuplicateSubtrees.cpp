@@ -14,19 +14,19 @@ class Solution{
 public:
     vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
         vector<TreeNode*> res;
-        if (!root)
-            return res;
+        if (!root) return res;
         unordered_map<string, int> m;
         findDuplicateSubtreesHelper(root, m, res);
         return res;
     }
     string findDuplicateSubtreesHelper(TreeNode* root, unordered_map<string, int>& m, vector<TreeNode*>& res) {
-        if (!root)
-            return "#";
-        string str = to_string(root->val) + findDuplicateSubtreesHelper(root->left, m, res) + findDuplicateSubtreesHelper(root->right, m, res);
-        if (++m[str] == 2)
-            res.push_back(root);
-        return str;
+        if (!root) return "#";
+        string leftRes = findDuplicateSubtreesHelper(root->left, m, res);
+        string rightRes = findDuplicateSubtreesHelper(root->right, m, res);
+        string treeStr = to_string(root->val) + leftRes + rightRes;
+        if (m[treeStr] == 1) res.push_back(root);
+        m[treeStr]++;
+        return treeStr;
     }
     void preorder(TreeNode *root) {
         if (!root)
