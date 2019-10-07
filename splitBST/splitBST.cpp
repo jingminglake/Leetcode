@@ -12,21 +12,16 @@ struct TreeNode {
 class Solution {
 public:
     vector<TreeNode*> splitBST(TreeNode* root, int V) {
-        vector<TreeNode*> res(2, nullptr);
-        if (!root)
-            return res;
-        if (root->val > V) {
-            res[1] = root;
-            vector<TreeNode*> left_res = splitBST(root->left, V);
-            res[1]->left = left_res[1];
-            res[0] = left_res[0];
+        if (!root) return {nullptr, nullptr};
+        if (V >= root->val) {
+            vector<TreeNode*> rightRes = splitBST(root->right, V);
+            root->right = rightRes[0];
+            return {root, rightRes[1]};
         } else {
-            res[0] = root;
-            vector<TreeNode*> right_res = splitBST(root->right, V);
-            res[0]->right = right_res[0];
-            res[1] = right_res[1];
+            vector<TreeNode*> leftRes = splitBST(root->left, V);
+            root->left = leftRes[1];
+            return {leftRes[0], root};
         }
-        return res;
     }
 };
 
