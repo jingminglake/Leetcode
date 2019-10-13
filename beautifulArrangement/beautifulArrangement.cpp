@@ -6,23 +6,21 @@ class Solution {
 public:
     int countArrangement(int N) {
         int res = 0;
-        vector<int> visited(N + 1, false);
-        dfs(N, visited, res, 1);
+        vector<bool> visited(N + 1, false);
+        dfs(N, 1, visited, res);
         return res;
     }
-    void dfs (int& N, vector<int>& visited, int& res, int index) {
-        if (index - 1 == N) {
+    void dfs(int N, int level, vector<bool>& visited, int& res) {
+        if (level == N + 1) {
             res++;
             return;
         }
         for (int i = 1; i <= N; i++) {
-            if (visited[i])
-                continue;
-            if (i % index != 0 && index % i != 0)
-                continue;
-            visited[i] = true;
-            dfs (N, visited, res, index + 1);
-            visited[i] = false;
+            if (!visited[i] && (i % level == 0 || level % i == 0)) {
+                visited[i] = true;
+                dfs(N, level + 1, visited, res);
+                visited[i] = false;
+            }
         }
     }
 };
