@@ -6,26 +6,20 @@ class Solution {
 public:
     vector<string> letterCombinations(string digits) {
         vector<string> res;
-        if (digits.length() == 0)
-            return res;
-        vector<string> vec = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        if (digits.length() == 0) return res;
         string path;
-        dfs(digits, res, path, vec, 0);
+        vector<string> digit2letters = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        dfs(digits, 0, path, res, digit2letters);
         return res;
     }
-    void dfs(string& digits, vector<string>& res, string& path, vector<string>& vec, int index) {
-        if (index == digits.size()) {
+    void dfs(string digits, int level, string& path, vector<string>& res, vector<string>& digit2letters) {
+        if (level == digits.length()) {
             res.push_back(path);
             return;
         }
-        if (vec[digits[index] - '0'].empty()) {
-            path.push_back(' ');
-            dfs(digits, res, path, vec, index + 1);
-            path.pop_back();
-        }
-        for (char c : vec[digits[index] - '0']) {
+        for (char c : digit2letters[digits[level] - '0']) {
             path.push_back(c);
-            dfs(digits, res, path, vec, index + 1);
+            dfs(digits, level + 1, path, res, digit2letters);
             path.pop_back();
         }
     }
