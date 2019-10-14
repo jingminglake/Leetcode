@@ -5,41 +5,33 @@ using namespace std;
 class Solution {
 public:
     bool exist(vector<vector<char>>& board, string word) {
-        if (board.size() == 0 || board[0].size() == 0 || word.length() == 0)
-            return false;
-        int m = board.size(), n = board[0].size();
+        if (board.size() == 0 || board[0].size() == 0 || word.length() == 0) return false;
         vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (board[i][j] == word[0]) {
-                    char c = board[i][j];
-                    board[i][j] = '#';
-                    if (dfs(board, i, j, word, 1, dirs)) {
-                        board[i][j] = c;
-                        return true;
-                    }
-                    board[i][j] = c;
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board[0].size(); j++) {
+                if (dfs(board, word, 0, i, j, dirs)) {
+                    return true;
                 }
             }
         }
         return false;
     }
-    bool dfs(vector<vector<char> >& board, int i, int j, string& word, int index, vector<pair<int, int> >& dirs) {
-        if (index == word.length())
-            return true;
+    bool dfs(vector<vector<char>>& board, string word, int index, int i, int j, vector<pair<int, int> >& dirs) {
+        if (index == word.length()) return true;
+        if (word[index] != board[i][j]) return false;
+        else if (index == word.length() - 1) return true;
+        char c = board[i][j];
+        board[i][j] = '#';
         for (auto& dir : dirs) {
-            int next_i = i + dir.first;
-            int next_j = j + dir.second;
-            if (next_i < 0 || next_i >= board.size() || next_j < 0 || next_j >= board[0].size() || board[next_i][next_j] == '#' || board[next_i][next_j] != word[index])
-                continue;
-            char t = board[next_i][next_j];
-            board[next_i][next_j] = '#';
-            if (dfs(board, next_i, next_j, word, index + 1, dirs)) {
-                board[next_i][next_j] = t;
+            int next_i = i + dir.first, next_j = j + dir.second;
+            if (next_i < 0 || next_i >= board.size() || next_j < 0 || next_j >= board[0].size()) continue;
+            if (board[next_i][next_j] == '#') continue;
+            if (dfs(board, word, index + 1, next_i, next_j, dirs)) {
+                board[i][j] = c;
                 return true;
             }
-            board[next_i][next_j] = t;
         }
+        board[i][j] = c;
         return false;
     }
 };
