@@ -6,39 +6,31 @@ using namespace std;
 class Solution {
 public:
     bool canPartitionKSubsets(vector<int>& nums, int k) {
-        int sum = 0;
-        for (int n : nums)
-            sum += n;
-        if (sum % k != 0)
-            return false;
+        if (nums.size() == 0) return false;
+        int total = 0;
+        for (int n : nums) total += n;
+        if (total % k != 0) return false;
         string visited(nums.size(), '0');
-        unordered_map<int, unordered_map<string, bool> > dp;
-        return dfs(nums, sum / k, k, visited, dp, 0);
+        unordered_map<int, unordered_map<string, bool> > m;
+        int target = total / k;
+        return dfs(nums, k, visited, target, target, m);
     }
-    bool dfs(vector<int>& nums, int target, int k, string visited, unordered_map<int, unordered_map<string, bool> >& dp, int path) {
-        if (k == 0)
-            return dp[k][visited] = true;
-        if (dp.count(k) && dp[k].count(visited))
-            return dp[k][visited];
+    bool dfs(vector<int>& nums, int k, string& visited, int target, int remain, unordered_map<int, unordered_map<string, bool> >& m) {
+        if (m.count(k) && m[k].count(visited)) return m[k][visited];
+        if (k == 1 && remain == 0) return m[k][visited] = true;
+        if (k > 1 && remain == 0) {
+            k--;
+            remain = target;
+        }
         for (int i = 0; i < nums.size(); i++) {
-            if (visited[i] == '0') {
-                path += nums[i];
-                string next_visited = visited;
-                //cout << visited << " ==== " << k << endl;
-                next_visited[i] = '1';
-                if (path > target) {
-                    path -= nums[i];
-                    continue;
-                }
-                if (path == target)
-                    return dfs (nums, target, k - 1, next_visited, dp, 0);
-                if (dfs (nums, target, k, next_visited, dp, path))
-                    return dp[k][next_visited] = true;
-                else
-                    path -= nums[i];
+            if (remain >= nums[i] && visited[i] != '1') {
+                visited[i] = '1';
+                m[k][visited] = dfs(nums, k, visited, target, remain - nums[i], m);
+                if (m[k][visited]) return true;
+                visited[i] = '0';
             }
         }
-        return dp[k][visited] = false;
+        return m[k][visited] = false;
     }
 };
 
