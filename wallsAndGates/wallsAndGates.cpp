@@ -6,30 +6,30 @@ using namespace std;
 class Solution {
 public:
     void wallsAndGates(vector<vector<int>>& rooms) {
-        if (rooms.size() == 0 || rooms[0].size() == 0)
-            return;
+        if (rooms.size() == 0 || rooms[0].size() == 0) return;
+        int m = rooms.size(), n = rooms[0].size();
         queue<pair<int, int> > q;
-        for (int i = 0; i < rooms.size(); i++) {
-            for (int j = 0; j < rooms[0].size(); j++) {
-                if (rooms[i][j] == 0)
-                    q.emplace(i, j);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (rooms[i][j] == 0) {
+                    q.push({i, j});
+                }
             }
         }
         int dist = 0;
         vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
         while (!q.empty()) {
-            int size = q.size();
             dist++;
-            for (int i = 0; i < size; i++) {
-                pair<int, int> p = q.front();
-                q.pop();
+            int q_size = q.size();
+            for (int i = 0; i < q_size; i++) {
+                pair<int, int> p = q.front(); q.pop();
                 for (auto& dir : dirs) {
                     int next_i = p.first + dir.first;
                     int next_j = p.second + dir.second;
-                    if (next_i < 0 || next_i >= rooms.size() || next_j < 0 || next_j >= rooms[0].size() || rooms[next_i][next_j] != INT_MAX)
-                        continue;
+                    if (next_i < 0 || next_i >= m || next_j < 0 || next_j >= n) continue;
+                    if (rooms[next_i][next_j] == -1 || rooms[next_i][next_j] <= dist) continue;
                     rooms[next_i][next_j] = dist;
-                    q.emplace(next_i, next_j);
+                    q.push({next_i, next_j});
                 }
             }
         }
