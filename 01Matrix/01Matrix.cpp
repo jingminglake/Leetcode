@@ -6,35 +6,34 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
-        if (matrix.size() == 0 || matrix[0].size() == 0)
-            return matrix;
-        int m = matrix.size();
-        int n = matrix[0].size();
+        if (matrix.size() == 0 || matrix[0].size() == 0) return matrix;
+        int m = matrix.size(), n = matrix[0].size();
         queue<pair<int, int> > q;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (matrix[i][j] == 0) {
-                    q.emplace(i, j);
-                } else {
+                    q.push({i, j});
+                } else if (matrix[i][j] == 1) {
                     matrix[i][j] = INT_MAX;
                 }
             }
         }
+        int dist = 0;
         vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
-        int dis = 0;
         while (!q.empty()) {
-            int size = q.size();
-            dis++;
-            for (int i = 0; i < size; i++) {
-                pair<int, int> cur = q.front();
-                q.pop();
+            dist++;
+            int q_size = q.size();
+            for (int i = 0; i < q_size; i++) {
+                pair<int, int> p = q.front(); q.pop();
                 for (auto& dir : dirs) {
-                    int next_i = cur.first + dir.first;
-                    int next_j = cur.second + dir.second;
-                    if (next_i < 0 || next_i >= m || next_j < 0 || next_j >= n || matrix[next_i][next_j] != INT_MAX)
+                    int next_i = p.first + dir.first;
+                    int next_j = p.second + dir.second;
+                    if (next_i < 0 || next_i >= m || next_j < 0 || next_j >= n)
                         continue;
-                    matrix[next_i][next_j] = dis;
-                    q.emplace(next_i, next_j);
+                    if (matrix[next_i][next_j] > dist) {
+                        matrix[next_i][next_j] = dist;
+                        q.push({next_i, next_j});
+                    }
                 }
             }
         }

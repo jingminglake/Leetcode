@@ -15,52 +15,42 @@ class Solution {
 public:
     int findClosestLeaf(TreeNode* root, int k) {
         unordered_map<TreeNode*, TreeNode*> parent;
-        TreeNode* node_k = nullptr;
-        dfs(root, node_k, k, parent);
-        return bfs(node_k, parent);
+        TreeNode *t_k = findK(root, k, parent);
+        return bfs(t_k, parent);
     }
-    bool dfs(TreeNode* root, TreeNode*& node_k, int k, unordered_map<TreeNode*, TreeNode*>& parent) {
-        if (!root)
-            return false;
-        if (root->val == k) {
-            node_k = root;
-            return true;
-        }
-        parent[root->left] = root;
-        if (dfs(root->left, node_k, k, parent))
-            return true;
-        parent[root->right] = root;
-        if (dfs(root->right, node_k, k, parent))
-            return true;
-        return false;
+    TreeNode *findK(TreeNode* root, int k, unordered_map<TreeNode*, TreeNode*>& parent) {
+        if (!root) return nullptr;
+        if (root->val == k) return root;
+        if (root->left) parent[root->left] = root;
+        TreeNode *t_left = findK(root->left, k, parent);
+        if (t_left) return t_left;
+        if (root->right) parent[root->right] = root;
+        TreeNode *t_right = findK(root->right, k, parent);
+        if (t_right) return t_right;
+        return nullptr;
     }
     int bfs(TreeNode* root, unordered_map<TreeNode*, TreeNode*>& parent) {
         queue<TreeNode*> q;
-        q.push(root);
         unordered_set<TreeNode*> visited;
+        q.push(root);
         visited.insert(root);
         while (!q.empty()) {
-            int size = q.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode* p = q.front();
-                q.pop();
-                if (!p->left && !p->right)
-                    return p->val;
-                if (p->left && !visited.count(p->left)) {
-                    q.push(p->left);
-                    visited.insert(p->left);
-                }
-                if (p->right && !visited.count(p->right)) {
-                    q.push(p->right);
-                    visited.insert(p->right);
-                }
-                if (parent.count(p) && parent[p] && !visited.count(parent[p])) {
-                    q.push(parent[p]);
-                    visited.insert(parent[p]);
-                }
+            TreeNode* t = q.front(); q.pop();
+            if (!t->left && !t->right) return t->val;
+            if (t->left && !visited.count(t->left)) {
+                visited.insert(t->left);
+                q.push(t->left);
+            }
+            if (t->right && !visited.count(t->right)) {
+                visited.insert(t->right);
+                q.push(t->right);
+            }
+            if (parent.count(t) && !visited.count(parent[t])) {
+                visited.insert(parent[t]);
+                q.push(parent[t]);
             }
         }
-        return root->val;
+        return -1;
     }
 };
 
