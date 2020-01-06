@@ -17,7 +17,7 @@ public:
     }
     bool canConstruct(string& s, string& pattern) {
         int len = pattern.length();
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = len; i < s.length(); i++) {
             if (s[i] != pattern[i % len]) return false;
         }
         return true;
