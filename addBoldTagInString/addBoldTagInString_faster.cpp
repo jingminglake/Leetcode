@@ -5,49 +5,23 @@ using namespace std;
 class Solution {
 public:
     string addBoldTag(string s, vector<string>& dict) {
-        string res;
-        if (s.length() == 0)
-            return res;
-        if (dict.size() == 0)
-            return s;
-        vector<pair<int, int> > intervals;
+        int len_s = s.length();
+        vector<bool> bold(len_s, false);
         for (string& word : dict) {
-            int i = 0;
-            while (i < s.length()) {
-                int index = s.find(word, i);
-                if (index == string::npos)
-                    break;
-                int len = word.length();
-                intervals.emplace_back(index, index + len - 1);
-                i = index + 1;
+            int word_len = word.length();
+            size_t pos = s.find(word);
+            while (pos != string::npos) {
+                for (int i = pos; i < pos + word_len; i++) bold[i] = true;
+                pos = s.find(word, pos + 1);
             }
         }
-        intervals = mergeIntervals(intervals);
-        if (intervals.size() == 0)
-            return s;
-        int cur = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (intervals[cur].first == i)
+        string res;
+        for (int i = 0; i < len_s; i++) {
+            if (bold[i] && (i == 0 || !bold[i - 1]))
                 res += "<b>";
             res += s[i];
-            if (intervals[cur].second == i) {
+            if (bold[i] && (i == len_s - 1 || !bold[i + 1]))
                 res += "</b>";
-                cur++;
-            }
-        }
-        return res;
-    }
-    vector<pair<int, int> > mergeIntervals(vector<pair<int, int> >& intervals) {
-        vector<pair<int, int> > res;
-        if (intervals.size() == 0)
-            return res;
-        sort(intervals.begin(), intervals.end());
-        res.push_back(intervals[0]);
-        for (int i = 1; i < intervals.size(); i++) {
-            if (intervals[i].first > res.back().second + 1)
-                res.push_back(intervals[i]);
-            else
-                res.back().second = max (res.back().second, intervals[i].second);
         }
         return res;
     }
