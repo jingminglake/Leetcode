@@ -5,12 +5,19 @@ using namespace std;
 class Solution{
 public:
     void rotate(vector<int>& nums, int k) {
-        int size = nums.size();
-        if (k == 0) return;
-        int step = size - k % size;
-        reverse(nums.begin(), nums.begin() + step);
-        reverse(nums.begin() + step, nums.end());
-        reverse(nums.begin(), nums.end());
+        int n = nums.size();
+        int p = n - k % n - 1;
+        reverseHelper(nums, 0, p);
+        reverseHelper(nums, p + 1, n - 1);
+        reverseHelper(nums, 0, n - 1);
+    }
+    void reverseHelper(vector<int>& nums, int start, int end) {
+        while (start < end) {
+            int n = nums[start];
+            nums[start] = nums[end];
+            nums[end] = n;
+            start++; end--;
+        }
     }
 };
 
