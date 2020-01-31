@@ -5,11 +5,13 @@ using namespace std;
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        vector<int> dp = nums;
-        int res = nums[0];
-        for (int i = 1; i < dp.size(); i++) {
-            dp[i] = max (dp[i - 1] + nums[i], nums[i]);
-            res = max(res, dp[i]);
+        int preSum = 0;
+        int res = INT_MIN;
+        int prevMin = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            preSum += nums[i];
+            res = max (res, preSum - prevMin);
+            prevMin = min (prevMin, preSum);
         }
         return res;
     }
