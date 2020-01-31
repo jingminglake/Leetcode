@@ -10,10 +10,12 @@ struct ListNode {
 class Solution {
 public:
     void deleteNode(ListNode* node) {
-        if (!node) return;
-        ListNode* next = node->next;
-        *node = *next;
-        delete next;
+        if (node) {
+            ListNode* nextN = node->next;
+            node->val = nextN->val;
+            node->next = nextN->next;
+            delete nextN;
+        }
     }
 };
 
