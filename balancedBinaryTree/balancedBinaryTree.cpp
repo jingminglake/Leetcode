@@ -13,21 +13,18 @@ struct TreeNode {
 class Solution {
 public:
     bool isBalanced(TreeNode* root) {
-        if (!root)
-            return true;
-        unordered_map<TreeNode*, int> m;
-        getHeight(root, m);
-        return isBalancedHelper(root, m);
+        if (!root) return true;
+        pair<bool, int> res = helper(root);
+        return res.first;
     }
-    bool isBalancedHelper(TreeNode* root, unordered_map<TreeNode*, int>& m) {
-        if (!root)
-            return true;
-        return (abs(m[root->left] - m[root->right]) <= 1) && isBalancedHelper(root->left, m) && isBalancedHelper(root->right, m);
-    }
-    int getHeight(TreeNode* root, unordered_map<TreeNode*, int>& m) {
-        if (!root)
-            return m[root] = 0;
-        return m[root] = max(getHeight(root->left, m), getHeight(root->right, m)) + 1;
+    pair<bool, int> helper(TreeNode* root) {
+        pair<bool, int> res = {true, 0};
+        if (!root) return res;
+        pair<bool, int> resLeft = helper(root->left);
+        pair<bool, int> resRight = helper(root->right);
+        res.first = resLeft.first && resRight.first && abs(resLeft.second - resRight.second) <= 1;
+        res.second = max (resLeft.second, resRight.second) + 1;
+        return res;
     }
 };
 
