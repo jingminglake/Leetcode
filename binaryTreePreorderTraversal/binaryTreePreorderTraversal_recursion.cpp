@@ -10,36 +10,19 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Node {
-public:
-    Node(TreeNode* _node, int _op) : node(_node), op(_op) {};
-    TreeNode *node;
-    int op; // 0 -> print, 1 -> visit
-};
 class Solution {
 public:
-    class Node {
-    public:
-        Node(TreeNode* n, int _op) : node(n), op(_op) {}
-        TreeNode* node;
-        int op; // 0 -> print, 1 -> visit
-    };
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> res;
-        if (!root) return res;
-        stack<Node> s;
-        s.push(Node(root, 1));
-        while (!s.empty()) {
-            Node n = s.top(); s.pop();
-            if (n.op == 1) {
-                if (n.node->right) s.push(Node(n.node->right, 1));
-                if (n.node->left) s.push(Node(n.node->left, 1));
-                s.push(Node(n.node, 0));
-            } else {
-                res.push_back(n.node->val);
-            }
-        }
+        helper(root, res);
         return res;
+    }
+    
+    void helper(TreeNode* root, vector<int>& res) {
+        if (!root) return;
+        res.push_back(root->val);
+        helper(root->left, res);
+        helper(root->right, res);
     }
 };
 
