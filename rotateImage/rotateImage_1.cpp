@@ -5,15 +5,18 @@
 using namespace std;
 
 
-class Solution{
+class Solution {
 public:
-    void rotate(vector<vector<int> >& matrix) {
-        reverse(matrix.begin(), matrix.end());
+    void rotate(vector<vector<int>>& matrix) {
+        if (matrix.size() == 0 || matrix[0].size() == 0) return;
         int n = matrix.size();
         for (int i = 0; i < n; i++) {
-            for (int j = i + 1; j < n; j++) {
-                swap(matrix[i][j], matrix[j][i]);
+            for (int j = 0; j < n; j++) {
+                if (i < j) swap(matrix[i][j], matrix[j][i]);
             }
+        }
+        for (vector<int>& vec : matrix) {
+            reverse(vec.begin(), vec.end());
         }
     }
 };
