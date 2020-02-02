@@ -1,4 +1,4 @@
-// clang++ LRUCache2.cpp -std=c++11
+// clang++ LRUCache3.cpp -std=c++11
 
 #include <iostream>
 #include <vector>
@@ -23,14 +23,7 @@ public:
         dummy1.next = &dummy2;
         dummy2.prev = &dummy1;
     }
-    ~LRUCache() {
-        unordered_map<int, DNode*>::iterator it = m.begin();
-        while (it != m.end()) {
-            delete it->second;
-            ++it;
-        }
-        m.clear();
-    }
+    
     void moveToHead(DNode* node) {
         node->prev->next = node->next;
         node->next->prev = node->prev;
@@ -73,19 +66,17 @@ public:
             m[key]->val = value;
             moveToHead(m[key]);
         } else {
-            if (size < _capacity) {
-                size++;
-                DNode *node = new DNode(key, value);
-                m[key] = node;
-                addToHead(node);
-            } else if (size == _capacity) {
+            if (size == _capacity) {
                 removeTail();
-                DNode *node = new DNode(key, value);
-                m[key] = node;
-                addToHead(node);
+            } else {
+                size++;
             }
+            DNode *node = new DNode(key, value);
+            m[key] = node;
+            addToHead(node);
         }
     }
+    
     int _capacity;
     int size;
     DNode dummy1;
@@ -96,15 +87,15 @@ public:
 
 int main()
 {
-  LRUCache cache(2);
-  cache.put(1, 1);
-  cache.put(2, 2);
-  cout << cache.get(1) << endl;
-  cache.put(3, 3);
-  cout << cache.get(2) << endl;
-  cache.put(4, 4);
-  cout << cache.get(1) << endl;
-  cout << cache.get(3) << endl;
-  cout << cache.get(4) << endl;
-  return 0;
+    LRUCache cache(2);
+    cache.put(1, 1);
+    cache.put(2, 2);
+    cout << cache.get(1) << endl;
+    cache.put(3, 3);
+    cout << cache.get(2) << endl;
+    cache.put(4, 4);
+    cout << cache.get(1) << endl;
+    cout << cache.get(3) << endl;
+    cout << cache.get(4) << endl;
+    return 0;
 }
