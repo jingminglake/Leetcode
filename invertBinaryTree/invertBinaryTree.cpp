@@ -10,23 +10,14 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution{
+class Solution {
 public:
-    TreeNode* invertTree(TreeNode *root) {
-        if (!root)
-            return root;
-        invertTree(root->left);
-        invertTree(root->right);
+    TreeNode* invertTree(TreeNode* root) {
+        if (!root) return root;
         TreeNode* tmp = root->left;
-        root->left = root->right;
-        root->right = tmp;
+        root->left = invertTree(root->right);
+        root->right = invertTree(tmp);
         return root;
-        /*if (!root)
-          return NULL;
-          TreeNode *temp = invertTree(root->left);
-          root->left = invertTree(root->right);
-          root->right = temp;
-          return root;*/
     }
 };
 
