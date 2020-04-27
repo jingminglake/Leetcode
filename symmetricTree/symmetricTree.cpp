@@ -8,19 +8,18 @@ struct TreeNode {
     TreeNode *right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
-
-
+    
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
         if (!root) return true;
-        return isSymHelper(root->left, root->right);
+        return isSymmetricHelper(root->left, root->right);
     }
-    bool isSymHelper(TreeNode* t1, TreeNode* t2) {
-        if (!t1 && !t2) {
+    bool isSymmetricHelper(TreeNode* t1, TreeNode* t2) {
+        if (t1 && t2) {
+            return t1->val == t2->val && isSymmetricHelper(t1->left, t2->right) && isSymmetricHelper(t1->right, t2->left);
+        } else if (!t1 && !t2) {
             return true;
-        } else if (t1 && t2 && t1->val == t2->val) {
-            return isSymHelper(t1->left, t2->right) && isSymHelper(t1->right, t2->left);
         } else {
             return false;
         }
