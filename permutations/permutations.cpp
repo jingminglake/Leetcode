@@ -20,6 +20,9 @@ public:
             if (!visited[i]) {
                 visited[i] = true;
                 path.push_back(nums[i]);
+                cout << "i: " << i << " index: " << index + 1 << endl;
+                for (int i : path) cout << i;
+                cout << endl;
                 dfs(nums, res, visited, path, index + 1);
                 path.pop_back();
                 visited[i] = false;
