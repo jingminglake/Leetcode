@@ -6,41 +6,32 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
         vector<int> res;
-        if (n == 1) {
-            res.push_back(0);
-            return res;
-        }
+        if (n == 1) return {0};
         vector<unordered_set<int> > neighbors(n);
         for (auto& edge : edges) {
-            neighbors[edge.first].insert(edge.second);
-            neighbors[edge.second].insert(edge.first);
+            neighbors[edge[0]].insert(edge[1]);
+            neighbors[edge[1]].insert(edge[0]);
         }
         queue<int> q;
         for (int i = 0; i < n; i++) {
-            if (neighbors[i].size() == 1)
-                q.push(i);
+            if (neighbors[i].size() == 1) q.push(i);
         }
-        int m = n;
+        int remain = n;
         while (!q.empty()) {
-            if (m <= 2)
-                break;
-            int size = q.size();
-            m -= size;
-            for (int i = 0; i < size; i++) {
-                int node = q.front();
-                q.pop();
-                for (int neighbor : neighbors[node]) {
-                    neighbors[neighbor].erase(node);
-                    if (neighbors[neighbor].size() == 1)
-                        q.push(neighbor);
-                }
+            if (remain <= 2) break;
+            int q_size = q.size();
+            remain -= q_size;
+            for (int i = 0; i < q_size; i++) {
+                int leave = q.front(); q.pop();
+                int neighbor = *(neighbors[leave].begin());
+                neighbors[neighbor].erase(leave);
+                if (neighbors[neighbor].size() == 1) q.push(neighbor);
             }
         }
         while (!q.empty()) {
-            res.push_back(q.front());
-            q.pop();
+            res.push_back(q.front()); q.pop();
         }
         return res;
     }
@@ -49,12 +40,12 @@ public:
 int main()
 {
     Solution s;
-    vector<pair<int, int> > edges;
-    edges.push_back(make_pair(0,3));
-    edges.push_back(make_pair(1,3));
-    edges.push_back(make_pair(2,3));
-    edges.push_back(make_pair(4,3));
-    edges.push_back(make_pair(5,4));
+    vector<vector<int> > edges;
+    edges.push_back({0,3});
+    edges.push_back({1,3});
+    edges.push_back({2,3});
+    edges.push_back({4,3});
+    edges.push_back({5,4});
     vector<int> res = s.findMinHeightTrees(6, edges);
     for (int v : res)
         cout << v << " ";

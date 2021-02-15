@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <sstream>
 using namespace std;
 
@@ -10,36 +11,42 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Codec{
+class Codec {
 public:
+
+   // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
-        if (!root)
-            return "";
+        if (!root) return "";
         string res = to_string(root->val) + " " + serialize(root->left) + serialize(root->right);
         return res;
     }
+
+    // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
-        vector<int> nodes;
-        istringstream iss(data);
-        string str;
-        while (getline(iss, str, ' ')) {
-            nodes.push_back(stoi(str));
-        }
-        int index = 0;
-        return deserializeHelper(nodes, index, INT_MAX, INT_MIN);
+        queue<string> q = split(data);
+        return deserializeHelper(q, INT_MIN, INT_MAX);
     }
-    TreeNode* deserializeHelper(vector<int>& nodes, int& index, int maxV, int minV) {
-        if (index == nodes.size())
-            return nullptr;
-        int val = nodes[index];
-        if (val < minV || val > maxV)
-            return nullptr;
+    
+    TreeNode* deserializeHelper(queue<string>& q, int minV, int maxV) {
+        if (q.empty()) return nullptr;
+        int val = stoi(q.front());
+        if (val < minV || val > maxV) return nullptr;
+        q.pop();
         TreeNode *root = new TreeNode(val);
-        index++;
-        root->left = deserializeHelper(nodes, index, val, minV);
-        root->right = deserializeHelper(nodes, index, maxV, val);
+        root->left = deserializeHelper(q, minV, val);
+        root->right = deserializeHelper(q, val, maxV);
         return root;
     }
+    queue<string> split(string data) {
+        istringstream iss(data);
+        queue<string> res;
+        string str;
+        while (getline(iss, str, ' ')) {
+            res.push(str);
+        }
+        return res;
+    }
+
     void preorder(TreeNode* root) {
         if (!root)
             return;

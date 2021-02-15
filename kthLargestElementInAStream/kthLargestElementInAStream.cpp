@@ -5,25 +5,29 @@ using namespace std;
 
 class KthLargest {
 public:
-    KthLargest(int k, vector<int> nums) {
+    KthLargest(int k, vector<int>& nums) {
+        _k = k;
         for (int n : nums) {
             pq.push(n);
-            if (pq.size() > k) {
-                pq.pop();
-            }
+            if (pq.size() > k) pq.pop();
         }
-        _k = k;
     }
     
     int add(int val) {
         pq.push(val);
-        if (pq.size() > _k)
-            pq.pop();
+        if (pq.size() > _k) pq.pop();
         return pq.top();
     }
-    int _k;
+    
     priority_queue<int, vector<int>, greater<int> > pq;
+    int _k;
 };
+
+/**
+ * Your KthLargest object will be instantiated and called as such:
+ * KthLargest* obj = new KthLargest(k, nums);
+ * int param_1 = obj->add(val);
+ */
 
 int main() {
     vector<int> arr = {4,5,8,2};

@@ -18,21 +18,25 @@ public:
 };
 class Solution {
 public:
+    class Node {
+    public:
+        Node(TreeNode* n, int _op) : node(n), op(_op) {}
+        TreeNode* node;
+        int op; // 0 -> print, 1 -> visit
+    };
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> res;
         if (!root) return res;
         stack<Node> s;
         s.push(Node(root, 1));
         while (!s.empty()) {
-            Node n = s.top();
-            s.pop();
-            TreeNode* cur = n.node;
+            Node n = s.top(); s.pop();
             if (n.op == 1) {
-                if (cur->right) s.push(Node(cur->right, 1));
-                if (cur->left) s.push(Node(cur->left, 1));
-                s.push(Node(cur, 0));
+                if (n.node->right) s.push(Node(n.node->right, 1));
+                if (n.node->left) s.push(Node(n.node->left, 1));
+                s.push(Node(n.node, 0));
             } else {
-                res.push_back(cur->val);
+                res.push_back(n.node->val);
             }
         }
         return res;

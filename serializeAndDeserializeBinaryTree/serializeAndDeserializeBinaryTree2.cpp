@@ -11,14 +11,17 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+// Your Codec object will be instantiated and called as such:
+// Codec codec;
+// codec.deserialize(codec.serialize(root));
 class Codec {
 public:
 
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
         if (!root)
-            return " #";
-        string res = " " + to_string(root->val) + serialize(root->left) + serialize(root->right);
+            return "# ";
+        string res = to_string(root->val) + " " + serialize(root->left) + serialize(root->right);
         return res;
     }
 
@@ -27,6 +30,7 @@ public:
         istringstream iss(data);
         return deserializeHelper(iss);
     }
+    
     TreeNode* deserializeHelper(istringstream& iss) {
         string node = "";
         iss >> node;

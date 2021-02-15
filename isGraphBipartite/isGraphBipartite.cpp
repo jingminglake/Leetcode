@@ -6,23 +6,20 @@ class Solution {
 public:
     bool isBipartite(vector<vector<int>>& graph) {
         int N = graph.size();
-        vector<int> visited(N, 0); // 0 -> unvisited, 1 -> group one, 2 -> group two
+        vector<int> colors(N, 0); // 0 -> unvisited, -1 -> group A, 1 -> group B
         for (int i = 0; i < N; i++) {
-            if (visited[i] != 0)
-                continue;
-            if (!dfs(i, 1, graph, visited))
+            if (colors[i] == 0 && !dfs(i, 1, graph, colors))
                 return false;
         }
         return true;
     }
-    bool dfs(int node, int group, vector<vector<int> >& graph, vector<int>& visited) {
-        visited[node] = group;
+    
+    bool dfs(int node, int color, vector<vector<int> >& graph, vector<int>& colors) {
+        colors[node] = color;
         for (int neighbor : graph[node]) {
-            int next_group = group == 1 ? 2 : 1;
-            if (visited[neighbor]) {
-                if (visited[neighbor] != next_group)
-                    return false;
-            } else if (!dfs(neighbor, next_group, graph, visited)) {
+            if (colors[neighbor] == 0 && !dfs(neighbor, -color, graph, colors)) {
+                return false;
+            } else if (colors[neighbor] == color) {
                 return false;
             }
         }

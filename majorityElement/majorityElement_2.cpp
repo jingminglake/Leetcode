@@ -5,15 +5,14 @@ using namespace std;
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int res = nums[0], count = 1;
+        int cnt = 1, res = nums[0];
         for (int i = 1; i < nums.size(); i++) {
-            if (count == 0) {
-                count++;
+            if (cnt == 0) {
                 res = nums[i];
-            } else if (nums[i] == res) {
-                count++;
-            } else {
-                count--;
+                cnt++;
+            } else if (cnt > 0) {
+                if (nums[i] != res) cnt--;
+                else cnt++;
             }
         }
         return res;

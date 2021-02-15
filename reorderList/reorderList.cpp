@@ -7,34 +7,45 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) {}
 };
 
+
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        if (!head)
-            return;
-        ListNode *slow = head, *fast = head;
+        if (!head) return;
+        ListNode* mid = findMid(head);
+        ListNode* l1 = head;
+        ListNode* l2 = mid->next;
+        mid->next = nullptr;
+        l2 = reverseLinklist(l2);
+        mergeList(l1, l2);
+    }
+    
+    ListNode* findMid(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
         while (fast->next && fast->next->next) {
             slow = slow->next;
             fast = fast->next->next;
         }
-        ListNode* mid = slow->next;
-        slow->next = nullptr;
-        ListNode* l1 = head, *l2 = reverseList(mid);
-        while (l2) {
-            ListNode* tmp = l2->next;
-            l2->next = l1->next;
-            l1->next = l2;
-            l2 = tmp;
-            l1 = l1->next->next;
-        }
+        return slow;
     }
-    ListNode* reverseList(ListNode* head) {
-        if (!head || !head->next)
-            return head;
-        ListNode* new_head = reverseList(head->next);
+    
+    ListNode* reverseLinklist(ListNode* head) {
+        if (!head || !head->next) return head;
+        ListNode* new_head = reverseLinklist(head->next);
         head->next->next = head;
         head->next = nullptr;
         return new_head;
+    }
+    
+    void mergeList(ListNode* l1, ListNode* l2) {
+        while (l2) {
+            ListNode* nex_l2 = l2->next;
+            l2->next = l1->next;
+            l1->next = l2;
+            l1 = l1->next->next;
+            l2 = nex_l2;
+        }
     }
 };
 

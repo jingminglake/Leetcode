@@ -2,34 +2,28 @@
 #include <unordered_map>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  bool isAnagram(string s, string t) {
-    int sSize = s.size();
-    int tSize = t.size();
-    if (sSize != tSize)
-      return false;
-    unordered_map<char, int> m;
-    for (int i = 0; i < sSize; i++) {
-      m[s[i]]++;
-      m[t[i]]--;
+    bool isAnagram(string s, string t) {
+        if (s.length() != t.length()) return false;
+        unordered_map<char, int> m;
+        for (int i = 0; i < s.length(); i++) {
+            m[s[i]]++;
+            m[t[i]]--;
+        }
+        for (auto& p : m) {
+            if (p.second) return false;
+        }
+        return true;
     }
-    unordered_map<char, int>::iterator it = m.begin();
-    while (it != m.end()) {
-      if (it->second != 0)
-	return false;
-      ++it;
-    }
-    return true;
-  }
 };
 
 int main()
 {
-  Solution s;
-  string str1 = "anagram";
-  string str2 = "nagaram";
-  cout << s.isAnagram(str1, str2);
-  cout << endl;
-  return 0;
+    Solution s;
+    string str1 = "anagram";
+    string str2 = "nagaram";
+    cout << s.isAnagram(str1, str2);
+    cout << endl;
+    return 0;
 }

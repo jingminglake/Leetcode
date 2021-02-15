@@ -5,16 +5,13 @@ using namespace std;
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int n = nums.size();
-        if (n == 0)
-            return -1;
-        vector<int64_t> global(n, INT64_MIN), local = global;
-        global[0] = local[0] = nums[0];
-        for (int i = 1; i < n; i++) {
-            local[i] = max (local[i - 1] + nums[i], (int64_t)nums[i]);
-            global[i] = max (global[i - 1], local[i]);
+        vector<int> dp = nums;
+        int res = nums[0];
+        for (int i = 1; i < dp.size(); i++) {
+            dp[i] = max (dp[i - 1] + nums[i], nums[i]);
+            res = max(res, dp[i]);
         }
-        return global[n - 1];
+        return res;
     }
 };
 
