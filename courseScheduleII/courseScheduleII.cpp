@@ -39,15 +39,15 @@ public:
 
 int main()
 {
-  Solution s;
-  vector<pair<int, int> > prerequisites;
-  prerequisites.push_back(make_pair(1,0));
-  prerequisites.push_back(make_pair(2,0));
-  prerequisites.push_back(make_pair(3,1));
-  prerequisites.push_back(make_pair(3,2));
-  vector<int> res = s.findOrder(4, prerequisites);
-  for (int i : res)
-    cout << i << " ";
-  cout << endl;
-  return 0;
+    Solution s;
+    vector<pair<int, int> > prerequisites;
+    prerequisites.push_back(make_pair(1,0));
+    prerequisites.push_back(make_pair(2,0));
+    prerequisites.push_back(make_pair(3,1));
+    prerequisites.push_back(make_pair(3,2));
+    vector<int> res = s.findOrder(4, prerequisites);
+    for (int i : res)
+        cout << i << " ";
+    cout << endl;
+    return 0;
 }
