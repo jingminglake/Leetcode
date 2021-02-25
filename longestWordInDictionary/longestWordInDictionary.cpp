@@ -6,18 +6,31 @@ using namespace std;
 class Solution {
 public:
     string longestWord(vector<string>& words) {
-        string res;
-        sort(words.begin(), words.end());
-        unordered_set<string> s;
-        for (string word : words) {
-            string prev = word.substr(0, word.length() - 1);
-            if (prev.empty() || s.count(prev)) {
-                s.insert(word);
-                if (word.size() > res.size())
-                    res = word;
+        unordered_set<string> wordSet;
+        for (string& word : words) wordSet.insert(word);
+        unordered_map<string, bool> buildable;
+        string longestWord;
+        for (string& word : words) {
+            if (word.length() < longestWord.length()) continue;
+            if (word.length() == longestWord.length() && word >= longestWord) continue;
+            if (dfs(word, buildable, wordSet)) {
+                longestWord = word;
             }
         }
-        return res;
+        return longestWord;
+     }
+    bool dfs(string word, unordered_map<string, bool>& buildable, unordered_set<string>& wordSet) {
+        if (word.length() == 1 && wordSet.count(word)) {
+            return buildable[word] = true;
+        }
+        if (buildable.count(word)) {
+            return buildable[word];
+        }
+        if (!wordSet.count(word)) {
+            return buildable[word] = false;
+        }
+        string prev = word.substr(0, word.length() - 1);
+        return buildable[word] = dfs(prev, buildable, wordSet);
     }
 };
 
