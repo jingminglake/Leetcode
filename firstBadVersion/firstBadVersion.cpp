@@ -8,21 +8,26 @@ bool isBadVersion(int num) {
         return false;
 }
 
-class Solution{
-public:
-    int firstBadVersion(int n) {
-        int low = 1, high = n;
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if (isBadVersion(mid))
-                high = mid - 1;
-            else 
-                low = mid + 1;
+/* The isBadVersion API is defined in the parent class VersionControl.
+      boolean isBadVersion(int version); */
+
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        if (n == 1 && isBadVersion(1)) return 1;
+        int left = 1, right = n;
+        while (left + 1 < right) {
+            int mid = left + (right - left) / 2;
+            if (isBadVersion(mid)) {
+                right = mid;
+            } else {
+                left = mid;
+            }
         }
-        cout << low << " " << high << endl;
-        return low;
+        if (isBadVersion(left)) return left;
+        if (isBadVersion(right)) return right;
+        return -1;
     }
-};
+}
 
 int main()
 {
