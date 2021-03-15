@@ -4,38 +4,50 @@
 #include <unordered_map>
 using namespace std;
 
-struct UndirectedGraphNode {
-    int label;
-    vector<UndirectedGraphNode *> neighbors;
-    UndirectedGraphNode(int x) : label(x) {};
+
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    vector<Node*> neighbors;
+    Node() {
+        val = 0;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val) {
+        val = _val;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val, vector<Node*> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
 };
 
-class Solution{
+class Solution {
 public:
-    UndirectedGraphNode *cloneGraph(struct UndirectedGraphNode *node) {
-        if (!node)
-            return nullptr;
-        unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> m;
-        // clone nodes
-        queue<UndirectedGraphNode*> q;
+    Node* cloneGraph(Node* node) {
+        if (!node) return node;
+        unordered_map<Node*, Node*> m;
+        queue<Node*> q;
         q.push(node);
+        m[node] = new Node(node->val);
+        
         while (!q.empty()) {
-            UndirectedGraphNode *temp = q.front();
-            UndirectedGraphNode *cloneNode = new UndirectedGraphNode(temp->label);
-            m.insert(make_pair(temp, cloneNode));
-            q.pop();
-            for (UndirectedGraphNode* neighborNode : temp->neighbors) {
-                if (m.find(neighborNode) == m.end())
-                    q.push(neighborNode);
+            Node* cur = q.front(); q.pop();
+            for (Node* n : cur->neighbors) {
+                if (m.count(n)) continue;
+                q.push(n);
+                m[n] = new Node(n->val);
             }
         }
-        // clone edges
-        unordered_map<UndirectedGraphNode*, UndirectedGraphNode*>::iterator it = m.begin();
-        while (it != m.end()) {
-            for (UndirectedGraphNode* n: it->first->neighbors) {
-                it->second->neighbors.push_back(m[n]);
+        
+        for (auto& p : m) {
+            Node* n = p.first;
+            Node* nn = p.second;
+            for (Node* neighbor : n->neighbors) {
+                nn->neighbors.push_back(m[neighbor]);
             }
-            ++it;
         }
         return m[node];
     }
@@ -44,7 +56,7 @@ public:
 int main()
 {
     Solution s;
-    struct UndirectedGraphNode n0(0), n1(1), n2(2);
+    Node n0(0), n1(1), n2(2);
     n0.neighbors.push_back(&n1);
     n0.neighbors.push_back(&n2);
     n1.neighbors.push_back(&n0);
@@ -52,6 +64,6 @@ int main()
     n2.neighbors.push_back(&n1);
     n2.neighbors.push_back(&n0);
     n2.neighbors.push_back(&n2);
-    UndirectedGraphNode *res = s.cloneGraph(&n0);
+    Node *res = s.cloneGraph(&n0);
     return 0;
 }
