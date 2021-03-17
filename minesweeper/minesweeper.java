@@ -1,32 +1,37 @@
 class Solution {
     public char[][] updateBoard(char[][] board, int[] click) {
-        int m = board.length, n = board[0].length;
         if (board[click[0]][click[1]] == 'M') {
             board[click[0]][click[1]] = 'X';
             return board;
+        } else if (board[click[0]][click[1]] != 'E') {
+            return board;
         }
+        int m = board.length, n = board[0].length;
         int[][] dirs = {{-1, -1}, {-1, 0}, {-1, 1},
                         {0, -1}, {0, 1},
                         {1, -1}, {1, 0}, {1, 1}};
-        if (board[click[0]][click[1]] == 'E') {
-            Queue<int[]> q = new LinkedList<>();
-            board[click[0]][click[1]] = 'B'; // Add flag before put something into queue to avoid dups
-            q.offer(click);
-            while (!q.isEmpty()) {
-                int[] p = q.poll();
-                int adjMineNum = getAdjMineNum(board, p[0], p[1], dirs, m, n);
-                if (adjMineNum == 0) {
-                    for (int[] dir : dirs) {
-                        int neighbor_i = p[0] + dir[0];
-                        int neighbor_j = p[1] + dir[1];
-                        if (neighbor_i < 0 || neighbor_i >= m || neighbor_j < 0 || neighbor_j >= n)
-                            continue;
-                        if (board[neighbor_i][neighbor_j] != 'E') continue;
-                        board[neighbor_i][neighbor_j] = 'B'; // Add flag before put something into queue to avoid dups
-                        q.offer(new int[]{neighbor_i, neighbor_j});
+        int num = getAdjMineNum(board, click[0], click[1], dirs, m, n);
+        if (num > 0) {
+            board[click[0]][click[1]] = (char)('0' + num);
+            return board;
+        }
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(click);
+        board[click[0]][click[1]] = 'B';
+        while (!q.isEmpty()) {
+            int[] cur = q.poll();
+            for (int[] dir : dirs) {
+                int next_i = cur[0] + dir[0];
+                int next_j = cur[1] + dir[1];
+                if (next_i < 0 || next_i >= m || next_j < 0 || next_j >= n) continue;
+                if (board[next_i][next_j] == 'E') {
+                    num = getAdjMineNum(board, next_i, next_j, dirs, m, n);
+                    if (num > 0) {
+                        board[next_i][next_j] = (char)('0' + num);
+                    } else {
+                        board[next_i][next_j] = 'B';
+                        q.offer(new int[] {next_i, next_j});
                     }
-                } else {
-                    board[p[0]][p[1]] = (char)('0' + adjMineNum); 
                 }
             }
         }
@@ -36,11 +41,10 @@ class Solution {
     private int getAdjMineNum(char[][] board, int i, int j, int[][] dirs, int m, int n) {
         int num = 0;
         for (int[] dir : dirs) {
-            int neighbor_i = i + dir[0];
-            int neighbor_j = j + dir[1];
-            if (neighbor_i < 0 || neighbor_i >= m || neighbor_j < 0 || neighbor_j >= n)
-                continue;
-            if (board[neighbor_i][neighbor_j] == 'M') num++;
+            int next_i = i + dir[0];
+            int next_j = j + dir[1];
+            if (next_i < 0 || next_i >= m || next_j < 0 || next_j >= n) continue;
+            if (board[next_i][next_j] == 'M') num++;
         }
         return num;
     }
