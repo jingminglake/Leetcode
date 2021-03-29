@@ -1,13 +1,6 @@
-// clang++ hIndexII.cpp -std=c++11
-
-#include <iostream>
-#include <vector>
-using namespace std;
-
 class Solution {
-public:
-    int hIndex(vector<int>& citations) {
-        int len = citations.size();
+    public int hIndex(int[] citations) {
+        int len = citations.length;
         if (len == 1) {
             if (citations[0] >= 1) return 1;
             else return 0;
@@ -24,14 +17,5 @@ public:
         if (citations[left] >= len - left) return len - left;
         else if (citations[right] >= len - right) return len - right;
         else return 0;
-    }
-};
-
-int main()
-{
-    Solution s;
-    vector<int> vec = {0,1,3,5,6};
-    cout << s.hIndex(vec);
-    cout << endl;
-    return 0;
+     }
 }
