@@ -1,11 +1,7 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
 class Solution {
-public:
-    int singleNonDuplicate(vector<int>& nums) {
-        int len = nums.size();
+    public int singleNonDuplicate(int[] nums) {
+        int len = nums.length;
+        if (len == 1) return nums[0];
         int left = 0, right = len - 1;
         while (left < right) {
             int mid = left + (right - left) / 2;
@@ -30,11 +26,4 @@ public:
         }
         return nums[left];
     }
-};
-
-int main() {
-    Solution s;
-    vector<int> nums = {1,1,2,3,3,4,4,8,8};
-    cout << s.singleNonDuplicate(nums) << endl;
-    return 0;
 }
