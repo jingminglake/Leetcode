@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/3Sum" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/DesignSkiplist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/JewelsAndStones" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/LRUCache" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/N-Queens" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/addTwoNumbers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/balancedBinaryTree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/binarySearchTreeIterator" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/binaryTreeZigzagOrderTraversal" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/bulbSwitcherIII" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/canIWin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/combinationSum" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/combinationSumII" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/convertSortedArrayToBinarySearchTree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/courseSchedule" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/employeeImportance" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/expressiveWords" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/findAllAnagramsInaString" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/findAnagramMappings" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/findDuplicateSubtrees" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/findMedianFromDataStream" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/howManyNumberAreSmallerThanTheCurrentNumber" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/invertBinaryTree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/isGraphBipartite" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/letterCombinationsOfAPhoneNumber" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/linkedListCycle" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/loggerRateLimiter" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lowestCommonAncestorOfABinarySearchTree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/lowestCommonAncestorOfaBinaryTree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/makeTwoArraysEqualByReversingSubarrays" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/maxAreaOfIsland" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/maximumSubarray" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mergeIntervals" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mergekSortedLists" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/minStack" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/minimumDepthOfBinaryTree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/minimumRemoveToMakeValidParentheses" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/moveZeroes" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/numberOfGoodPairs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/palindromePermutation" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/palindromePermutationII" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/partitionToKEqualSumSubsets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/permutations" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/printBinaryTree" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/productOfArrayExceptSelf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/removeDupFromSortedArray" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/replaceAllstoAvoidConsecutiveRepeatingCharacters" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/reverseInteger" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/reverseString" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/robotReturnToOrigin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/romanToInteger" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rotateArray" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/searchInRotatedSortedArray" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/shuffleTheArray" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/slidingWindowMaximum" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/solveTheEquation" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/subArraySumEqualsK" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/subsets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/subsetsII" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/substractTheProductAndSumOfDigitsOfAnInteger" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/toLowerCase" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/twoSum" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/uniqueEmailAddresses" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/validParentheses" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/validSudoku" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/wordBreak" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/wordSearch" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/zigzagConversion" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
