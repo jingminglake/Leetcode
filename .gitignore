@@ -2,6 +2,6 @@
 *.o
 *~
 a.out
-
+.idea/
 
 *.class
