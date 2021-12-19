@@ -39,6 +39,5 @@ class Solution {
         dfs(root.left, targetSum, preSum, path);
         dfs(root.right, targetSum, preSum, path);
         preSum.put(path, preSum.get(path) - 1);
-        path -= root.val;
     }
 }
