@@ -7,6 +7,7 @@ class Solution {
             return Double.compare(dis1, dis2);
         });
 
+        // it's log(N), not log(K), so not OK in the interview
         for (int[] p : points) {
             pq.add(p);
         }
