@@ -7,7 +7,7 @@ public:
         diagonal = 0;
         antiDiagonal = 0;
     }
-    
+
     /** Player {player} makes a move at ({row}, {col}).
         @param row The row of the board.
         @param col The column of the board.
@@ -27,8 +27,7 @@ public:
             antiDiagonal += toAdd;
         }
         int size = rowSum.size();
-        if (abs(rowSum[row]) == size || abs(colSum[col]) == size 
-            || abs(diagonal) == size || abs(antiDiagonal) == size)
+        if (abs(rowSum[row]) == size || abs(colSum[col]) == size || abs(diagonal) == size || abs(antiDiagonal) == size)
             return player;
         else
             return 0;

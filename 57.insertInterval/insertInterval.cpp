@@ -4,10 +4,10 @@ using namespace std;
 
 // Definition for an interval.
 struct Interval {
-     int start;
-     int end;
-     Interval() : start(0), end(0) {}
-     Interval(int s, int e) : start(s), end(e) {}
+    int start;
+    int end;
+    Interval() : start(0), end(0) {}
+    Interval(int s, int e) : start(s), end(e) {}
 };
 
 class Solution {
@@ -33,10 +33,10 @@ public:
             res.push_back(newInterval);
             return res;
         }
-        nStart = min (nStart, intervals[i].start);
+        nStart = min(nStart, intervals[i].start);
         while (i < intervals.size()) {
             if (intervals[i].start <= nEnd) {
-                nEnd = max (nEnd, intervals[i].end);
+                nEnd = max(nEnd, intervals[i].end);
                 i++;
             } else {
                 break;
@@ -52,18 +52,17 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  Interval t1(1,3);
-  Interval t2(6, 9);
-  vector<Interval> intervals;
-  intervals.push_back(t1);
-  intervals.push_back(t2);
-  Interval t(2,5);
-  for (Interval& i : s.insert(intervals, t)) {
-    cout << "("<< i.start << ", " << i.end << ") ";
-  }
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    Interval t1(1, 3);
+    Interval t2(6, 9);
+    vector<Interval> intervals;
+    intervals.push_back(t1);
+    intervals.push_back(t2);
+    Interval t(2, 5);
+    for (Interval& i : s.insert(intervals, t)) {
+        cout << "(" << i.start << ", " << i.end << ") ";
+    }
+    cout << endl;
+    return 0;
 }

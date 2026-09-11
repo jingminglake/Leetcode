@@ -1,6 +1,6 @@
 class Solution {
     public int expressiveWords(String S, String[] words) {
-        if (S == null || words == null) { 
+        if (S == null || words == null) {
             return 0;
         }
         int res = 0;
@@ -11,12 +11,12 @@ class Solution {
         }
         return res;
     }
-    
+
     private boolean stretchy(String S, String word) {
         if (word == null) {
             return false;
         }
-        
+
         int i = 0;
         int j = 0;
         while (i < S.length() && j < word.length()) {
@@ -35,7 +35,7 @@ class Solution {
         }
         return i == S.length() && j == word.length();
     }
-    
+
     private int getRepeated(String S, int index) {
         if (S == null) {
             return 0;

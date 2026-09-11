@@ -16,7 +16,8 @@
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
-        if (root == null) return res;
+        if (root == null)
+            return res;
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         List<Integer> level = new ArrayList<>();
@@ -36,7 +37,8 @@ class Solution {
                     q.offer(n.right);
                 }
             }
-            if (!level.isEmpty()) res.add(level);
+            if (!level.isEmpty())
+                res.add(level);
         }
         return res;
     }

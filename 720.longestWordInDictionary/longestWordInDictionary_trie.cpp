@@ -6,11 +6,10 @@ class Solution {
 public:
     class TrieNode {
     public:
-        TrieNode() : word(""), is_word(false){
-            memset(next, 0, sizeof(next));
-        }
+        TrieNode() : word(""), is_word(false) { memset(next, 0, sizeof(next)); }
         ~TrieNode() {
-            for (TrieNode* t : next) delete t;
+            for (TrieNode* t : next)
+                delete t;
         }
         TrieNode* next[26];
         string word;
@@ -46,10 +45,9 @@ public:
     TrieNode* root;
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<string> words = {"a","banana", "app", "appl", "ap", "apply", "apple"};
+    vector<string> words = {"a", "banana", "app", "appl", "ap", "apply", "apple"};
     cout << s.longestWord(words) << endl;
     return 0;
 }

@@ -8,10 +8,10 @@ using namespace std;
 class Solution {
 public:
     vector<string> wordBreak(string s, vector<string>& wordDict) {
-        unordered_map<string, vector<string> > m;
+        unordered_map<string, vector<string>> m;
         return helper(s, wordDict, m);
     }
-    vector<string> helper(string s, vector<string>& wordDict, unordered_map<string, vector<string> >& m) {
+    vector<string> helper(string s, vector<string>& wordDict, unordered_map<string, vector<string>>& m) {
         if (m.count(s))
             return m[s];
         if (s.empty())
@@ -29,13 +29,12 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string ss = "pineapplepenapple";
-  vector<string> dict = {"apple", "pen", "applepen", "pine", "pineapple"};
-  for (string& str : s.wordBreak(ss, dict)) {
-      cout << str << endl;
-  }
-  return 0;
+int main() {
+    Solution s;
+    string ss = "pineapplepenapple";
+    vector<string> dict = {"apple", "pen", "applepen", "pine", "pineapple"};
+    for (string& str : s.wordBreak(ss, dict)) {
+        cout << str << endl;
+    }
+    return 0;
 }

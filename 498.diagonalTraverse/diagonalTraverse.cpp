@@ -6,7 +6,8 @@ class Solution {
 public:
     vector<int> findDiagonalOrder(vector<vector<int>>& matrix) {
         vector<int> res;
-        if (matrix.size() == 0 || matrix[0].size() == 0) return res;
+        if (matrix.size() == 0 || matrix[0].size() == 0)
+            return res;
         int m = matrix.size(), n = matrix[0].size();
         res = vector<int>(m * n, 0);
         int levels = m + n - 1;
@@ -32,11 +33,8 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<int> > matrix1 = {{1,2,3},
-                                    {4,5,6},
-                                    {7,8,9}};
-    vector<vector<int> > matrix2 = {{1,2},
-                                    {3,4}};
+    vector<vector<int>> matrix1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    vector<vector<int>> matrix2 = {{1, 2}, {3, 4}};
     for (int n : s.findDiagonalOrder(matrix1)) {
         cout << n << ",";
     }

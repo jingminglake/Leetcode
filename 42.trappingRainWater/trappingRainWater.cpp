@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
     int trap(vector<int>& height) {
         int res = 0;
@@ -33,10 +33,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<int> height = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
-    cout << s.trap(height) << endl;;
+    cout << s.trap(height) << endl;
+    ;
     return 0;
 }

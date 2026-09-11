@@ -27,13 +27,12 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[3] = {4,1,2};
-    int b[4] = {1,3,4,2};
-    vector<int> vec1(a, a+3);
-    vector<int> vec2(b, b+4);
+    int a[3] = {4, 1, 2};
+    int b[4] = {1, 3, 4, 2};
+    vector<int> vec1(a, a + 3);
+    vector<int> vec2(b, b + 4);
     vector<int> res = s.nextGreaterElement(vec1, vec2);
     for (int i : res)
         cout << i << " ";

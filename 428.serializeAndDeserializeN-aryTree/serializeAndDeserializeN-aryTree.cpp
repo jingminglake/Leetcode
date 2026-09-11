@@ -19,10 +19,10 @@ public:
 */
 class Codec {
 public:
-
     // Encodes a tree to a single string.
     string serialize(Node* root) {
-        if (!root) return "";
+        if (!root)
+            return "";
         string res = to_string(root->val) + " " + to_string(root->children.size()) + " ";
         for (Node* c : root->children) {
             res += serialize(c);
@@ -35,18 +35,21 @@ public:
         queue<string> q = split(data);
         return deserializeHelper(q);
     }
-    
+
     Node* deserializeHelper(queue<string>& q) {
-        if (q.empty()) return nullptr;
-        int val = stoi(q.front()); q.pop();
-        int num = stoi(q.front()); q.pop();
+        if (q.empty())
+            return nullptr;
+        int val = stoi(q.front());
+        q.pop();
+        int num = stoi(q.front());
+        q.pop();
         Node* root = new Node(val);
         for (int i = 0; i < num; i++) {
             root->children.push_back(deserializeHelper(q));
         }
         return root;
     }
-    
+
     queue<string> split(string data) {
         istringstream iss(data);
         queue<string> q;

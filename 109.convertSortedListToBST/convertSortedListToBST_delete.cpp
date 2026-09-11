@@ -4,14 +4,14 @@ using namespace std;
 
 struct ListNode {
     int val;
-    ListNode *next;
+    ListNode* next;
     ListNode(int x) : val(x), next(NULL) {}
 };
 
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
@@ -21,18 +21,18 @@ public:
         if (!head)
             return nullptr;
         if (!head->next) {
-            TreeNode *res = new TreeNode(head->val);
+            TreeNode* res = new TreeNode(head->val);
             //delete head;
             return res;
         }
-        ListNode* slow = head, *fast = head, *prev = head;
+        ListNode *slow = head, *fast = head, *prev = head;
         while (fast && fast->next) {
             prev = slow;
             slow = slow->next;
             fast = fast->next->next;
         }
         prev->next = nullptr;
-        ListNode *new_head = slow->next;
+        ListNode* new_head = slow->next;
         TreeNode* root = new TreeNode(slow->val);
         slow->next = nullptr;
         //delete slow;
@@ -40,11 +40,11 @@ public:
         root->right = sortedListToBST(new_head);
         return root;
     }
-    void preorder(TreeNode *root) {
+    void preorder(TreeNode* root) {
         if (!root)
             return;
-        TreeNode *leftChild = root->left;
-        TreeNode *rightChild = root->right;
+        TreeNode* leftChild = root->left;
+        TreeNode* rightChild = root->right;
         cout << root->val << " ";
         delete root;
         preorder(leftChild);
@@ -52,21 +52,20 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     int a[2] = {1, 3};
-    ListNode *l = new ListNode(a[0]);
-    ListNode *tail = l;
-    for (int i = 1; i < sizeof(a)/sizeof(a[0]); i++) {
-        ListNode *temp = new ListNode(a[i]);
+    ListNode* l = new ListNode(a[0]);
+    ListNode* tail = l;
+    for (int i = 1; i < sizeof(a) / sizeof(a[0]); i++) {
+        ListNode* temp = new ListNode(a[i]);
         tail->next = temp;
         tail = temp;
     }
     Solution s;
-    TreeNode *h = s.sortedListToBST(l);
+    TreeNode* h = s.sortedListToBST(l);
     s.preorder(h);
     while (l) {
-        ListNode *p = l;
+        ListNode* p = l;
         l = l->next;
         cout << "delete " << p->val << " ";
         delete p;

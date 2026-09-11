@@ -16,14 +16,16 @@ class Solution {
             char c = s.charAt(right);
             if (m.containsKey(c)) {
                 m.put(c, m.get(c) - 1);
-                if (m.get(c) == 0) count--;
+                if (m.get(c) == 0)
+                    count--;
             }
             right++;
             while (count == 0) {
                 c = s.charAt(left);
                 if (m.containsKey(c)) {
                     m.put(c, m.get(c) + 1);
-                    if (m.get(c) > 0) count++;
+                    if (m.get(c) > 0)
+                        count++;
                 }
                 if (right - left == p.length())
                     res.add(left);

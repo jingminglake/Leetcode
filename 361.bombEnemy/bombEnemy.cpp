@@ -9,7 +9,7 @@ public:
         if (grid.size() == 0 || grid[0].size() == 0)
             return res;
         int m = grid.size(), n = grid[0].size();
-        vector<vector<int> > dp_left(m, vector<int>(n, 0)), dp_right = dp_left, dp_up = dp_left, dp_down = dp_left;
+        vector<vector<int>> dp_left(m, vector<int>(n, 0)), dp_right = dp_left, dp_up = dp_left, dp_down = dp_left;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 int left = (j == 0 || grid[i][j] == 'W') ? 0 : dp_left[i][j - 1];
@@ -29,7 +29,7 @@ public:
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == '0') {
-                    res = max (res, dp_left[i][j] + dp_up[i][j] + dp_right[i][j] + dp_down[i][j]);
+                    res = max(res, dp_left[i][j] + dp_up[i][j] + dp_right[i][j] + dp_down[i][j]);
                 }
             }
         }
@@ -39,9 +39,7 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<char>> grid = { {'0', 'E', '0', '0'},
-                                  {'E', '0', 'W', 'E'},
-                                  {'0', 'E', '0', '0'}};
+    vector<vector<char>> grid = {{'0', 'E', '0', '0'}, {'E', '0', 'W', 'E'}, {'0', 'E', '0', '0'}};
     cout << s.maxKilledEnemies(grid) << endl;
     return 0;
 }

@@ -5,9 +5,7 @@ using namespace std;
 
 class Employee {
 public:
-    Employee(int _id, int _importance) : id(_id), importance(_importance) {
-    
-    }
+    Employee(int _id, int _importance) : id(_id), importance(_importance) {}
     int id;
     int importance;
     vector<int> subordinates;
@@ -27,16 +25,15 @@ public:
     int dfs(unordered_map<int, Employee*>& m, int id) {
         int res = m[id]->importance;
         for (int i = 0; i < m[id]->subordinates.size(); i++) {
-            res += dfs(m, m[id]->subordinates[i]);       
+            res += dfs(m, m[id]->subordinates[i]);
         }
         return res;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    Employee n0(1,5), n1(2,3), n2(3,3);
+    Employee n0(1, 5), n1(2, 3), n2(3, 3);
     n0.subordinates.push_back(n1.id);
     n0.subordinates.push_back(n2.id);
     vector<Employee*> employees;

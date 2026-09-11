@@ -5,7 +5,7 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
-        vector<vector<int> > res;
+        vector<vector<int>> res;
         if (numRows == 0)
             return res;
         vector<int> pre_level = {1};
@@ -22,11 +22,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<vector<int> > vec = s.generate(5);
-    vector<vector<int> >::iterator it = vec.begin();
+    vector<vector<int>> vec = s.generate(5);
+    vector<vector<int>>::iterator it = vec.begin();
     while (it != vec.end()) {
         for (int i : *it)
             cout << i << " ";

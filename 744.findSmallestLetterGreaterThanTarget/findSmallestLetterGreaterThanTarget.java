@@ -10,8 +10,11 @@ class Solution {
                 left = mid;
             }
         }
-        if (letters[left] > target) return letters[left];
-        else if (letters[right] > target) return letters[right];
-        else return letters[0];
+        if (letters[left] > target)
+            return letters[left];
+        else if (letters[right] > target)
+            return letters[right];
+        else
+            return letters[0];
     }
 }

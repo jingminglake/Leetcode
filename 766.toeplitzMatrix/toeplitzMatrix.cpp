@@ -32,8 +32,8 @@ public:
 };
 
 int main() {
-  Solution s;
-  vector<vector<int>> matrix = {{1,2,3,4}, {5,1,2,3}, {9,5,1,2}};
-  cout << s.isToeplitzMatrix(matrix) << endl;
-  return 0;
+    Solution s;
+    vector<vector<int>> matrix = {{1, 2, 3, 4}, {5, 1, 2, 3}, {9, 5, 1, 2}};
+    cout << s.isToeplitzMatrix(matrix) << endl;
+    return 0;
 }

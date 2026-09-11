@@ -15,16 +15,18 @@ public:
                 left = mid;
             }
         }
-        if (letters[left] > target) return letters[left];
-        else if (letters[right] > target) return letters[right];
-        else return letters[0];
+        if (letters[left] > target)
+            return letters[left];
+        else if (letters[right] > target)
+            return letters[right];
+        else
+            return letters[0];
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<char> ss = {'c','f','j'};
+    vector<char> ss = {'c', 'f', 'j'};
     cout << s.nextGreatestLetter(ss, 'a') << endl;
     cout << s.nextGreatestLetter(ss, 'c') << endl;
     cout << s.nextGreatestLetter(ss, 'd') << endl;

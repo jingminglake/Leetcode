@@ -31,11 +31,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<int> nums = {1,2,3,4,4,5};
-  cout << s.isPossible(nums);
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    vector<int> nums = {1, 2, 3, 4, 4, 5};
+    cout << s.isPossible(nums);
+    cout << endl;
+    return 0;
 }

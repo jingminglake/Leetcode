@@ -20,8 +20,8 @@ public:
 };
 
 int main() {
-  Solution s;
-  string ss = "9,3,4,#,#,1,#,#,2,#,6,#,#";
-  cout << s.isValidSerialization(ss) << endl;
-  return 0;
+    Solution s;
+    string ss = "9,3,4,#,#,1,#,#,2,#,6,#,#";
+    cout << s.isValidSerialization(ss) << endl;
+    return 0;
 }

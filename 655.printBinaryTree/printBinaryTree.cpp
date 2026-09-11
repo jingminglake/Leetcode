@@ -6,8 +6,8 @@ using namespace std;
 
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
@@ -16,8 +16,8 @@ public:
     vector<vector<string>> printTree(TreeNode* root) {
         int h = getHeight(root);
         int w = pow(2, h) - 1;
-        vector<vector<string> > res(h, vector<string>(w, ""));
-        queue<tuple<TreeNode*, int, int> > q;
+        vector<vector<string>> res(h, vector<string>(w, ""));
+        queue<tuple<TreeNode*, int, int>> q;
         q.emplace(root, 0, w - 1);
         int level = 0;
         while (!q.empty()) {
@@ -47,12 +47,11 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int tree[7] = {3,9,20,9999,9999,15,7};
-    int size = sizeof(tree)/sizeof(tree[0]);
-    vector<TreeNode *> vec;
+    int tree[7] = {3, 9, 20, 9999, 9999, 15, 7};
+    int size = sizeof(tree) / sizeof(tree[0]);
+    vector<TreeNode*> vec;
     for (int i = 0; i < size; i++) {
         if (tree[i] != 9999) {
             vec.push_back(new TreeNode(tree[i]));
@@ -60,24 +59,24 @@ int main()
             vec.push_back(NULL);
         }
     }
-    for (int i = 0; i < size/2; i++) {
-        if(!vec[i])
+    for (int i = 0; i < size / 2; i++) {
+        if (!vec[i])
             continue;
-        if (i*2 + 1 < size)
-            vec[i]->left = vec[i*2 + 1];
-        if (i*2 + 2 < size)
-            vec[i]->right = vec[i*2 + 2];
+        if (i * 2 + 1 < size)
+            vec[i]->left = vec[i * 2 + 1];
+        if (i * 2 + 2 < size)
+            vec[i]->right = vec[i * 2 + 2];
     }
     for (auto& v : s.printTree(vec[0])) {
         for (string& ss : v) {
             if (!ss.empty())
-                cout << "\""<< ss << "\",";
+                cout << "\"" << ss << "\",";
             else
                 cout << "\"\",";
         }
         cout << endl;
     }
-    for (TreeNode *t : vec) {
+    for (TreeNode* t : vec) {
         delete t;
     }
     vec.clear();

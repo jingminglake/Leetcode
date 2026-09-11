@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution {
 public:
-    int compareVersion(string version1, string version2) {            
+    int compareVersion(string version1, string version2) {
         while (!version1.empty() || !version2.empty()) {
             string v1, v2;
             if (version1.find_first_of(".") != string::npos) {
@@ -36,6 +36,6 @@ public:
 int main() {
     Solution s;
     string version1 = "0.1", version2 = "1.1";
-    cout << s.compareVersion(version1, version2) << endl;    
+    cout << s.compareVersion(version1, version2) << endl;
     return 0;
 }

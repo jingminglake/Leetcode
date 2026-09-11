@@ -10,7 +10,6 @@ class Solution {
         dp[0] = 0;
 
         for (int currentAmount = 1; currentAmount <= amount; currentAmount++) {
-
             for (int coin : coins) {
                 if (coin <= currentAmount) {
                     dp[currentAmount] = Math.min(dp[currentAmount], dp[currentAmount - coin] + 1);

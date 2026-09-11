@@ -18,9 +18,12 @@ public:
                 }
                 int j = i, cnt = 0;
                 while (i < s.length()) {
-                    if (s[i] == '[') cnt++;
-                    else if (s[i] == ']') cnt--;
-                    if (cnt == 0) break;
+                    if (s[i] == '[')
+                        cnt++;
+                    else if (s[i] == ']')
+                        cnt--;
+                    if (cnt == 0)
+                        break;
                     i++;
                 }
                 string temp = decodeString(s.substr(j + 1, i - j - 1));
@@ -36,8 +39,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss = "3[a2[c]]";
     cout << s.decodeString(ss);

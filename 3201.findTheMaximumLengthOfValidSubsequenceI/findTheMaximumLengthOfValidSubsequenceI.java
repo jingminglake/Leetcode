@@ -1,6 +1,7 @@
 class Solution {
     public int maximumLength(int[] nums) {
-        if (nums.length == 2) return 2;
+        if (nums.length == 2)
+            return 2;
         int res = 0;
         int countOdd = 0, countEven = 0;
         int countOddEvenAlt = 0; // odd even appear alternately
@@ -23,5 +24,4 @@ class Solution {
         res = Math.max(res, countOddEvenAlt);
         return res;
     }
-
 }

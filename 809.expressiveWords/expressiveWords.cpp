@@ -49,9 +49,9 @@ public:
 };
 
 int main() {
-  string S = "heeellooo";
-  vector<string> words = {"hello", "hi", "helo"};
-  Solution s;
-  cout << s.expressiveWords(S, words) << endl;
-  return 0;
+    string S = "heeellooo";
+    vector<string> words = {"hello", "hi", "helo"};
+    Solution s;
+    cout << s.expressiveWords(S, words) << endl;
+    return 0;
 }

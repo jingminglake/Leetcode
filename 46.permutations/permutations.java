@@ -6,7 +6,7 @@ class Solution {
         dfs(nums, res, visited, path, 0);
         return res;
     }
-    
+
     private void dfs(int[] nums, List<List<Integer>> res, Set<Integer> visited, List<Integer> path, int level) {
         if (level == nums.length) {
             res.add(new ArrayList<>(path));

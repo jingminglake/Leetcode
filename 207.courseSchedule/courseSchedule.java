@@ -9,12 +9,13 @@ class Solution {
             graph.get(p[1]).add(p[0]);
             indegree[p[0]]++;
         }
-        
+
         Queue<Integer> q = new LinkedList<>();
         for (int i = 0; i < numCourses; i++) {
-            if (indegree[i] == 0) q.offer(i);
+            if (indegree[i] == 0)
+                q.offer(i);
         }
-        
+
         int n = numCourses;
         while (!q.isEmpty()) {
             int cur = q.poll();

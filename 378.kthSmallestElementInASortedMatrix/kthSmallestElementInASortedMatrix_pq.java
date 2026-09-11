@@ -7,7 +7,8 @@ class Solution {
         }
         for (int i = 1; i < k; i++) {
             Tuple t = pq.poll();
-            if (t.j + 1 >= n) continue;
+            if (t.j + 1 >= n)
+                continue;
             pq.offer(new Tuple(t.i, t.j + 1, matrix[t.i][t.j + 1]));
         }
         return pq.poll().val;

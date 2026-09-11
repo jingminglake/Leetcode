@@ -14,12 +14,12 @@ public:
             if (m.size() > k) {
                 int left_min = s.length();
                 for (auto& p : m) {
-                    left_min = min (left_min, p.second);
+                    left_min = min(left_min, p.second);
                 }
                 m.erase(s[left_min]);
                 left = left_min + 1;
             }
-            res = max (res, right - left);
+            res = max(res, right - left);
         }
         return res;
     }

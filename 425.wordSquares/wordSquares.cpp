@@ -4,9 +4,7 @@ using namespace std;
 
 class TrieNode {
 public:
-    TrieNode() {
-        memset(next, 0, sizeof(next));
-    }
+    TrieNode() { memset(next, 0, sizeof(next)); }
     ~TrieNode() {
         for (TrieNode* t : next)
             delete t;
@@ -17,7 +15,7 @@ public:
 class Solution {
 public:
     vector<vector<string>> wordSquares(vector<string>& words) {
-        vector<vector<string> > res;
+        vector<vector<string>> res;
         if (words.size() == 0)
             return res;
         root = new TrieNode();
@@ -32,7 +30,7 @@ public:
         delete root;
         return res;
     }
-    void dfs(int i, vector<string>& words, vector<string>& path, vector<vector<string> >& res) {
+    void dfs(int i, vector<string>& words, vector<string>& path, vector<vector<string>>& res) {
         if (i == words[0].size()) {
             res.push_back(path);
             return;
@@ -43,11 +41,11 @@ public:
         }
         for (int word_index : getWordIndexes(prefix)) {
             path.push_back(words[word_index]);
-            dfs (i + 1, words, path, res);
+            dfs(i + 1, words, path, res);
             path.pop_back();
         }
     }
-    TrieNode *root;
+    TrieNode* root;
     void add(vector<string>& words, int index) {
         TrieNode* cur = root;
         for (char c : words[index]) {
@@ -58,7 +56,7 @@ public:
         }
     }
     vector<int> getWordIndexes(string& prefix) {
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         for (char c : prefix) {
             if (!cur->next[c - 'a'])
                 return vector<int>();
@@ -70,7 +68,7 @@ public:
 
 int main() {
     Solution s;
-    vector<string> words = {"area","lead","wall","lady","ball"};
+    vector<string> words = {"area", "lead", "wall", "lady", "ball"};
     for (auto& vec : s.wordSquares(words)) {
         for (string& w : vec)
             cout << w << " ";

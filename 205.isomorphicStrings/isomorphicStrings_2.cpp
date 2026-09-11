@@ -23,8 +23,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string str1 = "aba";
     string str2 = "baa";

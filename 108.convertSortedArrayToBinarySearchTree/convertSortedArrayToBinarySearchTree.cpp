@@ -4,8 +4,8 @@ using namespace std;
 
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
@@ -27,18 +27,17 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int tree[7] = {1,2,3,4,5,6,7};
-    vector<int> nums(tree, tree+7);
+    int tree[7] = {1, 2, 3, 4, 5, 6, 7};
+    vector<int> nums(tree, tree + 7);
     TreeNode* root = s.sortedArrayToBST(nums);
     queue<TreeNode*> q;
     q.push(root);
     while (!q.empty()) {
         int size = q.size();
         for (int i = 0; i < size; i++) {
-            TreeNode *t = q.front();
+            TreeNode* t = q.front();
             if (t->left)
                 q.push(t->left);
             if (t->right)

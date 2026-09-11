@@ -11,19 +11,22 @@ public:
         unordered_set<string> wordSet(wordList.begin(), wordList.end());
         queue<string> q;
         q.push(beginWord);
-        while(!q.empty()) {
+        while (!q.empty()) {
             int size = q.size();
             res++;
             for (int i = 0; i < size; i++) {
-                string word = q.front(); q.pop();
+                string word = q.front();
+                q.pop();
                 for (int j = 0; j < word.length(); j++) {
                     string next_word = word;
                     char origin = next_word[j];
                     for (char c = 'a'; c <= 'z'; c++) {
-                        if (c == origin) continue;
+                        if (c == origin)
+                            continue;
                         next_word[j] = c;
                         if (wordSet.count(next_word)) {
-                            if (next_word == endWord) return res + 1;
+                            if (next_word == endWord)
+                                return res + 1;
                             q.push(next_word);
                             wordSet.erase(next_word);
                         }
@@ -35,8 +38,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string beginWord = "hit";
     string endWord = "cog";

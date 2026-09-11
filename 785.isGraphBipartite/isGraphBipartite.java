@@ -9,7 +9,7 @@ class Solution {
         }
         return true;
     }
-    
+
     boolean dfs(int start, int[] color, int curColor, int[][] graph) {
         color[start] = curColor;
         for (int n : graph[start]) {

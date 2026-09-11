@@ -24,17 +24,16 @@ public:
     double getDist(pair<int, int>& p1, pair<int, int>& p2) {
         int64_t d_x = p1.first - p2.first;
         int64_t d_y = p1.second - p2.second;
-        return sqrt(d_x * d_x + d_y * d_y); 
+        return sqrt(d_x * d_x + d_y * d_y);
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<pair<int, int> > vec;
-    vec.push_back(make_pair(0,0));
-    vec.push_back(make_pair(1,0));
-    vec.push_back(make_pair(2,0));
+    vector<pair<int, int>> vec;
+    vec.push_back(make_pair(0, 0));
+    vec.push_back(make_pair(1, 0));
+    vec.push_back(make_pair(2, 0));
     cout << s.numberOfBoomerangs(vec);
     cout << endl;
     return 0;

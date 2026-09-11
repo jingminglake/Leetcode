@@ -8,7 +8,7 @@ class Solution {
             dp[i][1] = sum0I / i;
         }
         for (int j = 2; j <= k; j++) {
-            for (int i = 1; i <= nums.length; i++) {           
+            for (int i = 1; i <= nums.length; i++) {
                 double sumXI = 0.0;
                 for (int x = i - 1; x >= 0; x--) {
                     sumXI += nums[x];

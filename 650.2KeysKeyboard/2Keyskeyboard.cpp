@@ -7,7 +7,8 @@ using namespace std;
 class Solution {
 public:
     int minSteps(int n) {
-        if (n < 2) return 0;
+        if (n < 2)
+            return 0;
         vector<int> dp(n + 1, INT_MAX);
         dp[0] = 0;
         dp[1] = 0;
@@ -24,8 +25,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     cout << s.minSteps(100) << endl;
     return 0;

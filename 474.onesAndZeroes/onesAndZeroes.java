@@ -15,12 +15,14 @@ class Solution {
         }
         return dp[strs.length][m][n];
     }
-    
+
     public int[] getNums(String str) {
         int[] nums = new int[2];
         for (char c : str.toCharArray()) {
-            if (c == '0') nums[0]++;
-            else if (c == '1') nums[1]++;
+            if (c == '0')
+                nums[0]++;
+            else if (c == '1')
+                nums[1]++;
         }
         return nums;
     }

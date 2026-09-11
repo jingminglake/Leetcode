@@ -13,8 +13,7 @@ public:
             if (dominoes[i] == 'L') {
                 q_left.push(i);
                 dist_left[i] = 0;
-            }
-            else if (dominoes[i] == 'R') {
+            } else if (dominoes[i] == 'R') {
                 q_right.push(i);
                 dist_right[i] = 0;
             }

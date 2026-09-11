@@ -24,12 +24,11 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  int a[7] = {2,6,4,8,10,9,15};
-  vector<int> vec(a, a+7);
-  cout << s.findUnsortedSubarray(vec) << endl;
- 
-  return 0;
+int main() {
+    Solution s;
+    int a[7] = {2, 6, 4, 8, 10, 9, 15};
+    vector<int> vec(a, a + 7);
+    cout << s.findUnsortedSubarray(vec) << endl;
+
+    return 0;
 }

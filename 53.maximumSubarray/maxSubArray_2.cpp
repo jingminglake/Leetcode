@@ -10,18 +10,17 @@ public:
             return -1;
         int64_t global = nums[0], local = nums[0];
         for (int i = 1; i < n; i++) {
-            local = max (local + nums[i], (int64_t)nums[i]);
-            global = max (global, local);
+            local = max(local + nums[i], (int64_t)nums[i]);
+            global = max(global, local);
         }
         return global;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[9] = {-2,1,-3,4,-1,2,1,-5,4};
-    vector<int> vec(a, a+9);
-    cout << s.maxSubArray(vec) << endl; 
+    int a[9] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    vector<int> vec(a, a + 9);
+    cout << s.maxSubArray(vec) << endl;
     return 0;
 }

@@ -9,7 +9,7 @@ public:
         vector<int> res(A.size(), 0);
         if (A.size() != B.size() || A.size() == 0)
             return res;
-        unordered_map<int, vector<int> > m;
+        unordered_map<int, vector<int>> m;
         for (int i = 0; i < B.size(); i++) {
             m[B[i]].push_back(i);
         }

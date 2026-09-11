@@ -16,8 +16,10 @@ public:
                 return mid;
             }
         }
-        if (reader.get(left) == target) return left;
-        if (reader.get(right) == target) return right;
+        if (reader.get(left) == target)
+            return left;
+        if (reader.get(right) == target)
+            return right;
         return -1;
     }
 };

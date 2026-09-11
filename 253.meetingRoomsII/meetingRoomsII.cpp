@@ -10,7 +10,6 @@ struct Interval {
     Interval(int s, int e) : start(s), end(e) {}
 };
 
-
 class Solution {
 public:
     class Compare {
@@ -24,7 +23,7 @@ public:
         if (intervals.size() == 0)
             return res;
         sort(intervals.begin(), intervals.end(), Compare());
-        priority_queue<int, vector<int>, greater<int> > pq;
+        priority_queue<int, vector<int>, greater<int>> pq;
         for (Interval& i : intervals) {
             if (pq.empty() || pq.top() > i.start) {
                 pq.push(i.end);
@@ -37,8 +36,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     Interval i1(0, 30), i2(5, 10), i3(15, 20);
     vector<Interval> intervals = {i1, i2, i3};

@@ -6,7 +6,8 @@ class Solution {
 public:
     vector<string> letterCombinations(string digits) {
         vector<string> res;
-        if (digits.length() == 0) return res;
+        if (digits.length() == 0)
+            return res;
         string path;
         vector<string> digit2letters = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         dfs(digits, 0, path, res, digit2letters);
@@ -25,12 +26,11 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<string> ans = s.letterCombinations(string("234"));
     vector<string>::iterator it = ans.begin();
-    while(it != ans.end()){
+    while (it != ans.end()) {
         cout << *it << " ";
         ++it;
     }

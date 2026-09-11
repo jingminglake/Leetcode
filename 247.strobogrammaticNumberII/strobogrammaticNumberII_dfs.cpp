@@ -42,7 +42,7 @@ public:
         vector<char> d = {'0', '1', '8'};
         if (n % 2) {
             for (char c : d) {
-                for (string& str :res) {
+                for (string& str : res) {
                     new_res.push_back(str + c);
                 }
             }
@@ -59,11 +59,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    for(string ss : s.findStrobogrammatic(10)) {
-      cout << ss << " ";
+    for (string ss : s.findStrobogrammatic(10)) {
+        cout << ss << " ";
     }
     return 0;
 }

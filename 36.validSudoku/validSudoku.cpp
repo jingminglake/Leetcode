@@ -6,7 +6,7 @@ class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
         int n = board.size();
-        vector<vector<bool> > rows(n, vector<bool>(n, false)), cols = rows, grid = cols;
+        vector<vector<bool>> rows(n, vector<bool>(n, false)), cols = rows, grid = cols;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (board[i][j] == '.')
@@ -23,9 +23,8 @@ public:
     }
 };
 
-int main()
-{
-    vector<vector<char> > board(9, vector<char>(9));
+int main() {
+    vector<vector<char>> board(9, vector<char>(9));
     for (int i = 0; i < 9; i++)
         for (int j = 0; j < 9; j++)
             board[i][j] = '0' + j + 1;

@@ -24,8 +24,8 @@ public:
 };
 
 int main() {
-  vector<string> words = {"abcd", "bnrt", "crm", "dt"};
-  Solution s;
-  cout << s.validWordSquare(words) << endl;
-  return 0;
+    vector<string> words = {"abcd", "bnrt", "crm", "dt"};
+    Solution s;
+    cout << s.validWordSquare(words) << endl;
+    return 0;
 }

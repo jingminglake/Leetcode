@@ -10,7 +10,7 @@ public:
         _height = height;
         foodIndex = 0;
         _food = food;
-        body = vector<vector<bool> >(height, vector<bool>(width, false));
+        body = vector<vector<bool>>(height, vector<bool>(width, false));
         body[0][0] = true;
         dir["R"] = {0, 1};
         dir["L"] = {0, -1};
@@ -18,7 +18,7 @@ public:
         dir["D"] = {1, 0};
         snake.push_back({0, 0});
     }
-    
+
     /** Moves the snake.
         @param direction - 'U' = Up, 'L' = Left, 'R' = Right, 'D' = Down 
         @return The game's score after the move. Return -1 if game over. 
@@ -45,7 +45,7 @@ public:
             return foodIndex;
         }
         //cout << next_i << ", " << next_j << " " << body[next_i][next_j] << endl;
-       /* for (int i = 0; i < _height; i++) {
+        /* for (int i = 0; i < _height; i++) {
             for (int j = 0; j < _width; j++) {
                 cout << body[i][j] << " ";
             }
@@ -56,10 +56,10 @@ public:
     int _width;
     int _height;
     int foodIndex;
-    vector<vector<int> > _food;
-    vector<vector<bool> > body;
-    deque<pair<int, int> > snake;
-    unordered_map<string, pair<int, int> > dir;
+    vector<vector<int>> _food;
+    vector<vector<bool>> body;
+    deque<pair<int, int>> snake;
+    unordered_map<string, pair<int, int>> dir;
 };
 
 /**

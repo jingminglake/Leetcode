@@ -20,9 +20,9 @@ public:
 };
 
 int main() {
-  Solution s;
-  for(string& ss : s.generatePossibleNextMoves("++++")) {
-    cout << ss << endl;
-  }
-  return 0;
+    Solution s;
+    for (string& ss : s.generatePossibleNextMoves("++++")) {
+        cout << ss << endl;
+    }
+    return 0;
 }

@@ -16,9 +16,9 @@ class ReverseInteger {
         res *= flag;
         return res > Integer.MAX_VALUE || res < Integer.MIN_VALUE ? 0 : (int) res;
     }
-	public static void main(String[] args) {
-		ReverseInteger s = new ReverseInteger();
-		int x = -123;
-		System.out.println(x + "\n" + s.reverse(x));
-	}
+    public static void main(String[] args) {
+        ReverseInteger s = new ReverseInteger();
+        int x = -123;
+        System.out.println(x + "\n" + s.reverse(x));
+    }
 }

@@ -5,8 +5,10 @@ class Solution {
         int[][] dpX = new int[m][n];
         int[][] dpY = new int[m][n];
         int res = 0;
-        if (grid[0][0] == 'X') dpX[0][0] = 1;
-        else if (grid[0][0] == 'Y') dpY[0][0] = 1;
+        if (grid[0][0] == 'X')
+            dpX[0][0] = 1;
+        else if (grid[0][0] == 'Y')
+            dpY[0][0] = 1;
 
         for (int j = 1; j < n; j++) {
             dpX[0][j] = dpX[0][j - 1];
@@ -17,7 +19,8 @@ class Solution {
                 dpY[0][j]++;
             }
 
-            if (dpX[0][j] > 0 && dpX[0][j] == dpY[0][j]) res++;
+            if (dpX[0][j] > 0 && dpX[0][j] == dpY[0][j])
+                res++;
         }
         for (int i = 1; i < m; i++) {
             dpY[i][0] = dpY[i - 1][0];
@@ -28,7 +31,8 @@ class Solution {
                 dpY[i][0]++;
             }
 
-            if (dpX[i][0] > 0 && dpX[i][0] == dpY[i][0]) res++;
+            if (dpX[i][0] > 0 && dpX[i][0] == dpY[i][0])
+                res++;
         }
 
         for (int i = 1; i < m; i++) {
@@ -41,7 +45,8 @@ class Solution {
                     dpY[i][j]++;
                 }
 
-                if (dpX[i][j] > 0 && dpX[i][j] == dpY[i][j]) res++;
+                if (dpX[i][j] > 0 && dpX[i][j] == dpY[i][j])
+                    res++;
             }
         }
         return res;

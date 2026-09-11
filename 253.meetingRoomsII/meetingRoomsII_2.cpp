@@ -22,14 +22,13 @@ public:
         int ongoing = 0;
         for (auto& p : m) {
             ongoing += p.second;
-            res = max (res, ongoing);
+            res = max(res, ongoing);
         }
         return res;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     Interval i1(0, 30), i2(5, 10), i3(15, 20);
     vector<Interval> intervals = {i1, i2, i3};

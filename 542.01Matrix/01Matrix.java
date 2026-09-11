@@ -9,7 +9,7 @@ class Solution {
                     updatedMatrix[i][j] = Integer.MAX_VALUE;
                 } else {
                     updatedMatrix[i][j] = 0;
-                    q.offer(new int[]{i, j});
+                    q.offer(new int[] {i, j});
                 }
             }
         }
@@ -23,10 +23,12 @@ class Solution {
                 for (int[] dir : dirs) {
                     int next_i = p[0] + dir[0];
                     int next_j = p[1] + dir[1];
-                    if (next_i < 0 || next_i >= m || next_j < 0 || next_j >= n) continue;
-                    if (dist >= updatedMatrix[next_i][next_j]) continue;
+                    if (next_i < 0 || next_i >= m || next_j < 0 || next_j >= n)
+                        continue;
+                    if (dist >= updatedMatrix[next_i][next_j])
+                        continue;
                     updatedMatrix[next_i][next_j] = dist;
-                    q.offer(new int[]{next_i, next_j});
+                    q.offer(new int[] {next_i, next_j});
                 }
             }
         }

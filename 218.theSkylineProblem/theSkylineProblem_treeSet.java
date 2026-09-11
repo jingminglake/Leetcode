@@ -7,8 +7,10 @@ class Solution {
             height.add(new ArrayList<Integer>(Arrays.asList(b[1], -b[2])));
         }
         Collections.sort(height, (a, b) -> {
-            if (!a.get(0).equals(b.get(0))) return a.get(0) - b.get(0);
-            else return b.get(1) - a.get(1);
+            if (!a.get(0).equals(b.get(0)))
+                return a.get(0) - b.get(0);
+            else
+                return b.get(1) - a.get(1);
         });
         TreeMap<Integer, Integer> treeMap = new TreeMap<>(Collections.reverseOrder());
         treeMap.put(0, 1);
@@ -22,7 +24,7 @@ class Solution {
                     treeMap.remove(-h.get(1));
                 } else {
                     treeMap.put(-h.get(1), count - 1);
-                } 
+                }
             }
             int cur = treeMap.firstKey();
             if (cur != prev) {

@@ -21,12 +21,11 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[8] = {1,3,5,6,7,8,9,10};
-    vector<int> vec(a, a+8);
+    int a[8] = {1, 3, 5, 6, 7, 8, 9, 10};
+    vector<int> vec(a, a + 8);
     cout << s.searchInsert(vec, 5) << endl;
- 
+
     return 0;
 }

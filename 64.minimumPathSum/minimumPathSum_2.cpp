@@ -17,25 +17,24 @@ public:
                 if (i == 1 && j == 1)
                     dp[j] = grid[0][0];
                 else
-                    dp[j] = min (dp[j - 1], dp[j]) + grid[i - 1][j - 1];
+                    dp[j] = min(dp[j - 1], dp[j]) + grid[i - 1][j - 1];
             }
         }
         return dp[n];
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a1[4] = {0,0,0,0};
-    int a2[4] = {0,1,0,1};
-    int a3[4] = {1,0,1,0};
-    int a4[4] = {0,0,0,1};
-    vector<int> vec1(a1, a1+4);
-    vector<int> vec2(a2, a2+4);
-    vector<int> vec3(a3, a3+4);
-    vector<int> vec4(a4, a4+4);
-    vector<vector<int> > matrix;
+    int a1[4] = {0, 0, 0, 0};
+    int a2[4] = {0, 1, 0, 1};
+    int a3[4] = {1, 0, 1, 0};
+    int a4[4] = {0, 0, 0, 1};
+    vector<int> vec1(a1, a1 + 4);
+    vector<int> vec2(a2, a2 + 4);
+    vector<int> vec3(a3, a3 + 4);
+    vector<int> vec4(a4, a4 + 4);
+    vector<vector<int>> matrix;
     matrix.push_back(vec1);
     matrix.push_back(vec2);
     matrix.push_back(vec3);

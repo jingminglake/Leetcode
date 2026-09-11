@@ -11,12 +11,12 @@ public:
         int leftM = INT_MAX, rightM = INT_MIN;
         unordered_set<string> s;
         for (auto& p : points) {
-            leftM = min (leftM, p.first);
-            rightM = max (rightM, p.first);
+            leftM = min(leftM, p.first);
+            rightM = max(rightM, p.first);
             s.insert(to_string(p.first) + "," + to_string(p.second));
         }
         for (auto& p : points) {
-            string temp = to_string(leftM + rightM - p.first) + "," + to_string(p.second); 
+            string temp = to_string(leftM + rightM - p.first) + "," + to_string(p.second);
             if (!s.count(temp))
                 return false;
         }
@@ -25,8 +25,8 @@ public:
 };
 
 int main() {
-  Solution s;
-  vector<pair<int, int> > points = {make_pair(1, 1), make_pair(-1, 1)};
-  cout << s.isReflected(points) << endl;
-  return 0;
+    Solution s;
+    vector<pair<int, int>> points = {make_pair(1, 1), make_pair(-1, 1)};
+    cout << s.isReflected(points) << endl;
+    return 0;
 }

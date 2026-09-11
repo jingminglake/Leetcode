@@ -1,10 +1,8 @@
 class MagicDictionary {
 public:
     /** Initialize your data structure here. */
-    MagicDictionary() {
-        
-    }
-    
+    MagicDictionary() {}
+
     /** Build a dictionary through a list of words */
     void buildDict(vector<string> dict) {
         for (string& word : dict) {
@@ -16,7 +14,7 @@ public:
             }
         }
     }
-    
+
     /** Returns if there is any word in the trie that equals to the given word after modifying exactly one character */
     bool search(string word) {
         for (int i = 0; i < word.size(); i++) {
@@ -30,7 +28,7 @@ public:
         }
         return false;
     }
-    unordered_map<string, unordered_set<char> > m;
+    unordered_map<string, unordered_set<char>> m;
 };
 
 /**

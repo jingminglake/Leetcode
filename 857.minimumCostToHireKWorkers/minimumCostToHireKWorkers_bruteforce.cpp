@@ -14,7 +14,7 @@ public:
     };
     double mincostToHireWorkers(vector<int>& quality, vector<int>& wage, int K) {
         int n = quality.size();
-        vector<tuple<int, double, int> > workers; // 0 -> quality, 1 -> w / q, 2 -> index
+        vector<tuple<int, double, int>> workers; // 0 -> quality, 1 -> w / q, 2 -> index
         for (int i = 0; i < n; i++) {
             workers.emplace_back(quality[i], 1.0 * wage[i] / quality[i], i);
         }
@@ -34,7 +34,7 @@ public:
                 cnt++;
             }
             if (cnt == K)
-                mincost = min (mincost, candidate_cost);
+                mincost = min(mincost, candidate_cost);
         }
         return mincost;
     }
@@ -42,7 +42,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> quality = {10,20,5}, wage = {70,50,30};
+    vector<int> quality = {10, 20, 5}, wage = {70, 50, 30};
     int K = 2;
     cout << s.mincostToHireWorkers(quality, wage, K) << endl;
     return 0;

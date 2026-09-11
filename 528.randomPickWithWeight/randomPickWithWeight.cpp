@@ -11,7 +11,7 @@ public:
         }
         srand(time(0));
     }
-    
+
     int pickIndex() {
         int len = preSum.size();
         if (len == 0)

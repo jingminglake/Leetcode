@@ -14,7 +14,7 @@ public:
         int res = len_A + 1;
         for (int i = 0; i <= len_A; i++) {
             while (!dq.empty() && preSum[i] - preSum[dq.front()] >= K) {
-                res = min (res, i - dq.front());
+                res = min(res, i - dq.front());
                 dq.pop_front();
             }
             while (!dq.empty() && preSum[i] <= preSum[dq.back()]) {
@@ -28,7 +28,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> A = {2,-1,2};
+    vector<int> A = {2, -1, 2};
     int K = 3;
     cout << s.shortestSubarray(A, K) << endl;
     return 0;

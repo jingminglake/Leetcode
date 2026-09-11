@@ -9,7 +9,7 @@ using namespace std;
 class Solution {
 public:
     bool isPossible(vector<int>& nums) {
-        unordered_map<int, priority_queue<int, vector<int>, greater<int> > > m;
+        unordered_map<int, priority_queue<int, vector<int>, greater<int>>> m;
         for (int num : nums) {
             if (m.count(num - 1) && !m[num - 1].empty()) {
                 int prev_len = m[num - 1].top();
@@ -28,11 +28,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<int> nums = {1,2,3,4,4,5};
-  cout << s.isPossible(nums);
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    vector<int> nums = {1, 2, 3, 4, 4, 5};
+    cout << s.isPossible(nums);
+    cout << endl;
+    return 0;
 }

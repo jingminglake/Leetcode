@@ -7,13 +7,13 @@ using namespace std;
 class Solution {
 public:
     bool pyramidTransition(string bottom, vector<string>& allowed) {
-        unordered_map<string, unordered_set<char> > neighbors;
+        unordered_map<string, unordered_set<char>> neighbors;
         for (string& s : allowed)
             neighbors[s.substr(0, 2)].insert(s.back());
         unordered_set<string> visited;
         return dfs(bottom, neighbors, visited);
     }
-    bool dfs(string& bottom, unordered_map<string, unordered_set<char> >& neighbors, unordered_set<string>& visited) {
+    bool dfs(string& bottom, unordered_map<string, unordered_set<char>>& neighbors, unordered_set<string>& visited) {
         if (bottom.length() == 1)
             return true;
         vector<string> nextLevel;
@@ -28,7 +28,8 @@ public:
         }
         return false;
     }
-    void getNextLevel(int i, string& path, string& bottom, unordered_map<string, unordered_set<char> >& neighbors, vector<string>& nextLevel) {
+    void getNextLevel(int i, string& path, string& bottom, unordered_map<string, unordered_set<char>>& neighbors,
+                      vector<string>& nextLevel) {
         if (i == bottom.length() - 1) {
             nextLevel.push_back(path);
             return;
@@ -44,7 +45,7 @@ public:
 int main() {
     Solution s;
     string bottom = "XYZ";
-    vector<string> allowed = {"XYD", "YZE", "DEA", "FFF"}; 
+    vector<string> allowed = {"XYD", "YZE", "DEA", "FFF"};
     cout << s.pyramidTransition(bottom, allowed) << endl;
     return 0;
 }

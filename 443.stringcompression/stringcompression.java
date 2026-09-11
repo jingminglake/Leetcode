@@ -19,11 +19,11 @@ class Solution {
         }
         return last;
     }
-    
+
     private List<Character> getDigits(int len) {
         List<Character> res = new LinkedList<>();
         while (len != 0) {
-            res.add(0, (char)('0' + len % 10) );
+            res.add(0, (char) ('0' + len % 10));
             len /= 10;
         }
         return res;

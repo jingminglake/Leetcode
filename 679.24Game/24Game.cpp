@@ -35,7 +35,7 @@ public:
                 }
                 for (double d : temp) {
                     next.push_back(d);
-                    dfs (next, res);
+                    dfs(next, res);
                     next.pop_back();
                 }
             }
@@ -45,7 +45,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> nums = {1,5,5,5};
+    vector<int> nums = {1, 5, 5, 5};
     cout << s.judgePoint24(nums) << endl;
     return 0;
 }

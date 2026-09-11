@@ -17,7 +17,7 @@ public:
         }
         reverse(vec.begin(), vec.end());
     }
-    
+
     char next() {
         char res = ' ';
         if (hasNext()) {
@@ -26,16 +26,14 @@ public:
             --vec.back();
             if (vec.back() == 0) {
                 vec.pop_back();
-            } else if (vec.back() > 0){
+            } else if (vec.back() > 0) {
                 vec.push_back(res);
             }
         }
         return res;
     }
-    
-    bool hasNext() {
-        return !vec.empty();
-    }
+
+    bool hasNext() { return !vec.empty(); }
     vector<long> vec;
 };
 

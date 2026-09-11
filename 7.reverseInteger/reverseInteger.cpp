@@ -22,8 +22,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     int a = -2143857412;
     cout << s.reverse(a) << endl;

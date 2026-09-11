@@ -1,11 +1,12 @@
 class Solution {
     public int singleNonDuplicate(int[] nums) {
         int len = nums.length;
-        if (len == 1) return nums[0];
+        if (len == 1)
+            return nums[0];
         int left = 0, right = len - 1;
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if ( (right - mid) % 2 == 0 ) {
+            if ((right - mid) % 2 == 0) {
                 if (nums[mid] == nums[mid - 1]) {
                     right = mid;
                 } else if (nums[mid] == nums[mid + 1]) {
@@ -22,7 +23,6 @@ class Solution {
                     return nums[mid];
                 }
             }
-            
         }
         return nums[left];
     }

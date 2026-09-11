@@ -2,9 +2,9 @@ class Solution {
     public int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
         return dfs(price, special, needs, 0);
     }
-    
+
     public int dfs(List<Integer> price, List<List<Integer>> special, List<Integer> needs, int start) {
-        int res =  purchaseWithOriginalPrice(price, needs);
+        int res = purchaseWithOriginalPrice(price, needs);
         for (int i = start; i < special.size(); i++) {
             List<Integer> offer = special.get(i);
             List<Integer> temp = new ArrayList<>();
@@ -21,7 +21,7 @@ class Solution {
         }
         return res;
     }
-    
+
     public int purchaseWithOriginalPrice(List<Integer> price, List<Integer> needs) {
         int total = 0;
         for (int i = 0; i < needs.size(); i++) {

@@ -8,7 +8,7 @@ public:
         if (grid.size() == 0 || grid[0].size() == 0)
             return 0;
         int res = 0;
-        vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+        vector<pair<int, int>> dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
         for (int i = 0; i < grid.size(); i++) {
             for (int j = 0; j < grid[0].size(); j++) {
                 if (grid[i][j] == 1)
@@ -17,7 +17,7 @@ public:
         }
         return res;
     }
-    int checkNeighbor(vector<vector<int>>& grid, int i, int j, vector<pair<int, int> >& dirs) {
+    int checkNeighbor(vector<vector<int>>& grid, int i, int j, vector<pair<int, int>>& dirs) {
         int m = grid.size(), n = grid[0].size();
         int res = 0;
         for (auto& dir : dirs) {
@@ -29,18 +29,17 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[4] = {0,1,0,0};
-    int b[4] = {1,1,1,0};
-    int c[4] = {0,1,0,0};
-    int d[4] = {1,1,0,0};
-    vector<int> vec1(a, a+4);
-    vector<int> vec2(b, b+4);
-    vector<int> vec3(c, c+4);
-    vector<int> vec4(d, d+4);
-    vector<vector<int> > grid;
+    int a[4] = {0, 1, 0, 0};
+    int b[4] = {1, 1, 1, 0};
+    int c[4] = {0, 1, 0, 0};
+    int d[4] = {1, 1, 0, 0};
+    vector<int> vec1(a, a + 4);
+    vector<int> vec2(b, b + 4);
+    vector<int> vec3(c, c + 4);
+    vector<int> vec4(d, d + 4);
+    vector<vector<int>> grid;
     grid.push_back(vec1);
     grid.push_back(vec2);
     grid.push_back(vec3);

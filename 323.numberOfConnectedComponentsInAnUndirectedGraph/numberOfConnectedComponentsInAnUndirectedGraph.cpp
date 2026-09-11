@@ -27,7 +27,7 @@ public:
 
 int main() {
     Solution s;
-    vector<pair<int, int> > edges = {make_pair(0,1), make_pair(1,2), make_pair(3,4)};
+    vector<pair<int, int>> edges = {make_pair(0, 1), make_pair(1, 2), make_pair(3, 4)};
     int N = 5;
     cout << s.countComponents(N, edges) << endl;
     return 0;

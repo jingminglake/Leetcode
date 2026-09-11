@@ -14,7 +14,7 @@ public:
         s.insert(0);
         q.push_back(0);
     }
-    
+
     /** Moves the snake.
         @param direction - 'U' = Up, 'L' = Left, 'R' = Right, 'D' = Down 
         @return The game's score after the move. Return -1 if game over. 

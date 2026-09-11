@@ -19,7 +19,7 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<int> > updates = { {1,3,2}, {2,4,3}, {0,2,-2}};
+    vector<vector<int>> updates = {{1, 3, 2}, {2, 4, 3}, {0, 2, -2}};
     for (int i : s.getModifiedArray(5, updates))
         cout << i << " ";
     cout << endl;

@@ -22,8 +22,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string pattern = "abba";
     string str = "dog dog dog dog";

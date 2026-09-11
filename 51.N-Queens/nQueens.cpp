@@ -4,13 +4,13 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<string> > solveNQueens(int n) {
-        vector<vector<string> > res;
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> res;
         vector<string> nQueens(n, string(n, '.'));
         solveNQueensHelper(res, nQueens, 0, n);
         return res;
     }
-    void solveNQueensHelper(vector<vector<string> >& res, vector<string>& nQueens, int row, int& n) {
+    void solveNQueensHelper(vector<vector<string>>& res, vector<string>& nQueens, int row, int& n) {
         if (row == n) {
             res.push_back(nQueens);
             return;
@@ -42,13 +42,12 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  for (vector<string>& v : s.solveNQueens(8)) {
-    for (string i : v)
-      cout << i << " ";
-    cout << endl;
-  }
-  return 0;
+int main() {
+    Solution s;
+    for (vector<string>& v : s.solveNQueens(8)) {
+        for (string i : v)
+            cout << i << " ";
+        cout << endl;
+    }
+    return 0;
 }

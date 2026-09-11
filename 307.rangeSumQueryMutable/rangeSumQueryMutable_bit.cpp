@@ -7,10 +7,8 @@ public:
         for (int i = 0; i < size; i++)
             add(i, A[i]);
     }
-    int lowbit(int index) {
-        return index & (-index);
-    }
-    
+    int lowbit(int index) { return index & (-index); }
+
     void add(int index, int val) {
         index++;
         for (int i = index; i <= size; i += lowbit(i)) {
@@ -28,9 +26,7 @@ public:
             res += tree[i];
         return res;
     }
-    int sumRange(int i, int j) {
-        return preSum(j) - preSum(i - 1);
-    }
+    int sumRange(int i, int j) { return preSum(j) - preSum(i - 1); }
     int size;
     vector<int> tree;
     vector<int> A;

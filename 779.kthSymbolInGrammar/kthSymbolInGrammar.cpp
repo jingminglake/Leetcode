@@ -8,7 +8,7 @@ public:
             return 0;
         if (K % 2 == 0)
             return kthGrammar(N - 1, K / 2) == 0 ? 1 : 0;
-        else 
+        else
             return kthGrammar(N - 1, (K + 1) / 2) == 0 ? 0 : 1;
     }
 };

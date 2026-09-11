@@ -12,7 +12,7 @@ public:
         return res;
     }
     bool isValid(int N) {
-        bool res = false;// false, unless there are at least one 2,5,6,9
+        bool res = false; // false, unless there are at least one 2,5,6,9
         while (N > 0) {
             int digit = N % 10;
             if (digit == 3 || digit == 4 || digit == 7)
@@ -26,7 +26,7 @@ public:
 };
 
 int main() {
-  Solution s;
-  cout << s.rotatedDigits(100) << endl;
-  return 0;
+    Solution s;
+    cout << s.rotatedDigits(100) << endl;
+    return 0;
 }

@@ -20,12 +20,11 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss[6] = {"eat", "tea", "tan", "ate", "nat", "bat"};
-    vector<string> vec(ss, ss+6);
-    vector<vector<string> > res = s.groupAnagrams(vec);
+    vector<string> vec(ss, ss + 6);
+    vector<vector<string>> res = s.groupAnagrams(vec);
     for (vector<string>& v : res) {
         for (string s : v)
             cout << s << " ";

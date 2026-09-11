@@ -1,12 +1,13 @@
 class Solution {
 public:
     vector<vector<int>> highFive(vector<vector<int>>& items) {
-        vector<vector<int> > res;
+        vector<vector<int>> res;
         map<int, priority_queue<int, vector<int>, greater<int>>> treeM;
         for (vector<int>& item : items) {
             priority_queue<int, vector<int>, greater<int>>& pq = treeM[item[0]];
             pq.push(item[1]);
-            if (pq.size() > 5) pq.pop();
+            if (pq.size() > 5)
+                pq.pop();
         }
         for (auto& p : treeM) {
             priority_queue<int, vector<int>, greater<int>>& pq = p.second;

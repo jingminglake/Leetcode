@@ -20,12 +20,11 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> ss = {1,7,3,6,5,6};
+    vector<int> ss = {1, 7, 3, 6, 5, 6};
     vector<int> ss1 = {1};
-    vector<int> ss2 = {1,2,3};
+    vector<int> ss2 = {1, 2, 3};
     cout << s.pivotIndex(ss) << endl;
     cout << s.pivotIndex(ss1) << endl;
     cout << s.pivotIndex(ss2) << endl;

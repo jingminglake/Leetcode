@@ -3,11 +3,11 @@
 #include <unordered_map>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-    vector<vector<string> > groupAnagrams(vector<string>& strs) {
-        vector<vector<string> > ans;
-        unordered_map<string, vector<string> > m;
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>> ans;
+        unordered_map<string, vector<string>> m;
         for (string& str : strs) {
             //string key = str;
             //sort(key.begin(), key.end());
@@ -16,7 +16,7 @@ public:
             cout << "key-->" << key << endl;
             m[key].push_back(str);
         }
-        unordered_map<string, vector<string> >::iterator it = m.begin();
+        unordered_map<string, vector<string>>::iterator it = m.begin();
         while (it != m.end()) {
             ans.push_back(it->second);
             ++it;
@@ -39,12 +39,11 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss[6] = {"eat", "tea", "tan", "ate", "nat", "bat"};
-    vector<string> vec(ss, ss+6);
-    vector<vector<string> > res = s.groupAnagrams(vec);
+    vector<string> vec(ss, ss + 6);
+    vector<vector<string>> res = s.groupAnagrams(vec);
     for (vector<string>& v : res) {
         for (string s : v)
             cout << s << " ";

@@ -6,7 +6,7 @@ class Solution {
 public:
     class TreeNode {
     public:
-        TreeNode(int _key, int _val) : left(nullptr), right(nullptr), key(_key), val(_val){};
+        TreeNode(int _key, int _val) : left(nullptr), right(nullptr), key(_key), val(_val) {};
         TreeNode *left, *right;
         int key, val;
     };
@@ -17,10 +17,8 @@ public:
         root = buildTree(preSum, 0, preSum.size() - 1);
         srand(time(0));
     }
-    ~Solution() {
-        deleteTree(root);
-    }
-    
+    ~Solution() { deleteTree(root); }
+
     int pickIndex() {
         int res = -1;
         int len = preSum.size();
@@ -28,13 +26,13 @@ public:
             return res;
         int weight = rand() % preSum.back() + 1;
         //cout << "weight: " << weight << endl;
-        TreeNode *node = findIndex(root, weight);
+        TreeNode* node = findIndex(root, weight);
         if (node)
             res = node->val;
         return res;
     }
-    TreeNode* findIndex(TreeNode *root, int weight) {
-        TreeNode *lb = nullptr;
+    TreeNode* findIndex(TreeNode* root, int weight) {
+        TreeNode* lb = nullptr;
         while (root) {
             if (root->key >= weight) {
                 lb = root;
@@ -49,7 +47,7 @@ public:
         if (left > right)
             return nullptr;
         int mid = left + (right - left) / 2;
-        TreeNode *node = new TreeNode(w[mid], mid);
+        TreeNode* node = new TreeNode(w[mid], mid);
         //cout << node->key << "->" << node->val << endl;
         node->left = buildTree(w, left, mid - 1);
         node->right = buildTree(w, mid + 1, right);

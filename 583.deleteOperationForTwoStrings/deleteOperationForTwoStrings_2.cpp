@@ -6,7 +6,7 @@ class Solution {
 public:
     int minDistance(string word1, string word2) {
         int len1 = word1.length(), len2 = word2.length();
-        vector<vector<int> > dp(len1 + 1, vector<int>(len2 + 1, 0));
+        vector<vector<int>> dp(len1 + 1, vector<int>(len2 + 1, 0));
         for (int i = 1; i <= len1; i++) {
             dp[i][0] = i;
         }
@@ -26,7 +26,7 @@ public:
     }
 };
 
-int main () {
+int main() {
     Solution s;
     string word1 = "sea";
     string word2 = "eat";

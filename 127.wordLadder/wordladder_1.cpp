@@ -40,8 +40,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string beginWord = "hit";
     string endWord = "cog";

@@ -6,7 +6,7 @@ public:
         cur = ' ';
         count = 0;
     }
-    
+
     char next() {
         char res = ' ';
         if (hasNext()) {
@@ -15,7 +15,7 @@ public:
         }
         return res;
     }
-    
+
     bool hasNext() {
         while (index != s.length() && count == 0) {
             cur = s[index++];

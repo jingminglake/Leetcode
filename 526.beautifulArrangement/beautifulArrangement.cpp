@@ -25,8 +25,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     cout << s.countArrangement(3);
     cout << endl;

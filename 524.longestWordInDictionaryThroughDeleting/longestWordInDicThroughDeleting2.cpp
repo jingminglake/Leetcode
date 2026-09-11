@@ -23,8 +23,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string s1 = "abpcplea";
     vector<string> dic = {"ale", "apple", "monkey", "plea"};

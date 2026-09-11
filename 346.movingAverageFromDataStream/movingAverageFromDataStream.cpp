@@ -5,7 +5,7 @@ public:
         len = size;
         sum = 0;
     }
-    
+
     double next(int val) {
         q.push(val);
         sum += val;

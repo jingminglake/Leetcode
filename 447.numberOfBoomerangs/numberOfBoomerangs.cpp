@@ -28,13 +28,12 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<pair<int, int> > vec;
-    vec.push_back(make_pair(0,0));
-    vec.push_back(make_pair(1,0));
-    vec.push_back(make_pair(2,0));
+    vector<pair<int, int>> vec;
+    vec.push_back(make_pair(0, 0));
+    vec.push_back(make_pair(1, 0));
+    vec.push_back(make_pair(2, 0));
     cout << s.numberOfBoomerangs(vec);
     cout << endl;
     return 0;

@@ -22,7 +22,7 @@ public:
             if (!visited.count(node_next)) {
                 res += (char)(i + '0');
                 visited.insert(node_next);
-                if(dfs(res, nodes, n, k, visited))
+                if (dfs(res, nodes, n, k, visited))
                     return true;
                 visited.erase(node_next);
                 res.pop_back();
@@ -33,8 +33,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     int n = 2, k = 2;
     cout << s.crackSafe(n, k);

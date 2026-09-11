@@ -5,10 +5,8 @@ using namespace std;
 class MinStack {
 public:
     /** initialize your data structure here. */
-    MinStack() {
-        minV = INT_MAX;
-    }
-    
+    MinStack() { minV = INT_MAX; }
+
     void push(int x) {
         if (x <= minV) {
             s.push(minV);
@@ -16,7 +14,7 @@ public:
         }
         s.push(x);
     }
-    
+
     void pop() {
         if (!s.empty()) {
             if (s.top() == minV) {
@@ -26,20 +24,15 @@ public:
             s.pop();
         }
     }
-    
-    int top() {
-        return s.top();
-    }
-    
-    int getMin() {
-        return minV;
-    }
+
+    int top() { return s.top(); }
+
+    int getMin() { return minV; }
     int minV;
     stack<int> s;
 };
 
-int main()
-{
+int main() {
     MinStack obj;
     int i = 1;
     while (i < 10)

@@ -1,5 +1,5 @@
 // Forward declaration of the read4 API.
-int read4(char *buf);
+int read4(char* buf);
 
 class Solution {
 public:
@@ -8,7 +8,7 @@ public:
      * @param n   Maximum number of characters to read
      * @return    The number of characters read
      */
-    int read(char *buf, int n) {
+    int read(char* buf, int n) {
         char buf4[4];
         bool eof = false;
         int index = 0;
@@ -18,7 +18,7 @@ public:
                 eof = true;
             }
             int remain = n - index;
-            int round_len = min (len, remain);
+            int round_len = min(len, remain);
             for (int k = 0; k < round_len; k++)
                 buf[index++] = buf4[k];
         }

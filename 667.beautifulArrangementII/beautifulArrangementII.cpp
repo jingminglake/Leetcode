@@ -22,12 +22,10 @@ public:
 };
 
 int main() {
-  Solution s;
-  for (int i : s.constructArray(3, 2)) {
-    cout << i << " ";
-  }
-  cout << endl;
-  return 0;
+    Solution s;
+    for (int i : s.constructArray(3, 2)) {
+        cout << i << " ";
+    }
+    cout << endl;
+    return 0;
 }
-
-

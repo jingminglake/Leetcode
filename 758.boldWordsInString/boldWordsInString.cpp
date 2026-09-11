@@ -10,8 +10,8 @@ public:
         int end = -1;
         for (int i = 0; i < len_s; i++) {
             for (string& word : words) {
-                if (word == S.substr(i, word.length())) 
-                    end = max (end, i + (int)word.length());
+                if (word == S.substr(i, word.length()))
+                    end = max(end, i + (int)word.length());
             }
             bold[i] = end > i;
         }

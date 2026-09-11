@@ -5,34 +5,32 @@ using namespace std;
 
 struct TreeNode {
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    TreeNode* left;
+    TreeNode* right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
 class BSTIterator {
 public:
-    BSTIterator(TreeNode *root) {
+    BSTIterator(TreeNode* root) {
         if (root)
             addPath(root);
     }
-    
-    void addPath (TreeNode* t) {
+
+    void addPath(TreeNode* t) {
         while (t) {
             s.push(t);
             t = t->left;
         }
     }
     /** @return whether we have a next smallest number */
-    bool hasNext() {
-        return !s.empty();
-    }
+    bool hasNext() { return !s.empty(); }
 
     /** @return the next smallest number */
     int next() {
         int res = -1;
         if (hasNext()) {
-            TreeNode *t = s.top();
+            TreeNode* t = s.top();
             s.pop();
             res = t->val;
             addPath(t->right);
@@ -42,11 +40,10 @@ public:
     stack<TreeNode*> s;
 };
 
-int main()
-{
-    int tree[7] = {5,3,6,2,4,9999,7};
-    int size = sizeof(tree)/sizeof(tree[0]);
-    vector<TreeNode *> vec;
+int main() {
+    int tree[7] = {5, 3, 6, 2, 4, 9999, 7};
+    int size = sizeof(tree) / sizeof(tree[0]);
+    vector<TreeNode*> vec;
     for (int i = 0; i < size; i++) {
         if (tree[i] != 9999) {
             vec.push_back(new TreeNode(tree[i]));
@@ -54,13 +51,13 @@ int main()
             vec.push_back(NULL);
         }
     }
-    for (int i = 0; i < size/2; i++) {
-        if(!vec[i])
+    for (int i = 0; i < size / 2; i++) {
+        if (!vec[i])
             continue;
-        if (i*2 + 1 < size)
-            vec[i]->left = vec[i*2 + 1];
-        if (i*2 + 2 < size)
-            vec[i]->right = vec[i*2 + 2];
+        if (i * 2 + 1 < size)
+            vec[i]->left = vec[i * 2 + 1];
+        if (i * 2 + 2 < size)
+            vec[i]->right = vec[i * 2 + 2];
     }
     BSTIterator i = BSTIterator(vec[0]);
     while (i.hasNext())

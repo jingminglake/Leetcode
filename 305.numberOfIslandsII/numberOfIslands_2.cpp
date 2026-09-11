@@ -27,7 +27,7 @@ public:
         vector<int> res;
         if (m <= 0 || n <= 0)
             return res;
-        vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+        vector<pair<int, int>> dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
         for (auto& p : positions) {
             int node = p.first * n + p.second;
             parent[node] = node;
@@ -48,11 +48,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     int m = 3, n = 3;
-    vector<pair<int, int> > positions = {{0,0}, {0,1}, {1,2}, {2,1}};
+    vector<pair<int, int>> positions = {{0, 0}, {0, 1}, {1, 2}, {2, 1}};
     for (int i : s.numIslands2(m, n, positions))
         cout << i << " ";
     cout << endl;

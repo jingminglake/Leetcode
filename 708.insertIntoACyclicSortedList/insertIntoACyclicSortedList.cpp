@@ -18,24 +18,24 @@ class Solution {
 public:
     Node* insert(Node* head, int insertVal) {
         if (!head) {
-            Node *n = new Node(insertVal, nullptr);
+            Node* n = new Node(insertVal, nullptr);
             n->next = n;
             return n;
         }
-       /* if (head->next == head) {
+        /* if (head->next == head) {
             Node *n = new Node(insertVal, head);
             head->next = n;
             return head;
         }*/
-        Node *prev = nullptr;
-        Node *cur = head;
+        Node* prev = nullptr;
+        Node* cur = head;
         bool inserted = false;
         while (!prev || prev->next != head) {
-            if ((cur->val <= insertVal && cur->next->val >= insertVal) || 
+            if ((cur->val <= insertVal && cur->next->val >= insertVal) ||
                 (cur->val < insertVal && cur->val > cur->next->val) ||
-                (cur->next->val > insertVal && cur->val > cur->next->val) ) {
+                (cur->next->val > insertVal && cur->val > cur->next->val)) {
                 //cout << "cur-->" << cur->val << endl;
-                Node *n = new Node(insertVal, cur->next);
+                Node* n = new Node(insertVal, cur->next);
                 cur->next = n;
                 inserted = true;
                 break;
@@ -45,7 +45,7 @@ public:
             }
         }
         if (!inserted) {
-            Node *n = new Node(insertVal, head);
+            Node* n = new Node(insertVal, head);
             prev->next = n;
         }
         return head;
@@ -53,8 +53,8 @@ public:
 };
 
 void traverse(Node* head) {
-    Node *cur = head;
-    Node *prev = nullptr;
+    Node* cur = head;
+    Node* prev = nullptr;
     while (cur) {
         cout << cur->val << " ";
         prev = cur;

@@ -31,10 +31,10 @@ public:
 };
 
 int main() {
-  Solution s;
-  vector<int> nums = {0, 1, 3, 50, 75}; 
-  for (string& ss : s.findMissingRanges(nums, 0, 99))
-    cout << ss << " ";
-  cout << endl;
-  return 0;
+    Solution s;
+    vector<int> nums = {0, 1, 3, 50, 75};
+    for (string& ss : s.findMissingRanges(nums, 0, 99))
+        cout << ss << " ";
+    cout << endl;
+    return 0;
 }

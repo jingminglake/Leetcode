@@ -22,9 +22,9 @@ public:
         for (int j = i + 1; j < stones.size(); j++) {
             int gap = stones[j] - stones[i];
             if (gap == k - 1 && dfs(j, k - 1, stones, dp))
-                    return true;
+                return true;
             else if (gap == k && dfs(j, k, stones, dp))
-                return true;        
+                return true;
             else if (gap == k + 1 && dfs(j, k + 1, stones, dp))
                 return true;
             else if (gap > k + 1)
@@ -36,7 +36,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> stones = {0,1,3,5,6,8,12,17};
+    vector<int> stones = {0, 1, 3, 5, 6, 8, 12, 17};
     cout << s.canCross(stones) << endl;
     return 0;
 }

@@ -9,13 +9,13 @@ public:
         vector<int> res;
         if (S.length() == 0)
             return res;
-        unordered_map<char, pair<int, int> > m;
+        unordered_map<char, pair<int, int>> m;
         for (int i = 0; i < S.length(); i++) {
             if (!m.count(S[i])) {
-                 m[S[i]].first = i;
-                 m[S[i]].second = i;
+                m[S[i]].first = i;
+                m[S[i]].second = i;
             } else {
-                 m[S[i]].second = i;
+                m[S[i]].second = i;
             }
         }
         int left = m[S[0]].first, right = m[S[0]].second;
@@ -25,7 +25,7 @@ public:
                 left = m[S[i]].first;
                 right = m[S[i]].second;
             } else {
-                right = max (right, m[S[i]].second);
+                right = max(right, m[S[i]].second);
             }
         }
         res.push_back(right - left + 1);
@@ -36,7 +36,7 @@ public:
 int main() {
     Solution s;
     string S = "ababcbacadefegdehijhklij";
-    for(int& v : s.partitionLabels(S))
+    for (int& v : s.partitionLabels(S))
         cout << v << " ";
     cout << endl;
     return 0;

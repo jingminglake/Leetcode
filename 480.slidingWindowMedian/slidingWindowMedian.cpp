@@ -54,10 +54,9 @@ public:
     multiset<int> leftS, rightS;
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> nums = {1,3,-1,-3,5,3,6,7};
+    vector<int> nums = {1, 3, -1, -3, 5, 3, 6, 7};
     vector<double> vec = s.medianSlidingWindow(nums, 3);
     for (double d : vec)
         cout << d << " ";

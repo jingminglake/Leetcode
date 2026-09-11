@@ -6,7 +6,8 @@ class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
         string res = "";
-        if (strs.empty()) return res;
+        if (strs.empty())
+            return res;
         for (int j = 0; j < strs[0].size(); j++) {
             bool same = true;
             for (int i = 1; i < strs.size(); i++) {
@@ -15,15 +16,16 @@ public:
                     break;
                 }
             }
-            if (same) res += strs[0][j];
-            else break;
+            if (same)
+                res += strs[0][j];
+            else
+                break;
         }
         return res;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<string> vec = {"abc", "ab", "abcd"};
     cout << s.longestCommonPrefix(vec);

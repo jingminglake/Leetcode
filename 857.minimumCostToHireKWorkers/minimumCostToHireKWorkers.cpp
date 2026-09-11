@@ -5,7 +5,7 @@ using namespace std;
 class Solution {
 public:
     double mincostToHireWorkers(vector<int>& quality, vector<int>& wage, int K) {
-        vector<pair<double, int> > workers;
+        vector<pair<double, int>> workers;
         for (int i = 0; i < quality.size(); i++)
             workers.emplace_back(1.0 * wage[i] / quality[i], quality[i]);
         sort(workers.begin(), workers.end());
@@ -20,7 +20,7 @@ public:
                 pq.pop();
             }
             if (pq.size() == K) {
-                res = min (res, quality_sum * worker.first);
+                res = min(res, quality_sum * worker.first);
             }
         }
         return res;
@@ -29,7 +29,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> quality = {10,20,5}, wage = {70,50,30};
+    vector<int> quality = {10, 20, 5}, wage = {70, 50, 30};
     int K = 2;
     cout << s.mincostToHireWorkers(quality, wage, K) << endl;
     return 0;

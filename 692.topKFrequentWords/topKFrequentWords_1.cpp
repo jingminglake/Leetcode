@@ -8,7 +8,7 @@ class Solution {
 public:
     class Compare {
     public:
-        bool operator() (const pair<string, int>& p1, const pair<string, int>& p2) const{
+        bool operator()(const pair<string, int>& p1, const pair<string, int>& p2) const {
             return p1.second == p2.second ? p1.first < p2.first : p1.second > p2.second;
         }
     };
@@ -19,12 +19,12 @@ public:
         unordered_map<string, int> m;
         for (string& word : words)
             m[word]++;
-        priority_queue<pair<string, int>, vector<pair<string, int> >, Compare> pq;
+        priority_queue<pair<string, int>, vector<pair<string, int>>, Compare> pq;
         for (auto& p : m) {
             if (pq.size() < k)
                 pq.emplace(p.first, p.second);
             else {
-                if (pq.top().second < p.second || (pq.top().second == p.second && pq.top().first > p.first) ) {
+                if (pq.top().second < p.second || (pq.top().second == p.second && pq.top().first > p.first)) {
                     pq.pop();
                     pq.emplace(p.first, p.second);
                 }
@@ -39,17 +39,16 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<string> words1 = {"i", "love", "leetcode", "i", "love", "coding"};
-  vector<string> words2 = {"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"};
-  for (string& str : s.topKFrequent(words1, 2)) {
-    cout << str << " ";
-  }
-  cout << endl;
-  for (string& str : s.topKFrequent(words2, 4)) {
-    cout << str << " ";
-  }
-  cout << endl;
+int main() {
+    Solution s;
+    vector<string> words1 = {"i", "love", "leetcode", "i", "love", "coding"};
+    vector<string> words2 = {"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"};
+    for (string& str : s.topKFrequent(words1, 2)) {
+        cout << str << " ";
+    }
+    cout << endl;
+    for (string& str : s.topKFrequent(words2, 4)) {
+        cout << str << " ";
+    }
+    cout << endl;
 }

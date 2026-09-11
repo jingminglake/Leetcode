@@ -24,7 +24,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> nums = {3,4,-1,1};
+    vector<int> nums = {3, 4, -1, 1};
     cout << s.firstMissingPositive(nums) << endl;
     return 0;
 }

@@ -1,5 +1,5 @@
 // Forward declaration of the read4 API.
-int read4(char *buf);
+int read4(char* buf);
 
 class Solution {
 public:
@@ -12,7 +12,7 @@ public:
         len_t = 0;
         p = 0;
     }
-    int read(char *buf, int n) {
+    int read(char* buf, int n) {
         int index = 0;
         bool eof = false;
         while (!eof && index < n) {
@@ -20,7 +20,7 @@ public:
                 len_t = read4(temp);
             if (len_t < 4)
                 eof = true;
-            while (index < n && p < len_t) 
+            while (index < n && p < len_t)
                 buf[index++] = temp[p++];
             if (p == len_t)
                 p = 0;

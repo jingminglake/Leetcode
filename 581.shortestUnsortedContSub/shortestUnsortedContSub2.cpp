@@ -14,7 +14,7 @@ public:
         int left = n - 1;
         for (int i = 0; i < n; i++) {
             while (!s.empty() && nums[i] < nums[s.top()]) {
-                left = min (left, s.top());
+                left = min(left, s.top());
                 s.pop();
             }
             s.push(i);
@@ -23,7 +23,7 @@ public:
         int right = 0;
         for (int i = n - 1; i >= 0; i--) {
             while (!s.empty() && nums[i] > nums[s.top()]) {
-                right = max (right, s.top());
+                right = max(right, s.top());
                 s.pop();
             }
             s.push(i);
@@ -32,12 +32,11 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[7] = {2,6,4,8,10,9,15};
-    vector<int> vec(a, a+7);
+    int a[7] = {2, 6, 4, 8, 10, 9, 15};
+    vector<int> vec(a, a + 7);
     cout << s.findUnsortedSubarray(vec) << endl;
- 
+
     return 0;
 }

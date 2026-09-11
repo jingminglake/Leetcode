@@ -7,15 +7,15 @@ public class JewelsAndStones {
             m.add(c);
         }
         for (char c : S.toCharArray()) {
-            if (m.contains(c)) res++;
+            if (m.contains(c))
+                res++;
         }
         return res;
     }
     public static void main(String[] args) {
-	String J = new String("aA");
-	String S = new String("aAAbbb");
-	JewelsAndStones s = new JewelsAndStones();
-	System.out.println(s.numJewelsInStones(J, S));
+        String J = new String("aA");
+        String S = new String("aAAbbb");
+        JewelsAndStones s = new JewelsAndStones();
+        System.out.println(s.numJewelsInStones(J, S));
     }
-
 }

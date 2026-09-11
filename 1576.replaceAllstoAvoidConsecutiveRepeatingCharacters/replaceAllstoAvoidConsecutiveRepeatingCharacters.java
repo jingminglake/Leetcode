@@ -4,7 +4,7 @@ class Solution {
         for (int i = 0; i < ss.length; i++) {
             if (ss[i] == '?') {
                 for (char c = 'a'; c <= 'z'; c++) {
-                    if ( (i - 1 < 0 || c != ss[i - 1]) && (i + 1 >= ss.length || c != ss[i + 1]) ) {
+                    if ((i - 1 < 0 || c != ss[i - 1]) && (i + 1 >= ss.length || c != ss[i + 1])) {
                         ss[i] = c;
                     }
                 }

@@ -28,7 +28,7 @@ public:
                 stk.pop();
                 stk.push(temp);
             } else if (sign == '/') {
-                int temp = stk.top()  / num;
+                int temp = stk.top() / num;
                 stk.pop();
                 stk.push(temp);
             }
@@ -43,11 +43,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string ss = " 3+5 / 2 ";
-  cout << s.calculate(ss);
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    string ss = " 3+5 / 2 ";
+    cout << s.calculate(ss);
+    cout << endl;
+    return 0;
 }

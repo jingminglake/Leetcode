@@ -2,9 +2,9 @@
 #include <vector>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  int findTargetSumWays(vector<int>& nums, int S) {
+    int findTargetSumWays(vector<int>& nums, int S) {
         if (nums.size() == 0)
             return 0;
         int res = 0;
@@ -23,11 +23,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<int> vec(5, 1);
-  cout << s.findTargetSumWays(vec, 3);
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    vector<int> vec(5, 1);
+    cout << s.findTargetSumWays(vec, 3);
+    cout << endl;
+    return 0;
 }

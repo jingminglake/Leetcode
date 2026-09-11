@@ -3,9 +3,7 @@ using namespace std;
 
 class Solution {
 public:
-    int calculate(string s) {
-        return helper(s, 0, s.length() - 1);
-    }
+    int calculate(string s) { return helper(s, 0, s.length() - 1); }
     int helper(string& s, int start, int end) {
         int res = 0;
         int num = 0;
@@ -25,7 +23,7 @@ public:
                     i++;
                 }
                 num = helper(s, j + 1, i - 1);
-            } 
+            }
             if (s[i] == '+' || s[i] == '-' || i == end) {
                 res += sign * num;
                 num = 0;

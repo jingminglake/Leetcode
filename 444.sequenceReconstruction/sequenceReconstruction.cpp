@@ -34,9 +34,9 @@ public:
 
 int main() {
     Solution s;
-    vector<int> org = {1,2,3};
-    vector<vector<int> > seqs = {{1,2}, {1,3}, {2,3}};
-    cout <<  s.sequenceReconstruction(org, seqs);
+    vector<int> org = {1, 2, 3};
+    vector<vector<int>> seqs = {{1, 2}, {1, 3}, {2, 3}};
+    cout << s.sequenceReconstruction(org, seqs);
     cout << endl;
     return 0;
 }

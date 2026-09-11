@@ -7,7 +7,7 @@ public:
     string solveEquation(string equation) {
         int pos = equation.find("=");
         string left = equation.substr(0, pos), right = equation.substr(pos + 1);
-       /* cout << left << " " << right << endl;
+        /* cout << left << " " << right << endl;
         string delim = "+-";
         for (string& str : splitByMulti(equation, delim))
             cout << str << " ";
@@ -18,13 +18,15 @@ public:
         res[0] = left_res[0] - right_res[0];
         res[1] = right_res[1] - left_res[1];
         //cout << res[0] << " " << res[1] << endl;
-        if (res[0] == 0 && res[1] == 0) return "Infinite solutions";
-        if (res[0] == 0) return "No solution";
+        if (res[0] == 0 && res[1] == 0)
+            return "Infinite solutions";
+        if (res[0] == 0)
+            return "No solution";
         return "x=" + to_string(res[1] / res[0]);
     }
     vector<string> splitByMulti(string& str, string delim) {
         vector<string> tokens;
-        int left = 0, right = 0; 
+        int left = 0, right = 0;
         while ((right = str.find_first_of(delim, left)) != string::npos) {
             int start = left > 0 ? left - 1 : 0;
             tokens.push_back(str.substr(start, right - start));
@@ -47,15 +49,18 @@ public:
             //cout << token << endl;
             if (token.empty())
                 continue;
-            if (token == "+x" || token == "x") res[0] += 1;
-	        else if (token == "-x") res[0] -= 1;
-	        else if (token.find("x") != string::npos) res[0] += stoi(token.substr(0, token.find("x")));
-	        else res[1] += stoi(token);
+            if (token == "+x" || token == "x")
+                res[0] += 1;
+            else if (token == "-x")
+                res[0] -= 1;
+            else if (token.find("x") != string::npos)
+                res[0] += stoi(token.substr(0, token.find("x")));
+            else
+                res[1] += stoi(token);
         }
         return res;
     }
 };
-
 
 int main() {
     Solution s;

@@ -20,9 +20,9 @@ class ValidParentheses {
         }
         return stk.isEmpty();
     }
-	public static void main(String[] args) {
-		ValidParentheses s = new ValidParentheses();
-		String str = "{[]}";
-		System.out.println(s.isValid(str));
-	}
+    public static void main(String[] args) {
+        ValidParentheses s = new ValidParentheses();
+        String str = "{[]}";
+        System.out.println(s.isValid(str));
+    }
 }

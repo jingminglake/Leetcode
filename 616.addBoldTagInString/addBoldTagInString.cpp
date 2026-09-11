@@ -13,7 +13,7 @@ public:
             for (string& word : dict) {
                 int len = word.length();
                 if (i + len <= n && s.substr(i, len) == word)
-                    end = max (end, i + len);
+                    end = max(end, i + len);
             }
             bold[i] = end > i;
         }
@@ -23,7 +23,8 @@ public:
                 continue;
             }
             int j = i;
-            while (j < n && bold[j]) ++j;
+            while (j < n && bold[j])
+                ++j;
             res += "<b>" + s.substr(i, j - i) + "</b>";
             i = j - 1;
         }
@@ -34,7 +35,7 @@ public:
 int main() {
     Solution s;
     string str = "abcxyz123";
-    vector<string> dict = {"abc","123"};
+    vector<string> dict = {"abc", "123"};
     cout << s.addBoldTag(str, dict) << endl;
     return 0;
 }

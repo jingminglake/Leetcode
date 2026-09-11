@@ -5,15 +5,11 @@ using namespace std;
 class MyQueue {
 public:
     /** Initialize your data structure here. */
-    MyQueue() {
-        
-    }
-    
+    MyQueue() {}
+
     /** Push element x to the back of queue. */
-    void push(int x) {
-        s1.push(x);
-    }
-    
+    void push(int x) { s1.push(x); }
+
     /** Removes the element from in front of queue and returns that element. */
     int pop() {
         int res = -1;
@@ -21,11 +17,12 @@ public:
             adjust();
         }
         if (!s2.empty()) {
-            res = s2.top(); s2.pop();
+            res = s2.top();
+            s2.pop();
         }
         return res;
     }
-    
+
     /** Get the front element. */
     int peek() {
         if (s2.empty()) {
@@ -33,15 +30,13 @@ public:
         }
         return s2.top();
     }
-    
-    
+
     /** Returns whether the queue is empty. */
-    bool empty() {
-        return s1.empty() && s2.empty();
-    }
+    bool empty() { return s1.empty() && s2.empty(); }
     void adjust() {
         while (!s1.empty()) {
-            s2.push(s1.top()); s1.pop();
+            s2.push(s1.top());
+            s1.pop();
         }
     }
     stack<int> s1;
@@ -57,8 +52,7 @@ public:
  * bool param_4 = obj->empty();
  */
 
-int main()
-{
+int main() {
     MyQueue obj;
     int i = 1;
     while (i < 10)

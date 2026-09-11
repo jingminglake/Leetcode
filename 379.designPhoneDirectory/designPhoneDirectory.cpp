@@ -8,7 +8,7 @@ public:
         used = vector<bool>(maxNumbers, false);
         maxNum = maxNumbers;
     }
-    
+
     /** Provide a number which is not assigned to anyone.
         @return - Return an available number. Return -1 if none is available. */
     int get() {
@@ -20,14 +20,14 @@ public:
         }
         return res;
     }
-    
+
     /** Check if a number is available or not. */
     bool check(int number) {
         if (number >= 0 && number < maxNum)
             return !used[number];
         return false;
     }
-    
+
     /** Recycle or release a number. */
     void release(int number) {
         if (number < 0 || number >= maxNum || !used[number])

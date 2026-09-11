@@ -19,7 +19,7 @@ public:
 };
 
 int main() {
-  Solution s;
-  cout << s.similarRGB("#09f166") << endl;
-  return 0;
+    Solution s;
+    cout << s.similarRGB("#09f166") << endl;
+    return 0;
 }

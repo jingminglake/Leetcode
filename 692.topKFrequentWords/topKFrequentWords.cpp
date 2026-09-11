@@ -11,16 +11,17 @@ public:
         unordered_map<string, int> m;
         for (string& word : words)
             m[word]++;
-        auto comp = [&](const pair<string,int>& a, const pair<string,int>& b) {
+        auto comp = [&](const pair<string, int>& a, const pair<string, int>& b) {
             return a.second > b.second || (a.second == b.second && a.first < b.first);
         };
-        typedef priority_queue<pair<string, int>, vector<pair<string, int> >, decltype(comp) > my_priority_queue;
+        typedef priority_queue<pair<string, int>, vector<pair<string, int>>, decltype(comp)> my_priority_queue;
         my_priority_queue pq(comp);
-        for(auto w : m){
+        for (auto w : m) {
             pq.emplace(w.first, w.second);
-            if(pq.size()>k) pq.pop();
+            if (pq.size() > k)
+                pq.pop();
         }
-        while(!pq.empty()){
+        while (!pq.empty()) {
             res.push_back(pq.top().first);
             pq.pop();
         }
@@ -29,9 +30,7 @@ public:
     }
 };
 
-
-int main()
-{
+int main() {
     Solution s;
     vector<string> words1 = {"i", "love", "leetcode", "i", "love", "coding"};
     vector<string> words2 = {"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"};

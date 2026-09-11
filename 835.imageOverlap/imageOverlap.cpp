@@ -6,7 +6,7 @@ class Solution {
 public:
     int largestOverlap(vector<vector<int>>& A, vector<vector<int>>& B) {
         int n = A.size();
-        vector<vector<int> > count(2 * n + 1, vector<int>(2 * n, 0));
+        vector<vector<int>> count(2 * n + 1, vector<int>(2 * n, 0));
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (A[i][j] == 0)
@@ -22,7 +22,7 @@ public:
         int res = 0;
         for (auto& row : count) {
             for (int c : row)
-                res = max (res, c);
+                res = max(res, c);
         }
         return res;
     }
@@ -30,12 +30,8 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<int> > A = {{1,1,0},
-                     {0,1,0},
-                     {0,1,0}};
-    vector<vector<int> > B = {{0,0,0},
-                     {0,1,1},
-                     {0,0,1}};
+    vector<vector<int>> A = {{1, 1, 0}, {0, 1, 0}, {0, 1, 0}};
+    vector<vector<int>> B = {{0, 0, 0}, {0, 1, 1}, {0, 0, 1}};
     cout << s.largestOverlap(A, B) << endl;
     return 0;
 }

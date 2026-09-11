@@ -12,11 +12,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[7] = {1,3,2,2,5,3,5};
-    vector<int> vec(a, a+7);
+    int a[7] = {1, 3, 2, 2, 5, 3, 5};
+    vector<int> vec(a, a + 7);
     cout << s.singleNumber(vec);
     cout << endl;
     return 0;

@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
     void rotate(vector<int>& nums, int k) {
         int n = nums.size();
@@ -16,16 +16,16 @@ public:
             int n = nums[start];
             nums[start] = nums[end];
             nums[end] = n;
-            start++; end--;
+            start++;
+            end--;
         }
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     int a[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-    vector<int> vec(a,a+4);
+    vector<int> vec(a, a + 4);
     s.rotate(vec, 2);
     vector<int>::iterator it = vec.begin();
     while (it != vec.end()) {

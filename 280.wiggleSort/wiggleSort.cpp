@@ -20,11 +20,11 @@ public:
 };
 
 int main() {
-  Solution s;
-  vector<int> nums = {3, 5, 2, 1, 6, 4};
-  s.wiggleSort(nums);
-  for (int n : nums)
-    cout << n << " ";
-  cout << endl;
-  return 0;
+    Solution s;
+    vector<int> nums = {3, 5, 2, 1, 6, 4};
+    s.wiggleSort(nums);
+    for (int n : nums)
+        cout << n << " ";
+    cout << endl;
+    return 0;
 }

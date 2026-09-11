@@ -11,7 +11,8 @@ public:
         int p_s = 0, p_t = 0;
         while (p_t < len_t) {
             if (s[p_s] == t[p_t]) {
-                p_s++; p_t++;
+                p_s++;
+                p_t++;
             } else {
                 p_t++;
             }
@@ -20,8 +21,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string s1 = "abc";
     string s2 = "ahbgdc";

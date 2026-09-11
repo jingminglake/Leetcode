@@ -40,7 +40,8 @@ class Node {
 
 class Solution {
     public Node cloneGraph(Node node) {
-        if (node == null) return null;
+        if (node == null)
+            return null;
         Map<Node, Node> oldToNew = new HashMap<>();
 
         // clone node
@@ -64,7 +65,8 @@ class Solution {
         while (!q.isEmpty()) {
             Node peek = q.poll();
             for (Node n : peek.neighbors) {
-                if (oldToNew.containsKey(n)) continue;
+                if (oldToNew.containsKey(n))
+                    continue;
                 q.add(n);
                 oldToNew.put(n, new Node(n.val));
             }

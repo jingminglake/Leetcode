@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
     string reverseString(string s) {
         int i = 0;
@@ -19,8 +19,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string str = "hello";
     cout << s.reverseString(str) << endl;

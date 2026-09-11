@@ -16,7 +16,8 @@
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new LinkedList<Integer>();
-        if (root == null) return res;
+        if (root == null)
+            return res;
         Stack<TreeNode> stk = new Stack<TreeNode>();
         stk.add(root);
         while (!stk.isEmpty()) {

@@ -7,7 +7,7 @@ class Solution {
             for (int j = 0; j < 9; j++) {
                 if (board[i][j] != '.') {
                     int digit = board[i][j] - '0' - 1;
-                    int cube_id = i / 3 * 3 + j / 3; 
+                    int cube_id = i / 3 * 3 + j / 3;
                     if (rows[i][digit] || cols[j][digit] || cube[cube_id][digit])
                         return false;
                     else {

@@ -22,17 +22,16 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  int a[5] = {9,9,9,9,9};
-  vector<int> vec(a, a+5);
-  vector<int> res = s.plusOne(vec);
-  vector<int>::iterator it = res.begin();
-  while (it != res.end()) {
-    cout << *it << " ";
-    ++it;
-  }
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    int a[5] = {9, 9, 9, 9, 9};
+    vector<int> vec(a, a + 5);
+    vector<int> res = s.plusOne(vec);
+    vector<int>::iterator it = res.begin();
+    while (it != res.end()) {
+        cout << *it << " ";
+        ++it;
+    }
+    cout << endl;
+    return 0;
 }

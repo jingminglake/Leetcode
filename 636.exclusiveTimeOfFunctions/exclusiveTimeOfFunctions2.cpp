@@ -33,13 +33,13 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<string> logs = {"0:start:0",
-                           "1:start:2",
-                           "1:end:5",
-                           "0:end:6",
+    vector<string> logs = {
+        "0:start:0",
+        "1:start:2",
+        "1:end:5",
+        "0:end:6",
     };
     for (int i : s.exclusiveTime(2, logs))
         cout << i << " ";

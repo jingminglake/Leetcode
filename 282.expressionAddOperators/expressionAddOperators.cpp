@@ -22,24 +22,23 @@ public:
             if (i != start && num[start] == '0')
                 break;
             string curS = num.substr(start, i - start + 1);
-            long cur = stol(curS); 
+            long cur = stol(curS);
             if (start == 0)
-                dfs (res, path + to_string(cur), num, target, i + 1, cur, cur);
+                dfs(res, path + to_string(cur), num, target, i + 1, cur, cur);
             else {
-                dfs (res, path + "+" + curS, num, target, i + 1, val + cur, cur);
-                dfs (res, path + "-" + curS, num, target, i + 1, val - cur, -cur);
-                dfs (res, path + "*" + curS, num, target, i + 1, val - pre + pre * cur, pre * cur);
+                dfs(res, path + "+" + curS, num, target, i + 1, val + cur, cur);
+                dfs(res, path + "-" + curS, num, target, i + 1, val - cur, -cur);
+                dfs(res, path + "*" + curS, num, target, i + 1, val - pre + pre * cur, pre * cur);
             }
         }
     }
 };
 
-int main()
-{
-  Solution s;
-  string ss = "123";
-  for(string& str : s.addOperators(ss, 6))
-    cout << str << " ";
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    string ss = "123";
+    for (string& str : s.addOperators(ss, 6))
+        cout << str << " ";
+    cout << endl;
+    return 0;
 }

@@ -7,7 +7,7 @@ class Solution {
             char c = s.charAt(right);
             if (m.containsKey(c) && m.get(c) >= left) {
                 left = m.get(c) + 1;
-            } 
+            }
             m.put(c, right);
             res = Math.max(res, right - left + 1);
             right++;

@@ -5,7 +5,6 @@
 #include <deque>
 using namespace std;
 
-
 class Solution {
 public:
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
@@ -27,10 +26,9 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int>  nums = {1,3,-1,-3,5,3,6,7};
+    vector<int> nums = {1, 3, -1, -3, 5, 3, 6, 7};
     vector<int> res = s.maxSlidingWindow(nums, 3);
     for (int i : res)
         cout << i << " ";

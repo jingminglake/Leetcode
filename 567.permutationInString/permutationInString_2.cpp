@@ -28,8 +28,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string s1 = "abc";
     string s2 = "acobabacsd";

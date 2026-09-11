@@ -24,11 +24,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  int a[6] = {-1, 0, 1, 2, -1, -4};
-  vector<int> nums(a, a+6);
-  cout << s.threeSumSmaller(nums, 0) << endl;
-  return 0;
+int main() {
+    Solution s;
+    int a[6] = {-1, 0, 1, 2, -1, -4};
+    vector<int> nums(a, a + 6);
+    cout << s.threeSumSmaller(nums, 0) << endl;
+    return 0;
 }

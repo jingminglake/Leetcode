@@ -31,11 +31,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string S = "abcdebdde";
-  string T = "bde";
-  cout << s.minWindow(S, T) << endl;
-  return 0;
+int main() {
+    Solution s;
+    string S = "abcdebdde";
+    string T = "bde";
+    cout << s.minWindow(S, T) << endl;
+    return 0;
 }

@@ -14,13 +14,13 @@ public class TwoSum {
         }
         return res;
     }
-	public static void main(String[] args) {
-		TwoSum s = new TwoSum();
-		int[] nums = {2, 7, 11, 15};
-		int target = 9;
-		for (int n : s.twoSum(nums, target)) {
-			System.out.print(n + " ");
-		}
-		System.out.println();
-	}
+    public static void main(String[] args) {
+        TwoSum s = new TwoSum();
+        int[] nums = {2, 7, 11, 15};
+        int target = 9;
+        for (int n : s.twoSum(nums, target)) {
+            System.out.print(n + " ");
+        }
+        System.out.println();
+    }
 }

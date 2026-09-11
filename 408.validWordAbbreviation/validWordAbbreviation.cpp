@@ -27,7 +27,7 @@ public:
 };
 
 int main() {
-  Solution s;
-  cout << s.validWordAbbreviation("internationalization", "i12iz4n") << endl;
-  return 0;
+    Solution s;
+    cout << s.validWordAbbreviation("internationalization", "i12iz4n") << endl;
+    return 0;
 }

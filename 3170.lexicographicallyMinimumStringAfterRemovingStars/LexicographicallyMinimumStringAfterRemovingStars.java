@@ -32,7 +32,8 @@ class Solution {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
-            if (remainIndexes.contains(i)) sb.append(s.charAt(i));
+            if (remainIndexes.contains(i))
+                sb.append(s.charAt(i));
         }
         return sb.toString();
     }

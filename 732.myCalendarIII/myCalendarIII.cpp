@@ -1,15 +1,13 @@
 class MyCalendarThree {
 public:
-    MyCalendarThree() {
-        
-    }
-    
+    MyCalendarThree() {}
+
     int book(int start, int end) {
         timeline[start]++;
         timeline[end]--;
         int ongoing = 0, res = 0;
         for (auto& p : timeline) {
-            res = max (res, ongoing += p.second);
+            res = max(res, ongoing += p.second);
         }
         return res;
     }

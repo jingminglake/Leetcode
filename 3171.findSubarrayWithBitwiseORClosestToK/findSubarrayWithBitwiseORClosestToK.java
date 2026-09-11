@@ -19,7 +19,8 @@ class Solution {
                 res = Math.min(res, Math.abs(v - k));
                 left++;
             }
-            if (left > right) left--;
+            if (left > right)
+                left--;
             res = Math.min(res, Math.abs(v - k));
             right++;
         }

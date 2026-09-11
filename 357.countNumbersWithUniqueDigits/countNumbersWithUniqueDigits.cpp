@@ -3,27 +3,26 @@
 #include <list>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  int countNumbersWithUniqueDigits(int n) {
-    int ans = 10;
-    if (n == 0)
-      return 1;
-    int uniqueDigitsNumInAFixedLen = 9;
-    int availableDigitsNum = 9;
-    while (n-- > 1 && availableDigitsNum > 0) {
-      uniqueDigitsNumInAFixedLen = uniqueDigitsNumInAFixedLen * availableDigitsNum;
-      ans += uniqueDigitsNumInAFixedLen;
-      availableDigitsNum--;
+    int countNumbersWithUniqueDigits(int n) {
+        int ans = 10;
+        if (n == 0)
+            return 1;
+        int uniqueDigitsNumInAFixedLen = 9;
+        int availableDigitsNum = 9;
+        while (n-- > 1 && availableDigitsNum > 0) {
+            uniqueDigitsNumInAFixedLen = uniqueDigitsNumInAFixedLen * availableDigitsNum;
+            ans += uniqueDigitsNumInAFixedLen;
+            availableDigitsNum--;
+        }
+        return ans;
     }
-    return ans;
-  }
 };
 
-int main()
-{
-  Solution s;
-  cout << s.countNumbersWithUniqueDigits(3);
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    cout << s.countNumbersWithUniqueDigits(3);
+    cout << endl;
+    return 0;
 }

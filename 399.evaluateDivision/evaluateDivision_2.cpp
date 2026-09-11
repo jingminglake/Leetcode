@@ -6,9 +6,10 @@ using namespace std;
 
 class Solution {
 public:
-    vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries) {
+    vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values,
+                                vector<pair<string, string>> queries) {
         vector<double> res(queries.size(), -1.0);
-        unordered_map<string, vector<pair<string, double> > > neighbors;
+        unordered_map<string, vector<pair<string, double>>> neighbors;
         for (int i = 0; i < equations.size(); i++) {
             neighbors[equations[i].first].emplace_back(equations[i].second, values[i]);
             neighbors[equations[i].second].emplace_back(equations[i].first, 1.0 / values[i]);
@@ -25,7 +26,8 @@ public:
         }
         return res;
     }
-    bool dfs(string start, string& end, unordered_map<string, vector<pair<string, double> > >& neighbors, double& res, unordered_set<string>& visited) {
+    bool dfs(string start, string& end, unordered_map<string, vector<pair<string, double>>>& neighbors, double& res,
+             unordered_set<string>& visited) {
         if (start == end)
             return true;
         visited.insert(start);
@@ -46,9 +48,10 @@ public:
 
 int main() {
     Solution s;
-    vector<pair<string, string> > equations = {make_pair("a", "b"), make_pair("b", "c")};
+    vector<pair<string, string>> equations = {make_pair("a", "b"), make_pair("b", "c")};
     vector<double> values = {2.0, 3.0};
-    vector<pair<string, string> > queries = {make_pair("a", "c"), make_pair("b", "a"), make_pair("a", "e"), make_pair("a", "a"),make_pair("x", "x")};
+    vector<pair<string, string>> queries = {make_pair("a", "c"), make_pair("b", "a"), make_pair("a", "e"),
+                                            make_pair("a", "a"), make_pair("x", "x")};
     for (double& d : s.calcEquation(equations, values, queries)) {
         cout << d << " ";
     }

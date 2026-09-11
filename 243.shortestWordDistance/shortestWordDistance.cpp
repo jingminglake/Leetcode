@@ -10,12 +10,12 @@ public:
         for (int i = 0; i < words.size(); i++) {
             if (words[i] == word1) {
                 if (prev.first == 2) {
-                    res = min (res, i - prev.second);
+                    res = min(res, i - prev.second);
                 }
                 prev = {1, i};
             } else if (words[i] == word2) {
                 if (prev.first == 1) {
-                    res = min (res, i - prev.second);
+                    res = min(res, i - prev.second);
                 }
                 prev = {2, i};
             }
@@ -24,8 +24,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<string> words = {"practice", "makes", "perfect", "coding", "makes"};
     string word1 = "coding";

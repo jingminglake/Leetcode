@@ -2,10 +2,9 @@
 #include <vector>
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    int maxAreaOfIsland(vector<vector<int> >& grid) {
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
         int res = 0;
         int m = grid.size();
         if (m == 0)
@@ -20,7 +19,7 @@ public:
         }
         return res;
     }
-    int dfs(vector<vector<int> >& grid, int i, int j) {
+    int dfs(vector<vector<int>>& grid, int i, int j) {
         if (i < 0 || i >= grid.size() || j < 0 || j >= grid[0].size() || grid[i][j] == 0)
             return 0;
         grid[i][j] = 0;
@@ -28,18 +27,17 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<vector<int> > grid;
-    vector<int> row1 = {0,0,1,0,0,0,0,1,0,0,0,0,0};
-    vector<int> row2 = {0,0,0,0,0,0,0,1,1,1,0,0,0};
-    vector<int> row3 = {0,1,1,0,1,0,0,0,0,0,0,0,0};
-    vector<int> row4 = {0,1,0,0,1,1,0,0,1,0,1,0,0};
-    vector<int> row5 = {0,1,0,0,1,1,0,0,1,1,1,0,0};
-    vector<int> row6 = {0,0,0,0,0,0,0,0,0,0,1,0,0};
-    vector<int> row7 = {0,0,0,0,0,0,0,1,1,1,0,0,0};
-    vector<int> row8 = {0,0,0,0,0,0,0,1,1,0,0,0,0};
+    vector<vector<int>> grid;
+    vector<int> row1 = {0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0};
+    vector<int> row2 = {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0};
+    vector<int> row3 = {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0};
+    vector<int> row4 = {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0};
+    vector<int> row5 = {0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0};
+    vector<int> row6 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0};
+    vector<int> row7 = {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0};
+    vector<int> row8 = {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0};
     grid.push_back(row1);
     grid.push_back(row2);
     grid.push_back(row3);

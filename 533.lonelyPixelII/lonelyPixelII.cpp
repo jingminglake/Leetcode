@@ -37,12 +37,12 @@ public:
 };
 
 int main() {
-  Solution s;
-  vector<vector<char> > picture = {{'W', 'B', 'W', 'B', 'B', 'W'},
-				    {'W', 'B', 'W', 'B', 'B', 'W'},
-				    {'W', 'B', 'W', 'B', 'B', 'W'},
-				    {'W', 'W', 'B', 'W', 'B', 'W'}};
-  int N = 3;
-  cout << s.findBlackPixel(picture, N) << endl;
-  return 0;
+    Solution s;
+    vector<vector<char>> picture = {{'W', 'B', 'W', 'B', 'B', 'W'},
+                                    {'W', 'B', 'W', 'B', 'B', 'W'},
+                                    {'W', 'B', 'W', 'B', 'B', 'W'},
+                                    {'W', 'W', 'B', 'W', 'B', 'W'}};
+    int N = 3;
+    cout << s.findBlackPixel(picture, N) << endl;
+    return 0;
 }

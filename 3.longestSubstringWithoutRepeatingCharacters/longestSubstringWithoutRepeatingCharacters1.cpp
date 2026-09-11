@@ -16,16 +16,13 @@ public:
                 char_set.erase(s[left]);
                 left++;
             }
-            res = max (res, right - left);
+            res = max(res, right - left);
         }
         return res;
     }
 };
 
-
-
-int main()
-{
+int main() {
     string s = "pwwkew";
     Solution sl;
     cout << sl.lengthOfLongestSubstring(s) << endl;

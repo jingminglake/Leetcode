@@ -24,7 +24,8 @@ class Solution {
     }
     public int widthOfBinaryTree(TreeNode root) {
         int res = 0;
-        if (root == null) return res;
+        if (root == null)
+            return res;
         Queue<Node> q = new LinkedList<>();
         q.offer(new Node(root, 0));
         while (!q.isEmpty()) {
@@ -45,7 +46,7 @@ class Solution {
                     q.offer(new Node(n.t.right, n.index * 2 + 2));
                 }
             }
-            res = Math.max(res, (int)(right - left + 1));
+            res = Math.max(res, (int) (right - left + 1));
         }
         return res;
     }

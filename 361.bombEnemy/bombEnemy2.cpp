@@ -24,7 +24,7 @@ public:
                         colE[j] += grid[k][j] == 'E' ? 1 : 0;
                 }
                 if (grid[i][j] == '0')
-                    res = max (res, rowE + colE[j]);
+                    res = max(res, rowE + colE[j]);
             }
         }
         return res;
@@ -33,9 +33,7 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<char>> grid = { {'0', 'E', '0', '0'},
-                                  {'E', '0', 'W', 'E'},
-                                  {'0', 'E', '0', '0'}};
+    vector<vector<char>> grid = {{'0', 'E', '0', '0'}, {'E', '0', 'W', 'E'}, {'0', 'E', '0', '0'}};
     cout << s.maxKilledEnemies(grid) << endl;
     return 0;
 }

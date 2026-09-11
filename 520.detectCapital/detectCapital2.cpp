@@ -28,10 +28,9 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string str = "aa";
-  cout << s.detectCapitalUse(str) << endl;
-  return 0;
+int main() {
+    Solution s;
+    string str = "aa";
+    cout << s.detectCapitalUse(str) << endl;
+    return 0;
 }

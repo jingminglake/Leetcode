@@ -3,8 +3,10 @@ public:
     string mostCommonWord(string paragraph, vector<string>& banned) {
         unordered_set<string> banned_m(banned.begin(), banned.end());
         for (char& c : paragraph) {
-            if (isalpha(c)) c = tolower(c);
-            else c = ' ';
+            if (isalpha(c))
+                c = tolower(c);
+            else
+                c = ' ';
         }
         unordered_map<string, int> m;
         istringstream iss(paragraph);

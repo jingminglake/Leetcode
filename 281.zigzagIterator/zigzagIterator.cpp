@@ -20,12 +20,9 @@ public:
         return res;
     }
 
-    bool hasNext() {
-        return !q.empty();
-    }
-    queue<pair<vector<int>::iterator, vector<int>::iterator> > q;
+    bool hasNext() { return !q.empty(); }
+    queue<pair<vector<int>::iterator, vector<int>::iterator>> q;
 };
-
 
 /**
  * Your ZigzagIterator object will be instantiated and called as such:

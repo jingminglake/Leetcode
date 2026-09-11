@@ -18,12 +18,12 @@ public:
             if (m.size() > 2) {
                 int leftMost = s.length();
                 for (auto& p : m) {
-                    leftMost = min (leftMost, p.second);
+                    leftMost = min(leftMost, p.second);
                 }
                 m.erase(s[leftMost]);
                 left = leftMost + 1;
             }
-            res = max (res, right - left);
+            res = max(res, right - left);
         }
         return res;
     }

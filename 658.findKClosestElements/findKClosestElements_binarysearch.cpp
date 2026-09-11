@@ -19,10 +19,9 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> nums = {1,2,3,4,5};
+    vector<int> nums = {1, 2, 3, 4, 5};
     for (int n : s.findClosestElements(nums, 4, 3))
         cout << n << " ";
     cout << endl;

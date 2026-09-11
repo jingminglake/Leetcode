@@ -21,8 +21,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string A = "abcd";
     string B = "cdabcdab";

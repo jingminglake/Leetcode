@@ -13,18 +13,19 @@ public:
             }
         }
         for (int i = 0; i < nums.size(); i++) {
-            if (nums[i] > 0) res.push_back(i + 1);
-            else nums[i] = -nums[i];
+            if (nums[i] > 0)
+                res.push_back(i + 1);
+            else
+                nums[i] = -nums[i];
         }
         return res;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[8] = {4,3,2,7,8,2,3,1};
-    vector<int> vec(a, a+8);
+    int a[8] = {4, 3, 2, 7, 8, 2, 3, 1};
+    vector<int> vec(a, a + 8);
     vector<int> vec2 = s.findDisappearedNumbers(vec);
     vector<int>::iterator it = vec2.begin();
     while (it != vec2.end()) {

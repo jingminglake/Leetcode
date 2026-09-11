@@ -20,7 +20,8 @@ class Solution {
         return res;
     }
     public void postHelper(TreeNode root, List<Integer> res) {
-        if (root == null) return;
+        if (root == null)
+            return;
         postHelper(root.left, res);
         postHelper(root.right, res);
         res.add(root.val);

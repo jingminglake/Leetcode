@@ -18,13 +18,12 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[4] = {1,2,2,1};
-    int b[2] = {2,2};
-    vector<int> vec1(a, a+4);
-    vector<int> vec2(b, b+2);
+    int a[4] = {1, 2, 2, 1};
+    int b[2] = {2, 2};
+    vector<int> vec1(a, a + 4);
+    vector<int> vec2(b, b + 2);
     vector<int> ans = s.intersection(vec1, vec2);
     vector<int>::iterator it = ans.begin();
     while (it != ans.end()) {

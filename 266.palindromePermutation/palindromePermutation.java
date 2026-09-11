@@ -11,9 +11,9 @@ class PalindromePermutation {
         }
         return charSet.size() <= 1;
     }
-	public static void main(String[] args) {
-		PalindromePermutation s = new PalindromePermutation();
-		String str = "code";
-		System.out.println(s.canPermutePalindrome(str));
-	}
+    public static void main(String[] args) {
+        PalindromePermutation s = new PalindromePermutation();
+        String str = "code";
+        System.out.println(s.canPermutePalindrome(str));
+    }
 }

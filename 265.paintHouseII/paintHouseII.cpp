@@ -34,12 +34,9 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<vector<int> > costs = {{17,2,17},
-                                  {16,16,5},
-                                  {14,3,19}};
+    vector<vector<int>> costs = {{17, 2, 17}, {16, 16, 5}, {14, 3, 19}};
     cout << s.minCostII(costs) << endl;
     return 0;
 }

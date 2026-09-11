@@ -32,11 +32,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string S = "ADOBECODEBANC";
-  string T = "ABC";
-  cout << s.minWindow(S, T) << endl;
-  return 0;
+int main() {
+    Solution s;
+    string S = "ADOBECODEBANC";
+    string T = "ABC";
+    cout << s.minWindow(S, T) << endl;
+    return 0;
 }

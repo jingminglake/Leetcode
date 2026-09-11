@@ -4,7 +4,6 @@
 #include <unordered_map>
 using namespace std;
 
-
 // Definition for a Node.
 class Node {
 public:
@@ -27,21 +26,24 @@ public:
 class Solution {
 public:
     Node* cloneGraph(Node* node) {
-        if (!node) return node;
+        if (!node)
+            return node;
         unordered_map<Node*, Node*> m;
         queue<Node*> q;
         q.push(node);
         m[node] = new Node(node->val);
-        
+
         while (!q.empty()) {
-            Node* cur = q.front(); q.pop();
+            Node* cur = q.front();
+            q.pop();
             for (Node* n : cur->neighbors) {
-                if (m.count(n)) continue;
+                if (m.count(n))
+                    continue;
                 q.push(n);
                 m[n] = new Node(n->val);
             }
         }
-        
+
         for (auto& p : m) {
             Node* n = p.first;
             Node* nn = p.second;
@@ -53,8 +55,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     Node n0(0), n1(1), n2(2);
     n0.neighbors.push_back(&n1);
@@ -64,6 +65,6 @@ int main()
     n2.neighbors.push_back(&n1);
     n2.neighbors.push_back(&n0);
     n2.neighbors.push_back(&n2);
-    Node *res = s.cloneGraph(&n0);
+    Node* res = s.cloneGraph(&n0);
     return 0;
 }

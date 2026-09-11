@@ -1,9 +1,11 @@
 import java.util.*;
 class TreeNode {
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode(int x) { val = x; }
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int x) {
+        val = x;
+    }
 }
 public class PrintBinaryTree {
     class Params {
@@ -26,7 +28,6 @@ public class PrintBinaryTree {
         for (String[] arr : ans)
             res.add(Arrays.asList(arr));
         return res;
-            
     }
     public void bfs(String[][] ans, TreeNode root, int w) {
         Queue<Params> q = new LinkedList();
@@ -47,36 +48,37 @@ public class PrintBinaryTree {
         }
     }
     public int getHeight(TreeNode root) {
-        if (root == null) return 0;
+        if (root == null)
+            return 0;
         return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
-	public static void main(String[] args) {
-		int tree[] = {4,2,7,1,3,6,9};
-		ArrayList<TreeNode> arrayList = new ArrayList<>();
-		for (int i = 0; i < tree.length; i++) {
-			if (tree[i] != 9999)
-				arrayList.add(new TreeNode(tree[i]));
-			else
-				arrayList.add(null);
-		}
-		for (int i = 0; i < tree.length / 2; i++) {
-			if (arrayList.get(i) == null)
-				continue;
-			if (i * 2 + 1 < tree.length)
-				arrayList.get(i).left = arrayList.get(i * 2 + 1);
-			if (i * 2 + 2 < tree.length)
-				arrayList.get(i).right = arrayList.get(i * 2 + 2);
-		}
-		PrintBinaryTree s = new PrintBinaryTree();
-		for (List<String> arr : s.printTree(arrayList.get(0))) {
-			for (String ss : arr) {
-				if (ss.equals("")) {
-					System.out.print("\"\",");
-				} else { 
-					System.out.print("\"" + ss + "\",");
-				}
-			}
-			System.out.println();
-		}
-	}
+    public static void main(String[] args) {
+        int tree[] = {4, 2, 7, 1, 3, 6, 9};
+        ArrayList<TreeNode> arrayList = new ArrayList<>();
+        for (int i = 0; i < tree.length; i++) {
+            if (tree[i] != 9999)
+                arrayList.add(new TreeNode(tree[i]));
+            else
+                arrayList.add(null);
+        }
+        for (int i = 0; i < tree.length / 2; i++) {
+            if (arrayList.get(i) == null)
+                continue;
+            if (i * 2 + 1 < tree.length)
+                arrayList.get(i).left = arrayList.get(i * 2 + 1);
+            if (i * 2 + 2 < tree.length)
+                arrayList.get(i).right = arrayList.get(i * 2 + 2);
+        }
+        PrintBinaryTree s = new PrintBinaryTree();
+        for (List<String> arr : s.printTree(arrayList.get(0))) {
+            for (String ss : arr) {
+                if (ss.equals("")) {
+                    System.out.print("\"\",");
+                } else {
+                    System.out.print("\"" + ss + "\",");
+                }
+            }
+            System.out.println();
+        }
+    }
 }

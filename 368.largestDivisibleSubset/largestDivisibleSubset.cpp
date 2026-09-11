@@ -37,10 +37,9 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> nums = {1,2,3,4,8,9};
+    vector<int> nums = {1, 2, 3, 4, 8, 9};
     vector<int> res = s.largestDivisibleSubset(nums);
     for (int i : res)
         cout << i << " ";

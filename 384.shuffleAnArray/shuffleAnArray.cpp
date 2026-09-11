@@ -8,12 +8,10 @@ public:
         nums_ = nums;
         srand(time(0));
     }
-    
+
     /** Resets the array to its original configuration and return it. */
-    vector<int> reset() {
-        return nums_;
-    }
-    
+    vector<int> reset() { return nums_; }
+
     /** Returns a random shuffling of the array. */
     vector<int> shuffle() {
         vector<int> res = nums_;

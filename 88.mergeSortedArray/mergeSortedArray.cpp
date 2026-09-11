@@ -24,13 +24,12 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[10] = {2,4,8,10,15,0,0,0,0,0};
-    int b[5] = {3,4,6,8,11};
-    vector<int> vec1(a, a+10);
-    vector<int> vec2(b, b+5);
+    int a[10] = {2, 4, 8, 10, 15, 0, 0, 0, 0, 0};
+    int b[5] = {3, 4, 6, 8, 11};
+    vector<int> vec1(a, a + 10);
+    vector<int> vec2(b, b + 5);
     s.merge(vec1, 5, vec2, 5);
     vector<int>::iterator it = vec1.begin();
     while (it != vec1.end()) {
@@ -38,6 +37,6 @@ int main()
         ++it;
     }
     cout << endl;
- 
+
     return 0;
 }

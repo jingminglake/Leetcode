@@ -13,7 +13,7 @@ class Solution {
 public:
     vector<pair<int, int>> reconstructQueue(vector<pair<int, int>>& people) {
         sort(people.begin(), people.end(), Compare());
-        vector<pair<int, int> > res;
+        vector<pair<int, int>> res;
         for (auto& p : people) {
             res.insert(res.begin() + p.second, p);
         }
@@ -23,8 +23,9 @@ public:
 
 int main() {
     Solution s;
-    vector<pair<int, int> > people = {make_pair(7,0), make_pair(4,4), make_pair(7,1), make_pair(5,0), make_pair(6,1), make_pair(5,2)};
-    for(auto p : s.reconstructQueue(people))
+    vector<pair<int, int>> people = {make_pair(7, 0), make_pair(4, 4), make_pair(7, 1),
+                                     make_pair(5, 0), make_pair(6, 1), make_pair(5, 2)};
+    for (auto p : s.reconstructQueue(people))
         cout << "(" << p.first << "," << p.second << ") ";
     cout << endl;
     return 0;

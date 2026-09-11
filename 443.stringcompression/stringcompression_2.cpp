@@ -11,19 +11,20 @@ public:
             char cur = chars[i];
             int cnt = 0;
             while (i < chars.size() && chars[i] == cur) {
-                i++; cnt++;
+                i++;
+                cnt++;
             }
             chars[index++] = cur;
             if (cnt >= 2) {
-                for (char c : to_string(cnt)) chars[index++] = c;
+                for (char c : to_string(cnt))
+                    chars[index++] = c;
             }
         }
         return index;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<char> chars1 = {'a', 'a', 'b', 'b', 'c', 'c', 'c'};
     vector<char> chars2 = {'a'};

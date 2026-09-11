@@ -20,7 +20,7 @@ public:
                 s.pop();
             }
             if (line.find('.') != string::npos) {
-                res = max (res, s.top() + len);
+                res = max(res, s.top() + len);
             } else {
                 s.push(s.top() + len + 1);
             }
@@ -30,7 +30,9 @@ public:
 };
 
 int main() {
-  Solution s;
-  cout << s.lengthLongestPath("dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext") << endl;
-  return 0;
+    Solution s;
+    cout << s.lengthLongestPath(
+                "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext")
+         << endl;
+    return 0;
 }

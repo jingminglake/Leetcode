@@ -2,7 +2,8 @@ class Solution {
     public int[] smallerNumbersThanCurrent(int[] nums) {
         int[] res = new int[nums.length];
         int[] count = new int[101];
-        for (int n : nums) count[n]++;
+        for (int n : nums)
+            count[n]++;
         int[] smaller = new int[101];
         smaller[0] = 0;
         for (int i = 1; i < smaller.length; i++) {

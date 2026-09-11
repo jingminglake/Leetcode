@@ -20,7 +20,7 @@ public:
 };
 
 int main() {
-  Solution s;
-  cout << s.findContestMatch(8) << endl;
-  return 0;
+    Solution s;
+    cout << s.findContestMatch(8) << endl;
+    return 0;
 }

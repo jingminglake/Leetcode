@@ -49,7 +49,7 @@ public:
         int leftCount = 0;
         for (char c : s) {
             if (leftCount < 0) {
-                return false; 
+                return false;
             } else if (c == '(') {
                 leftCount++;
             } else if (c == ')') {
@@ -60,11 +60,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  for (string ss : s.removeInvalidParentheses(string("()())()")))
-    cout << ss << " ";
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    for (string ss : s.removeInvalidParentheses(string("()())()")))
+        cout << ss << " ";
+    cout << endl;
+    return 0;
 }

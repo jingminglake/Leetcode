@@ -22,15 +22,14 @@ public:
             if ((used & (1 << i)) != 0)
                 continue;
             int next_used = used | (1 << i);
-            if (i >= desiredTotal || !dfs(maxChoosableInteger, desiredTotal - i, next_used, m)) 
+            if (i >= desiredTotal || !dfs(maxChoosableInteger, desiredTotal - i, next_used, m))
                 return m[used] = true;
         }
         return m[used] = false;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     cout << s.canIWin(10, 11) << endl;
     return 0;

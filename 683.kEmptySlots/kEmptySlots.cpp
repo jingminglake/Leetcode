@@ -31,11 +31,11 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<int> flowers = {1,2,3};
-  int k = 1;
-  cout << s.kEmptySlots(flowers, k) << endl;;
-  return 0;
+int main() {
+    Solution s;
+    vector<int> flowers = {1, 2, 3};
+    int k = 1;
+    cout << s.kEmptySlots(flowers, k) << endl;
+    ;
+    return 0;
 }

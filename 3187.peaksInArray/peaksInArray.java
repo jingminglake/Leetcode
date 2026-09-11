@@ -87,7 +87,7 @@ class Solution {
             segmentTree[node] = peak[start];
         } else {
             int mid = start + (end - start) / 2;
-            int leftNode  = node * 2 + 1;
+            int leftNode = node * 2 + 1;
             int rightNode = node * 2 + 2;
             buildTree(segmentTree, peak, start, mid, leftNode);
             buildTree(segmentTree, peak, mid + 1, end, rightNode);
@@ -100,7 +100,7 @@ class Solution {
             segmentTree[node] = val;
         } else {
             int mid = start + (end - start) / 2;
-            int leftNode  = node * 2 + 1;
+            int leftNode = node * 2 + 1;
             int rightNode = node * 2 + 2;
             if (index <= mid) {
                 updateTree(segmentTree, peak, start, mid, leftNode, index, val);
@@ -120,7 +120,7 @@ class Solution {
             return segmentTree[start];
         }
         int mid = start + (end - start) / 2;
-        int leftNode  = node * 2 + 1;
+        int leftNode = node * 2 + 1;
         int rightNode = node * 2 + 2;
         int leftRes = queryTree(segmentTree, peak, start, mid, leftNode, l, r);
         int rightRes = queryTree(segmentTree, peak, mid + 1, end, rightNode, l, r);

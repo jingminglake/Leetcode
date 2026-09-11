@@ -21,11 +21,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[3] = {1,2,1};
-    vector<int> vec(a, a+3);
+    int a[3] = {1, 2, 1};
+    vector<int> vec(a, a + 3);
     vector<int> res = s.nextGreaterElements(vec);
     for (int i : res)
         cout << i << " ";

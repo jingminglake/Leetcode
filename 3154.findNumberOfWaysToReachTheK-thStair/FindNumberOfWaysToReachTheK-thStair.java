@@ -13,7 +13,8 @@ class Solution {
         if (dp.containsKey(i) && dp.get(i).containsKey(jump) && dp.get(i).get(jump).containsKey(flag))
             return dp.get(i).get(jump).get(flag);
         int res = 0;
-        if (i == k) res++;
+        if (i == k)
+            res++;
 
         if (flag != -1 && i - 1 >= 0) {
             res += dfs(dp, i - 1, jump, -1, k);
@@ -26,9 +27,9 @@ class Solution {
         return res;
     }
 
-
     private void dpHelper(Map<Integer, Map<Integer, Map<Integer, Integer>>> dp, int i, int jump, int flag, int value) {
-        if (!dp.containsKey(i)) dp.put(i, new HashMap<Integer, Map<Integer, Integer>>());
+        if (!dp.containsKey(i))
+            dp.put(i, new HashMap<Integer, Map<Integer, Integer>>());
         if (!dp.get(i).containsKey(jump)) {
             Map<Integer, Map<Integer, Integer>> m = dp.get(i);
             m.put(jump, new HashMap<Integer, Integer>());

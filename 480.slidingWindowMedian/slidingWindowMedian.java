@@ -12,8 +12,10 @@ class Solution {
         res[resIndex++] = getMedian(k, nums, left, right);
         for (int i = k; i < nums.length; i++) {
             // remove i - k
-            if (left.contains(i - k)) left.remove(i - k);
-            else right.remove(i - k);
+            if (left.contains(i - k))
+                left.remove(i - k);
+            else
+                right.remove(i - k);
             // add i
             right.add(i);
             left.add(right.pollFirst());
@@ -22,15 +24,17 @@ class Solution {
         }
         return res;
     }
-    
+
     private void balance(TreeSet<Integer> left, TreeSet<Integer> right) {
         while (left.size() > right.size() + 1) {
             right.add(left.pollFirst());
         }
     }
-    
+
     private double getMedian(int k, int[] nums, TreeSet<Integer> left, TreeSet<Integer> right) {
-        if (k % 2 == 0) return ((double)nums[left.first()] + nums[right.first()]) / 2;
-        else return (double) nums[left.first()];
+        if (k % 2 == 0)
+            return ((double) nums[left.first()] + nums[right.first()]) / 2;
+        else
+            return (double) nums[left.first()];
     }
 }

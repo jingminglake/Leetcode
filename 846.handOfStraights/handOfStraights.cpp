@@ -31,7 +31,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> hand = {1,2,3,6,2,3,4,7,8};
+    vector<int> hand = {1, 2, 3, 6, 2, 3, 4, 7, 8};
     int W = 2;
     cout << s.isNStraightHand(hand, W) << endl;
     return 0;

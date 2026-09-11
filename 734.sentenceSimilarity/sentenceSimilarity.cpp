@@ -9,7 +9,7 @@ public:
     bool areSentencesSimilar(vector<string>& words1, vector<string>& words2, vector<pair<string, string>> pairs) {
         if (words1.size() != words2.size())
             return false;
-        unordered_map<string, unordered_set<string> > m;
+        unordered_map<string, unordered_set<string>> m;
         for (auto& p : pairs) {
             m[p.first].insert(p.second);
             m[p.second].insert(p.first);
@@ -24,10 +24,10 @@ public:
 };
 
 int main() {
-  Solution s;
-  vector<pair<string, string>> pairs = {{"great","fine"},{"drama","acting"},{"skills","talent"}};
-  vector<string> words1 = {"great","acting","skills"};
-  vector<string> words2 = {"fine","drama","talent"};
-  cout << s.areSentencesSimilar(words1, words2, pairs) << endl;
-  return 0;
+    Solution s;
+    vector<pair<string, string>> pairs = {{"great", "fine"}, {"drama", "acting"}, {"skills", "talent"}};
+    vector<string> words1 = {"great", "acting", "skills"};
+    vector<string> words2 = {"fine", "drama", "talent"};
+    cout << s.areSentencesSimilar(words1, words2, pairs) << endl;
+    return 0;
 }

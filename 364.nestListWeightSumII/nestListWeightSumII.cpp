@@ -12,9 +12,12 @@ public:
     }
     void dfs(vector<NestedInteger>& nestedList, vector<int>& level, int depth) {
         for (NestedInteger& ni : nestedList) {
-            if (depth == level.size()) level.push_back(0);
-            if (ni.isInteger()) level[depth] += ni.getInteger();
-            else dfs(ni.getList(), level, depth + 1);
+            if (depth == level.size())
+                level.push_back(0);
+            if (ni.isInteger())
+                level[depth] += ni.getInteger();
+            else
+                dfs(ni.getList(), level, depth + 1);
         }
     }
 };

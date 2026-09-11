@@ -1,11 +1,10 @@
 class MinStack {
-
     /** initialize your data structure here. */
     public MinStack() {
         s = new Stack<Integer>();
         minV = 0;
     }
-    
+
     public void push(int x) {
         if (s.isEmpty() || x <= minV) {
             s.push(minV);
@@ -13,7 +12,7 @@ class MinStack {
         }
         s.push(x);
     }
-    
+
     public void pop() {
         if (!s.isEmpty()) {
             if (s.peek().equals(minV)) {
@@ -25,7 +24,7 @@ class MinStack {
         }
         //printS(minS);
     }
-    
+
     public int top() {
         int res = -1;
         if (!s.isEmpty())
@@ -33,7 +32,7 @@ class MinStack {
         return res;
     }
     public void printS(Stack<Integer> s) {
-        Stack<Integer> ss = (Stack)s.clone();
+        Stack<Integer> ss = (Stack) s.clone();
         while (!ss.isEmpty()) {
             System.out.print(ss.pop() + " ");
         }

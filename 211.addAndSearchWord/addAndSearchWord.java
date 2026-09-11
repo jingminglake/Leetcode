@@ -9,13 +9,12 @@ class TrieNode {
 }
 
 class WordDictionary {
-
     /** Initialize your data structure here. */
     TrieNode root;
     public WordDictionary() {
         root = new TrieNode();
     }
-    
+
     public void addWord(String word) {
         TrieNode cur = root;
         for (char c : word.toCharArray()) {
@@ -26,11 +25,11 @@ class WordDictionary {
         }
         cur.isWord = true;
     }
-    
+
     public boolean search(String word) {
         return dfs(word.toCharArray(), 0, root);
     }
-    
+
     public boolean dfs(char[] chs, int index, TrieNode curNode) {
         if (index == chs.length) {
             return curNode.isWord;

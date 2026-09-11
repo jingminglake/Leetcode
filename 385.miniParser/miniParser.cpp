@@ -50,8 +50,7 @@ public:
             } else {
                 if (c == '[') {
                     stk.push(NestedInteger());
-                }
-                else if (c == ']') {
+                } else if (c == ']') {
                     NestedInteger ni = stk.top();
                     stk.pop();
                     stk.top().add(ni);

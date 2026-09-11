@@ -17,14 +17,16 @@ class Solution {
                         break;
                     }
                 }
-                if (flag) list.add(asteroids[i]);
+                if (flag)
+                    list.add(asteroids[i]);
             } else {
                 list.add(asteroids[i]);
             }
             i++;
         }
-        int[] res = new int[list.size()]; 
-        for (int j = 0; j < list.size(); ++j) res[j] = list.get(j);
+        int[] res = new int[list.size()];
+        for (int j = 0; j < list.size(); ++j)
+            res[j] = list.get(j);
         return res;
     }
 }

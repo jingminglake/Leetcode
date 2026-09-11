@@ -5,18 +5,18 @@ using namespace std;
 
 struct TreeLinkNode {
     int val;
-    TreeLinkNode *left;
-    TreeLinkNode *right;
-    TreeLinkNode *next;
+    TreeLinkNode* left;
+    TreeLinkNode* right;
+    TreeLinkNode* next;
     TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
 };
 
-class Solution{
+class Solution {
 public:
-    void connect(TreeLinkNode *root) {
+    void connect(TreeLinkNode* root) {
         TreeLinkNode dummy(0);
-        TreeLinkNode *prev = &dummy;
-        TreeLinkNode *cur = root;
+        TreeLinkNode* prev = &dummy;
+        TreeLinkNode* cur = root;
         while (cur) {
             if (cur->left) {
                 prev->next = cur->left;
@@ -38,19 +38,18 @@ public:
         if (!root)
             return;
         cout << root->val << " ";
-        TreeLinkNode *leftChild = root->left;
-        TreeLinkNode *rightChild = root->right;
+        TreeLinkNode* leftChild = root->left;
+        TreeLinkNode* rightChild = root->right;
         delete root;
         preorder(leftChild);
         preorder(rightChild);
     }
 };
 
-int main()
-{
-    int tree[7] = {1,2,3,4,5,9999,7};
-    int size = sizeof(tree)/sizeof(tree[0]);
-    vector<TreeLinkNode *> vec;
+int main() {
+    int tree[7] = {1, 2, 3, 4, 5, 9999, 7};
+    int size = sizeof(tree) / sizeof(tree[0]);
+    vector<TreeLinkNode*> vec;
     for (int i = 0; i < size; i++) {
         if (tree[i] != 9999) {
             vec.push_back(new TreeLinkNode(tree[i]));
@@ -58,20 +57,20 @@ int main()
             vec.push_back(NULL);
         }
     }
-    for (int i = 0; i < size/2; i++) {
-        if(!vec[i])
+    for (int i = 0; i < size / 2; i++) {
+        if (!vec[i])
             continue;
-        if (i*2 + 1 < size)
-            vec[i]->left = vec[i*2 + 1];
-        if (i*2 + 2 < size)
-            vec[i]->right = vec[i*2 + 2];
+        if (i * 2 + 1 < size)
+            vec[i]->left = vec[i * 2 + 1];
+        if (i * 2 + 2 < size)
+            vec[i]->right = vec[i * 2 + 2];
     }
     Solution s;
     s.connect(vec[0]);
     queue<TreeLinkNode*> q;
-    TreeLinkNode *t = vec[0];
+    TreeLinkNode* t = vec[0];
     while (t) {
-        TreeLinkNode *temp;
+        TreeLinkNode* temp;
         while (t) {
             q.push(t);
             temp = t;
@@ -80,7 +79,7 @@ int main()
         t = temp->right;
     }
     while (!q.empty()) {
-        TreeLinkNode *first = q.front();
+        TreeLinkNode* first = q.front();
         q.pop();
         while (first) {
             cout << first->val << " ";
@@ -88,7 +87,7 @@ int main()
         }
         cout << endl;
     }
-    for (TreeLinkNode * tn : vec) {
+    for (TreeLinkNode* tn : vec) {
         delete tn;
     }
     vec.clear();

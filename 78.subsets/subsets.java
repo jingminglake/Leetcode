@@ -5,7 +5,7 @@ class Solution {
         dfs(res, path, nums, 0);
         return res;
     }
-    
+
     void dfs(List<List<Integer>> res, List<Integer> path, int[] nums, int index) {
         res.add(new ArrayList<>(path));
         for (int i = index; i < nums.length; i++) {

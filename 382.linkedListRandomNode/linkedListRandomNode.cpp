@@ -14,7 +14,7 @@ public:
         head_ = head;
         srand(time(0));
     }
-    
+
     /** Returns a random node's value. */
     int getRandom() {
         int res = 0, len = 0;
@@ -27,7 +27,7 @@ public:
         }
         return res;
     }
-    ListNode *head_;
+    ListNode* head_;
 };
 
 /**

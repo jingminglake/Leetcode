@@ -10,7 +10,7 @@ using namespace std;
 class Solution {
 public:
     vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
-        vector<vector<string> > res;
+        vector<vector<string>> res;
         unordered_set<string> wordSet(wordList.begin(), wordList.end());
         if (!wordSet.count(endWord))
             return res;
@@ -25,7 +25,8 @@ public:
         dfs(0, beginWord, endWord, wordSet, res, path, len, visited);
         return res;
     }
-    bool bfs (string& beginWord, string& endWord, unordered_set<string>& wordSet, unordered_set<string>& visited, int& len) {
+    bool bfs(string& beginWord, string& endWord, unordered_set<string>& wordSet, unordered_set<string>& visited,
+             int& len) {
         bool found = false;
         queue<string> q;
         q.push(beginWord);
@@ -56,10 +57,11 @@ public:
                     }
                 }
             }
-        }// while
+        } // while
         return found;
     }
-    void dfs (int level, string beginWord, string& endWord, unordered_set<string>& wordSet, vector<vector<string> >& res, vector<string>& path, int& len, unordered_set<string>& visited) {
+    void dfs(int level, string beginWord, string& endWord, unordered_set<string>& wordSet, vector<vector<string>>& res,
+             vector<string>& path, int& len, unordered_set<string>& visited) {
         if (level == len) {
             if (beginWord == endWord)
                 res.push_back(path);
@@ -77,7 +79,7 @@ public:
                 }
                 path.push_back(beginWord);
                 visited.insert(beginWord);
-                dfs (level + 1, beginWord, endWord, wordSet, res, path, len, visited);
+                dfs(level + 1, beginWord, endWord, wordSet, res, path, len, visited);
                 path.pop_back();
                 visited.erase(beginWord);
                 beginWord[i] = t;
@@ -86,13 +88,12 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string beginWord = "red";
     string endWord = "tax";
-    vector<string> wordList = {"ted","tex","red","tax","tad","den","rex","pee"};
-    vector<vector<string> > res = s.findLadders(beginWord, endWord, wordList);
+    vector<string> wordList = {"ted", "tex", "red", "tax", "tad", "den", "rex", "pee"};
+    vector<vector<string>> res = s.findLadders(beginWord, endWord, wordList);
     for (auto& vec : res) {
         for (const string& ss : vec)
             cout << ss << " ";

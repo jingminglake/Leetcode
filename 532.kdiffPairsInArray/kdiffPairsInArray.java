@@ -10,9 +10,11 @@ class Solution {
         }
         for (Map.Entry<Integer, Integer> entry : m.entrySet()) {
             if (k == 0) {
-                if (entry.getValue() > 1) res++;
+                if (entry.getValue() > 1)
+                    res++;
             } else {
-                if (m.containsKey(entry.getKey() + k)) res++;
+                if (m.containsKey(entry.getKey() + k))
+                    res++;
             }
         }
         return res;

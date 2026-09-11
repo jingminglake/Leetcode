@@ -35,13 +35,12 @@ public:
             }
         }
         for (auto& p : lens)
-            res = max (res, p.second);
+            res = max(res, p.second);
         return res;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<int> vec = {100, 4, 200, 1, 3, 2};
     cout << s.longestConsecutive(vec) << endl;

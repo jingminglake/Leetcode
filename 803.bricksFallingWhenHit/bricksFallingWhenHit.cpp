@@ -21,7 +21,7 @@ public:
                 if (grid[i][j] == 1) {
                     count[i * n + j] = 1;
                     if (i == 0)
-                         union_op(i * n + j, m * n);
+                        union_op(i * n + j, m * n);
                     if (i > 0 && grid[i - 1][j] == 1)
                         union_op(i * n + j, (i - 1) * n + j);
                     if (j > 0 && grid[i][j - 1] == 1)
@@ -30,7 +30,7 @@ public:
             }
         }
         // reverse add
-        vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+        vector<pair<int, int>> dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
         int cur_count = count[m * n];
         //cout << "cur_count: " << count[m * n] << endl;
         for (int i = hits.size() - 1; i >= 0; i--) {
@@ -48,7 +48,8 @@ public:
                 if (x == 0)
                     union_op(x * n + y, m * n);
                 //cout << "count[m * n]: " << count[m * n] << endl;
-                res[i] = count[m * n] > cur_count ? count[m * n] - cur_count - 1 : 0; // -1 because the one hitted do not count
+                res[i] = count[m * n] > cur_count ? count[m * n] - cur_count - 1
+                                                  : 0; // -1 because the one hitted do not count
                 cur_count = count[m * n];
             }
         }
@@ -80,8 +81,8 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<int> > grid = {{1,0,0,0},{1,1,1,0}};
-    vector<vector<int> > hits = {{1, 0}};
+    vector<vector<int>> grid = {{1, 0, 0, 0}, {1, 1, 1, 0}};
+    vector<vector<int>> hits = {{1, 0}};
     for (int i : s.hitBricks(grid, hits))
         cout << i << " ";
     cout << endl;

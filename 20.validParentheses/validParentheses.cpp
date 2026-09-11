@@ -13,8 +13,10 @@ public:
         stack<char> stk;
         for (char c : s) {
             if (c == ')' || c == '}' || c == ']') {
-                if (stk.empty() || stk.top() != m[c]) return false;
-                else stk.pop();
+                if (stk.empty() || stk.top() != m[c])
+                    return false;
+                else
+                    stk.pop();
             } else {
                 stk.push(c);
             }
@@ -23,8 +25,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     cout << s.isValid(string("{}{}{}{}[][]")) << endl;
     return 0;

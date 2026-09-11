@@ -9,8 +9,10 @@ public:
     int hIndex(vector<int>& citations) {
         int len = citations.size();
         if (len == 1) {
-            if (citations[0] >= 1) return 1;
-            else return 0;
+            if (citations[0] >= 1)
+                return 1;
+            else
+                return 0;
         }
         int left = 0, right = len - 1;
         while (left + 1 < right) {
@@ -21,16 +23,18 @@ public:
                 left = mid;
             }
         }
-        if (citations[left] >= len - left) return len - left;
-        else if (citations[right] >= len - right) return len - right;
-        else return 0;
+        if (citations[left] >= len - left)
+            return len - left;
+        else if (citations[right] >= len - right)
+            return len - right;
+        else
+            return 0;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> vec = {0,1,3,5,6};
+    vector<int> vec = {0, 1, 3, 5, 6};
     cout << s.hIndex(vec);
     cout << endl;
     return 0;

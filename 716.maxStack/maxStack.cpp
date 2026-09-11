@@ -1,10 +1,8 @@
 class MaxStack {
 public:
     /** initialize your data structure here. */
-    MaxStack() {
-        maxVal = INT_MIN;
-    }
-    
+    MaxStack() { maxVal = INT_MIN; }
+
     void push(int x) {
         if (x >= maxVal) {
             stk.push(maxVal);
@@ -12,7 +10,7 @@ public:
         }
         stk.push(x);
     }
-    
+
     int pop() {
         int res = INT_MIN;
         if (!stk.empty()) {
@@ -25,7 +23,7 @@ public:
         }
         return res;
     }
-    
+
     int top() {
         int res = INT_MIN;
         if (!stk.empty()) {
@@ -33,13 +31,12 @@ public:
         }
         return res;
     }
-    
-    int peekMax() {
-        return !stk.empty() ? maxVal : INT_MIN;
-    }
-    
+
+    int peekMax() { return !stk.empty() ? maxVal : INT_MIN; }
+
     int popMax() {
-        if (stk.empty()) return INT_MIN;
+        if (stk.empty())
+            return INT_MIN;
         int prevMax = maxVal;
         stack<int> tmpS;
         while (!stk.empty()) {

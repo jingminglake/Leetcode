@@ -19,14 +19,18 @@ class Solution {
                     res.add(triplet);
                     left++;
                     right--;
-                    if (left >= right) break;
+                    if (left >= right)
+                        break;
                     // dedup 1
-                    while (left < right && nums[left] == nums[left - 1]) left++;
-                    while (right > left && nums[right] == nums[right + 1]) right--;
+                    while (left < right && nums[left] == nums[left - 1])
+                        left++;
+                    while (right > left && nums[right] == nums[right + 1])
+                        right--;
                 }
             }
             // dedup 2
-            while (i + 1 < nums.length && nums[i + 1] == nums[i]) i++;
+            while (i + 1 < nums.length && nums[i + 1] == nums[i])
+                i++;
         }
         return res;
     }

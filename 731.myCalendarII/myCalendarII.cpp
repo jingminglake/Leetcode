@@ -1,25 +1,23 @@
 class MyCalendarTwo {
 public:
-    MyCalendarTwo() {
-        
-    }
-    
+    MyCalendarTwo() {}
+
     bool book(int start, int end) {
         for (auto& p : overlaps) {
             if (max(p.first, start) < min(p.second, end))
                 return false;
         }
         for (auto& p : events) {
-            int s = max (start, p.first);
-            int e = min (end, p.second);
+            int s = max(start, p.first);
+            int e = min(end, p.second);
             if (s < e)
                 overlaps.emplace_back(s, e);
         }
         events.emplace_back(start, end);
         return true;
     }
-    vector<pair<int, int> > events;
-    vector<pair<int, int> > overlaps;
+    vector<pair<int, int>> events;
+    vector<pair<int, int>> overlaps;
 };
 
 /**

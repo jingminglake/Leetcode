@@ -1,6 +1,7 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        if (nums.length == 1) return 1;
+        if (nums.length == 1)
+            return 1;
         List<Integer> tails = new ArrayList<>();
         tails.add(nums[0]);
         for (int i = 1; i < nums.length; i++) {
@@ -13,7 +14,7 @@ class Solution {
         }
         return tails.size();
     }
-    
+
     public int findFirstGreaterOrEqualThan(List<Integer> tails, int target) {
         int len = tails.size();
         int left = 0, right = len - 1;
@@ -25,8 +26,11 @@ class Solution {
                 right = mid;
             }
         }
-        if (tails.get(left) >= target) return left;
-        else if (tails.get(right) >= target) return right;
-        else return -1;
+        if (tails.get(left) >= target)
+            return left;
+        else if (tails.get(right) >= target)
+            return right;
+        else
+            return -1;
     }
 }

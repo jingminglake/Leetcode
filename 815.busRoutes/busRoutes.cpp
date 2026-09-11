@@ -10,10 +10,10 @@ public:
     int numBusesToDestination(vector<vector<int>>& routes, int S, int T) {
         if (S == T)
             return 0;
-        unordered_map<int, vector<int> > routes2bus;
+        unordered_map<int, vector<int>> routes2bus;
         for (int i = 0; i < routes.size(); i++) {
             for (int j = 0; j < routes[i].size(); j++) {
-               routes2bus[routes[i][j]].push_back(i);
+                routes2bus[routes[i][j]].push_back(i);
             }
         }
         int res = 0;
@@ -44,7 +44,7 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<int> > routes = {{1, 2, 7}, {3, 6, 7}};
+    vector<vector<int>> routes = {{1, 2, 7}, {3, 6, 7}};
     int S = 1, T = 6;
     cout << s.numBusesToDestination(routes, S, T) << endl;
     return 0;

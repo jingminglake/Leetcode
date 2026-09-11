@@ -7,8 +7,7 @@ class AutocompleteSystem {
 public:
     class TrieNode {
     public:
-        TrieNode() : isWord(false) {
-        }
+        TrieNode() : isWord(false) {}
         unordered_map<char, TrieNode*> kids;
         unordered_map<string, int> counts;
         bool isWord;
@@ -16,11 +15,11 @@ public:
     AutocompleteSystem(vector<string> sentences, vector<int> times) {
         root = new TrieNode();
         for (int i = 0; i < sentences.size(); i++) {
-            addSentence (sentences[i], times[i]);
+            addSentence(sentences[i], times[i]);
         }
     }
     void addSentence(string& sentence, int time) {
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         for (int i = 0; i < sentence.size(); i++) {
             if (!cur->kids[sentence[i]])
                 cur->kids[sentence[i]] = new TrieNode();
@@ -37,7 +36,7 @@ public:
             return res;
         }
         prefix_sentence += c;
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         for (char c : prefix_sentence) {
             cur = cur->kids[c];
             if (!cur)
@@ -46,7 +45,7 @@ public:
         auto comp = [&](const pair<string, int>& p1, const pair<string, int>& p2) {
             return p1.second == p2.second ? p1.first > p2.first : p1.second < p2.second;
         };
-        typedef priority_queue<pair<string, int>, vector<pair<string, int> >, decltype(comp) > my_pq;
+        typedef priority_queue<pair<string, int>, vector<pair<string, int>>, decltype(comp)> my_pq;
         my_pq pq(comp);
         for (auto& s : cur->counts) {
             pq.emplace(s.first, s.second);
@@ -59,7 +58,7 @@ public:
         }
         return res;
     }
-    TrieNode *root;
+    TrieNode* root;
     string prefix_sentence;
 };
 
@@ -69,9 +68,9 @@ void printVec(vector<string>& vec) {
     cout << endl;
 }
 
-int main () {
+int main() {
     vector<string> sentences = {"i love you", "island", "iroman"};
-    vector<int> times = {5,3,2,2};
+    vector<int> times = {5, 3, 2, 2};
     AutocompleteSystem obj(sentences, times);
     vector<string> param_1 = obj.input('i');
     printVec(param_1);

@@ -18,7 +18,7 @@ public:
             } else if (n > max3) {
                 max3 = n;
             }
-            
+
             if (n <= min1) {
                 min2 = min1;
                 min1 = n;
@@ -26,15 +26,14 @@ public:
                 min2 = n;
             }
         }
-        return max (min1 * min2 * max1, max1 * max2 * max3);
+        return max(min1 * min2 * max1, max1 * max2 * max3);
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[4] = {1,2,3,4};
-    vector<int> vec(a, a+4);
+    int a[4] = {1, 2, 3, 4};
+    vector<int> vec(a, a + 4);
     cout << s.maximumProduct(vec);
     cout << endl;
     return 0;

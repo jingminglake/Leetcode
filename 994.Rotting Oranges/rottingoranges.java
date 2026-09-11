@@ -6,12 +6,15 @@ class Solution {
         Queue<int[]> q = new LinkedList<>();
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 1) freshCnt++;
-                else if (grid[i][j] == 2) q.add(new int[]{i, j});
+                if (grid[i][j] == 1)
+                    freshCnt++;
+                else if (grid[i][j] == 2)
+                    q.add(new int[] {i, j});
             }
         }
         int minutes = 0;
-        if (freshCnt == 0) return minutes; // no fresh at the begin
+        if (freshCnt == 0)
+            return minutes; // no fresh at the begin
         boolean[][] visited = new boolean[m][n];
         int[][] dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
         while (!q.isEmpty()) {
@@ -21,16 +24,20 @@ class Solution {
                 for (int[] dir : dirs) {
                     int nextI = peek[0] + dir[0];
                     int nextJ = peek[1] + dir[1];
-                    if (nextI < 0 || nextI >= m || nextJ < 0 || nextJ >= n) continue;
-                    if (grid[nextI][nextJ] != 1 || visited[nextI][nextJ]) continue;
+                    if (nextI < 0 || nextI >= m || nextJ < 0 || nextJ >= n)
+                        continue;
+                    if (grid[nextI][nextJ] != 1 || visited[nextI][nextJ])
+                        continue;
                     visited[nextI][nextJ] = true;
                     freshCnt--;
-                    q.add(new int[]{nextI, nextJ});
+                    q.add(new int[] {nextI, nextJ});
                 }
             }
             minutes++;
         }
-        if (freshCnt == 0) return minutes - 1;
-        else return -1;
+        if (freshCnt == 0)
+            return minutes - 1;
+        else
+            return -1;
     }
 }

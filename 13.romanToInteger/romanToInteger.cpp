@@ -2,7 +2,7 @@
 #include <unordered_map>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
     int romanToInt(string s) {
         int ans = 0;
@@ -14,19 +14,18 @@ public:
         m['X'] = 10;
         m['V'] = 5;
         m['I'] = 1;
-        for(int i = 0; i < s.length(); i++){
+        for (int i = 0; i < s.length(); i++) {
             ans += m[s[i]];
-            if(i>0 && m[s[i]] > m[s[i-1]])
-                ans -= 2*m[s[i-1]];
+            if (i > 0 && m[s[i]] > m[s[i - 1]])
+                ans -= 2 * m[s[i - 1]];
             //cout << ans << endl;
         }
-    
+
         return ans;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     cout << s.romanToInt("MCDLXXVI") << endl;
     return 0;

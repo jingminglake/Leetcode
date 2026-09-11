@@ -19,33 +19,34 @@ public:
         }
         if (!total_building_num)
             return res;
-        vector<vector<int> > dist_sum(m, vector<int>(n, 0));
-        vector<vector<int> > building_num(m, vector<int>(n, 0));
+        vector<vector<int>> dist_sum(m, vector<int>(n, 0));
+        vector<vector<int>> building_num(m, vector<int>(n, 0));
         // bfs
-        vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
-        vector<vector<bool> > visited(m, vector<bool>(n, false));
+        vector<pair<int, int>> dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == 1)
-                    if (!bfs (i, j, grid, dist_sum, building_num, dirs, visited, total_building_num) )
+                    if (!bfs(i, j, grid, dist_sum, building_num, dirs, visited, total_building_num))
                         return -1;
             }
         }
-        
+
         // get shorest distance
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (building_num[i][j] == total_building_num && dist_sum[i][j] != 0) {
-                    res = min (res, dist_sum[i][j]);
+                    res = min(res, dist_sum[i][j]);
                 }
             }
         }
         return res == INT_MAX ? -1 : res;
     }
-    bool bfs (int i, int j, vector<vector<int>>& grid, vector<vector<int> >& dist_sum, vector<vector<int> >& building_num, vector<pair<int, int> >& dirs, vector<vector<bool> > visited, int& total_building_num) {
+    bool bfs(int i, int j, vector<vector<int>>& grid, vector<vector<int>>& dist_sum, vector<vector<int>>& building_num,
+             vector<pair<int, int>>& dirs, vector<vector<bool>> visited, int& total_building_num) {
         int m = grid.size(), n = grid[0].size();
         int count = 1;
-        queue<pair<int, int> > q;
+        queue<pair<int, int>> q;
         q.emplace(i, j);
         visited[i][j] = true;
         int dist = 0;
@@ -70,14 +71,14 @@ public:
                     }
                 }
             }
-        }//while
+        } //while
         return count == total_building_num;
     }
 };
 
 int main() {
     Solution s;
-    vector<vector<int> > grid = {{1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,0}};
+    vector<vector<int>> grid = {{1, 0, 2, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}};
     cout << s.shortestDistance(grid) << endl;
     return 0;
 }

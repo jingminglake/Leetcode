@@ -14,7 +14,7 @@ public:
                 int right = m.count(num + 1) ? m[num + 1] : 0;
                 int sum = left + right + 1;
                 m[num] = sum;
-                res = max (res, sum);
+                res = max(res, sum);
                 m[num - left] = sum;
                 m[num + right] = sum;
             }
@@ -23,10 +23,9 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<int> vec = {100, 4, 200, 1, 3, 2};
-  cout << s.longestConsecutive(vec) << endl;
-  return 0;
+int main() {
+    Solution s;
+    vector<int> vec = {100, 4, 200, 1, 3, 2};
+    cout << s.longestConsecutive(vec) << endl;
+    return 0;
 }

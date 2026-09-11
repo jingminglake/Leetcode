@@ -1,6 +1,7 @@
 class Solution {
     public int rob(int[] nums) {
-        if (nums.length < 2) return nums[0];
+        if (nums.length < 2)
+            return nums[0];
         int[] g = new int[nums.length]; // must rob
         int[] h = new int[nums.length]; // must not rob
         g[0] = nums[0];

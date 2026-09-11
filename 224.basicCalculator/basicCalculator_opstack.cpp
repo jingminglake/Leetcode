@@ -32,26 +32,35 @@ public:
                 ops.push(c);
             } else if (c == ')') {
                 while (ops.top() != '(') {
-                    char op = ops.top(); ops.pop();
-                    int n1 = nums.top(); nums.pop();
-                    int n2 = nums.top(); nums.pop();
+                    char op = ops.top();
+                    ops.pop();
+                    int n1 = nums.top();
+                    nums.pop();
+                    int n2 = nums.top();
+                    nums.pop();
                     nums.push(operation(op, n1, n2));
                 }
                 ops.pop();
             } else if (c == '+' || c == '-') {
                 while (!ops.empty() && ops.top() != '(') {
-                    char op = ops.top(); ops.pop();
-                    int n1 = nums.top(); nums.pop();
-                    int n2 = nums.top(); nums.pop();
+                    char op = ops.top();
+                    ops.pop();
+                    int n1 = nums.top();
+                    nums.pop();
+                    int n2 = nums.top();
+                    nums.pop();
                     nums.push(operation(op, n1, n2));
                 }
                 ops.push(c);
             }
         }
         while (!ops.empty()) {
-            char op = ops.top(); ops.pop();
-            int n1 = nums.top(); nums.pop();
-            int n2 = nums.top(); nums.pop();
+            char op = ops.top();
+            ops.pop();
+            int n1 = nums.top();
+            nums.pop();
+            int n2 = nums.top();
+            nums.pop();
             nums.push(operation(op, n1, n2));
         }
         return nums.top();

@@ -14,12 +14,11 @@
  * }
  */
 class BSTIterator {
-
     public BSTIterator(TreeNode root) {
         s = new Stack<>();
         putLeftChildToStack(root);
     }
-    
+
     public int next() {
         if (hasNext()) {
             TreeNode t = s.pop();
@@ -30,18 +29,18 @@ class BSTIterator {
         }
         return -1;
     }
-    
+
     public boolean hasNext() {
         return !s.isEmpty();
     }
-    
+
     private void putLeftChildToStack(TreeNode t) {
         while (t != null) {
             s.push(t);
             t = t.left;
         }
     }
-    
+
     Stack<TreeNode> s;
 }
 

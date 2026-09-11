@@ -21,8 +21,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<string> vec = s.fizzBuzz(20);
     for (string str : vec)

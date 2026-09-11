@@ -11,7 +11,8 @@ public:
             int word_len = word.length();
             size_t pos = S.find(word);
             while (pos != string::npos) {
-                for (int i = pos; i < pos + word_len; i++) bold[i] = true;
+                for (int i = pos; i < pos + word_len; i++)
+                    bold[i] = true;
                 pos = S.find(word, pos + 1);
             }
         }

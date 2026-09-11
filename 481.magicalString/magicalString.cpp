@@ -23,7 +23,7 @@ public:
 };
 
 int main() {
-  Solution s;
-  cout << s.magicalString(4) << endl;
-  return 0;
+    Solution s;
+    cout << s.magicalString(4) << endl;
+    return 0;
 }

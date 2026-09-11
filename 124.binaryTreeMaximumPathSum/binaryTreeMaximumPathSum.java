@@ -20,9 +20,10 @@ class Solution {
         maxPathSumHelper(root);
         return maxSum;
     }
-    
+
     public int maxPathSumHelper(TreeNode root) {
-        if (root == null) return Integer.MIN_VALUE;
+        if (root == null)
+            return Integer.MIN_VALUE;
         int notPassRootRes = root.val;
         int leftRes = maxPathSumHelper(root.left);
         int rightRes = maxPathSumHelper(root.right);

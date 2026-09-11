@@ -15,8 +15,8 @@ public:
         for (int i = 0; i < prices.size() - 1; i++) {
             int diff = prices[i + 1] - prices[i];
             for (int j = k; j >= 1; j--) {
-                local[j] = max (global[j - 1] + max (0, diff), local[j] + diff);
-                global[j] = max (global[j], local[j]);
+                local[j] = max(global[j - 1] + max(0, diff), local[j] + diff);
+                global[j] = max(global[j], local[j]);
             }
         }
         return global[k];
@@ -33,7 +33,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> prices = {3,4,1,2,5,6,3,2,1,5,7,3};
+    vector<int> prices = {3, 4, 1, 2, 5, 6, 3, 2, 1, 5, 7, 3};
     int k = 4;
     cout << s.maxProfit(4, prices) << endl;
     return 0;

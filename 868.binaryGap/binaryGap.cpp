@@ -7,7 +7,7 @@ public:
             i++;
             if (N % 2 == 1) {
                 if (rightOne != -1) {
-                    res = max (res, i - rightOne);
+                    res = max(res, i - rightOne);
                 }
                 rightOne = i;
             }

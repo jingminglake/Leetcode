@@ -12,17 +12,16 @@ public:
         int rightProduct = 1;
         for (int i = nums.size() - 1; i >= 0; i--) {
             res[i] *= rightProduct;
-            rightProduct  *= nums[i];
+            rightProduct *= nums[i];
         }
         return res;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[4] = {1,0,0,1};
-    vector<int> vec(a, a+2);
+    int a[4] = {1, 0, 0, 1};
+    vector<int> vec(a, a + 2);
     vector<int> res = s.productExceptSelf(vec);
     for (int i : res) {
         cout << i << " ";

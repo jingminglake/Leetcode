@@ -9,8 +9,8 @@ class DNode {
 public:
     DNode() : prev(nullptr), next(nullptr), key(0), val(0) {}
     DNode(int _key, int _val) : prev(nullptr), next(nullptr), key(_key), val(_val) {}
-    DNode *prev;
-    DNode *next;
+    DNode* prev;
+    DNode* next;
     int key;
     int val;
 };
@@ -23,7 +23,7 @@ public:
         dummy1.next = &dummy2;
         dummy2.prev = &dummy1;
     }
-    
+
     void moveToHead(DNode* node) {
         node->prev->next = node->next;
         node->next->prev = node->prev;
@@ -32,26 +32,26 @@ public:
         node->prev = &dummy1;
         dummy1.next = node;
     }
-    
+
     void removeNode(DNode* node) {
         node->prev->next = node->next;
         node->next->prev = node->prev;
         delete node;
     }
-    
+
     void addToHead(DNode* node) {
         dummy1.next->prev = node;
         node->next = dummy1.next;
         node->prev = &dummy1;
         dummy1.next = node;
     }
-    
+
     void removeTail() {
         //cout << "erase: " << dummy2.prev->key << endl;
         m.erase(dummy2.prev->key);
         removeNode(dummy2.prev);
     }
-    
+
     int get(int key) {
         if (m.count(key)) {
             moveToHead(m[key]);
@@ -60,7 +60,7 @@ public:
             return -1;
         }
     }
-    
+
     void put(int key, int value) {
         if (m.count(key)) {
             m[key]->val = value;
@@ -71,12 +71,12 @@ public:
             } else {
                 size++;
             }
-            DNode *node = new DNode(key, value);
+            DNode* node = new DNode(key, value);
             m[key] = node;
             addToHead(node);
         }
     }
-    
+
     int _capacity;
     int size;
     DNode dummy1;
@@ -84,9 +84,7 @@ public:
     unordered_map<int, DNode*> m;
 };
 
-
-int main()
-{
+int main() {
     LRUCache cache(2);
     cache.put(1, 1);
     cache.put(2, 2);

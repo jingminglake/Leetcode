@@ -14,7 +14,9 @@ class Solution {
                 return true;
             }
         }
-        if (matrix[left / n][left % n] == target || matrix[right / n][right % n] == target) return true;
-        else return false;
+        if (matrix[left / n][left % n] == target || matrix[right / n][right % n] == target)
+            return true;
+        else
+            return false;
     }
 }

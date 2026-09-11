@@ -1,6 +1,7 @@
 class Solution {
     public long maximumTotalDamage(int[] power) {
-        if (power.length == 1) return power[0];
+        if (power.length == 1)
+            return power[0];
         Arrays.sort(power);
         long[] dpg = new long[power.length];
         long[] dph = new long[power.length];
@@ -17,11 +18,13 @@ class Solution {
                 dpg[i] = Math.max(dph[i], dpg[i - 1]);
             } else {
                 int j = i - 1;
-                while (j >= 0 && power[i] - power[j] <= 2) j--;
+                while (j >= 0 && power[i] - power[j] <= 2)
+                    j--;
 
                 if (j >= 0)
                     dph[i] = dpg[j] + power[i];
-                else dph[i] = power[i];
+                else
+                    dph[i] = power[i];
 
                 dpg[i] = Math.max(dph[i], dpg[i - 1]);
             }

@@ -9,12 +9,13 @@ class Solution {
     }
 
     private boolean isArraySpecialHelper(int[] nums, Map<Integer, Integer> dp, int start, int end) {
-        if (start == end) return true;
+        if (start == end)
+            return true;
         if (dp.containsKey(start) && dp.get(start) >= end) {
             return true;
         }
         for (int i = start; i < end; i++) {
-            if ( (nums[i] + nums[i + 1]) % 2 == 0) {
+            if ((nums[i] + nums[i + 1]) % 2 == 0) {
                 return false;
             }
         }

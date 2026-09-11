@@ -3,17 +3,16 @@ using namespace std;
 
 struct ListNode {
     int val;
-    ListNode *next;
+    ListNode* next;
     ListNode(int x) : val(x), next(NULL) {}
 };
-
 
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
         if (!head || !head->next)
             return head;
-        ListNode* slow = head, *fast = head;
+        ListNode *slow = head, *fast = head;
         ListNode* mid = head;
         while (fast && fast->next) {
             mid = slow;
@@ -53,20 +52,19 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     int a[4] = {7, 2, 4, 3};
-    ListNode *l = new ListNode(a[0]);
-    ListNode *tail = l;
-    for (int i = 1; i < sizeof(a)/sizeof(a[0]); i++) {
-        ListNode *temp = new ListNode(a[i]);
+    ListNode* l = new ListNode(a[0]);
+    ListNode* tail = l;
+    for (int i = 1; i < sizeof(a) / sizeof(a[0]); i++) {
+        ListNode* temp = new ListNode(a[i]);
         tail->next = temp;
         tail = temp;
     }
     Solution s;
-    ListNode *h = s.sortList(l);
+    ListNode* h = s.sortList(l);
     while (h) {
-        ListNode *p = h;
+        ListNode* p = h;
         h = h->next;
         cout << "delete " << p->val << " ";
         delete p;

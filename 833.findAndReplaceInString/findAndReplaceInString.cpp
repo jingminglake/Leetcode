@@ -2,7 +2,6 @@
 #include <vector>
 using namespace std;
 
-
 class Solution {
 public:
     string findReplaceString(string S, vector<int>& indexes, vector<string>& sources, vector<string>& targets) {
@@ -18,8 +17,7 @@ public:
             if (matched[i] != -1) {
                 res += targets[matched[i]];
                 i += sources[matched[i]].length();
-            }
-            else {
+            } else {
                 res += S[i];
                 i++;
             }
@@ -30,8 +28,8 @@ public:
 
 int main() {
     string S = "abcd";
-    vector<int> indexes = {0,2};
-    vector<string> sources = {"ab","ec"}, targets = {"eee","ffff"};
+    vector<int> indexes = {0, 2};
+    vector<string> sources = {"ab", "ec"}, targets = {"eee", "ffff"};
     Solution s;
     cout << s.findReplaceString(S, indexes, sources, targets) << endl;
     return 0;

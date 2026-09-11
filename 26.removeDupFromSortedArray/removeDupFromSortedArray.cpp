@@ -15,11 +15,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[5] = {1,1,2,4,5};
-    vector<int> vec(a, a+5);
+    int a[5] = {1, 1, 2, 4, 5};
+    vector<int> vec(a, a + 5);
     int size = s.removeDuplicates(vec);
     for (int i = 0; i < size; i++)
         cout << vec[i] << " ";

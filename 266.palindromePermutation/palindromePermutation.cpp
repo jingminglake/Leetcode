@@ -18,8 +18,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss1 = "code";
     string ss2 = "aab";

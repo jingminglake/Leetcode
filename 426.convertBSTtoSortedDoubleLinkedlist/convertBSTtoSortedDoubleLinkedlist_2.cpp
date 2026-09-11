@@ -18,7 +18,8 @@ public:
 class Solution {
 public:
     Node* treeToDoublyList(Node* root) {
-        if (!root) return root;
+        if (!root)
+            return root;
         Node dummy;
         Node* last = &dummy;
         treeToDoublyistHelper(root, last);
@@ -27,7 +28,8 @@ public:
         return dummy.right;
     }
     void treeToDoublyistHelper(Node* root, Node*& last) {
-        if (!root) return;
+        if (!root)
+            return;
         treeToDoublyistHelper(root->left, last);
         last->right = root;
         root->left = last;

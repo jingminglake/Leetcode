@@ -29,8 +29,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss = "abab";
     string p = "ab";

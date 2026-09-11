@@ -24,8 +24,8 @@ public:
                         break;
                     }
                 } else if (!w2p.count(c) && !p2w.count(p)) {
-                     w2p[c] = pattern[i];
-                     p2w[pattern[i]] = c;
+                    w2p[c] = pattern[i];
+                    p2w[pattern[i]] = c;
                 } else {
                     flag = false;
                     break;
@@ -38,9 +38,9 @@ public:
     }
 };
 
-int main () {
+int main() {
     Solution s;
-    vector<string> words = {"abc","deq","mee","aqq","dkd","ccc"};
+    vector<string> words = {"abc", "deq", "mee", "aqq", "dkd", "ccc"};
     string pattern = "abb";
     for (string w : s.findAndReplacePattern(words, pattern)) {
         cout << w << " ";

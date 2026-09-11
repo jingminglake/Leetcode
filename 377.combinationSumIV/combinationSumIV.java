@@ -4,7 +4,8 @@ class Solution {
         dp[0] = 1;
         for (int i = 1; i <= target; i++) {
             for (int num : nums) {
-                if (i >= num) dp[i] += dp[i - num];
+                if (i >= num)
+                    dp[i] += dp[i - num];
             }
         }
         return dp[target];

@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
     bool isPalindrome(string s) {
-        int i = 0, j = s.length() - 1; 
+        int i = 0, j = s.length() - 1;
         while (i < j) {
             if (!isalnum(s[i])) {
                 i++;
@@ -19,14 +19,13 @@ public:
                 j--;
             } else {
                 return false;
-            }  
+            }
         }
         return true;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     //string str = "A man, a plan, a canal: Panama";
     string str = "0P";

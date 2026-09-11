@@ -24,11 +24,11 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss = "leetcode";
     vector<string> dict = {"leet", "code"};
-    cout << s.wordBreak(ss, dict) << endl;;
+    cout << s.wordBreak(ss, dict) << endl;
+    ;
     return 0;
 }

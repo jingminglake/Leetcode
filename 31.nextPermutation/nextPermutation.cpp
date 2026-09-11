@@ -28,17 +28,16 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  int a[6] = {1,5,1,4,3,1};
-  vector<int> vec(a, a+6);
-  s.nextPermutation(vec);
-  vector<int>::iterator it = vec.begin();
-  while (it != vec.end()) {
-    cout << *it << " ";
-    ++it;
-  }
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    int a[6] = {1, 5, 1, 4, 3, 1};
+    vector<int> vec(a, a + 6);
+    s.nextPermutation(vec);
+    vector<int>::iterator it = vec.begin();
+    while (it != vec.end()) {
+        cout << *it << " ";
+        ++it;
+    }
+    cout << endl;
+    return 0;
 }

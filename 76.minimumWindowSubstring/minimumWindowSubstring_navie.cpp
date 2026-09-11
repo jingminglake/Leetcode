@@ -19,7 +19,7 @@ public:
         while (right < s.length()) {
             hash_s[s[right]]++;
             right++;
-            while (isCover(hash_t, hash_s) ) {
+            while (isCover(hash_t, hash_s)) {
                 if (right - left < min_len) {
                     res = s.substr(left, right - left);
                     min_len = right - left;
@@ -39,8 +39,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string S = "ADOBECODEBANC";
     string T = "ABC";

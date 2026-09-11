@@ -15,15 +15,14 @@ public:
                 left = max(left, m[s[right]] + 1);
             }
             m[s[right]] = right;
-            res = max (res, right - left + 1);
+            res = max(res, right - left + 1);
             right++;
         }
         return res;
     }
 };
 
-int main()
-{
+int main() {
     string s;
     cout << "please input a string:" << endl;
     cin >> s;

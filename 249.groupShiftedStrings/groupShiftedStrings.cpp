@@ -6,8 +6,8 @@ using namespace std;
 class Solution {
 public:
     vector<vector<string>> groupStrings(vector<string>& strings) {
-        vector<vector<string> > res;
-        unordered_map<string, vector<string> > m;
+        vector<vector<string>> res;
+        unordered_map<string, vector<string>> m;
         for (string s : strings) {
             if (s.empty())
                 continue;
@@ -27,7 +27,7 @@ public:
     }
 };
 
-int main () {
+int main() {
     Solution s;
     vector<string> ss = {"abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"};
     for (auto& vec : s.groupStrings(ss)) {

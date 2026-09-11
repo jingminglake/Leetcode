@@ -19,16 +19,15 @@ public:
         if (leftP < 0 || rightP < 0 || leftP > rightP)
             return;
         path += "(";
-        dfs (leftP - 1, rightP, path, res);
+        dfs(leftP - 1, rightP, path, res);
         path.pop_back();
         path += ")";
-        dfs (leftP, rightP - 1, path, res);
+        dfs(leftP, rightP - 1, path, res);
         path.pop_back();
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<string> vec = s.generateParenthesis(3);
     vector<string>::iterator it = vec.begin();

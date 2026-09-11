@@ -9,9 +9,12 @@ class Solution {
             int min5 = uglys[p5] * 5;
             int ugly = Math.min(min2, Math.min(min3, min5));
             uglys[i] = ugly;
-            if (min2 == ugly) p2++;
-            if (min3 == ugly) p3++;
-            if (min5 == ugly) p5++; 
+            if (min2 == ugly)
+                p2++;
+            if (min3 == ugly)
+                p3++;
+            if (min5 == ugly)
+                p5++;
         }
         return uglys[n - 1];
     }

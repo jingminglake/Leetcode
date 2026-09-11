@@ -8,7 +8,7 @@ class Solution {
         }
         return true;
     }
-    
+
     public boolean dfs(int[][] graph, int goingToColor, int[] colored, int cur) {
         if (colored[cur] != 0) {
             return goingToColor == colored[cur];

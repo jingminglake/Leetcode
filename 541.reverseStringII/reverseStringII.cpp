@@ -12,9 +12,9 @@ public:
         for (int i = 0; i <= cnt; i++) {
             if (i % 2 == 0) {
                 if (i * k + k < s.length())
-                    reverseHelper(s, i*k, i*k + k - 1);
+                    reverseHelper(s, i * k, i * k + k - 1);
                 else
-                    reverseHelper(s, i*k, s.length() - 1);
+                    reverseHelper(s, i * k, s.length() - 1);
             }
         }
         return s;
@@ -26,10 +26,9 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string str = "hyzqyljrnigxvdtneasepfahmtyhlohwxmkqcdfehybknvdmfrfvtbsovjbdhevlfxpdaovjgunjqlimjkfnqcqnajmebeddqsgl";
-  cout << s.reverseStr(str, 39) << endl;
-  return 0;
+int main() {
+    Solution s;
+    string str = "hyzqyljrnigxvdtneasepfahmtyhlohwxmkqcdfehybknvdmfrfvtbsovjbdhevlfxpdaovjgunjqlimjkfnqcqnajmebeddqsgl";
+    cout << s.reverseStr(str, 39) << endl;
+    return 0;
 }

@@ -28,10 +28,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<vector<int> > grid = {{0,0,0}, {0,1,0}, {0,0,0}};
-    cout << s.uniquePathsWithObstacles(grid) << endl;;
+    vector<vector<int>> grid = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
+    cout << s.uniquePathsWithObstacles(grid) << endl;
+    ;
     return 0;
 }

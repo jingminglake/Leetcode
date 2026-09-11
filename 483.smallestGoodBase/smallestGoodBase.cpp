@@ -6,8 +6,8 @@ class Solution {
 public:
     string smallestGoodBase(string n) {
         long num = stol(n);
-        for (int m = log(num + 1)/ log(2); m >= 2; m--) {
-            long leftK = 2, rightK = pow (num, 1.0 / (m - 1)) + 1;
+        for (int m = log(num + 1) / log(2); m >= 2; m--) {
+            long leftK = 2, rightK = pow(num, 1.0 / (m - 1)) + 1;
             while (leftK < rightK) {
                 long mid = leftK + (rightK - leftK) / 2;
                 long sum = 0;

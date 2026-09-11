@@ -1,10 +1,8 @@
 class HitCounter {
 public:
     /** Initialize your data structure here. */
-    HitCounter() {
-        
-    }
-    
+    HitCounter() {}
+
     /** Record a hit.
         @param timestamp - The current timestamp (in seconds granularity). */
     void hit(int timestamp) {
@@ -18,7 +16,7 @@ public:
         }
         m[timestamp]++;
     }
-    
+
     /** Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity). */
     int getHits(int timestamp) {

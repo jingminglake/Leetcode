@@ -15,7 +15,7 @@ public:
         }
         return res;
     }
-    int dfs(vector<vector<int> >& graph, int startNode, vector<int>& status) {
+    int dfs(vector<vector<int>>& graph, int startNode, vector<int>& status) {
         if (status[startNode] == 2 || status[startNode] == 3)
             return status[startNode];
         status[startNode] = 1;
@@ -29,7 +29,7 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<int> > graph = {{1,2}, {2,3}, {5}, {0}, {5}, {}, {}};
+    vector<vector<int>> graph = {{1, 2}, {2, 3}, {5}, {0}, {5}, {}, {}};
     for (int i : s.eventualSafeNodes(graph))
         cout << i << " ";
     cout << endl;

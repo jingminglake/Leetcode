@@ -20,14 +20,17 @@ class Solution {
         findDuplicateSubtreesHelper(root, map, res);
         return res;
     }
-    
+
     public String findDuplicateSubtreesHelper(TreeNode root, Map<String, Integer> map, List<TreeNode> res) {
-        if (root == null) return "#";
+        if (root == null)
+            return "#";
         StringBuilder sb = new StringBuilder();
-        String uniqueOrder = String.valueOf(root.val) + "," + findDuplicateSubtreesHelper(root.left, map, res) +  "," + findDuplicateSubtreesHelper(root.right, map, res);
+        String uniqueOrder = String.valueOf(root.val) + "," + findDuplicateSubtreesHelper(root.left, map, res) + ","
+            + findDuplicateSubtreesHelper(root.right, map, res);
         if (map.containsKey(uniqueOrder)) {
             int num = map.get(uniqueOrder);
-            if (num == 1) res.add(root);
+            if (num == 1)
+                res.add(root);
             map.put(uniqueOrder, num + 1);
         } else {
             map.put(uniqueOrder, 1);

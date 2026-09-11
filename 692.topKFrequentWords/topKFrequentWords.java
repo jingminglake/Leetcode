@@ -8,7 +8,8 @@ class Solution {
                 hm.put(word, 1);
             }
         }
-        Comparator<Map.Entry<String, Integer>> comp = (a, b) -> a.getValue() == b.getValue() ?b.getKey().compareTo(a.getKey()) : a.getValue() - b.getValue();
+        Comparator<Map.Entry<String, Integer>> comp =
+            (a, b) -> a.getValue() == b.getValue() ? b.getKey().compareTo(a.getKey()) : a.getValue() - b.getValue();
         Queue<Map.Entry<String, Integer>> pq = new PriorityQueue<Map.Entry<String, Integer>>(comp);
         for (Map.Entry<String, Integer> entry : hm.entrySet()) {
             pq.add(entry);
@@ -16,8 +17,9 @@ class Solution {
                 pq.poll();
             }
         }
-        List<String> res = new ArrayList<>();  
-        while (!pq.isEmpty()) res.add(0, pq.poll().getKey());                                                   
+        List<String> res = new ArrayList<>();
+        while (!pq.isEmpty())
+            res.add(0, pq.poll().getKey());
         return res;
     }
 }

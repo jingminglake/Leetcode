@@ -12,7 +12,8 @@ class Solution {
             pq.add(p);
         }
         for (int i = 0; i < k; i++) {
-            if (pq.isEmpty()) break;
+            if (pq.isEmpty())
+                break;
             int[] p = pq.poll();
             res.add(p);
         }

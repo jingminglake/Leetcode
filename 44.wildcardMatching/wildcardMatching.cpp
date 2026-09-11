@@ -7,7 +7,7 @@ public:
     bool isMatch(string s, string p) {
         if (s.length() == 0 && p.length() == 0)
             return true;
-        vector<vector<bool> > dp(s.length() + 1, vector<bool>(p.length() + 1, false));
+        vector<vector<bool>> dp(s.length() + 1, vector<bool>(p.length() + 1, false));
         dp[0][0] = true;
         for (int i = 1; i <= p.length(); i++) {
             if (p[i - 1] == '*') {
@@ -27,15 +27,14 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  cout << s.isMatch("aa", "a") << endl;
-  cout << s.isMatch("aa", "aa") << endl;
-  cout << s.isMatch("aaa", "a") << endl;
-  cout << s.isMatch("aa", "a*") << endl;
-  cout << s.isMatch("aa", "?*") << endl;
-  cout << s.isMatch("ab", "?*") << endl;
-  cout << s.isMatch("aab", "c*a*b") << endl;
-  return 0;
+int main() {
+    Solution s;
+    cout << s.isMatch("aa", "a") << endl;
+    cout << s.isMatch("aa", "aa") << endl;
+    cout << s.isMatch("aaa", "a") << endl;
+    cout << s.isMatch("aa", "a*") << endl;
+    cout << s.isMatch("aa", "?*") << endl;
+    cout << s.isMatch("ab", "?*") << endl;
+    cout << s.isMatch("aab", "c*a*b") << endl;
+    return 0;
 }

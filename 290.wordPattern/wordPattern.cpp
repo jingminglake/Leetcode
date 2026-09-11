@@ -10,7 +10,7 @@ public:
         istringstream iss(str);
         string word;
         vector<string> strV;
-        while(getline(iss, word, ' ')) {
+        while (getline(iss, word, ' ')) {
             strV.push_back(word);
         }
         int pSize = pattern.size();
@@ -35,8 +35,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string pattern = "abba";
     string str = "dog dog dog dog";

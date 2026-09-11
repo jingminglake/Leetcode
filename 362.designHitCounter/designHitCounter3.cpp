@@ -5,7 +5,7 @@ public:
         times.resize(300);
         hits.resize(300);
     }
-    
+
     /** Record a hit.
         @param timestamp - The current timestamp (in seconds granularity). */
     void hit(int timestamp) {
@@ -17,7 +17,7 @@ public:
             hits[i]++;
         }
     }
-    
+
     /** Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity). */
     int getHits(int timestamp) {

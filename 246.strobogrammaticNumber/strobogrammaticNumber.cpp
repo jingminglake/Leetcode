@@ -15,7 +15,8 @@ public:
         int left = 0, right = num.size() - 1;
         while (left <= right) {
             if (m.count(num[left]) && m[num[left]] == num[right]) {
-                left++;right--;
+                left++;
+                right--;
             } else {
                 return false;
             }
@@ -24,8 +25,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string num = "101";
     string num2 = "69";

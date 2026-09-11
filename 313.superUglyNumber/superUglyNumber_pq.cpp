@@ -12,7 +12,7 @@ public:
         auto comp = [&](const tuple<int, int, int64_t>& t1, const tuple<int, int, int64_t>& t2) {
             return get<2>(t1) > get<2>(t2);
         };
-        typedef priority_queue<tuple<int, int, int64_t>, vector<tuple<int, int, int64_t> >, decltype(comp) > my_pq;
+        typedef priority_queue<tuple<int, int, int64_t>, vector<tuple<int, int, int64_t>>, decltype(comp)> my_pq;
         my_pq pq(comp);
         for (int prime : primes)
             pq.emplace(prime, 0, prime);
@@ -30,10 +30,9 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> primes = {2,7,13,19};
+    vector<int> primes = {2, 7, 13, 19};
     cout << s.nthSuperUglyNumber(12, primes);
     cout << endl;
     return 0;

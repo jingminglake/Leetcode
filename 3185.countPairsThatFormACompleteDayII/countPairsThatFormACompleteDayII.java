@@ -16,8 +16,10 @@ class Solution {
 
     private long countHelper(Map<Integer, List<Integer>> map, int hour) {
         long res = 0;
-        if (hour == 0 && map.containsKey(0)) res += map.get(0).size();
-        else if (map.containsKey(24 - hour)) res += map.get(24 - hour).size();
+        if (hour == 0 && map.containsKey(0))
+            res += map.get(0).size();
+        else if (map.containsKey(24 - hour))
+            res += map.get(24 - hour).size();
         return res;
     }
 }

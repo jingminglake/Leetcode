@@ -21,10 +21,9 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<string> words = {"a","banana", "app", "appl", "ap", "apply", "apple"};
+    vector<string> words = {"a", "banana", "app", "appl", "ap", "apply", "apple"};
     cout << s.longestWord(words) << endl;
     return 0;
 }

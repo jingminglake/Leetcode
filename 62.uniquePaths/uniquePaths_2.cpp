@@ -20,9 +20,9 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    cout << s.uniquePaths(2,1) << endl;;
+    cout << s.uniquePaths(2, 1) << endl;
+    ;
     return 0;
 }

@@ -1,6 +1,6 @@
 class Solution {
     public int findLUSlength(String[] strs) {
-        Arrays.sort(strs, (s1, s2) -> { 
+        Arrays.sort(strs, (s1, s2) -> {
             if (s1.length() == s2.length()) {
                 return s1.compareTo(s2);
             } else {
@@ -25,7 +25,7 @@ class Solution {
         }
         return -1;
     }
-    
+
     private boolean isOneSub(Set<String> s, String str) {
         for (String str1 : s) {
             if (isSubsequence(str1, str)) {
@@ -34,12 +34,13 @@ class Solution {
         }
         return false;
     }
-    
+
     private boolean isSubsequence(String s1, String s2) {
         int p1 = 0, p2 = 0;
         while (p1 < s1.length() && p2 < s2.length()) {
             if (s1.charAt(p1) == s2.charAt(p2)) {
-                p1++; p2++;
+                p1++;
+                p2++;
             } else {
                 p1++;
             }

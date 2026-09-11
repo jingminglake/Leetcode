@@ -1,5 +1,4 @@
 class Solution {
-
     public Solution(int[] w) {
         random = new Random();
         preSum = new int[w.length];
@@ -9,15 +8,16 @@ class Solution {
         }
         root = buildTree(0, w.length - 1);
     }
-    
+
     public int pickIndex() {
         int len = preSum.length;
-        if (len == 1) return 0;
+        if (len == 1)
+            return 0;
         int n = random.nextInt(preSum[len - 1]) + 1;
         TreeNode lb = findLowerBound(n);
         return lb.index;
     }
-    
+
     private TreeNode findLowerBound(int n) {
         TreeNode lb = null;
         TreeNode cur = root;
@@ -31,23 +31,26 @@ class Solution {
         }
         return lb;
     }
-    
+
     private TreeNode buildTree(int left, int right) {
-        if (left > right) return null;
+        if (left > right)
+            return null;
         int mid = left + (right - left) / 2;
         TreeNode root = new TreeNode(mid);
         root.left = buildTree(left, mid - 1);
         root.right = buildTree(mid + 1, right);
         return root;
     }
-    
+
     private int[] preSum;
     Random random;
     TreeNode root;
 }
 
 class TreeNode {
-    public TreeNode(int index) { this.index = index; }
+    public TreeNode(int index) {
+        this.index = index;
+    }
     TreeNode left;
     TreeNode right;
     int index;

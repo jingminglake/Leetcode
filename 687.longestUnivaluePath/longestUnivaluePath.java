@@ -16,14 +16,16 @@
 class Solution {
     public int res = 0;
     public int longestUnivaluePath(TreeNode root) {
-        if (root == null) return 0;
+        if (root == null)
+            return 0;
         res = 0;
         pathHelper(root);
         return res;
     }
-    
+
     public int pathHelper(TreeNode root) {
-        if (root == null) return 0;
+        if (root == null)
+            return 0;
         int leftRes = pathHelper(root.left);
         int rightRes = pathHelper(root.right);
         int leftConnect = 0, rightConnect = 0;

@@ -11,7 +11,7 @@ public:
             return res;
         if (primes.size() == 0)
             return res;
-        priority_queue<long, vector<long>, greater<long> > pq;
+        priority_queue<long, vector<long>, greater<long>> pq;
         for (int i = 1; i < n; i++) {
             for (int p : primes) {
                 pq.push(p * res);
@@ -26,10 +26,9 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> primes = {2,7,13,19};
+    vector<int> primes = {2, 7, 13, 19};
     cout << s.nthSuperUglyNumber(12, primes);
     cout << endl;
     return 0;

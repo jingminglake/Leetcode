@@ -9,17 +9,19 @@ public:
         _k = k;
         for (int n : nums) {
             pq.push(n);
-            if (pq.size() > k) pq.pop();
+            if (pq.size() > k)
+                pq.pop();
         }
     }
-    
+
     int add(int val) {
         pq.push(val);
-        if (pq.size() > _k) pq.pop();
+        if (pq.size() > _k)
+            pq.pop();
         return pq.top();
     }
-    
-    priority_queue<int, vector<int>, greater<int> > pq;
+
+    priority_queue<int, vector<int>, greater<int>> pq;
     int _k;
 };
 
@@ -30,7 +32,7 @@ public:
  */
 
 int main() {
-    vector<int> arr = {4,5,8,2};
+    vector<int> arr = {4, 5, 8, 2};
     int k = 3;
     KthLargest kthLargest(3, arr);
     cout << kthLargest.add(3) << endl;

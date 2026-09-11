@@ -4,7 +4,6 @@ using namespace std;
 
 class Codec {
 public:
-
     // Encodes a list of strings to a single string.
     string encode(vector<string>& strs) {
         string res;
@@ -37,7 +36,7 @@ public:
 
 int main() {
     Codec s;
-    vector<string> vec = {"abc","123", "qwe"};
+    vector<string> vec = {"abc", "123", "qwe"};
     string str = s.encode(vec);
     cout << str << endl;
     for (string& ss : s.decode(str))

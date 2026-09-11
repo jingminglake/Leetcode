@@ -10,7 +10,7 @@ public:
                     if (res.back() < abs(asteroids[i])) {
                         res.pop_back();
                         i--; // reconsider because i still exist
-                    } else if(res.back() == abs(asteroids[i])) {
+                    } else if (res.back() == abs(asteroids[i])) {
                         res.pop_back();
                     }
                 }

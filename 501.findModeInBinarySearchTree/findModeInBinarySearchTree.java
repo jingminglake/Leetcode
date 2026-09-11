@@ -24,12 +24,14 @@ class Solution {
         preVal = Long.MIN_VALUE;
         findModeHelper(root, res);
         int[] mode = new int[res.size()];
-        for (int i = 0; i < res.size(); i++) mode[i] = res.get(i);
+        for (int i = 0; i < res.size(); i++)
+            mode[i] = res.get(i);
         return mode;
     }
-    
+
     public void findModeHelper(TreeNode root, List<Integer> res) {
-        if (root == null) return;
+        if (root == null)
+            return;
         findModeHelper(root.left, res);
         if (root.val == preVal) {
             count++;

@@ -41,8 +41,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss = "3[a2[c]]";
     cout << s.decodeString(ss);

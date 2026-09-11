@@ -42,7 +42,7 @@ class LRUCache {
         }
         return res;
     }
-    
+
     public void put(int key, int value) {
         if (m.containsKey(key)) {
             DLinkedNode node = m.get(key);

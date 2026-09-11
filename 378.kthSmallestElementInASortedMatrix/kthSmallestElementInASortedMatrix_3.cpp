@@ -21,7 +21,7 @@ public:
         }
         return left;
     }
-    int countLessEqualTarget(vector<vector<int> >& matrix, int target) {
+    int countLessEqualTarget(vector<vector<int>>& matrix, int target) {
         int n = matrix.size(), i = n - 1, j = 0, res = 0;
         while (i >= 0 && j < n) {
             if (matrix[i][j] <= target) {
@@ -35,17 +35,16 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<int> row1 = {1,5,9};
-  vector<int> row2 = {10,11,13};
-  vector<int> row3 = {12,13,15};
-  vector<vector<int> > matrix;
-  matrix.push_back(row1);
-  matrix.push_back(row2);
-  matrix.push_back(row3);
-  cout << s.kthSmallest(matrix, 8);
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    vector<int> row1 = {1, 5, 9};
+    vector<int> row2 = {10, 11, 13};
+    vector<int> row3 = {12, 13, 15};
+    vector<vector<int>> matrix;
+    matrix.push_back(row1);
+    matrix.push_back(row2);
+    matrix.push_back(row3);
+    cout << s.kthSmallest(matrix, 8);
+    cout << endl;
+    return 0;
 }

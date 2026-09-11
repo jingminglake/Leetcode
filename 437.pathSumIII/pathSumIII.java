@@ -17,16 +17,18 @@ class Solution {
     int res = 0;
     public int pathSum(TreeNode root, int targetSum) {
         res = 0;
-        if (root == null) return res;
+        if (root == null)
+            return res;
         Map<Integer, Integer> preSum = new HashMap<>();
         preSum.put(0, 1);
         int path = 0;
         dfs(root, targetSum, preSum, path);
         return res;
     }
-    
+
     public void dfs(TreeNode root, int targetSum, Map<Integer, Integer> preSum, int path) {
-        if (root == null) return;
+        if (root == null)
+            return;
         path += root.val;
         if (preSum.containsKey(path - targetSum)) {
             res += preSum.get(path - targetSum);

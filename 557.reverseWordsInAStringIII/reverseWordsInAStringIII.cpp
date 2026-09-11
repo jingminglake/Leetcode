@@ -14,19 +14,19 @@ public:
         }
         return s;
     }
-    
+
     void reverse(string& s, int start, int end) {
         while (start < end) {
             char c = s[start];
             s[start] = s[end];
             s[end] = c;
-            start++; end--;
+            start++;
+            end--;
         }
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string str = "hello world";
     cout << s.reverseWords(str) << endl;

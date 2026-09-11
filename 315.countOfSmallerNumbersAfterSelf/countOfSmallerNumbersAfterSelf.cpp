@@ -25,7 +25,7 @@ public:
 int main() {
     Solution s;
     vector<int> nums = {5, 2, 6, 1};
-    for(int n : s.countSmaller(nums))
+    for (int n : s.countSmaller(nums))
         cout << n << " ";
     cout << endl;
     return 0;

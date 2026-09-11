@@ -4,11 +4,11 @@
 #include <vector>
 using namespace std;
 
-
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        if (matrix.size() == 0 || matrix[0].size() == 0) return;
+        if (matrix.size() == 0 || matrix[0].size() == 0)
+            return;
         int m = matrix.size(), n = matrix[0].size();
         bool rowZero = false, colZero = false;
         for (int i = 0; i < m; i++) {
@@ -49,14 +49,13 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> row1 = {5,1,0,11};
-    vector<int> row2 = {2,4,8,10};
-    vector<int> row3 = {0,3,6,7};
-    vector<int> row4 = {15,14,12,16};
-    vector<vector<int> > matrix;
+    vector<int> row1 = {5, 1, 0, 11};
+    vector<int> row2 = {2, 4, 8, 10};
+    vector<int> row3 = {0, 3, 6, 7};
+    vector<int> row4 = {15, 14, 12, 16};
+    vector<vector<int>> matrix;
     matrix.push_back(row1);
     matrix.push_back(row2);
     matrix.push_back(row3);

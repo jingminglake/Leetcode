@@ -25,7 +25,7 @@ public:
             for (int i = 0; i < temp.size(); i++) {
                 if (temp[i] != '(' && temp[i] != ')')
                     continue;
-                string next = temp.substr(0, i) + temp.substr(i+1);
+                string next = temp.substr(0, i) + temp.substr(i + 1);
                 if (!visited.count(next)) {
                     q.push(next);
                     visited.insert(next);
@@ -46,11 +46,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  for (string ss : s.removeInvalidParentheses(string("()())()")))
-    cout << ss << " ";
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    for (string ss : s.removeInvalidParentheses(string("()())()")))
+        cout << ss << " ";
+    cout << endl;
+    return 0;
 }

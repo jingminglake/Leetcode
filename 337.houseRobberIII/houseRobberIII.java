@@ -18,10 +18,11 @@ class Solution {
         int[] res = robHelper(root);
         return Math.max(res[0], res[1]);
     }
-    
+
     public int[] robHelper(TreeNode root) {
         int[] res = new int[2]; // 0 -> must rob, 1 -> must not rob
-        if (root == null) return res;
+        if (root == null)
+            return res;
         int[] leftRes = robHelper(root.left);
         int[] rightRes = robHelper(root.right);
         res[0] = root.val + leftRes[1] + rightRes[1];

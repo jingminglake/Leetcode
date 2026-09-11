@@ -15,10 +15,12 @@ public:
         int left_A = 0, right_A = len_A - 1;
         int left_B = 0, right_B = len_B - 1;
         while (left_A < len_A && A[left_A] == B[left_B]) {
-            left_A++; left_B++;
+            left_A++;
+            left_B++;
         }
         while (right_A >= 0 && A[right_A] == B[right_B]) {
-            right_A--; right_B--;
+            right_A--;
+            right_B--;
         }
         //cout << left_A << " " << right_A << " , " << left_B << " " << right_B << endl;
         if (left_A >= right_A || left_B >= right_B) {

@@ -2,16 +2,13 @@
 #include <cmath>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  int bulbSwitch(int n) {
-    return sqrt(n);
-  }
+    int bulbSwitch(int n) { return sqrt(n); }
 };
 
-int main()
-{
-  Solution s;
-  cout << s.bulbSwitch(37) << endl;
-  return 0;
+int main() {
+    Solution s;
+    cout << s.bulbSwitch(37) << endl;
+    return 0;
 }

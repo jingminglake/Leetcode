@@ -20,7 +20,7 @@ public:
     vector<string> helper(string S) {
         vector<string> res;
         int n = S.length();
-        if (n == 0 ||(n > 1 && S[0] == '0' && S[n - 1] == '0')) {
+        if (n == 0 || (n > 1 && S[0] == '0' && S[n - 1] == '0')) {
             return res;
         }
         if (n > 1 && S[0] == '0') {

@@ -3,16 +3,16 @@ using namespace std;
 
 struct ListNode {
     int val;
-    ListNode *next;
+    ListNode* next;
     ListNode(int x) : val(x), next(NULL) {}
 };
 
 class Solution {
 public:
-    ListNode *detectCycle(ListNode *head) {
+    ListNode* detectCycle(ListNode* head) {
         if (!head || !head->next)
             return nullptr;
-        ListNode* slow = head, *fast = head;
+        ListNode *slow = head, *fast = head;
         bool hasCycle = false;
         while (fast && fast->next) {
             slow = slow->next;
@@ -33,14 +33,13 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     int a[5] = {4, 3, 2, 3, 4};
-    ListNode *l = new ListNode(a[0]);
-    ListNode *tail = l;
-    ListNode *t = NULL;
-    for (int i = 1; i < sizeof(a)/sizeof(a[0]); i++) {
-        ListNode *temp = new ListNode(a[i]);
+    ListNode* l = new ListNode(a[0]);
+    ListNode* tail = l;
+    ListNode* t = NULL;
+    for (int i = 1; i < sizeof(a) / sizeof(a[0]); i++) {
+        ListNode* temp = new ListNode(a[i]);
         tail->next = temp;
         tail = temp;
         if (i == 2)
@@ -49,10 +48,10 @@ int main()
     tail->next = t;
     Solution s;
     cout << s.detectCycle(l)->val << endl;
-    ListNode *h = l;
+    ListNode* h = l;
     tail->next = NULL;
     while (h) {
-        ListNode *p = h;
+        ListNode* p = h;
         h = h->next;
         cout << "delete " << p->val << " ";
         delete p;

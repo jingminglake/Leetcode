@@ -8,13 +8,13 @@ using namespace std;
 class Solution {
 public:
     vector<vector<string>> findLadders(string beginWord, string endWord, vector<string>& wordList) {
-        vector<vector<string> > res;
+        vector<vector<string>> res;
         if (beginWord == endWord)
             return res;
         unordered_set<string> wordSet(wordList.begin(), wordList.end());
         if (!wordSet.count(endWord))
             return res;
-        unordered_map<string, vector<string> > children;
+        unordered_map<string, vector<string>> children;
         if (bfs(beginWord, endWord, wordSet, children)) {
             vector<string> path;
             path.push_back(beginWord);
@@ -22,7 +22,8 @@ public:
         }
         return res;
     }
-    bool bfs(string& beginWord, string& endWord, unordered_set<string>& wordSet, unordered_map<string, vector<string> >& children) {
+    bool bfs(string& beginWord, string& endWord, unordered_set<string>& wordSet,
+             unordered_map<string, vector<string>>& children) {
         unordered_set<string> s;
         s.insert(beginWord);
         bool find = false;
@@ -51,7 +52,8 @@ public:
         }
         return find;
     } // bfs
-    void dfs(string begin, string& end, vector<vector<string> >& res, unordered_map<string, vector<string> >& children, vector<string>& path) {
+    void dfs(string begin, string& end, vector<vector<string>>& res, unordered_map<string, vector<string>>& children,
+             vector<string>& path) {
         if (begin == end) {
             res.push_back(path);
             return;
@@ -64,13 +66,12 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string beginWord = "hit";
     string endWord = "cog";
     vector<string> wordList = {"hot", "dot", "dog", "lot", "log", "cog"};
-    vector<vector<string> > res = s.findLadders(beginWord, endWord, wordList);
+    vector<vector<string>> res = s.findLadders(beginWord, endWord, wordList);
     for (auto& vec : res) {
         for (const string& ss : vec)
             cout << ss << " ";

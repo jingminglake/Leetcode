@@ -1,29 +1,26 @@
-  //        
-  // level 3: -Inf ----------------------------> 4
-  // level 2: -Inf ------------> 2 ------------> 4
-  // level 1: -Inf ----> 1 ----> 2 ------------> 4
-  // level 0: -Inf ----> 1 ----> 2 ----> 3 ----> 4
+//
+// level 3: -Inf ----------------------------> 4
+// level 2: -Inf ------------> 2 ------------> 4
+// level 1: -Inf ----> 1 ----> 2 ------------> 4
+// level 0: -Inf ----> 1 ----> 2 ----> 3 ----> 4
 class Skiplist {
-    
     private static final class Node {
         private final int val;
         private Node next, down;
-        
+
         private Node(int val) {
             this.val = val;
         }
     }
-    
+
     private final Random rand = new Random();
-    
+
     private boolean flipCoin() {
         return rand.nextDouble() < 0.5;
     }
 
-    public Skiplist() {
-        
-    }
-    
+    public Skiplist() {}
+
     public boolean search(int target) {
         Node cur = leftTopHead;
         while (cur != null) {
@@ -35,7 +32,7 @@ class Skiplist {
         }
         return false;
     }
-    
+
     public void add(int num) {
         Stack<Node> stk = new Stack<>();
         // step1: find first lessThan Node in all level
@@ -47,7 +44,7 @@ class Skiplist {
             stk.push(cur);
             cur = cur.down;
         }
-        
+
         // step2: 100% chance insert at level 0 and 50% chance to insert from level 1 to level N
         boolean shouldInsert = true;
         Node lastInsertNode = null;
@@ -60,7 +57,7 @@ class Skiplist {
             lastInsertNode = n;
             shouldInsert = flipCoin();
         }
-        
+
         // step4: if insert happens in level N, then create level N + 1
         if (shouldInsert) {
             Node head = new Node(Integer.MIN_VALUE);
@@ -68,7 +65,7 @@ class Skiplist {
             leftTopHead = head;
         }
     }
-    
+
     public boolean erase(int num) {
         boolean found = false;
         Node cur = leftTopHead;
@@ -81,10 +78,10 @@ class Skiplist {
                 cur.next = cur.next.next;
             }
             cur = cur.down;
-        } 
+        }
         return found;
     }
-    
+
     private Node leftTopHead = new Node(Integer.MIN_VALUE);
 }
 

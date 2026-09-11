@@ -16,7 +16,7 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<int> > A = {{1,1,0},{1,0,1},{0,0,0}};
+    vector<vector<int>> A = {{1, 1, 0}, {1, 0, 1}, {0, 0, 0}};
     for (auto& row : s.flipAndInvertImage(A)) {
         for (int b : row)
             cout << b << " ";

@@ -18,14 +18,14 @@ public:
         }
         return dfs(accounts, 0, 0);
     }
-    int dfs (vector<int>& accounts, int start, int depth) {
+    int dfs(vector<int>& accounts, int start, int depth) {
         while (start < accounts.size() && accounts[start] == 0) // get next non-zero account
             start++;
         int res = INT_MAX;
         for (int i = start + 1; i < accounts.size(); i++) {
-            if ( (accounts[i] < 0) ^ (accounts[start] < 0) ) {
+            if ((accounts[i] < 0) ^ (accounts[start] < 0)) {
                 accounts[i] += accounts[start];
-                res = min (res, dfs(accounts, start + 1, depth + 1));
+                res = min(res, dfs(accounts, start + 1, depth + 1));
                 accounts[i] -= accounts[start];
             }
         }
@@ -35,7 +35,7 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<int> > transactions = {{0,1,10}, {2,0,5}};
+    vector<vector<int>> transactions = {{0, 1, 10}, {2, 0, 5}};
     cout << s.minTransfers(transactions) << endl;
     return 0;
 }

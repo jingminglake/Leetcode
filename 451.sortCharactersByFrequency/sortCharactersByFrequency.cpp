@@ -20,8 +20,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss = "tree";
     cout << s.frequencySort(ss);

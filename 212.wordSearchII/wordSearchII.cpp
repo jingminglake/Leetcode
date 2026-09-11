@@ -5,9 +5,7 @@ using namespace std;
 
 class TrieNode {
 public:
-    TrieNode() : word("") {
-        memset(next, 0, sizeof(next));
-    }
+    TrieNode() : word("") { memset(next, 0, sizeof(next)); }
     ~TrieNode() {
         for (TrieNode* t : next)
             delete t;
@@ -52,9 +50,9 @@ public:
         dfs(board, next_root, i, j - 1, res);
         board[i][j] = c;
     }
-    TrieNode *root;
+    TrieNode* root;
     void add(string& word) {
-        TrieNode *cur = root;
+        TrieNode* cur = root;
         for (char c : word) {
             if (!cur->next[c - 'a'])
                 cur->next[c - 'a'] = new TrieNode();
@@ -64,14 +62,15 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<vector<char> > board = { {'o','a','a','n'},
-                                    {'e','t','a','e'},
-                                    {'i','h','k','r'},
-                                    {'i','f','l','v'},};
-    vector<string> words = {"oath","pea","eat","rain"};
+    vector<vector<char>> board = {
+        {'o', 'a', 'a', 'n'},
+        {'e', 't', 'a', 'e'},
+        {'i', 'h', 'k', 'r'},
+        {'i', 'f', 'l', 'v'},
+    };
+    vector<string> words = {"oath", "pea", "eat", "rain"};
     for (string ss : s.findWords(board, words))
         cout << ss << endl;
     return 0;

@@ -15,7 +15,7 @@ public:
         }
         int left = 0, right = 0;
         for (int i = 0; i < S.length(); i++) {
-            right = max (right, m[S[i]]);
+            right = max(right, m[S[i]]);
             if (right == i) {
                 res.push_back(right - left + 1);
                 left = i + 1;
@@ -28,7 +28,7 @@ public:
 int main() {
     Solution s;
     string S = "ababcbacadefegdehijhklij";
-    for(int& v : s.partitionLabels(S))
+    for (int& v : s.partitionLabels(S))
         cout << v << " ";
     cout << endl;
     return 0;

@@ -1,10 +1,8 @@
 class HitCounter {
 public:
     /** Initialize your data structure here. */
-    HitCounter() {
-        
-    }
-    
+    HitCounter() {}
+
     /** Record a hit.
         @param timestamp - The current timestamp (in seconds granularity). */
     void hit(int timestamp) {
@@ -20,7 +18,7 @@ public:
             m[timestamp % 300].second = 1;
         }
     }
-    
+
     /** Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity). */
     int getHits(int timestamp) {
@@ -31,7 +29,7 @@ public:
         }
         return res;
     }
-    unordered_map<int, pair<int, int> > m;
+    unordered_map<int, pair<int, int>> m;
 };
 
 /**

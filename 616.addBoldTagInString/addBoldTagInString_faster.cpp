@@ -11,7 +11,8 @@ public:
             int word_len = word.length();
             size_t pos = s.find(word);
             while (pos != string::npos) {
-                for (int i = pos; i < pos + word_len; i++) bold[i] = true;
+                for (int i = pos; i < pos + word_len; i++)
+                    bold[i] = true;
                 pos = s.find(word, pos + 1);
             }
         }
@@ -30,7 +31,7 @@ public:
 int main() {
     Solution s;
     string str = "abcxyz123";
-    vector<string> dict = {"abc","123"};
+    vector<string> dict = {"abc", "123"};
     cout << s.addBoldTag(str, dict) << endl;
     return 0;
 }

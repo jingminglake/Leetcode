@@ -34,8 +34,8 @@ public:
 };
 
 int main() {
-  Solution s;
-  vector<int> nums = {3,6,1,0};
-  cout << s.dominantIndex(nums) << endl;
-  return 0;
+    Solution s;
+    vector<int> nums = {3, 6, 1, 0};
+    cout << s.dominantIndex(nums) << endl;
+    return 0;
 }

@@ -12,7 +12,7 @@ public:
         for (int i = max(k - n2, 0); i <= min(k, n1); i++) {
             vector<int> vec1 = getNDigitsMax(nums1, i);
             vector<int> vec2 = getNDigitsMax(nums2, k - i);
-            res = max (res, mergeVector(vec1, vec2));
+            res = max(res, mergeVector(vec1, vec2));
         }
         return res;
     }
@@ -46,7 +46,8 @@ public:
     }
     bool greater(vector<int>& vec1, int p1, vector<int>& vec2, int p2) {
         while (p1 < vec1.size() && p2 < vec2.size() && vec1[p1] == vec2[p2]) {
-            p1++; p2++;
+            p1++;
+            p2++;
         }
         return p2 == vec2.size() || (p1 < vec1.size() && vec1[p1] > vec2[p2]);
     }
@@ -54,10 +55,10 @@ public:
 
 int main() {
     Solution s;
-    vector<int> nums1 = {3,4,6,5};
-    vector<int> nums2 = {9,1,2,5,8,3};
+    vector<int> nums1 = {3, 4, 6, 5};
+    vector<int> nums2 = {9, 1, 2, 5, 8, 3};
     int k = 5;
-    for(int n : s.maxNumber(nums1, nums2, k))
+    for (int n : s.maxNumber(nums1, nums2, k))
         cout << n << " ";
     cout << endl;
     return 0;

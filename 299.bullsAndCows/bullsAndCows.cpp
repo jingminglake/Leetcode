@@ -17,13 +17,12 @@ public:
         }
         int same = 0;
         for (int i = 0; i < 10; i++)
-            same += min (hash1[i], hash2[i]);
+            same += min(hash1[i], hash2[i]);
         return to_string(bulls) + "A" + to_string(same - bulls) + "B";
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string s1 = "1122";
     string s2 = "2211";

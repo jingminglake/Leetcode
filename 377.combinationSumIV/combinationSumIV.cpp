@@ -19,8 +19,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<int> nums = {1, 2, 3};
     cout << s.combinationSum4(nums, 4) << endl;

@@ -22,20 +22,20 @@ public:
         }
         string digits = "01689";
         string path;
-        dfs (res, n, path, digits, 0);
+        dfs(res, n, path, digits, 0);
         return res;
     }
     void dfs(vector<string>& res, int n, string& path, string& digits, int start) {
         if (start > n)
             return;
         if (start == n) {
-            if (stol(path) > pow(10, n - 1) && isStrobogrammatic(path) )
+            if (stol(path) > pow(10, n - 1) && isStrobogrammatic(path))
                 res.push_back(path);
             return;
         }
         for (int j = 0; j < digits.length(); j++) {
             path += digits[j];
-            dfs (res, n, path, digits, start + 1);
+            dfs(res, n, path, digits, start + 1);
             path.pop_back();
         }
     }
@@ -54,16 +54,15 @@ public:
     unordered_map<char, char> m;
 };
 
-int main()
-{
-  Solution s;
-  string num = "101";
-  string num2 = "69";
-  string num3 = "818";
-  string num4 = "919";
-  cout << s.isStrobogrammatic(num) << endl;
-  cout << s.isStrobogrammatic(num2) << endl;
-  cout << s.isStrobogrammatic(num3) << endl;
-  cout << s.isStrobogrammatic(num4) << endl;
-  return 0;
+int main() {
+    Solution s;
+    string num = "101";
+    string num2 = "69";
+    string num3 = "818";
+    string num4 = "919";
+    cout << s.isStrobogrammatic(num) << endl;
+    cout << s.isStrobogrammatic(num2) << endl;
+    cout << s.isStrobogrammatic(num3) << endl;
+    cout << s.isStrobogrammatic(num4) << endl;
+    return 0;
 }

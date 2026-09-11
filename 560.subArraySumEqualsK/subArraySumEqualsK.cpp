@@ -22,11 +22,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[3] = {-1,-1,1};
-    vector<int> vec(a, a+3);
+    int a[3] = {-1, -1, 1};
+    vector<int> vec(a, a + 3);
     cout << s.subarraySum(vec, 0);
     cout << endl;
     return 0;

@@ -1,11 +1,12 @@
 class Solution {
 public:
     double knightProbability(int N, int K, int r, int c) {
-        vector<vector<double> > dp0(N, vector<double>(N, 0.0));
+        vector<vector<double>> dp0(N, vector<double>(N, 0.0));
         dp0[r][c] = 1.0;
-        vector<pair<int, int> > dirs = {make_pair(1, 2), make_pair(-1, 2), make_pair(1, -2), make_pair(-1, -2), make_pair(2, 1), make_pair(-2, 1), make_pair(2, -1), make_pair(-2, -1)};
+        vector<pair<int, int>> dirs = {make_pair(1, 2), make_pair(-1, 2), make_pair(1, -2), make_pair(-1, -2),
+                                       make_pair(2, 1), make_pair(-2, 1), make_pair(2, -1), make_pair(-2, -1)};
         for (int k = 0; k < K; k++) {
-            vector<vector<double> > dp1(N, vector<double>(N, 0.0));
+            vector<vector<double>> dp1(N, vector<double>(N, 0.0));
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
                     for (auto& dir : dirs) {

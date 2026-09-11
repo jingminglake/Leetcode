@@ -15,8 +15,8 @@ public:
 class Solution {
 public:
     vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings) {
-        vector<pair<int, int> > res;
-        vector<pair<int, int> > height;
+        vector<pair<int, int>> res;
+        vector<pair<int, int>> height;
         for (auto& b : buildings) {
             height.push_back({b[0], b[2]});
             height.push_back({b[1], -b[2]});
@@ -41,16 +41,11 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<vector<int>> buildings = {{2, 9, 10},
-				    {3, 7, 15},
-				    {5, 12, 12},
-				    {15, 20, 10},
-				    {19, 24, 8}};
-  for (auto& p : s.getSkyline(buildings))
-    cout << "(" << p.first << ", " << p.second << ") ";
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    vector<vector<int>> buildings = {{2, 9, 10}, {3, 7, 15}, {5, 12, 12}, {15, 20, 10}, {19, 24, 8}};
+    for (auto& p : s.getSkyline(buildings))
+        cout << "(" << p.first << ", " << p.second << ") ";
+    cout << endl;
+    return 0;
 }

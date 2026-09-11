@@ -4,10 +4,9 @@
 #include <vector>
 using namespace std;
 
-
-class Solution{
+class Solution {
 public:
-    bool searchMatrix(vector<vector<int> >& matrix, int target) {
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
         if (matrix.size() == 0)
             return false;
         int i = 0;
@@ -24,15 +23,14 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> row1 = {1,4,7,11,15};
-    vector<int> row2 = {2,5,8,12,19};
-    vector<int> row3 = {3,6,9,16,22};
-    vector<int> row4 = {10,13,14,17,24};
-    vector<int> row5 = {18,21,23,26,30};
-    vector<vector<int> > matrix;
+    vector<int> row1 = {1, 4, 7, 11, 15};
+    vector<int> row2 = {2, 5, 8, 12, 19};
+    vector<int> row3 = {3, 6, 9, 16, 22};
+    vector<int> row4 = {10, 13, 14, 17, 24};
+    vector<int> row5 = {18, 21, 23, 26, 30};
+    vector<vector<int>> matrix;
     matrix.push_back(row1);
     matrix.push_back(row2);
     matrix.push_back(row3);

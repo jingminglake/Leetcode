@@ -39,10 +39,10 @@ public:
         pq.emplace(seat_num, p.second);
         return seat_num;
     }
-    
+
     void leave(int p) {
         int start = 0, end = 0;
-        priority_queue<pair<int, int>, vector<pair<int, int> >, Compare> pq_2;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, Compare> pq_2;
         while (!pq.empty()) {
             pair<int, int> t = pq.top();
             pq.pop();
@@ -58,7 +58,7 @@ public:
         swap(pq, pq_2);
     }
     int _N;
-    priority_queue<pair<int, int>, vector<pair<int, int> >, Compare> pq;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, Compare> pq;
 };
 
 /**

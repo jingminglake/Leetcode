@@ -21,7 +21,8 @@ class Solution {
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
-            if (!removeFlag[i]) sb.append(s.charAt(i));
+            if (!removeFlag[i])
+                sb.append(s.charAt(i));
         }
         return sb.toString();
     }

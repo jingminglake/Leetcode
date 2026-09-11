@@ -16,7 +16,7 @@ public:
                     m.erase(s[left]);
                 left++;
             }
-            res = max (res, right - left);
+            res = max(res, right - left);
         }
         return res;
     }

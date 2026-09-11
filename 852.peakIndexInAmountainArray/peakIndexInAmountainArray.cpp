@@ -19,7 +19,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> A = {0,2,1,0};
+    vector<int> A = {0, 2, 1, 0};
     cout << s.peakIndexInMountainArray(A) << endl;
     return 0;
 }

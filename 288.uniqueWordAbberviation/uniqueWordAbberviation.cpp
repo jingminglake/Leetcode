@@ -5,13 +5,13 @@ public:
             string abbr = getAbbr(word);
             if (m.count(abbr)) {
                 if (word != m[abbr])
-                    m[abbr] = "";                    
+                    m[abbr] = "";
             } else {
                 m[abbr] = word;
             }
         }
     }
-    
+
     bool isUnique(string word) {
         string abbr = getAbbr(word);
         return !m.count(abbr) || m[abbr] == word;

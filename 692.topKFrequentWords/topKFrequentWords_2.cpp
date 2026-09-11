@@ -16,7 +16,7 @@ public:
         unordered_map<string, int> m;
         for (string& word : words)
             m[word]++;
-        priority_queue<pair<string, int>, vector<pair<string, int> >, Compare > pq;
+        priority_queue<pair<string, int>, vector<pair<string, int>>, Compare> pq;
         for (auto& p : m) {
             pq.push(p);
             if (pq.size() > k)
@@ -32,9 +32,7 @@ public:
     }
 };
 
-
-int main()
-{
+int main() {
     Solution s;
     vector<string> words1 = {"i", "love", "leetcode", "i", "love", "coding"};
     vector<string> words2 = {"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"};

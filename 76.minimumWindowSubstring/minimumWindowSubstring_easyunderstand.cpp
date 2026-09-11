@@ -32,8 +32,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string S = "ADOBECODEBANC";
     string T = "ABC";

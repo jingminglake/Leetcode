@@ -19,12 +19,11 @@ public:
                 else
                     return false;
             }
-        }// for
+        } // for
         while (!left.empty() && !star.empty()) {
             if (left.top() > star.top()) {
                 return false;
-            }
-            else {
+            } else {
                 left.pop();
                 star.pop();
             }
@@ -33,16 +32,15 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string p = "*(";
-  string p2 = "(*)";
-  string p3 = "(*))";
-  string p4 = "((***)";
-  cout << s.checkValidString(p) << endl;
-  cout << s.checkValidString(p2) << endl;
-  cout << s.checkValidString(p3) << endl;
-  cout << s.checkValidString(p4) << endl;
-  return 0;
+int main() {
+    Solution s;
+    string p = "*(";
+    string p2 = "(*)";
+    string p3 = "(*))";
+    string p4 = "((***)";
+    cout << s.checkValidString(p) << endl;
+    cout << s.checkValidString(p2) << endl;
+    cout << s.checkValidString(p3) << endl;
+    cout << s.checkValidString(p4) << endl;
+    return 0;
 }

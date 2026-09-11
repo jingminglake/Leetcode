@@ -22,10 +22,9 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string ss = "ABCDE";
-  cout << s.convert(ss, 3) << endl;
-  return 0;
+int main() {
+    Solution s;
+    string ss = "ABCDE";
+    cout << s.convert(ss, 3) << endl;
+    return 0;
 }

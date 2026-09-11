@@ -13,8 +13,8 @@ public:
         }
         return true;
     }
-    
-    bool dfs(int node, int color, vector<vector<int> >& graph, vector<int>& colors) {
+
+    bool dfs(int node, int color, vector<vector<int>>& graph, vector<int>& colors) {
         colors[node] = color;
         for (int neighbor : graph[node]) {
             if (colors[neighbor] == 0 && !dfs(neighbor, -color, graph, colors)) {
@@ -27,10 +27,9 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<vector<int> > matrix = {{1,3}, {0,2}, {1,3}, {0,2}};
+    vector<vector<int>> matrix = {{1, 3}, {0, 2}, {1, 3}, {0, 2}};
     cout << s.isBipartite(matrix) << endl;
     return 0;
 }

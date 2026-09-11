@@ -14,7 +14,7 @@ public:
                 s += start[i];
             if (end[i] != 'X')
                 e += end[i];
-        }   
+        }
         if (s != e)
             return false;
         int sl = 0, sr = 0, el = 0, er = 0;
@@ -38,6 +38,6 @@ int main() {
     Solution s;
     string start = "RXXLRXRXL";
     string end = "XRLXXRRLX";
-    cout << s.canTransform(start, end)<< endl;
+    cout << s.canTransform(start, end) << endl;
     return 0;
 }

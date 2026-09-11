@@ -11,10 +11,12 @@ class Solution {
                 left = mid;
             }
         }
-        if (countSmallOrEqual(matrix, left) >= k) return left; // maybe >= k!
-        else return right;
+        if (countSmallOrEqual(matrix, left) >= k)
+            return left; // maybe >= k!
+        else
+            return right;
     }
-    
+
     private int countSmallOrEqual(int[][] matrix, int target) {
         int count = 0;
         int n = matrix.length;

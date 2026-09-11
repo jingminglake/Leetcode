@@ -45,11 +45,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<string> words = {"This", "is", "an", "example", "of", "text", "justification."};
-  for(string& ss : s.fullJustify(words, 16))
-    cout << ss << endl;
-  return 0;
+int main() {
+    Solution s;
+    vector<string> words = {"This", "is", "an", "example", "of", "text", "justification."};
+    for (string& ss : s.fullJustify(words, 16))
+        cout << ss << endl;
+    return 0;
 }

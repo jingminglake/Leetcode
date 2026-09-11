@@ -8,7 +8,7 @@ class Solution {
 public:
     bool sequenceReconstruction(vector<int>& org, vector<vector<int>>& seqs) {
         int n = org.size();
-        vector<vector<int> > neighbors(n + 1);
+        vector<vector<int>> neighbors(n + 1);
         unordered_set<int> nodes(org.begin(), org.end()), nodes_2 = nodes;
         vector<int> indegree(n + 1, 0);
         for (auto& seq : seqs) {
@@ -46,15 +46,15 @@ public:
                 }
             }
         }
-        return index == n; 
+        return index == n;
     }
 };
 
 int main() {
     Solution s;
-    vector<int> org = {1,2,3};
-    vector<vector<int> > seqs = {{1,2}, {1,3}, {2,3}};
-    cout <<  s.sequenceReconstruction(org, seqs);
+    vector<int> org = {1, 2, 3};
+    vector<vector<int>> seqs = {{1, 2}, {1, 3}, {2, 3}};
+    cout << s.sequenceReconstruction(org, seqs);
     cout << endl;
     return 0;
 }

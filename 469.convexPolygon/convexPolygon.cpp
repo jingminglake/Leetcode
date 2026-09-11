@@ -27,8 +27,8 @@ public:
 };
 
 int main() {
-  Solution s;
-  vector<vector<int>> points = {{0,0},{0,10},{10,10},{10,0},{5,5}}; 
-  cout << s.isConvex(points) << endl;
-  return 0;
+    Solution s;
+    vector<vector<int>> points = {{0, 0}, {0, 10}, {10, 10}, {10, 0}, {5, 5}};
+    cout << s.isConvex(points) << endl;
+    return 0;
 }

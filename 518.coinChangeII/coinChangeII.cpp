@@ -19,10 +19,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> coins = {1,2,5};
-    cout << s.change(11, coins) << endl;;
+    vector<int> coins = {1, 2, 5};
+    cout << s.change(11, coins) << endl;
+    ;
     return 0;
 }

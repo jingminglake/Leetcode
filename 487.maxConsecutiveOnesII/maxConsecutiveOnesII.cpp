@@ -12,18 +12,18 @@ public:
             if (nums[right++] == 0)
                 zero++;
             while (zero > k) {
-                if(nums[left++] == 0)
+                if (nums[left++] == 0)
                     zero--;
             }
-            res = max (res, right - left);
+            res = max(res, right - left);
         }
         return res;
     }
 };
 
 int main() {
-  Solution s;
-  vector<int> nums = {1,1,0,1,1,1,0,0,1,1,1,1};
-  cout << s.findMaxConsecutiveOnes(nums) << endl;
-  return 0;
+    Solution s;
+    vector<int> nums = {1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1};
+    cout << s.findMaxConsecutiveOnes(nums) << endl;
+    return 0;
 }

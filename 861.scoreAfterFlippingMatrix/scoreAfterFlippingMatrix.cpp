@@ -19,7 +19,7 @@ public:
             for (int i = 0; i < m; i++) {
                 col_ones += A[i][j];
             }
-            res += max (col_ones, m - col_ones) * (1 << (n - j - 1));
+            res += max(col_ones, m - col_ones) * (1 << (n - j - 1));
         }
         return res;
     }
@@ -27,7 +27,7 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<int> > A = {{0,0,1,1},{1,0,1,0},{1,1,0,0}};
+    vector<vector<int>> A = {{0, 0, 1, 1}, {1, 0, 1, 0}, {1, 1, 0, 0}};
     cout << s.matrixScore(A) << endl;
     return 0;
 }

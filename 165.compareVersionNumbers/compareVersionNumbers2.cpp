@@ -32,6 +32,6 @@ public:
 int main() {
     Solution s;
     string version1 = "0.1", version2 = "1.1";
-    cout << s.compareVersion(version1, version2) << endl;    
+    cout << s.compareVersion(version1, version2) << endl;
     return 0;
 }

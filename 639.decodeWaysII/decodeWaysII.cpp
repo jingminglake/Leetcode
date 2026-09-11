@@ -13,7 +13,7 @@ public:
             return dp[0];
         dp[1] = way1(s[1]) * dp[0] + way2(s[0], s[1]);
         for (int i = 2; i < s.length(); i++) {
-            dp[i % 2] = (way1(s[i]) * dp[(i - 1) % 2] + way2(s[i-1], s[i]) * dp[(i - 2) % 2]) % 1000000007;
+            dp[i % 2] = (way1(s[i]) * dp[(i - 1) % 2] + way2(s[i - 1], s[i]) * dp[(i - 2) % 2]) % 1000000007;
         }
         return dp[(s.length() - 1) % 2];
     }
@@ -41,7 +41,7 @@ public:
             else
                 return 0;
         } else {
-            int num = (c1 - '0')  * 10 + (c2 - '0');
+            int num = (c1 - '0') * 10 + (c2 - '0');
             if (num >= 10 && num <= 26)
                 return 1;
             else
@@ -50,11 +50,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string ss = "**12";
-  cout << s.numDecodings(ss);
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    string ss = "**12";
+    cout << s.numDecodings(ss);
+    cout << endl;
+    return 0;
 }

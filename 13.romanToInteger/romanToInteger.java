@@ -14,15 +14,14 @@ class Solution {
             if (i != s.length() - 1) {
                 Character c2 = s.charAt(i + 1);
                 if (m.get(c2) <= m.get(c1)) {
-                  res += m.get(c1);
+                    res += m.get(c1);
                 } else {
                     res += m.get(c2) - m.get(c1);
                     i++;
                 }
             } else {
-                 res += m.get(c1);
+                res += m.get(c1);
             }
-            
         }
         return res;
     }

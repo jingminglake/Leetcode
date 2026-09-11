@@ -14,7 +14,7 @@ public:
         if (newTarget < 0 || sum < target || newTarget % 2 != 0)
             return 0;
         newTarget /= 2;
-        vector<vector<int> > dp(nums.size() + 1, vector<int>(newTarget + 1, 0));
+        vector<vector<int>> dp(nums.size() + 1, vector<int>(newTarget + 1, 0));
         dp[0][0] = 1;
         for (int i = 1; i <= nums.size(); i++) {
             for (int j = 0; j <= newTarget; j++) {
@@ -28,8 +28,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<int> vec(5, 1);
     cout << s.findTargetSumWays(vec, 3);

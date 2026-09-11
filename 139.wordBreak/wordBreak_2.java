@@ -5,7 +5,7 @@ class Solution {
         for (int i = 1; i < dp.length; i++) {
             for (String word : wordDict) {
                 if (i - word.length() >= 0 && word.equals(s.substring(i - word.length(), i))) {
-                    if (dp[i - word.length()]){ 
+                    if (dp[i - word.length()]) {
                         dp[i] = true;
                         break;
                     }

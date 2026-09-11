@@ -12,12 +12,12 @@ public:
         if (words.size() == 0)
             return "";
         // build map, use node->node(edges), nodes, adjacency list (neighbors)
-        set<pair<char, char> > edges;
+        set<pair<char, char>> edges;
         unordered_set<char> nodes;
-        unordered_map<char, set<char> > neighbors;
+        unordered_map<char, set<char>> neighbors;
         string prev = "";
         for (int i = 0; i < words.size(); i++) {
-            for (int j = 0; j < min (prev.size(), words[i].size()); j++) {
+            for (int j = 0; j < min(prev.size(), words[i].size()); j++) {
                 if (prev[j] != words[i][j]) {
                     edges.insert(make_pair(prev[j], words[i][j]));
                     neighbors[prev[j]].insert(words[i][j]);
@@ -57,11 +57,10 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<string> words = {"wrt", "wrf", "er", "ett", "rftt"};
-  cout << s.alienOrder(words);
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    vector<string> words = {"wrt", "wrf", "er", "ett", "rftt"};
+    cout << s.alienOrder(words);
+    cout << endl;
+    return 0;
 }

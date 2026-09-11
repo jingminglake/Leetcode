@@ -23,7 +23,7 @@ public:
 int main() {
     Solution s;
     vector<int> temperatures = {73, 74, 75, 71, 69, 72, 76, 73};
-    for (int i : s.dailyTemperatures(temperatures) ) {
+    for (int i : s.dailyTemperatures(temperatures)) {
         cout << i << " ";
     }
     cout << endl;

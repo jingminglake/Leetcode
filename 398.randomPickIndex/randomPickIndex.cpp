@@ -4,7 +4,7 @@ public:
         nums_ = nums;
         srand(time(0));
     }
-    
+
     int pick(int target) {
         int res = -1, count = 0;
         for (int i = 0; i < nums_.size(); i++) {

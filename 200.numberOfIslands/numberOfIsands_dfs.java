@@ -6,7 +6,8 @@ class Solution {
         boolean[][] visited = new boolean[m][n];
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == '0' || visited[i][j]) continue;
+                if (grid[i][j] == '0' || visited[i][j])
+                    continue;
                 visited[i][j] = true;
                 dfs(i, j, grid, visited);
                 res++;
@@ -21,9 +22,12 @@ class Solution {
         for (int[] dir : dirs) {
             int nextI = startI + dir[0];
             int nextJ = startJ + dir[1];
-            if (nextI < 0 || nextI >= grid.length || nextJ < 0 || nextJ >= grid[0].length) continue;
-            if (grid[nextI][nextJ] == '0') continue;
-            if (visited[nextI][nextJ]) continue;
+            if (nextI < 0 || nextI >= grid.length || nextJ < 0 || nextJ >= grid[0].length)
+                continue;
+            if (grid[nextI][nextJ] == '0')
+                continue;
+            if (visited[nextI][nextJ])
+                continue;
             visited[nextI][nextJ] = true;
             dfs(nextI, nextJ, grid, visited);
         }

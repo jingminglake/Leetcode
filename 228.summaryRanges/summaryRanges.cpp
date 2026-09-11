@@ -19,11 +19,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[4] = {0,1,5,7};
-    vector<int> vec(a, a+4);
+    int a[4] = {0, 1, 5, 7};
+    vector<int> vec(a, a + 4);
     vector<string> res = s.summaryRanges(vec);
     for (string s : res) {
         cout << s << " ";

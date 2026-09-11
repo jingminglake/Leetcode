@@ -2,14 +2,10 @@
 #include <stack>
 using namespace std;
 
-class MyQueue{
+class MyQueue {
 public:
-    MyQueue() {
-    
-    }
-    void push(int x) {
-        input.push(x);
-    }
+    MyQueue() {}
+    void push(int x) { input.push(x); }
     int pop() {
         int res = peek();
         output.pop();
@@ -26,14 +22,11 @@ public:
         }
         return output.top();
     }
-    bool empty() {
-        return input.empty() && output.empty();
-    }
+    bool empty() { return input.empty() && output.empty(); }
     stack<int> input, output;
 };
 
-int main()
-{
+int main() {
     MyQueue obj;
     int i = 1;
     while (i < 10)

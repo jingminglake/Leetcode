@@ -18,8 +18,10 @@ class Solution {
         return validate(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
     private boolean validate(TreeNode root, long lowerB, long upperB) {
-        if (root == null) return true;
-        if (root.val <= lowerB || root.val >= upperB) return false;
+        if (root == null)
+            return true;
+        if (root.val <= lowerB || root.val >= upperB)
+            return false;
         return validate(root.left, lowerB, root.val) && validate(root.right, root.val, upperB);
     }
 }

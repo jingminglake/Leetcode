@@ -10,7 +10,8 @@ public:
             int mid = left + (right - left) / 2;
             int count = 0;
             for (int num : nums) {
-                if (num < mid) count++;
+                if (num < mid)
+                    count++;
             }
             if (count < mid)
                 left = mid + 1;
@@ -21,12 +22,11 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[4] = {1,2,3,1};
-    vector<int> vec(a, a+2);
-    cout <<  s.findDuplicate(vec);
+    int a[4] = {1, 2, 3, 1};
+    vector<int> vec(a, a + 2);
+    cout << s.findDuplicate(vec);
     cout << endl;
     return 0;
 }

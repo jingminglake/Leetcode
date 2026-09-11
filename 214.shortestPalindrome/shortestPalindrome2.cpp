@@ -21,10 +21,9 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string ss = "aacecaaa";
-  cout << s.shortestPalindrome(ss) << endl;
-  return 0;
+int main() {
+    Solution s;
+    string ss = "aacecaaa";
+    cout << s.shortestPalindrome(ss) << endl;
+    return 0;
 }

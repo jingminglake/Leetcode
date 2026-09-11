@@ -8,7 +8,8 @@ public:
     vector<string> generatePalindromes(string s) {
         vector<string> res;
         unordered_map<char, int> m;
-        for (char c : s) m[c]++;
+        for (char c : s)
+            m[c]++;
         string half;
         string mid = "";
         int odd = 0;
@@ -18,7 +19,8 @@ public:
                 odd++;
             }
             half += string(p.second / 2, p.first);
-            if (odd > 1) return res;
+            if (odd > 1)
+                return res;
         }
         vector<bool> visited(half.length(), false);
         string path;

@@ -29,8 +29,8 @@ public:
 
 int main() {
     Solution s;
-    vector<vector<int> > edges = {{1,2}, {2,3}, {3,4}, {1,4}, {1,5}};
-    for(int& v : s.findRedundantConnection(edges))
+    vector<vector<int>> edges = {{1, 2}, {2, 3}, {3, 4}, {1, 4}, {1, 5}};
+    for (int& v : s.findRedundantConnection(edges))
         cout << v << " ";
     cout << endl;
     return 0;

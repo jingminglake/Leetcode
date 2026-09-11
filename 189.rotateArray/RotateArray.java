@@ -17,13 +17,13 @@ class RotateArray {
             end--;
         }
     }
-	public static void main(String[] args) {
-		RotateArray s = new RotateArray();
-		int a[] = {1,2,3,4,5,6,7};
-		int k = 3;
-		s.rotate(a, k);
-		for (int n : a)
-			System.out.print(n + " ");
-		System.out.println();
-	}
+    public static void main(String[] args) {
+        RotateArray s = new RotateArray();
+        int a[] = {1, 2, 3, 4, 5, 6, 7};
+        int k = 3;
+        s.rotate(a, k);
+        for (int n : a)
+            System.out.print(n + " ");
+        System.out.println();
+    }
 }

@@ -39,7 +39,8 @@ int main() {
     Solution s;
     vector<string> words1 = {"great", "acting", "skills"};
     vector<string> words2 = {"fine", "drama", "talent"};
-    vector<pair<string, string> > pairs = {{"great", "good"}, {"fine", "good"}, {"acting","drama"}, {"skills","talent"}};
+    vector<pair<string, string>> pairs = {
+        {"great", "good"}, {"fine", "good"}, {"acting", "drama"}, {"skills", "talent"}};
     cout << s.areSentencesSimilarTwo(words1, words2, pairs) << endl;
     return 0;
 }

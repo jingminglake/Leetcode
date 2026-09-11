@@ -6,7 +6,7 @@ class Solution {
 public:
     string minWindow(string S, string T) {
         int s_len = S.length(), t_len = T.length();
-        vector<vector<int> > dp(s_len + 1, vector<int>(t_len + 1, INT_MAX));
+        vector<vector<int>> dp(s_len + 1, vector<int>(t_len + 1, INT_MAX));
         for (int i = 0; i <= s_len; i++)
             dp[i][0] = i;
         for (int i = 1; i <= s_len; i++) {
@@ -31,8 +31,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string S = "abcdebdde";
     string T = "bde";

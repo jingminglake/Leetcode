@@ -10,7 +10,9 @@ class Solution {
                 }
             }
         }
-        if (dp[amount] == Integer.MAX_VALUE) return -1;
-        else return dp[amount];
+        if (dp[amount] == Integer.MAX_VALUE)
+            return -1;
+        else
+            return dp[amount];
     }
 }

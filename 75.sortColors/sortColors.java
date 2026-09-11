@@ -12,7 +12,7 @@ class Solution {
             i++;
         }
     }
-    
+
     private void swap(int[] nums, int left, int right) {
         int tmp = nums[left];
         nums[left] = nums[right];

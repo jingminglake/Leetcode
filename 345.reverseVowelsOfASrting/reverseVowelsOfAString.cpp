@@ -20,10 +20,9 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string str = "aA";
-  cout << s.reverseVowels(str) << endl;
-  return 0;
+int main() {
+    Solution s;
+    string str = "aA";
+    cout << s.reverseVowels(str) << endl;
+    return 0;
 }

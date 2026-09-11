@@ -23,7 +23,7 @@ public:
 };
 
 int main() {
-  Solution s;
-  cout << s.numWays(4, 6) << endl;
-  return 0;
+    Solution s;
+    cout << s.numWays(4, 6) << endl;
+    return 0;
 }

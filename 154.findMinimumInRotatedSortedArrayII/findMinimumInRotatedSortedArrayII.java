@@ -11,7 +11,9 @@ class Solution {
                 right--; // not matter mid in left or right(we don't know), min should be in the left side of mid
             }
         }
-        if (nums[left] < nums[right]) return nums[left];
-        else return nums[right];
+        if (nums[left] < nums[right])
+            return nums[left];
+        else
+            return nums[right];
     }
 }

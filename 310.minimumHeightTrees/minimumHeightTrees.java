@@ -19,17 +19,18 @@ class Solution {
             indegree[edge[0]]++;
             indegree[edge[1]]++;
         }
-        
+
         Queue<Integer> q = new LinkedList<>();
         for (int i = 0; i < n; i++) {
             if (indegree[i] == 1) {
                 q.offer(i);
             }
         }
-        
+
         int remain = n;
         while (!q.isEmpty()) {
-            if (remain <= 2) break;
+            if (remain <= 2)
+                break;
             int q_size = q.size();
             remain -= q_size;
             for (int i = 0; i < q_size; i++) {
@@ -41,7 +42,7 @@ class Solution {
                 }
             }
         }
-        
+
         while (!q.isEmpty()) {
             res.add(q.poll());
         }

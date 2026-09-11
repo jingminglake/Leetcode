@@ -12,20 +12,28 @@ class Solution {
             int dotNum = right - left - 1;
             if (d.charAt(right) == 'L') {
                 if (d.charAt(left) == 'L') { // L...L
-                    if (left != 0) sb.append('L');
-                    for (int i = 0; i < dotNum; i++) sb.append('L');
+                    if (left != 0)
+                        sb.append('L');
+                    for (int i = 0; i < dotNum; i++)
+                        sb.append('L');
                 } else if (d.charAt(left) == 'R') { // R...L
                     sb.append('R');
-                    for (int i = 0; i < dotNum / 2; i++) sb.append('R');
-                    if (dotNum % 2 != 0) sb.append('.');
-                    for (int i = 0; i < dotNum / 2; i++) sb.append('L');
+                    for (int i = 0; i < dotNum / 2; i++)
+                        sb.append('R');
+                    if (dotNum % 2 != 0)
+                        sb.append('.');
+                    for (int i = 0; i < dotNum / 2; i++)
+                        sb.append('L');
                 }
             } else if (d.charAt(right) == 'R') {
                 if (d.charAt(left) == 'L') { // L...R
-                    if (left != 0) sb.append('L');
-                    for (int i = 0; i < dotNum; i++) sb.append('.');
+                    if (left != 0)
+                        sb.append('L');
+                    for (int i = 0; i < dotNum; i++)
+                        sb.append('.');
                 } else if (d.charAt(right) == 'R') { // R...R
-                    for (int i = 0; i < dotNum + 1; i++) sb.append('R');
+                    for (int i = 0; i < dotNum + 1; i++)
+                        sb.append('R');
                 }
             }
             left = right;

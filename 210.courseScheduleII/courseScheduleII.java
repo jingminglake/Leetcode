@@ -9,11 +9,13 @@ class Solution {
         }
         int[] indegree = new int[numCourses];
         for (Set<Integer> s : graph.values()) {
-            for (Integer i : s) indegree[i]++;
+            for (Integer i : s)
+                indegree[i]++;
         }
         Queue<Integer> q = new LinkedList<>();
         for (int i = 0; i < indegree.length; i++) {
-            if (indegree[i] == 0) q.offer(i);
+            if (indegree[i] == 0)
+                q.offer(i);
         }
         int visitedNum = 0;
         int[] res = new int[numCourses];
@@ -27,7 +29,9 @@ class Solution {
                 }
             }
         }
-        if (visitedNum == numCourses) return res;
-        else return new int[0];
+        if (visitedNum == numCourses)
+            return res;
+        else
+            return new int[0];
     }
 }

@@ -6,7 +6,7 @@ public:
             return 0;
         int n = matrix[0].size();
         int res = 0;
-        vector<vector<int> > dp = matrix;
+        vector<vector<int>> dp = matrix;
         for (int i = 0; i < m; i++) {
             for (int j = 1; j < n; j++) {
                 dp[i][j] += dp[i][j - 1];

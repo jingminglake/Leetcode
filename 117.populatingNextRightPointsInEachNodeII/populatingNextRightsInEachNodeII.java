@@ -23,7 +23,8 @@ class Node {
 
 class Solution {
     public Node connect(Node root) {
-        if (root == null) return root;
+        if (root == null)
+            return root;
         Node levelHead = root;
         while (levelHead != null) {
             Node cur = levelHead;

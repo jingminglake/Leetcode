@@ -9,8 +9,8 @@ public:
         if (board.size() == 0 || board[0].size() == 0)
             return;
         int m = board.size(), n = board[0].size();
-        queue<pair<int, int> > q;
-        vector<vector<bool> > not_surround(m, vector<bool>(n, false));
+        queue<pair<int, int>> q;
+        vector<vector<bool>> not_surround(m, vector<bool>(n, false));
         for (int i = 0; i < m; i++) {
             if (board[i][0] == 'O') {
                 q.emplace(i, 0);
@@ -31,14 +31,15 @@ public:
                 not_surround[m - 1][j] = true;
             }
         }
-        vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+        vector<pair<int, int>> dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
         while (!q.empty()) {
             pair<int, int> p = q.front();
             q.pop();
             for (auto& dir : dirs) {
                 int next_i = p.first + dir.first;
                 int next_j = p.second + dir.second;
-                if (next_i < 0 || next_i >= m || next_j < 0 || next_j >= n || not_surround[next_i][next_j] || board[next_i][next_j] == 'X')
+                if (next_i < 0 || next_i >= m || next_j < 0 || next_j >= n || not_surround[next_i][next_j] ||
+                    board[next_i][next_j] == 'X')
                     continue;
                 not_surround[next_i][next_j] = true;
                 q.emplace(next_i, next_j);
@@ -53,18 +54,17 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    char a1[4] = {'X','X','X','X'};
-    char a2[4] = {'X','O','O','X'};
-    char a3[4] = {'X','X','O','X'};
-    char a4[4] = {'X','O','X','X'};
-    vector<char> vec1(a1, a1+4);
-    vector<char> vec2(a2, a2+4);
-    vector<char> vec3(a3, a3+4);
-    vector<char> vec4(a4, a4+4);
-    vector<vector<char> > board;
+    char a1[4] = {'X', 'X', 'X', 'X'};
+    char a2[4] = {'X', 'O', 'O', 'X'};
+    char a3[4] = {'X', 'X', 'O', 'X'};
+    char a4[4] = {'X', 'O', 'X', 'X'};
+    vector<char> vec1(a1, a1 + 4);
+    vector<char> vec2(a2, a2 + 4);
+    vector<char> vec3(a3, a3 + 4);
+    vector<char> vec4(a4, a4 + 4);
+    vector<vector<char>> board;
     board.push_back(vec1);
     board.push_back(vec2);
     board.push_back(vec3);

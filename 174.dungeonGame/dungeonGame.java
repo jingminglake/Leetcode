@@ -2,8 +2,10 @@ class Solution {
     public int calculateMinimumHP(int[][] dungeon) {
         int m = dungeon.length, n = dungeon[0].length;
         int[][] dp = new int[m][n];
-        if (dungeon[m - 1][n - 1] >= 0) dp[m - 1][n - 1] = 1;
-        else dp[m - 1][n - 1] = 1 - dungeon[m - 1][n - 1];
+        if (dungeon[m - 1][n - 1] >= 0)
+            dp[m - 1][n - 1] = 1;
+        else
+            dp[m - 1][n - 1] = 1 - dungeon[m - 1][n - 1];
 
         for (int i = m - 2; i >= 0; i--) {
             if (dungeon[i][n - 1] < dp[i + 1][n - 1])

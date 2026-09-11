@@ -32,9 +32,7 @@ public:
         }
         return res;
     }
-    long f(int x, int a, int b, int c) {
-        return a * x * x + b * x + c;
-    }
+    long f(int x, int a, int b, int c) { return a * x * x + b * x + c; }
 };
 
 int main() {

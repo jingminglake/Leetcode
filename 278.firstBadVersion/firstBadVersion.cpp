@@ -10,10 +10,11 @@ bool isBadVersion(int num) {
 
 /* The isBadVersion API is defined in the parent class VersionControl.
       boolean isBadVersion(int version); */
-class Solution{
+class Solution {
 public:
     int firstBadVersion(int n) {
-        if (n == 1 && isBadVersion(1)) return 1;
+        if (n == 1 && isBadVersion(1))
+            return 1;
         int left = 1, right = n;
         while (left + 1 < right) {
             int mid = left + (right - left) / 2;
@@ -23,14 +24,15 @@ public:
                 left = mid;
             }
         }
-        if (isBadVersion(left)) return left;
-        if (isBadVersion(right)) return right;
+        if (isBadVersion(left))
+            return left;
+        if (isBadVersion(right))
+            return right;
         return -1;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     cout << s.firstBadVersion(10) << endl;
     return 0;

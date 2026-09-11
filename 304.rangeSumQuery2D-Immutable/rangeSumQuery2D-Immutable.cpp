@@ -13,34 +13,29 @@ public:
         n = matrix[0].size();
         if (n == 0)
             return;
-        dp = vector<vector<int> >(m + 1, vector<int> (n + 1, 0));
+        dp = vector<vector<int>>(m + 1, vector<int>(n + 1, 0));
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 dp[i][j] = dp[i - 1][j] + dp[i][j - 1] - dp[i - 1][j - 1] + matrix[i - 1][j - 1];
             }
         }
     }
-    
+
     int sumRegion(int row1, int col1, int row2, int col2) {
         if (m == 0 || n == 0)
             return -1;
         return dp[row2 + 1][col2 + 1] - dp[row2 + 1][col1] - dp[row1][col2 + 1] + dp[row1][col1];
     }
-    vector<vector<int> > dp;
+    vector<vector<int>> dp;
     int m;
     int n;
 };
 
-int main()
-{
-  vector<vector<int> > matrix = {{3,0,1,4,2},
-				 {5,6,3,2,1},
-                                 {1,2,0,1,5},
-                                 {4,1,0,1,7},
-                                 {1,0,3,0,5}};
-  NumMatrix objMatrix(matrix);
-  cout << objMatrix.sumRegion(2,1,4,3) << endl;
-  cout << objMatrix.sumRegion(1,1,2,2) << endl;
-  cout << objMatrix.sumRegion(1,2,2,4) << endl;
-  return 0;
+int main() {
+    vector<vector<int>> matrix = {{3, 0, 1, 4, 2}, {5, 6, 3, 2, 1}, {1, 2, 0, 1, 5}, {4, 1, 0, 1, 7}, {1, 0, 3, 0, 5}};
+    NumMatrix objMatrix(matrix);
+    cout << objMatrix.sumRegion(2, 1, 4, 3) << endl;
+    cout << objMatrix.sumRegion(1, 1, 2, 2) << endl;
+    cout << objMatrix.sumRegion(1, 2, 2, 4) << endl;
+    return 0;
 }

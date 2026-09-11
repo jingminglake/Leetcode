@@ -8,23 +8,24 @@ public:
         int left = 0, right = s.length() - 1;
         while (left < right) {
             if (s[left] != s[right]) {
-               return validPalindromeHelper(s, left + 1, right) || validPalindromeHelper(s, left, right - 1); 
+                return validPalindromeHelper(s, left + 1, right) || validPalindromeHelper(s, left, right - 1);
             } else {
-               left++; right--;
+                left++;
+                right--;
             }
         }
         return true;
     }
     bool validPalindromeHelper(string s, int left, int right) {
         while (left < right) {
-            if (s[left++] != s[right--]) return false;
+            if (s[left++] != s[right--])
+                return false;
         }
         return true;
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss = "aba";
     string ss1 = "abca";

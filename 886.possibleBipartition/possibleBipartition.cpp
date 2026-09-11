@@ -5,7 +5,7 @@ using namespace std;
 class Solution {
 public:
     bool possibleBipartition(int N, vector<vector<int>>& dislikes) {
-        vector<vector<int> > graph(N + 1);
+        vector<vector<int>> graph(N + 1);
         for (auto& dislike : dislikes) {
             graph[dislike[0]].push_back(dislike[1]);
             graph[dislike[1]].push_back(dislike[0]);
@@ -19,7 +19,7 @@ public:
         }
         return true;
     }
-    bool dfs(int node, int group, vector<vector<int> >& graph, vector<int>& visited) {
+    bool dfs(int node, int group, vector<vector<int>>& graph, vector<int>& visited) {
         visited[node] = group;
         for (int i : graph[node]) {
             int next_group = group == 1 ? 2 : 1;
@@ -37,7 +37,7 @@ public:
 int main() {
     Solution s;
     int N = 4;
-    vector<vector<int> > dislikes = {{1,2}, {1,3}, {2,4}};
+    vector<vector<int>> dislikes = {{1, 2}, {1, 3}, {2, 4}};
     cout << s.possibleBipartition(N, dislikes) << endl;
     return 0;
 }

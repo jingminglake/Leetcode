@@ -3,10 +3,12 @@ class Solution {
         int[][] dp = new int[n + 1][n + 1];
         return dfs(dp, 1, n);
     }
-    
+
     public int dfs(int[][] dp, int start, int end) {
-        if (start == end) return dp[start][end] = 0;
-        if (dp[start][end] != 0) return dp[start][end];
+        if (start == end)
+            return dp[start][end] = 0;
+        if (dp[start][end] != 0)
+            return dp[start][end];
         int cur = Integer.MAX_VALUE;
         for (int i = start; i <= end; i++) {
             if (i == start) {

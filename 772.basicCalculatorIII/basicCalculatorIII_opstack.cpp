@@ -6,10 +6,14 @@ class Solution {
 public:
     int operation(char op, int num1, int num2) {
         switch (op) {
-            case '+': return num1 + num2;
-            case '-': return num1 - num2;
-            case '*': return num1 * num2;
-            case '/': return num1 / num2; // assume num2 is not 0
+        case '+':
+            return num1 + num2;
+        case '-':
+            return num1 - num2;
+        case '*':
+            return num1 * num2;
+        case '/':
+            return num1 / num2; // assume num2 is not 0
         }
         return 0;
     }
@@ -40,34 +44,42 @@ public:
             } else if (s[i] == ')') {
                 // do the math when we encounter a ')' until '('
                 while (ops.top() != '(') {
-                    char op = ops.top(); ops.pop();
-                    int num1 = nums.top(); nums.pop();
-                    int num2 = nums.top(); nums.pop();
+                    char op = ops.top();
+                    ops.pop();
+                    int num1 = nums.top();
+                    nums.pop();
+                    int num2 = nums.top();
+                    nums.pop();
                     nums.push(operation(op, num2, num1));
                 }
                 ops.pop(); // pop '('
             } else if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/') {
                 while (!ops.empty() && precedence(s[i], ops.top())) {
-                    char op = ops.top(); ops.pop();
-                    int num1 = nums.top(); nums.pop();
-                    int num2 = nums.top(); nums.pop();
+                    char op = ops.top();
+                    ops.pop();
+                    int num1 = nums.top();
+                    nums.pop();
+                    int num2 = nums.top();
+                    nums.pop();
                     nums.push(operation(op, num2, num1));
                 }
                 ops.push(s[i]);
             }
-        }// for
+        } // for
         while (!ops.empty()) {
-            char op = ops.top(); ops.pop();
-            int num1 = nums.top(); nums.pop();
-            int num2 = nums.top(); nums.pop();
+            char op = ops.top();
+            ops.pop();
+            int num1 = nums.top();
+            nums.pop();
+            int num2 = nums.top();
+            nums.pop();
             nums.push(operation(op, num2, num1));
         }
         return nums.top();
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss = "(2+6* 3+5- (3*14/7+2)*5)+3 ";
     cout << s.calculate(ss);

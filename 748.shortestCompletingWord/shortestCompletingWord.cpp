@@ -36,9 +36,9 @@ public:
 };
 
 int main() {
-  Solution s;
-  string licensePlate = "1s3 PSt";
-  vector<string> words = {"step", "steps", "stripe", "stepple"};
-  cout << s.shortestCompletingWord(licensePlate, words) << endl;
-  return 0;
+    Solution s;
+    string licensePlate = "1s3 PSt";
+    vector<string> words = {"step", "steps", "stripe", "stepple"};
+    cout << s.shortestCompletingWord(licensePlate, words) << endl;
+    return 0;
 }

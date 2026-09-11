@@ -7,7 +7,7 @@ public:
         int len_s = s.length(), len_t = t.length();
         if (abs(len_s - len_t) > 1)
             return false;
-        for (int i = 0; i < min (len_s, len_t); i++) {
+        for (int i = 0; i < min(len_s, len_t); i++) {
             if (s[i] != t[i]) {
                 if (len_s > len_t) {
                     return s.substr(i + 1) == t.substr(i);
@@ -22,8 +22,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss = "ab";
     string tt = "abc";

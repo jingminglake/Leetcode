@@ -6,7 +6,8 @@ public:
         for (int i = 0; i < arr1.size(); i++) {
             auto it1 = lower_bound(arr2.begin(), arr2.end(), arr1[i] - d);
             auto it2 = upper_bound(arr2.begin(), arr2.end(), arr1[i] + d);
-            if (it1 == it2) res++;
+            if (it1 == it2)
+                res++;
         }
         return res;
     }

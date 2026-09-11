@@ -8,7 +8,7 @@ class Solution {
         }
         for (int li : light) {
             int index = li - 1;
-            parent[index] = index ;
+            parent[index] = index;
             groupNumber++;
             if (index - 1 >= 0 && parent[index - 1] != -1) {
                 unionOp(index, index - 1);
@@ -24,14 +24,14 @@ class Solution {
         }
         return res;
     }
-    
+
     private int findOp(int i) {
         if (parent[i] == i) {
             return i;
         }
         return parent[i] = findOp(parent[i]);
     }
-    
+
     private void unionOp(int a, int b) {
         int pa = findOp(a);
         int pb = findOp(b);
@@ -41,7 +41,7 @@ class Solution {
             parent[pa] = pb;
         }
     }
-    
+
     private int[] parent;
     private int groupNumber;
 }

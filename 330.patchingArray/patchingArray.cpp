@@ -20,7 +20,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> nums = {1,5,10};
+    vector<int> nums = {1, 5, 10};
     int n = 20;
     cout << s.minPatches(nums, n);
     cout << endl;

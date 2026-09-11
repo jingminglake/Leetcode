@@ -1,5 +1,4 @@
 class Solution {
-
     public Solution(int[] w) {
         random = new Random();
         preSum = new int[w.length];
@@ -8,10 +7,11 @@ class Solution {
             preSum[i] = preSum[i - 1] + w[i];
         }
     }
-    
+
     public int pickIndex() {
         int len = preSum.length;
-        if (len == 1) return 0;
+        if (len == 1)
+            return 0;
         int n = random.nextInt(preSum[len - 1]) + 1;
         int left = 0, right = len - 1;
         while (left + 1 < right) {
@@ -22,11 +22,14 @@ class Solution {
                 left = mid;
             }
         }
-        if (preSum[left] >= n) return left;
-        else if (preSum[right] >= n) return right;
-        else return -1;
+        if (preSum[left] >= n)
+            return left;
+        else if (preSum[right] >= n)
+            return right;
+        else
+            return -1;
     }
-    
+
     private int[] preSum;
     Random random;
 }

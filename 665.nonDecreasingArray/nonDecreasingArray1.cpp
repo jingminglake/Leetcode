@@ -23,10 +23,9 @@ public:
         return true;
     }
 };
-int main(void)
-{
-  Solution s;
-  vector<int> nums = {3,4,2,3};
-  cout << s.checkPossibility(nums) << endl;
-  return 0;
+int main(void) {
+    Solution s;
+    vector<int> nums = {3, 4, 2, 3};
+    cout << s.checkPossibility(nums) << endl;
+    return 0;
 }

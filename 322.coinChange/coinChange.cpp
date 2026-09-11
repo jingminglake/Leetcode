@@ -12,7 +12,7 @@ public:
         for (int i = 1; i <= amount; i++) {
             for (int coin : coins) {
                 if (i >= coin && dp[i - coin] != INT_MAX) {
-                    dp[i] = min (dp[i], dp[i - coin] + 1);
+                    dp[i] = min(dp[i], dp[i - coin] + 1);
                 }
             }
         }
@@ -20,10 +20,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<int> coins = {1,2,5};
-    cout << s.coinChange(coins, 11) << endl;;
+    vector<int> coins = {1, 2, 5};
+    cout << s.coinChange(coins, 11) << endl;
+    ;
     return 0;
 }

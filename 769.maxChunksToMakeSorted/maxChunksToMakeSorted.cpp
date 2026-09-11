@@ -8,7 +8,7 @@ public:
         int res = 0;
         int maxV = 0;
         for (int i = 0; i < arr.size(); i++) {
-            maxV = max (maxV, arr[i]);
+            maxV = max(maxV, arr[i]);
             if (maxV == i)
                 res++;
         }
@@ -18,7 +18,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> arr = {1,0,2,3,4};
+    vector<int> arr = {1, 0, 2, 3, 4};
     cout << s.maxChunksToSorted(arr) << endl;
     return 0;
 }

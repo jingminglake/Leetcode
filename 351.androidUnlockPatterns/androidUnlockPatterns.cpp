@@ -5,7 +5,7 @@ using namespace std;
 class Solution {
 public:
     int numberOfPatterns(int m, int n) {
-        vector<vector<int> > skip(10, vector<int>(10, 0));
+        vector<vector<int>> skip(10, vector<int>(10, 0));
         skip[1][3] = skip[3][1] = 2; // 1->3 3->1 must pass though 2
         skip[1][7] = skip[7][1] = 4;
         skip[3][9] = skip[9][3] = 6;
@@ -20,7 +20,7 @@ public:
         }
         return res;
     }
-    int dfs(vector<bool>& visited, vector<vector<int> >& skip, int cur, int steps) {
+    int dfs(vector<bool>& visited, vector<vector<int>>& skip, int cur, int steps) {
         if (steps == 0)
             return 1;
         visited[cur] = true;

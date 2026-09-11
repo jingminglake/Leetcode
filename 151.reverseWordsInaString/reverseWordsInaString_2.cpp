@@ -6,7 +6,8 @@ class Solution {
 public:
     string reverseWords(string s) {
         string res;
-        if (s.empty()) return res;
+        if (s.empty())
+            return res;
         int i = 0;
         reverse(s);
         while (i < s.length()) {
@@ -37,12 +38,11 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string ss = "the   sky  is ";
-  ss = s.reverseWords(ss);
-  cout << ss;
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    string ss = "the   sky  is ";
+    ss = s.reverseWords(ss);
+    cout << ss;
+    cout << endl;
+    return 0;
 }

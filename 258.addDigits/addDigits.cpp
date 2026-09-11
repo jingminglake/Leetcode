@@ -2,10 +2,10 @@
 #include <unordered_map>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
-  int addDigits(int num) {
-    /* int ans = 0;
+    int addDigits(int num) {
+        /* int ans = 0;
     if (num < 10)
       return num;
     while (num > 0) {
@@ -13,13 +13,12 @@ public:
       num = num / 10;
     }
     return addDigits(ans);*/
-    return 1 + (num - 1) % 9;
-  }
+        return 1 + (num - 1) % 9;
+    }
 };
 
-int main()
-{
-  Solution s;
-  cout << s.addDigits(38) << endl;
-  return 0;
+int main() {
+    Solution s;
+    cout << s.addDigits(38) << endl;
+    return 0;
 }

@@ -4,7 +4,9 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> lessThan20 = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    vector<string> lessThan20 = {"Zero",     "One",     "Two",     "Three",     "Four",     "Five",    "Six",
+                                 "Seven",    "Eight",   "Nine",    "Ten",       "Eleven",   "Twelve",  "Thirteen",
+                                 "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
     vector<string> tens = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
     vector<string> thousands = {"", "Thousand", "Million", "Billion"};
     string numberToWords(int num) {
@@ -19,8 +21,8 @@ public:
             num /= 1000;
             i++;
         }
-        res.erase(0,res.find_first_not_of(" "));  
-        res.erase(res.find_last_not_of(" ") + 1); 
+        res.erase(0, res.find_first_not_of(" "));
+        res.erase(res.find_last_not_of(" ") + 1);
         return res;
     }
     string less1000helper(int num) {
@@ -35,9 +37,8 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  cout << s.numberToWords(27137) << endl;
-  return 0;
+int main() {
+    Solution s;
+    cout << s.numberToWords(27137) << endl;
+    return 0;
 }

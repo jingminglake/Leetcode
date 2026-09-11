@@ -10,7 +10,8 @@ public:
             j = getLastValidIndex(T, j);
             //cout << i << " " << j << endl;
             if (i >= 0 && j >= 0 && S[i] == T[j]) {
-                i--; j--;
+                i--;
+                j--;
             } else {
                 return i == -1 && j == -1;
             }

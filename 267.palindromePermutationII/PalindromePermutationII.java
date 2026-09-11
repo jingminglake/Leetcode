@@ -46,11 +46,11 @@ class PalindromePermutationII {
             }
         }
     }
-	public static void main(String[] args) {
-		PalindromePermutationII s = new PalindromePermutationII();
-		String str = "aaabb";
-		for (String ss : s.generatePalindromes(str))
-			System.out.print(ss + " ");
-		System.out.println();
-	}
+    public static void main(String[] args) {
+        PalindromePermutationII s = new PalindromePermutationII();
+        String str = "aaabb";
+        for (String ss : s.generatePalindromes(str))
+            System.out.print(ss + " ");
+        System.out.println();
+    }
 }

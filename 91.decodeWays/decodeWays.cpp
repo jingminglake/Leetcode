@@ -30,8 +30,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     string ss = "27";
     cout << s.numDecodings(ss);

@@ -17,12 +17,12 @@ class FindAnagramMappings {
         }
         return res;
     }
-	public static void main(String[] args) {
-		FindAnagramMappings s = new FindAnagramMappings();
-		int A[] = {12, 28, 46, 32, 50}, B[] = {50, 12, 32, 46, 28};
-		int[] res = s.anagramMappings(A, B);
-		for (int i : res)
-			System.out.print(i + " ");
-		System.out.println();
-	}
+    public static void main(String[] args) {
+        FindAnagramMappings s = new FindAnagramMappings();
+        int A[] = {12, 28, 46, 32, 50}, B[] = {50, 12, 32, 46, 28};
+        int[] res = s.anagramMappings(A, B);
+        for (int i : res)
+            System.out.print(i + " ");
+        System.out.println();
+    }
 }

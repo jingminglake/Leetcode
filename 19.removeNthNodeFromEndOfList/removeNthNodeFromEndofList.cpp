@@ -3,11 +3,9 @@ using namespace std;
 
 struct ListNode {
     int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {
-    }
+    ListNode* next;
+    ListNode(int x) : val(x), next(NULL) {}
 };
-
 
 class Solution {
 public:
@@ -31,20 +29,19 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     int a[5] = {1, 2, 3, 4, 5};
-    ListNode *head = new ListNode(a[0]);
-    ListNode *tail = head;
-    for (int i = 1; i < sizeof(a)/sizeof(a[0]); i++) {
-        ListNode *temp = new ListNode(a[i]);
+    ListNode* head = new ListNode(a[0]);
+    ListNode* tail = head;
+    for (int i = 1; i < sizeof(a) / sizeof(a[0]); i++) {
+        ListNode* temp = new ListNode(a[i]);
         tail->next = temp;
         tail = temp;
     }
     Solution s;
     s.removeNthFromEnd(head, 2);
     while (head != NULL) {
-        ListNode *p = head;
+        ListNode* p = head;
         head = head->next;
         cout << "delete " << p->val << " ";
         delete p;

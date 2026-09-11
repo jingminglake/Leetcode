@@ -19,15 +19,14 @@ public:
             } else if (nums[p] == 1) {
                 p++;
             }
-        }//while
+        } //while
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[9] = {1,0,0,2,1,0,1,2,2};
-    vector<int> nums(a, a+9);
+    int a[9] = {1, 0, 0, 2, 1, 0, 1, 2, 2};
+    vector<int> nums(a, a + 9);
     s.sortColors(nums);
     for (int i : nums)
         cout << i << " ";

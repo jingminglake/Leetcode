@@ -5,7 +5,6 @@
 #include <queue>
 using namespace std;
 
-
 class Solution {
 public:
     double minmaxGasDist(vector<int>& stations, int K) {
@@ -32,11 +31,11 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<int> stations = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-  int k = 9;
-  cout << s.minmaxGasDist(stations, k) << endl;;
-  return 0;
+int main() {
+    Solution s;
+    vector<int> stations = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int k = 9;
+    cout << s.minmaxGasDist(stations, k) << endl;
+    ;
+    return 0;
 }

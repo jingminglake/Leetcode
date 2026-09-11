@@ -19,13 +19,14 @@ int Compare::N = 0;
 class ExamRoom {
 public:
     int _N = 0;
-    priority_queue<pair<int, int>, vector<pair<int, int> >, Compare> pq;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, Compare> pq;
     ExamRoom(int N) {
         _N = N;
         Compare::N = N;
-        if (N > 0) pq.emplace(0, N - 1);
+        if (N > 0)
+            pq.emplace(0, N - 1);
     }
-    
+
     int seat() {
         int pos = -1;
         if (pq.empty())
@@ -45,10 +46,10 @@ public:
             pq.emplace(pos + 1, p.second);
         return pos;
     }
-    
+
     void leave(int p) {
         int start = p, end = p;
-        priority_queue<pair<int, int>, vector<pair<int, int> >, Compare> temp;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, Compare> temp;
         while (!pq.empty()) {
             pair<int, int> t = pq.top();
             pq.pop();

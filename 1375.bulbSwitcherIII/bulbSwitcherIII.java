@@ -4,7 +4,7 @@ class Solution {
         int right = -1;
         for (int i = 0; i < light.length; i++) {
             right = Math.max(right, light[i]);
-            if (i + 1 == right) { 
+            if (i + 1 == right) {
                 res++;
             }
         }

@@ -1,8 +1,6 @@
 class NestedIterator {
 public:
-    NestedIterator(vector<NestedInteger> &nestedList) {
-        flattenList(nestedList);
-    }
+    NestedIterator(vector<NestedInteger>& nestedList) { flattenList(nestedList); }
 
     int next() {
         int res = -1;
@@ -24,7 +22,7 @@ public:
         }
         return false;
     }
-    
+
     void flattenList(vector<NestedInteger>& list) {
         for (int i = list.size() - 1; i >= 0; i--)
             s.push(list[i]);

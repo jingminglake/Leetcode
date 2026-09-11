@@ -29,7 +29,7 @@ public:
             i /= 2;
         }
     }
-    
+
     int sumRange(int i, int j) {
         i += size;
         j += size;

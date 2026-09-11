@@ -9,7 +9,7 @@ public:
         vector<int> res;
         if (numCourses == 0)
             return res;
-        vector<vector<int> > m(numCourses, vector<int>());
+        vector<vector<int>> m(numCourses, vector<int>());
         vector<int> indegree(numCourses, 0);
         for (auto& p : prerequisites) {
             m[p.second].push_back(p.first);
@@ -37,14 +37,13 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<pair<int, int> > prerequisites;
-    prerequisites.push_back(make_pair(1,0));
-    prerequisites.push_back(make_pair(2,0));
-    prerequisites.push_back(make_pair(3,1));
-    prerequisites.push_back(make_pair(3,2));
+    vector<pair<int, int>> prerequisites;
+    prerequisites.push_back(make_pair(1, 0));
+    prerequisites.push_back(make_pair(2, 0));
+    prerequisites.push_back(make_pair(3, 1));
+    prerequisites.push_back(make_pair(3, 2));
     vector<int> res = s.findOrder(4, prerequisites);
     for (int i : res)
         cout << i << " ";

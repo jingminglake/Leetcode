@@ -21,18 +21,15 @@ public:
             if (left_need > 0 && right_need > 0)
                 moves = left_need + right_need;
             else
-                moves = max( abs(left_need), abs(right_need) );
-            res = max (res, moves);
+                moves = max(abs(left_need), abs(right_need));
+            res = max(res, moves);
         }
         return res;
     }
 };
 
-
-
-int main()
-{
+int main() {
     Solution sl;
-    vector<int> machines = {1,0,5};
+    vector<int> machines = {1, 0, 5};
     cout << sl.findMinMoves(machines) << endl;
 }

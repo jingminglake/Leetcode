@@ -1,7 +1,8 @@
 class Solution {
     public String convert(String s, int numRows) {
         StringBuilder[] sb = new StringBuilder[numRows];
-        for (int i = 0; i < numRows; i++) sb[i] = new StringBuilder();
+        for (int i = 0; i < numRows; i++)
+            sb[i] = new StringBuilder();
         char[] arr = s.toCharArray();
         int i = 0;
         while (i < arr.length) {

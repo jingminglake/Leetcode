@@ -25,8 +25,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<string> vec = s.generateParentheses(3);
     vector<string>::iterator it = vec.begin();

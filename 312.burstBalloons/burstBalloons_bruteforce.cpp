@@ -10,9 +10,9 @@ public:
             return 0;
         unordered_map<string, int> m;
         string visited(nums.size(), '0');
-        return dfs (nums, m, visited);
+        return dfs(nums, m, visited);
     }
-    int dfs (vector<int>& nums, unordered_map<string, int>& m, string& visited) {
+    int dfs(vector<int>& nums, unordered_map<string, int>& m, string& visited) {
         if (m.count(visited))
             return m[visited];
         int res = 0;
@@ -21,7 +21,7 @@ public:
                 continue;
             pair<int, int> p = findLeftAndRightAdjancent(nums, visited, i);
             visited[i] = '1';
-            res = max (res, p.first * nums[i] * p.second + dfs(nums, m, visited));
+            res = max(res, p.first * nums[i] * p.second + dfs(nums, m, visited));
             visited[i] = '0';
         }
         return m[visited] = res;
@@ -46,7 +46,7 @@ public:
 
 int main() {
     Solution s;
-    vector<int> nums = {3,1,5,8};
+    vector<int> nums = {3, 1, 5, 8};
     cout << s.maxCoins(nums) << endl;
     return 0;
 }

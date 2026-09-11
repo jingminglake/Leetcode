@@ -22,10 +22,11 @@ class Solution {
         }
         return res;
     }
-    
+
     public double dfs(Map<String, Map<String, Double>> graph, String start, String end, Set<String> visited) {
-        if (start.equals(end)) return 1;
-        
+        if (start.equals(end))
+            return 1;
+
         for (String neighbor : graph.get(start).keySet()) {
             if (!visited.contains(neighbor)) {
                 visited.add(neighbor);

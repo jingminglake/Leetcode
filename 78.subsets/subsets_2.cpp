@@ -5,12 +5,12 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int> > res;
+        vector<vector<int>> res;
         vector<int> path;
         dfs(nums, 0, path, res);
         return res;
     }
-    void dfs(vector<int>& nums, int start, vector<int>& path, vector<vector<int> >& res) {
+    void dfs(vector<int>& nums, int start, vector<int>& path, vector<vector<int>>& res) {
         res.push_back(path);
         for (int i = start; i < nums.size(); i++) {
             path.push_back(nums[i]);
@@ -20,13 +20,12 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
-    int a[3] = {1,2,3};
-    vector<int> vec(a, a+3);
-    vector<vector<int> > res = s.subsets(vec);
-    vector<vector<int> >::iterator it = res.begin();
+    int a[3] = {1, 2, 3};
+    vector<int> vec(a, a + 3);
+    vector<vector<int>> res = s.subsets(vec);
+    vector<vector<int>>::iterator it = res.begin();
     while (it != res.end()) {
         for (int i : *it)
             cout << i << " ";

@@ -11,12 +11,13 @@ class Solution {
                 if (level == stk.size()) { // cur node in next level
                     int prevLen = stk.empty() ? 0 : stk.peek();
                     stk.push(len + prevLen);
-                } else if (level == stk.size() - 1) { // cur node pre node in same level 
+                } else if (level == stk.size() - 1) { // cur node pre node in same level
                     stk.pop();
                     int prevLen = stk.empty() ? 0 : stk.peek();
                     stk.push(len + prevLen);
-                } else if (level < stk.size() - 1) {  // cur node in prev level
-                    while (level < stk.size() - 1) stk.pop();
+                } else if (level < stk.size() - 1) { // cur node in prev level
+                    while (level < stk.size() - 1)
+                        stk.pop();
                     stk.pop();
                     int prevLen = stk.empty() ? 0 : stk.peek();
                     stk.push(len + prevLen);
@@ -24,7 +25,8 @@ class Solution {
                     return -1;
                 }
             }
-            if (s.contains(".")) res = Math.max(res, stk.peek() - 1);
+            if (s.contains("."))
+                res = Math.max(res, stk.peek() - 1);
         }
         return res;
     }

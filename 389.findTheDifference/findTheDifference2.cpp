@@ -14,12 +14,11 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  string ss = "abcd";
-  string p = "abcde";
-  cout << s.findTheDifference(ss, p);
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    string ss = "abcd";
+    string p = "abcde";
+    cout << s.findTheDifference(ss, p);
+    cout << endl;
+    return 0;
 }

@@ -9,7 +9,7 @@ public:
     bool validTree(int n, vector<pair<int, int>>& edges) {
         if (edges.size() != n - 1)
             return false;
-        vector<vector<int> > m(n, vector<int>());
+        vector<vector<int>> m(n, vector<int>());
         for (auto& p : edges) {
             m[p.first].push_back(p.second);
             m[p.second].push_back(p.first);
@@ -32,13 +32,9 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  vector<pair<int, int> > edges = {{0,1},
-				   {0,2},
-				   {0,3},
-				   {1,4}};
-  cout <<  s.validTree(5, edges) << endl;
-  return 0;
+int main() {
+    Solution s;
+    vector<pair<int, int>> edges = {{0, 1}, {0, 2}, {0, 3}, {1, 4}};
+    cout << s.validTree(5, edges) << endl;
+    return 0;
 }

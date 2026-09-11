@@ -10,7 +10,7 @@ public:
             if (tx > ty) {
                 if (ty > sy)
                     tx %= ty;
-                else // ty will not change in the future
+                else                            // ty will not change in the future
                     return (tx - sx) % ty == 0; // tx must meet the pattern, else we return false
             } else {
                 if (tx > sx)

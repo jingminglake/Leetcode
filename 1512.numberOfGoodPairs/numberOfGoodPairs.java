@@ -6,7 +6,8 @@ class Solution {
             m.put(n, m.getOrDefault(n, 0) + 1);
         }
         for (Integer i : m.values()) {
-            if (i > 1) res += i * (i - 1) / 2;
+            if (i > 1)
+                res += i * (i - 1) / 2;
         }
         return res;
     }

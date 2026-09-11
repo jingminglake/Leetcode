@@ -14,7 +14,7 @@ public:
             if (p1 != p2) {
                 parent[p1] = p2;
                 count--;
-            } else 
+            } else
                 return false;
         }
         return count == 1;
@@ -28,13 +28,9 @@ public:
     vector<int> parent;
 };
 
-int main()
-{
+int main() {
     Solution s;
-    vector<pair<int, int> > edges = {{0,1},
-                                     {0,2},
-                                     {0,3},
-                                     {1,4}};
-    cout <<  s.validTree(5, edges) << endl;
+    vector<pair<int, int>> edges = {{0, 1}, {0, 2}, {0, 3}, {1, 4}};
+    cout << s.validTree(5, edges) << endl;
     return 0;
 }

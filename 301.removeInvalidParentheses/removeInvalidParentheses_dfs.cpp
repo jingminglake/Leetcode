@@ -10,7 +10,7 @@ public:
         for (char c : s) {
             if (c == '(')
                 left++;
-            else if (c == ')'){
+            else if (c == ')') {
                 if (left == 0)
                     right++;
                 else
@@ -39,18 +39,17 @@ public:
             if (i != start && s[i] == s[i - 1])
                 continue;
             if (right > 0 && s[i] == ')')
-                dfs (s.substr(0, i) + s.substr(i + 1), i, left, right - 1, res);
+                dfs(s.substr(0, i) + s.substr(i + 1), i, left, right - 1, res);
             if (left > 0 && s[i] == '(')
-                dfs (s.substr(0, i) + s.substr(i + 1), i, left - 1, right, res);
+                dfs(s.substr(0, i) + s.substr(i + 1), i, left - 1, right, res);
         }
     }
 };
 
-int main()
-{
-  Solution s;
-  for (string ss : s.removeInvalidParentheses(string("()())()")))
-    cout << ss << " ";
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    for (string ss : s.removeInvalidParentheses(string("()())()")))
+        cout << ss << " ";
+    cout << endl;
+    return 0;
 }

@@ -1,9 +1,7 @@
 class MyCalendar {
 public:
-    MyCalendar() {
-        
-    }
-    
+    MyCalendar() {}
+
     bool book(int start, int end) {
         for (auto& e : events) {
             bool flag1 = end <= e.first;
@@ -14,7 +12,7 @@ public:
         events.push_back(make_pair(start, end));
         return true;
     }
-    vector<pair<int, int> > events;
+    vector<pair<int, int>> events;
 };
 
 /**

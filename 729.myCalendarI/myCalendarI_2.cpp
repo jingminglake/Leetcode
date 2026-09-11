@@ -1,9 +1,7 @@
 class MyCalendar {
 public:
-    MyCalendar() {
-        
-    }
-    
+    MyCalendar() {}
+
     bool book(int start, int end) {
         auto next = events.lower_bound({start, end});
         if (next != events.end() && end > next->first)
@@ -13,7 +11,7 @@ public:
         events.insert(make_pair(start, end));
         return true;
     }
-    set<pair<int, int> > events;
+    set<pair<int, int>> events;
 };
 
 /**

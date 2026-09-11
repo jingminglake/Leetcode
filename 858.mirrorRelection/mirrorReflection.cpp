@@ -8,7 +8,7 @@ public:
             return 0;
         int lcm = p * q / gcd(p, q);
         int v = lcm / p; // vertical bar number = vertical total len / p
-        if (v % 2 == 0) // even
+        if (v % 2 == 0)  // even
             return 0;
         int len_x = p * lcm / q;
         int h = len_x / p;
@@ -17,7 +17,7 @@ public:
         else
             return 2;
     }
-    int gcd (int p, int q) {
+    int gcd(int p, int q) {
         if (q == 0)
             return p;
         return gcd(q, p % q);

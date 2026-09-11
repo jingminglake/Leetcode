@@ -17,7 +17,7 @@ public:
         for (int i = 0; i < words.size(); i++) {
             for (int j = i + 1; j < words.size(); j++) {
                 if ((wordTag[i] & wordTag[j]) == 0) {
-                    res = max (res, (long) words[i].length() * (long) words[j].length());
+                    res = max(res, (long)words[i].length() * (long)words[j].length());
                 }
             }
         }
@@ -25,7 +25,7 @@ public:
     }
 };
 
-int main () {
+int main() {
     Solution s;
     vector<string> words = {"abcw", "baz", "foo", "bar", "xtfn", "abcdef"};
     cout << s.maxProduct(words) << endl;

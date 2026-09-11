@@ -24,7 +24,7 @@ public:
             return res;
         count = 0;
         vector<int> root(m * n, -1);
-        vector<pair<int, int> > dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+        vector<pair<int, int>> dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
         for (auto& pos : positions) {
             int index1 = n * pos.first + pos.second;
             root[index1] = index1;
@@ -43,13 +43,12 @@ public:
     }
 };
 
-int main()
-{
-  Solution s;
-  int m = 3, n = 3;
-  vector<pair<int, int> > positions = {{0,0}, {0,1}, {1,2}, {2,1}};
-  for (int i : s.numIslands2(m, n, positions))
-      cout << i << " ";
-  cout << endl;
-  return 0;
+int main() {
+    Solution s;
+    int m = 3, n = 3;
+    vector<pair<int, int>> positions = {{0, 0}, {0, 1}, {1, 2}, {2, 1}};
+    for (int i : s.numIslands2(m, n, positions))
+        cout << i << " ";
+    cout << endl;
+    return 0;
 }

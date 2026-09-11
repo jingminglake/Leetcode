@@ -22,6 +22,6 @@ public:
         }
         return cur != end;
     }
-    vector<vector<int> >::iterator cur, end;
+    vector<vector<int>>::iterator cur, end;
     int i;
 };

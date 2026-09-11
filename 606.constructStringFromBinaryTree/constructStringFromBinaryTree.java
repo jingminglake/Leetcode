@@ -15,7 +15,8 @@
  */
 class Solution {
     public String tree2str(TreeNode root) {
-        if (root == null) return "";
+        if (root == null)
+            return "";
         StringBuilder sb = new StringBuilder();
         sb.append(root.val);
         if (root.left != null) {
@@ -24,7 +25,8 @@ class Solution {
             sb.append(")");
         }
         if (root.right != null) {
-            if (root.left == null) sb.append("()");
+            if (root.left == null)
+                sb.append("()");
             sb.append("(");
             sb.append(tree2str(root.right));
             sb.append(")");

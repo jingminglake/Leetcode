@@ -12,7 +12,7 @@ class Solution {
             Pair p = pq.poll();
             uglys[i] = p.candidate;
             pq.add(new Pair(p.primeIndex, uglys[uglyIndex[p.primeIndex]++] * primes[p.primeIndex]));
-            
+
             while (pq.peek().candidate == uglys[i]) {
                 p = pq.poll();
                 pq.add(new Pair(p.primeIndex, uglys[uglyIndex[p.primeIndex]++] * primes[p.primeIndex]));
@@ -20,7 +20,7 @@ class Solution {
         }
         return uglys[n - 1];
     }
-    
+
     private class Pair {
         int primeIndex;
         int candidate;

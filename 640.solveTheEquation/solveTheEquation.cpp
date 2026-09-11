@@ -11,19 +11,24 @@ public:
         while (right < equation.length()) {
             char c = equation[right];
             if (c == 'x') {
-                if (left == right || equation[right - 1] == '+') num_x += sign;
-                else if (equation[right - 1] == '-') num_x -= sign;
-                else num_x += sign * stoi(equation.substr(left, right - left));
+                if (left == right || equation[right - 1] == '+')
+                    num_x += sign;
+                else if (equation[right - 1] == '-')
+                    num_x -= sign;
+                else
+                    num_x += sign * stoi(equation.substr(left, right - left));
                 right++;
                 left = right;
             } else if (c == '+' || c == '-') {
-                if (right > left) sum += sign * stoi(equation.substr(left, right - left));
+                if (right > left)
+                    sum += sign * stoi(equation.substr(left, right - left));
                 //cout << left << " " << right << endl;
-                left = right; // left point to + or -, means str in stoi use operator +,- 
+                left = right; // left point to + or -, means str in stoi use operator +,-
                 right++;
             } else if (c == '=') {
                 //cout << left << " " << right << endl;
-                if (right > left) sum += sign * stoi(equation.substr(left, right - left));
+                if (right > left)
+                    sum += sign * stoi(equation.substr(left, right - left));
                 sign = -1;
                 right++;
                 left = right;
@@ -33,12 +38,13 @@ public:
         }
         if (left < equation.length()) // there may be a number in the end
             sum += sign * stoi(equation.substr(left));
-        if (num_x == 0 && sum == 0) return "Infinite solutions";
-        if (num_x == 0 && sum != 0) return "No solution";
+        if (num_x == 0 && sum == 0)
+            return "Infinite solutions";
+        if (num_x == 0 && sum != 0)
+            return "No solution";
         return "x=" + to_string(-sum / num_x);
     }
 };
-
 
 int main() {
     Solution s;

@@ -10,7 +10,8 @@ public:
                     break;
                 }
             }
-            if (flag) res++;
+            if (flag)
+                res++;
         }
         return res;
     }

@@ -9,7 +9,7 @@ public:
         int left = 0, right = numbers.size() - 1;
         while (left < right) {
             int sum = numbers[left] + numbers[right];
-            if (sum > target) { 
+            if (sum > target) {
                 right--;
             } else if (sum < target) {
                 left++;
@@ -22,11 +22,10 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     int a[4] = {2, 7, 11, 15};
-    vector<int> vec(a,a+4);
+    vector<int> vec(a, a + 4);
     vector<int> ans = s.twoSum(vec, 9);
     vector<int>::iterator it = ans.begin();
     while (it != ans.end()) {
