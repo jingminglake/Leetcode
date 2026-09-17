@@ -1,39 +1,39 @@
 class Solution {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        Set<String> wordSet = new HashSet<>();
-        for (String word : wordList)
-            wordSet.add(word);
+        Set<String> wordSet = new HashSet<>(wordList);
+        if (!wordSet.contains(endWord)) return 0;
 
-        if (!wordSet.contains(endWord))
-            return 0;
-
-        Queue<String> q = new LinkedList<>();
-        q.offer(beginWord);
-        wordSet.remove(beginWord);
-        int level = 1;
+        Queue<String> q = new ArrayDeque<>();
+        q.add(beginWord);
+        if (wordSet.contains(beginWord)) wordSet.remove(beginWord);
+        int res = 1;
+        
         while (!q.isEmpty()) {
-            level++;
-            int q_size = q.size();
-            for (int i = 0; i < q_size; i++) {
-                String cur = q.poll();
-                char[] curChars = cur.toCharArray();
-                for (int k = 0; k < cur.length(); k++) {
-                    char origin = curChars[k];
-                    for (char c = 'a'; c <= 'z'; c++) {
-                        if (c == curChars[k])
-                            continue;
-                        curChars[k] = c;
-                        String new_word = new String(curChars);
-                        if (!wordSet.contains(new_word))
-                            continue;
-                        if (endWord.equals(new_word))
-                            return level;
-                        q.offer(new_word);
-                        wordSet.remove(new_word);
-                    }
-                    curChars[k] = origin;
+            int qSize = q.size();
+            for (int i = 0; i < qSize; i++) {
+                String curWord = q.poll();
+                char[] chars = curWord.toCharArray();
+                // all the next trans
+                for (int j = 0; j < curWord.length(); j++) {
+                     char c = curWord.charAt(j);
+                     // replace c with other char
+                     for (char nextC = 'a'; nextC <= 'z'; nextC++) {
+                        if (nextC == c) continue;
+                        chars[j] = nextC;
+                        String nextWord = new String(chars);
+
+                        // find endWord or add to queue
+                        if (wordSet.contains(nextWord)) {
+                            if (nextWord.equals(endWord)) return res + 1;
+                            wordSet.remove(nextWord);
+                            q.add(nextWord);
+                        }
+                     }
+                     // recover
+                    chars[j] = c;
                 }
             }
+            res++;
         }
         return 0;
     }
