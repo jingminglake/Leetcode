@@ -1,25 +1,26 @@
 class Solution {
     public List<String> topKFrequent(String[] words, int k) {
-        Map<String, Integer> hm = new HashMap<>();
+        Map<String, Integer> wordToCnt = new HashMap<>();
         for (String word : words) {
-            if (hm.containsKey(word)) {
-                hm.put(word, hm.get(word) + 1);
-            } else {
-                hm.put(word, 1);
-            }
+            wordToCnt.put(word, wordToCnt.getOrDefault(word, 0) + 1);
         }
-        Comparator<Map.Entry<String, Integer>> comp =
-            (a, b) -> a.getValue() == b.getValue() ? b.getKey().compareTo(a.getKey()) : a.getValue() - b.getValue();
-        Queue<Map.Entry<String, Integer>> pq = new PriorityQueue<Map.Entry<String, Integer>>(comp);
-        for (Map.Entry<String, Integer> entry : hm.entrySet()) {
-            pq.add(entry);
-            if (pq.size() > k) {
-                pq.poll();
-            }
+        PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>((a, b) -> {
+            String wordA = a.getKey(), wordB = b.getKey();
+            int cntA = a.getValue(), cntB = b.getValue();
+            if (cntA != cntB) return Integer.compare(cntA, cntB); // minHeap
+            else return wordB.compareTo(wordA); 
+        });
+
+        for (Map.Entry<String, Integer> entry : wordToCnt.entrySet()) {
+            pq.offer(entry);
+            if (pq.size() > k) pq.poll();
         }
         List<String> res = new ArrayList<>();
-        while (!pq.isEmpty())
-            res.add(0, pq.poll().getKey());
+        while (!pq.isEmpty()) {
+            Map.Entry<String, Integer> top = pq.poll();
+            res.add(top.getKey());
+        }
+        Collections.reverse(res);
         return res;
     }
 }
