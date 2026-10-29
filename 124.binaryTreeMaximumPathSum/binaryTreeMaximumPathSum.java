@@ -14,31 +14,27 @@
  * }
  */
 class Solution {
-    int maxSum = Integer.MIN_VALUE;
+    int global;
     public int maxPathSum(TreeNode root) {
-        maxSum = Integer.MIN_VALUE;
-        maxPathSumHelper(root);
-        return maxSum;
+        global = Integer.MIN_VALUE;
+        // {1: root + left or right; 2: root only }
+        helper(root);
+        return global;
     }
 
-    public int maxPathSumHelper(TreeNode root) {
-        if (root == null)
-            return Integer.MIN_VALUE;
-        int notPassRootRes = root.val;
-        int leftRes = maxPathSumHelper(root.left);
-        int rightRes = maxPathSumHelper(root.right);
-        if (leftRes > 0 && rightRes > 0) {
-            notPassRootRes = Math.max(notPassRootRes, Math.max(leftRes, rightRes) + root.val);
-            maxSum = Math.max(maxSum, leftRes + rightRes + root.val);
-        } else if (leftRes > 0) {
-            notPassRootRes = Math.max(notPassRootRes, leftRes + root.val);
-            maxSum = Math.max(maxSum, notPassRootRes);
-        } else if (rightRes > 0) {
-            notPassRootRes = Math.max(notPassRootRes, rightRes + root.val);
-            maxSum = Math.max(maxSum, notPassRootRes);
-        } else {
-            maxSum = Math.max(maxSum, root.val);
-        }
-        return notPassRootRes;
+    private int helper(TreeNode root) {
+        if (root == null) return 0;
+        int leftRes = helper(root.left);
+        int rightRes = helper(root.right);
+
+        int leftPart = Math.max(0, leftRes);
+        int rightPart = Math.max(0, rightRes);
+
+        int res = root.val + Math.max(leftPart, rightPart);
+
+        global = Math.max(global, res);
+        global = Math.max(global, root.val + leftPart + rightPart);
+
+        return res;
     }
 }
