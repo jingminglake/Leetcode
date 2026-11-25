@@ -1,31 +1,23 @@
 class Solution {
     public int compress(char[] chars) {
-        int last = 0;
+        int len = chars.length;
         int i = 0;
-        while (i < chars.length) {
-            chars[last++] = chars[i++];
-            int len = 1;
-            while (i < chars.length && chars[i] == chars[i - 1]) {
-                len++;
-                i++;
+        int w = 0; // next write index
+        while (i < len) {
+            char cur = chars[i];
+            int j = i;
+            while (j < len && chars[j] == cur) {
+                j++;
             }
-            //System.out.println(len + "===" + i);
-            if (len > 1) {
-                List<Character> digits = getDigits(len);
-                for (char c : digits) {
-                    chars[last++] = c;
+            chars[w++] = cur;
+            int cnt = j - i;
+            if (cnt > 1) {
+                for (char d : String.valueOf(cnt).toCharArray()) {
+                    chars[w++] = d;
                 }
             }
+            i = j;
         }
-        return last;
-    }
-
-    private List<Character> getDigits(int len) {
-        List<Character> res = new LinkedList<>();
-        while (len != 0) {
-            res.add(0, (char) ('0' + len % 10));
-            len /= 10;
-        }
-        return res;
+        return w;
     }
 }
